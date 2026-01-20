@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Docker
 .env.docker
+
+# Large render files (use WebP versions in optimized/)
+public/images/xframe-render/*.png
+public/models/*.ply
