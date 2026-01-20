@@ -1,0 +1,54 @@
+# ===========================================
+# Ecolive Website - Docker Compose
+# ===========================================
+#
+# Database: usa vps-panel-postgres esistente
+# Storage: usa vps-panel-minio esistente
+# Routing: Traefik con SSL
+#
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecolive-website_app
+    restart: unless-stopped
+    env_file:
+      - .env.docker
+    environment:
+      - NODE_ENV=production
+    # Nessuna porta pubblica - accesso solo via Traefik
+    networks:
+      - traefik-public
+      - panel-internal
+    labels:
+      # Traefik routing
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+
+      # Router preview (ecolive.fodivps2.cloud)
+      # NOTA: Router per www.ecolive.srl da abilitare quando DNS punta a questo server
+      - "traefik.http.routers.ecolive-preview.rule=Host(`ecolive.fodivps2.cloud`)"
+      - "traefik.http.routers.ecolive-preview.entrypoints=websecure"
+      - "traefik.http.routers.ecolive-preview.tls=true"
+      - "traefik.http.routers.ecolive-preview.tls.certresolver=letsencrypt"
+
+      # Service
+      - "traefik.http.services.ecolive-preview.loadbalancer.server.port=3000"
+
+      # Metadata per VPS Panel
+      - "com.docker.compose.project=ecolive-website"
+      - "vps.project.slug=ecolive-website"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+networks:
+  traefik-public:
+    external: true
+  panel-internal:
+    external: true
