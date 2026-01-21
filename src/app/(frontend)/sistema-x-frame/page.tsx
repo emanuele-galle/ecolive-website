@@ -8,7 +8,7 @@ import SketchfabViewer from '@/components/SketchfabViewer'
 import AdaptiveGaussianViewer from '@/components/xframe/AdaptiveGaussianViewer'
 import Stratigraphy3D from '@/components/xframe/Stratigraphy3D'
 import RenderShowcase from '@/components/xframe/RenderShowcase'
-import MaterialsComparison from '@/components/sections/MaterialsComparison'
+import EnhancedMaterialsComparison from '@/components/sections/EnhancedMaterialsComparison'
 import EvolutionTimelineSection from '@/components/xframe/EvolutionTimelineSection'
 import InvestmentExcellenceSection from '@/components/xframe/InvestmentExcellenceSection'
 import { Check, Phone, ChevronDown } from 'lucide-react'
@@ -602,8 +602,8 @@ export default function SistemaXFramePage() {
       {/* Investment Excellence Section (Redesigned) */}
       <InvestmentExcellenceSection />
 
-      {/* Materials Comparison - Perche Costa di Piu */}
-      <MaterialsComparison />
+      {/* Enhanced Materials Comparison - Interactive Flip Cards + Cost Calculator */}
+      <EnhancedMaterialsComparison />
 
       {/* Velocita Montaggio Section */}
       <VelocitaMontaggioSection />

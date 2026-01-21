@@ -645,6 +645,30 @@ html {
   animation: tickPulse 0.4s ease-out;
 }
 
+/* ============================================
+   3D FLIP CARD UTILITIES
+   ============================================ */
+
+/* Perspective container for 3D transforms */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+/* Preserve 3D transformations for children */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Hide backface for flip cards */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
