@@ -33,6 +33,7 @@
     "payload": "^3.72.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-medium-image-zoom": "^5.4.0",
     "three": "^0.182.0",
     "uuid": "^13.0.0",
     "zustand": "^5.0.10"

@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Image from 'next/image'
-import { ZoomIn, X, ChevronLeft, ChevronRight, Layers, Camera, Eye } from 'lucide-react'
+import { ZoomIn, X, ChevronLeft, ChevronRight, Layers, Camera, Eye, Download } from 'lucide-react'
+import { ImageZoom } from '@/components/ui/ZoomableImage'
 
 interface RenderImage {
   src: string
@@ -30,22 +31,17 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
   const isInView = useInView(containerRef, { once: false, margin: '-100px' })
 
   const [activeCategory, setActiveCategory] = useState<'struttura' | 'tetto' | 'viste'>('struttura')
-  const [selectedIndex, setSelectedIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
   // Filter images by category
   const filteredImages = images.filter(img => img.category === activeCategory)
-  const selectedImage = filteredImages[selectedIndex] || filteredImages[0]
-
-  // Reset selection when category changes
-  useEffect(() => {
-    setSelectedIndex(0)
-  }, [activeCategory])
 
   // Lightbox functions
-  const openLightbox = () => {
-    const globalIndex = images.findIndex(img => img.src === selectedImage.src)
+  const openLightbox = (index: number) => {
+    // Find global index of clicked image
+    const clickedImage = filteredImages[index]
+    const globalIndex = images.findIndex(img => img.src === clickedImage.src)
     setLightboxIndex(globalIndex)
     setLightboxOpen(true)
     document.body.style.overflow = 'hidden'
@@ -64,6 +60,15 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
     setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)
   }
 
+  const downloadImage = () => {
+    const link = document.createElement('a')
+    link.href = images[lightboxIndex].srcFull
+    link.download = `xframe-render-${lightboxIndex + 1}.webp`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -71,6 +76,10 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
       if (e.key === 'Escape') closeLightbox()
       if (e.key === 'ArrowRight') nextLightboxImage()
       if (e.key === 'ArrowLeft') prevLightboxImage()
+      if (e.key === ' ') {
+        e.preventDefault()
+        nextLightboxImage()
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
@@ -159,161 +168,203 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
             </div>
           </motion.div>
 
-          {/* Main Showcase Area */}
+          {/* Bento Grid Layout */}
           <motion.div
-            className="grid lg:grid-cols-[1fr_280px] gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(200px,auto)]"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.3 }}
           >
-            {/* Main Image */}
-            <div className="relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={selectedImage?.src}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative aspect-[16/10] overflow-hidden cursor-pointer group"
-                  onClick={openLightbox}
-                >
-                  {selectedImage && (
-                    <>
-                      <Image
-                        src={selectedImage.srcFull}
-                        alt={selectedImage.alt}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 1024px) 100vw, 70vw"
-                        priority
-                      />
-                      {/* Gradient overlay with info */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+            <AnimatePresence mode="popLayout">
+              {filteredImages.map((img, index) => {
+                // Featured image spans 2x2 grid on desktop
+                const isFeatured = index === 0
+                const gridClass = isFeatured
+                  ? 'md:col-span-2 md:row-span-2'
+                  : 'md:col-span-1 md:row-span-1'
 
-                      {/* Info overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                        <div className="flex items-end justify-between gap-4">
-                          <div>
-                            <h3 className="text-white font-semibold text-xl lg:text-2xl mb-2">
-                              {selectedImage.title}
-                            </h3>
-                            <p className="text-white/70 text-sm lg:text-base leading-relaxed max-w-xl">
-                              {selectedImage.description}
-                            </p>
-                          </div>
-                          <motion.div
-                            className="flex-shrink-0 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                            whileHover={{ scale: 1.1 }}
-                          >
-                            <ZoomIn className="w-5 h-5 text-white" />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                return (
+                  <motion.div
+                    key={img.src}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    className={`relative overflow-hidden rounded-2xl cursor-pointer group ${gridClass}`}
+                    onClick={() => openLightbox(index)}
+                  >
+                    {/* Glow effect on hover */}
+                    <div className="absolute -inset-2 bg-[#C4704B]/0 group-hover:bg-[#C4704B]/20 rounded-3xl blur-2xl transition-all duration-500 -z-10" />
 
-            {/* Thumbnails Sidebar */}
-            <div className="lg:max-h-[600px] lg:overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
-              <div className="grid grid-cols-3 lg:grid-cols-1 gap-2">
-                <AnimatePresence mode="popLayout">
-                  {filteredImages.map((img, index) => (
-                    <motion.button
-                      key={img.src}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.35, delay: index * 0.05 }}
-                      onClick={() => setSelectedIndex(index)}
-                      className={`
-                        relative aspect-video lg:aspect-[16/10] overflow-hidden
-                        transition-all duration-300
-                        ${selectedIndex === index
-                          ? 'opacity-100 scale-100'
-                          : 'opacity-40 hover:opacity-70 scale-95'}
-                      `}
-                    >
+                    <div className="relative w-full h-full bg-[#0f2040]/50 border border-white/10 group-hover:border-[#C4704B]/40 transition-all duration-300 overflow-hidden">
                       <Image
                         src={img.src}
                         alt={img.alt}
                         fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 33vw, 280px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes={isFeatured
+                          ? "(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw"
+                          : "(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 25vw"
+                        }
                       />
-                    </motion.button>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
+
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
+
+                      {/* Info overlay */}
+                      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6">
+                        <motion.h3
+                          className={`text-white font-semibold mb-1 ${isFeatured ? 'text-xl md:text-2xl' : 'text-base md:text-lg'}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + index * 0.05 }}
+                        >
+                          {img.title}
+                        </motion.h3>
+
+                        {isFeatured && (
+                          <motion.p
+                            className="text-white/70 text-sm leading-relaxed mb-3 line-clamp-2"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 + index * 0.05 }}
+                          >
+                            {img.description}
+                          </motion.p>
+                        )}
+
+                        {/* Zoom icon */}
+                        <motion.div
+                          className="flex items-center justify-between"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.3 + index * 0.05 }}
+                        >
+                          <span className="text-[#C4704B] text-xs font-medium tracking-wide uppercase">
+                            Clicca per espandere
+                          </span>
+                          <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <ZoomIn className="w-4 h-4 text-white" />
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Enhanced Lightbox Modal with Zoom */}
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
-            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
           >
-            {/* Close button */}
-            <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-            >
-              <X className="w-6 h-6 text-white" />
-            </button>
+            {/* Toolbar Top */}
+            <div className="absolute top-0 left-0 right-0 p-4 flex items-center justify-between bg-gradient-to-b from-black/60 to-transparent z-20">
+              <div className="flex items-center gap-4">
+                {/* Counter */}
+                <div className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                  <span className="text-white text-sm font-medium">
+                    {lightboxIndex + 1} / {images.length}
+                  </span>
+                </div>
+                {/* Category badge */}
+                <div className="px-4 py-2 bg-[#C4704B]/20 backdrop-blur-md rounded-full border border-[#C4704B]/30">
+                  <span className="text-[#C4704B] text-sm font-medium">
+                    {images[lightboxIndex].category}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {/* Download button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    downloadImage()
+                  }}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-md border border-white/20"
+                  title="Scarica immagine"
+                >
+                  <Download className="w-5 h-5 text-white" />
+                </button>
+
+                {/* Close button */}
+                <button
+                  onClick={closeLightbox}
+                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors backdrop-blur-md border border-white/20"
+                  title="Chiudi (Esc)"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            </div>
 
             {/* Navigation - Previous */}
             <button
-              onClick={(e) => { e.stopPropagation(); prevLightboxImage(); }}
-              className="absolute left-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+              onClick={(e) => {
+                e.stopPropagation()
+                prevLightboxImage()
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md border border-white/20 hover:scale-110"
+              title="Precedente (←)"
             >
               <ChevronLeft className="w-6 h-6 text-white" />
             </button>
 
             {/* Navigation - Next */}
             <button
-              onClick={(e) => { e.stopPropagation(); nextLightboxImage(); }}
-              className="absolute right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
+              onClick={(e) => {
+                e.stopPropagation()
+                nextLightboxImage()
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md border border-white/20 hover:scale-110"
+              title="Successivo (→)"
             >
               <ChevronRight className="w-6 h-6 text-white" />
             </button>
 
-            {/* Image */}
+            {/* Image with Zoom */}
             <motion.div
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.35 }}
-              className="relative max-w-[90vw] max-h-[85vh]"
+              className="relative max-w-[85vw] max-h-[75vh] flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              <ImageZoom
                 src={images[lightboxIndex].srcFull}
                 alt={images[lightboxIndex].alt}
                 width={2000}
                 height={1500}
-                className="max-w-full max-h-[85vh] object-contain"
-                priority
+                className="max-w-full max-h-[75vh] object-contain rounded-lg"
               />
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <h3 className="text-white font-semibold text-lg">{images[lightboxIndex].title}</h3>
-                <p className="text-white/80 text-sm">{images[lightboxIndex].description}</p>
-              </div>
             </motion.div>
 
-            {/* Image counter */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
-              {lightboxIndex + 1} / {images.length}
+            {/* Caption bottom */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h3 className="text-white font-semibold text-lg md:text-xl mb-2">
+                  {images[lightboxIndex].title}
+                </h3>
+                <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                  {images[lightboxIndex].description}
+                </p>
+                <p className="text-white/40 text-xs mt-3 tracking-wide uppercase">
+                  Usa la rotella del mouse per zoomare • Frecce per navigare • Esc per chiudere
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
