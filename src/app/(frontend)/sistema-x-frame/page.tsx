@@ -8,7 +8,7 @@ import SketchfabViewer from '@/components/SketchfabViewer'
 import AdaptiveGaussianViewer from '@/components/xframe/AdaptiveGaussianViewer'
 import Stratigraphy3D from '@/components/xframe/Stratigraphy3D'
 import RenderShowcase from '@/components/xframe/RenderShowcase'
-import SimpleMaterialsComparison from '@/components/sections/SimpleMaterialsComparison'
+import WhyCostMoreSection from '@/components/sections/WhyCostMoreSection'
 import EvolutionTimelineSection from '@/components/xframe/EvolutionTimelineSection'
 import InvestmentExcellenceSection from '@/components/xframe/InvestmentExcellenceSection'
 import { Check, Phone, ChevronDown } from 'lucide-react'
@@ -123,24 +123,6 @@ const renderImages: {
     alt: 'Sistema tetto principale X-Frame',
     featured: false,
     category: 'tetto',
-  },
-  {
-    src: '/images/xframe-render/optimized/tetto-vista-sopra-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/tetto-vista-sopra.webp',
-    title: 'Vista Aerea Tetto',
-    description: 'Prospettiva dall\'alto della copertura',
-    alt: 'Vista aerea tetto X-Frame',
-    featured: false,
-    category: 'viste',
-  },
-  {
-    src: '/images/xframe-render/optimized/vista-sopra-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/vista-sopra.webp',
-    title: 'Vista Completa dall\'Alto',
-    description: 'Panoramica totale del sistema',
-    alt: 'Vista completa dall\'alto sistema X-Frame',
-    featured: false,
-    category: 'viste',
   },
 ]
 
@@ -602,8 +584,8 @@ export default function SistemaXFramePage() {
       {/* Investment Excellence Section (Redesigned) */}
       <InvestmentExcellenceSection />
 
-      {/* Simple Materials Comparison - Visual Before/After Sliders */}
-      <SimpleMaterialsComparison />
+      {/* Why Cost More Section - Educational Material Breakdown */}
+      <WhyCostMoreSection />
 
       {/* Velocita Montaggio Section */}
       <VelocitaMontaggioSection />
@@ -661,7 +643,7 @@ export default function SistemaXFramePage() {
             </h2>
 
             <p className="text-lg lg:text-xl text-gray-500 mt-8 max-w-2xl mx-auto leading-relaxed">
-              Modelli 3D interattivi per scoprire la tecnologia X-Frame da ogni angolazione.
+              6 modelli 3D interattivi per scoprire ogni componente del sistema X-Frame.
               <span className="text-[#C4704B] font-medium"> Ruota, zooma, esplora.</span>
             </p>
           </motion.div>
@@ -675,9 +657,9 @@ export default function SistemaXFramePage() {
             transition={{ duration: 1.2, delay: 0.2 }}
           >
             <SketchfabViewer
-              modelId="6c0ae8dbeca14ed49c0b09375d7aedf8"
-              title="Spaccato X-Frame 2.0"
-              description="Sezione completa del sistema costruttivo: dalla fondazione al tetto, inclusi isolamento, struttura portante e finiture."
+              modelId="e5d5772efd5d44e4a16d08a34d798f02"
+              title="Spaccato X-Frame 2.0 - Animato"
+              description="Esplora la sezione completa con animazione interattiva: fondazione, struttura portante, isolamento e finiture."
               height="600px"
               autoStart={true}
               featured={true}
@@ -714,43 +696,79 @@ export default function SistemaXFramePage() {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300" />
             <div className="flex items-center gap-3 px-5 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B]" />
-              <span className="text-sm text-[#1E3D30] font-semibold tracking-wide">Dettagli Costruttivi</span>
+              <span className="text-sm text-[#1E3D30] font-semibold tracking-wide">Dettagli Costruttivi Completi</span>
             </div>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300" />
           </motion.div>
 
-          {/* Secondary Models - Premium Grid */}
-          <div className="grid md:grid-cols-2 gap-10 lg:gap-14">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.9, delay: 0.4 }}
-            >
-              <SketchfabViewer
-                modelId="9eda71a7fa444aedbb9354a9ae26726f"
-                title="Parete Classe A1"
-                description="Parete ad alta efficienza con trasmittanza U = 0.12 W/m²K."
-                height="420px"
-                autoStart={true}
-              />
-            </motion.div>
+          {/* Secondary Models - Full Screen Vertical */}
+          {/* Parete Esterna */}
+          <motion.div
+            className="mb-24"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+          >
+            <SketchfabViewer
+              modelId="eef538fbecae4ce6ad2efdfeffd1799c"
+              title="Parete Esterna X-Frame"
+              description="Dettaglio stratigrafia parete: telaio, isolamento termo-acustico e rivestimento esterno."
+              height="600px"
+              autoStart={true}
+            />
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.9, delay: 0.5 }}
-            >
-              <SketchfabViewer
-                modelId="a2945100ea394be2bdb2242bb93ed7d5"
-                title="Tetto Classe A4"
-                description="Copertura con isolamento superiore e ventilazione integrata."
-                height="420px"
-                autoStart={true}
-              />
-            </motion.div>
-          </div>
+          {/* Tetto con Cartongesso */}
+          <motion.div
+            className="mb-24"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.9, delay: 0.5 }}
+          >
+            <SketchfabViewer
+              modelId="fa9d29118a944d41becddf0b9a1a1dee"
+              title="Tetto con Cartongesso"
+              description="Sistema tetto con finitura cartongesso: isolamento, ventilazione e controllo vapore."
+              height="600px"
+              autoStart={true}
+            />
+          </motion.div>
+
+          {/* Tetto a Vista */}
+          <motion.div
+            className="mb-24"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.9, delay: 0.6 }}
+          >
+            <SketchfabViewer
+              modelId="3794569f38a4405abb7c5ef55cac2ccc"
+              title="Tetto a Vista"
+              description="Copertura con travi strutturali a vista: design e prestazioni termiche."
+              height="600px"
+              autoStart={true}
+            />
+          </motion.div>
+
+          {/* Spaccato Tetto Piano */}
+          <motion.div
+            className="mb-24"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.9, delay: 0.7 }}
+          >
+            <SketchfabViewer
+              modelId="1a4b908a94a24964a950866852a5a4f5"
+              title="Spaccato Tetto Piano"
+              description="Stratigrafia tetto piano: impermeabilizzazione, isolamento e pendenze."
+              height="600px"
+              autoStart={true}
+            />
+          </motion.div>
 
           {/* CTA Link to Sketchfab - Premium */}
           <motion.div
@@ -761,7 +779,7 @@ export default function SistemaXFramePage() {
             transition={{ delay: 0.6 }}
           >
             <a
-              href="https://sketchfab.com/PasZaf"
+              href="https://sketchfab.com/skeypian"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-6 py-3 bg-[#1E3D30] hover:bg-[#2D5A47] text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#1E3D30]/20"
