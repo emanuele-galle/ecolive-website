@@ -190,22 +190,13 @@ export default function HeroFullscreen({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.8 }}
         >
-          <Link href="/contatti">
+          <Link href="/tipologie">
             <motion.span
               className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary)] text-white font-semibold text-lg rounded-xl shadow-xl shadow-[var(--color-primary)]/30 transition-all duration-300"
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              Richiedi Preventivo Gratuito
-            </motion.span>
-          </Link>
-          <Link href="/progetti">
-            <motion.span
-              className="inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-xl border-2 border-white/40 hover:bg-white/25 hover:border-white/60 transition-all duration-300"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Scopri i Progetti
+              Scopri le Tipologie
             </motion.span>
           </Link>
         </motion.div>
