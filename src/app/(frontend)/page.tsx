@@ -4,7 +4,6 @@ import type { Media } from '@/payload-types'
 
 // Import Warm Natural section components
 import HeroFullscreen from '@/components/sections/HeroFullscreen'
-import TrustBar from '@/components/sections/TrustBar'
 import ValueProposition from '@/components/sections/ValueProposition'
 import PriceCalculatorWarm from '@/components/sections/PriceCalculatorWarm'
 import ProjectsGrid from '@/components/sections/ProjectsGrid'
@@ -53,13 +52,7 @@ export default async function HomePage() {
         heroSubtitle={siteSettings?.heroSubtitle || undefined}
       />
 
-      {/* Transition: Hero dark to TrustBar light */}
-      <SectionDivider from="#2C2825" to="#F5F0E8" height="200px" />
-
-      {/* 2. Trust Bar - Certifications */}
-      <TrustBar />
-
-      {/* 3. Value Proposition - 3 Cards */}
+      {/* 2. Value Proposition - Interactive */}
       <ValueProposition />
 
       {/* 4. Price Calculator - Redesigned */}

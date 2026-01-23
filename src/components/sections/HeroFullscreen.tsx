@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Zap } from 'lucide-react'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { useMouseParallax, useMouseFollow } from '@/lib/hooks/useMouseParallax'
@@ -175,7 +175,7 @@ export default function HeroFullscreen({
         </motion.h1>
 
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+          className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed font-light"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
@@ -184,11 +184,29 @@ export default function HeroFullscreen({
           {heroSubtitle}
         </motion.p>
 
+        {/* X-Frame 2.0 Badge */}
+        <motion.div
+          className="flex items-center justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.7 }}
+        >
+          <div className="flex items-center gap-2 px-4 py-2 bg-[#C4704B]/20 backdrop-blur-md border border-[#C4704B]/40 rounded-lg">
+            <Zap className="w-4 h-4 text-[#C4704B]" />
+            <span className="text-sm font-semibold text-white">
+              Sistema <strong className="text-[#C4704B]">X-Frame 2.0</strong>
+            </span>
+          </div>
+          <Link href="/sistema-x-frame" className="text-white/70 hover:text-white text-xs underline transition-colors">
+            Scopri la tecnologia →
+          </Link>
+        </motion.div>
+
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
+          transition={{ duration: 1.2, delay: 0.9 }}
         >
           <Link href="/tipologie">
             <motion.span
