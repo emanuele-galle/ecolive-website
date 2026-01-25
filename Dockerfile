@@ -5,7 +5,7 @@
 # Build sull'host: npm run build
 # Poi: docker compose build && docker compose up -d
 
-FROM node:22-alpine
+FROM node:24-alpine
 
 WORKDIR /app
 
