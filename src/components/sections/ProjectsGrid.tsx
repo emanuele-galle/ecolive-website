@@ -37,10 +37,10 @@ export default function ProjectsGrid({ projects }: Props) {
             </h2>
           </div>
           <Link
-            href="/progetti"
+            href="/tipologie"
             className="hidden md:inline-flex items-center gap-2 text-[#2C2825] font-semibold mt-4 md:mt-0 group hover:text-[#C4704B] transition-colors"
           >
-            Vedi tutti i progetti
+            Tutte le Tipologie
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
@@ -120,10 +120,10 @@ export default function ProjectsGrid({ projects }: Props) {
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <Link
-            href="/progetti"
+            href="/tipologie"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#2C2825] text-white rounded-xl font-semibold"
           >
-            Vedi tutti i progetti
+            Tutte le Tipologie
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>

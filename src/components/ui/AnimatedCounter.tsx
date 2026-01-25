@@ -9,6 +9,7 @@ interface AnimatedCounterProps {
   prefix?: string
   duration?: number
   className?: string
+  style?: React.CSSProperties
 }
 
 export default function AnimatedCounter({
@@ -16,7 +17,8 @@ export default function AnimatedCounter({
   suffix = '',
   prefix = '',
   duration = 2,
-  className = ''
+  className = '',
+  style
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(0)
@@ -38,5 +40,5 @@ export default function AnimatedCounter({
     return unsubscribe
   }, [springValue, suffix, prefix])
 
-  return <span ref={ref} className={className}>{prefix}0{suffix}</span>
+  return <span ref={ref} className={className} style={style}>{prefix}0{suffix}</span>
 }

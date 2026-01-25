@@ -366,7 +366,7 @@ export default function ProcessJourney() {
             Da Sogno a <span className="text-[#C4704B]">Realta</span>
           </h2>
           <p className="text-white/60 text-base sm:text-lg max-w-xl mx-auto mt-4">
-            30 giorni dalla prima consulenza alle chiavi della tua nuova casa
+            60 giorni dalla prima consulenza alle chiavi della tua nuova casa
           </p>
         </motion.div>
 

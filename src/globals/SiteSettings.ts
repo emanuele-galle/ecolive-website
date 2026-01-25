@@ -59,7 +59,7 @@ export const SiteSettings: GlobalConfig = {
               name: 'heroTitle',
               type: 'text',
               label: 'Titolo Hero',
-              defaultValue: 'In soli 30 giorni la Casa dei tuoi Sogni diventa Realtà',
+              defaultValue: 'In soli 60 giorni la Casa dei tuoi Sogni diventa Realtà',
             },
             {
               name: 'heroSubtitle',

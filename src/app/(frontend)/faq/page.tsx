@@ -56,7 +56,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-[#C4704B] mt-0.5 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Casa pronta in 30 giorni</strong> — tempi di costruzione ridotti</span>
+              <span><strong className="text-[#1E3D30]">Casa pronta in 60 giorni</strong> — tempi di costruzione ridotti</span>
             </li>
           </ul>
         </>

@@ -355,7 +355,7 @@ export default function AssemblyShowcase() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 1.2 }}
         >
-          100x piu veloce della costruzione in cemento armato • Zero sprechi • Cantiere pulito
+          100x piu veloce della costruzione tradizionale • Zero sprechi • Cantiere pulito
         </motion.p>
       </div>
     </section>

@@ -97,7 +97,7 @@ export default function HeroImmersive() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.6 }}
           >
-            In soli <strong className="text-[#0a2540]">30 giorni</strong> la casa dei tuoi sogni diventa realta.
+            In soli <strong className="text-[#0a2540]">60 giorni</strong> la casa dei tuoi sogni diventa realta.
             Sistema costruttivo X-Frame 2.0 - Classe energetica A4.
           </motion.p>
 
@@ -118,13 +118,13 @@ export default function HeroImmersive() {
               </motion.span>
             </Link>
 
-            <Link href="/progetti" className="group">
+            <Link href="/tipologie" className="group">
               <motion.span
                 className="inline-flex items-center gap-3 px-8 py-4 bg-[#0a2540] text-white font-semibold rounded-2xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Vedi progetti
+                Scopri le Tipologie
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.span>
             </Link>

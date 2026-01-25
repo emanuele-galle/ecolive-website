@@ -6,7 +6,7 @@ export default function Footer() {
 
   const linkRapidi = [
     { label: 'Home', href: '/' },
-    { label: 'Progetti', href: '/progetti' },
+    { label: 'Tipologie', href: '/tipologie' },
     { label: 'Chi Siamo', href: '/chi-siamo' },
     { label: 'News', href: '/news' },
     { label: 'FAQ', href: '/faq' },

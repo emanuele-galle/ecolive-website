@@ -84,7 +84,7 @@ export default function ProcessTimeline() {
             Il Nostro <span className="text-[#C4704B]">Processo</span>
           </h2>
           <p className="text-white/60 text-lg max-w-xl mx-auto mt-4">
-            Dalla prima consulenza alla consegna delle chiavi in soli 30 giorni
+            Dalla prima consulenza alla consegna delle chiavi in soli 60 giorni
           </p>
         </motion.div>
 

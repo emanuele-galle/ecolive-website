@@ -169,10 +169,10 @@ export default function ProjectDetailClient({
             </Link>
             <ChevronRight className="w-4 h-4 text-[#1E3D30]/30" />
             <Link
-              href="/progetti"
+              href="/tipologie"
               className="text-[#1E3D30]/60 hover:text-[#C4704B] transition-colors"
             >
-              Progetti
+              Tipologie
             </Link>
             <ChevronRight className="w-4 h-4 text-[#1E3D30]/30" />
             <span className="text-[#1E3D30] font-medium">{project.title}</span>
@@ -480,10 +480,10 @@ export default function ProjectDetailClient({
               className="text-center mt-12"
             >
               <Link
-                href="/progetti"
+                href="/tipologie"
                 className="inline-flex items-center gap-2 text-white/80 hover:text-[#C4704B] font-medium transition-colors"
               >
-                Vedi tutti i progetti
+                Tutte le Tipologie
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>

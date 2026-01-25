@@ -9,7 +9,7 @@ const features = [
   {
     icon: Shield,
     title: 'Massima Sicurezza Antisismica',
-    description: 'Certificato per zona sismica 1. La struttura in legno assorbe e dissipa l\'energia sismica meglio del cemento armato.',
+    description: 'Certificato per zona sismica 1. La struttura in legno assorbe e dissipa l\'energia sismica in modo ottimale grazie alla sua flessibilita naturale.',
     stat: 'Zona 1',
   },
   {
@@ -21,8 +21,8 @@ const features = [
   {
     icon: Clock,
     title: 'Costruzione Rapida',
-    description: 'Dalla fondazione alla consegna in soli 30 giorni lavorativi. Produzione off-site con precisione millimetrica.',
-    stat: '30 giorni',
+    description: 'Dalla fondazione alla consegna in soli 60 giorni lavorativi. Produzione off-site con precisione millimetrica.',
+    stat: '60 giorni',
   },
   {
     icon: Leaf,

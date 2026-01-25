@@ -57,10 +57,10 @@ export default function ProjectsShowcase({ projects }: Props) {
             </h2>
           </div>
           <Link
-            href="/progetti"
+            href="/tipologie"
             className="hidden md:inline-flex items-center gap-2 text-[#0a2540] font-semibold mt-4 md:mt-0 group"
           >
-            Tutti i progetti
+            Tutte le Tipologie
             <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
           </Link>
         </motion.div>
@@ -146,10 +146,10 @@ export default function ProjectsShowcase({ projects }: Props) {
           transition={{ delay: 0.6 }}
         >
           <Link
-            href="/progetti"
+            href="/tipologie"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a2540] text-white rounded-full font-semibold"
           >
-            Tutti i progetti
+            Tutte le Tipologie
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>

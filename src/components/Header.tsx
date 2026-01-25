@@ -9,7 +9,7 @@ const menuItems = [
   { label: 'Home', href: '/' },
   { label: 'X-Frame', href: '/sistema-x-frame' },
   { label: 'Configuratore', href: '/configuratore' },
-  { label: 'Progetti', href: '/progetti' },
+  { label: 'Tipologie', href: '/tipologie' },
   { label: 'Chi Siamo', href: '/chi-siamo' },
   {
     label: 'Area Tecnica',

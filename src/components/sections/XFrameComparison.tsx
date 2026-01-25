@@ -191,7 +191,7 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
               </th>
               <th className="text-center p-5 font-semibold text-white">
                 <div className="flex flex-col items-center">
-                  <span>Cemento Armato</span>
+                  <span>Muratura Tradizionale</span>
                   <span className="text-xs font-normal text-[#6b8e9f]">Tradizionale</span>
                 </div>
               </th>
@@ -293,7 +293,7 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
               </th>
               <th className="text-center p-5 font-semibold text-[#2C2825]">
                 <div className="flex flex-col items-center">
-                  <span>Cemento Armato</span>
+                  <span>Muratura Tradizionale</span>
                   <span className="text-xs font-normal text-[#6B6560]">Tradizionale</span>
                 </div>
               </th>

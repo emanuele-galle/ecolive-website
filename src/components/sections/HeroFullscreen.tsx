@@ -29,7 +29,7 @@ export default function HeroFullscreen({
   heroImage,
   heroVideo,
   heroVideoPoster,
-  heroTitle = 'In soli 30 giorni la Casa dei tuoi Sogni diventa Realta',
+  heroTitle = 'In soli 60 giorni la Casa dei tuoi Sogni diventa Realta',
   heroSubtitle = 'Costruiamo il tuo sogno con qualita certificata e design italiano.',
 }: HeroFullscreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)

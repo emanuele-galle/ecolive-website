@@ -1,15 +1,17 @@
 'use client'
 
-import { motion, useScroll, useTransform, useInView, useSpring, AnimatePresence } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
   Leaf, Shield, Sparkles, Heart, Target, Eye,
-  Phone, MapPin, ArrowRight, ChevronRight
+  Phone, MapPin, ArrowRight, Users, Award
 } from 'lucide-react'
 import SectionDivider from '@/components/ui/SectionDivider'
 import CraftmanshipSection from '@/components/sections/CraftmanshipSection'
+import OurStoryTimeline from '@/components/sections/OurStoryTimeline'
+import TechnologyEvolution from '@/components/sections/TechnologyEvolution'
 
 // ============================================
 // DATA
@@ -32,39 +34,6 @@ const teamMembers = [
     role: 'Commercial Director',
     image: '/api/media/file/luisa-baffa-trasci.jpg',
     quote: 'Ogni casa racconta una storia.',
-  },
-]
-
-const milestones = [
-  {
-    year: '1999',
-    event: 'Fondazione',
-    description: 'Nasce Ecolive a Spadola, nel cuore della Calabria. Un sogno che prende forma.',
-    color: '#C4704B'
-  },
-  {
-    year: '2008',
-    event: 'Platform Frame',
-    description: 'Prima tecnologia costruttiva adottata. Inizia il percorso di innovazione.',
-    color: '#2D5A47'
-  },
-  {
-    year: '2012',
-    event: 'X-Lam',
-    description: 'Introduzione dei pannelli CLT. Nuovi standard di qualita e resistenza.',
-    color: '#40916c'
-  },
-  {
-    year: '2018',
-    event: 'X-Frame',
-    description: 'Nasce il sistema brevettato ibrido che rivoluziona la bioedilizia italiana.',
-    color: '#C4704B'
-  },
-  {
-    year: '2026',
-    event: 'X-Frame 2.0',
-    description: 'Evoluzione con integrazione IoT e ottimizzazione energetica AI-driven.',
-    color: '#1E3D30'
   },
 ]
 
@@ -99,123 +68,7 @@ const values = [
   },
 ]
 
-const stats = [
-  { value: 25, suffix: '+', label: 'Anni', sublabel: 'Dal 1999' },
-  { value: 40, suffix: '+', label: 'Case', sublabel: 'In Italia' },
-  { value: 30, suffix: '', label: 'Giorni', sublabel: 'Chiavi in mano' },
-  { value: 98, suffix: '%', label: 'Soddisfazione', sublabel: 'Clienti' },
-]
-
 const marqueeText = 'Bioedilizia \u2022 Dal 1999 \u2022 Calabria \u2022 X-Frame \u2022 Sostenibilita \u2022 Classe A4 \u2022 Made in Italy \u2022 '
-
-// ============================================
-// ANIMATED COUNTER COMPONENT
-// ============================================
-function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: false, margin: "-100px" })
-  const springValue = useSpring(0, { stiffness: 50, damping: 20 })
-  const [displayValue, setDisplayValue] = useState(0)
-
-  useEffect(() => {
-    if (isInView) {
-      springValue.set(value)
-    }
-  }, [isInView, value, springValue])
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      setDisplayValue(Math.round(latest))
-    })
-    return unsubscribe
-  }, [springValue])
-
-  return (
-    <span ref={ref}>
-      {displayValue}{suffix}
-    </span>
-  )
-}
-
-// ============================================
-// MILESTONE CARD COMPONENT
-// ============================================
-function MilestoneCard({
-  milestone,
-  index,
-  isActive,
-  onClick
-}: {
-  milestone: typeof milestones[0]
-  index: number
-  isActive: boolean
-  onClick: () => void
-}) {
-  return (
-    <motion.div
-      className="flex-shrink-0 w-[280px] md:w-[320px] cursor-pointer group"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ delay: index * 0.1 }}
-      onClick={onClick}
-    >
-      {/* Year dot */}
-      <div className="flex items-center gap-4 mb-4">
-        <motion.div
-          className="w-4 h-4 rounded-full relative"
-          style={{ backgroundColor: milestone.color }}
-          animate={isActive ? { scale: [1, 1.3, 1] } : { scale: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          {isActive && (
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{ backgroundColor: milestone.color }}
-              animate={{ scale: [1, 2], opacity: [0.5, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            />
-          )}
-        </motion.div>
-        <span
-          className="text-4xl md:text-5xl font-bold transition-colors"
-          style={{ color: isActive ? milestone.color : '#1E3D30' }}
-        >
-          {milestone.year}
-        </span>
-      </div>
-
-      {/* Card */}
-      <motion.div
-        className={`
-          p-6 rounded-2xl border-2 transition-all duration-300
-          ${isActive
-            ? 'bg-white shadow-premium-lg border-[#C4704B]/30'
-            : 'bg-white/50 border-transparent hover:bg-white hover:shadow-premium'
-          }
-        `}
-        whileHover={{ y: -5 }}
-      >
-        <h3 className="text-xl font-bold text-[#1E3D30] mb-2">{milestone.event}</h3>
-        <AnimatePresence>
-          {isActive && (
-            <motion.p
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="text-[#6B6560] text-sm leading-relaxed overflow-hidden"
-            >
-              {milestone.description}
-            </motion.p>
-          )}
-        </AnimatePresence>
-        {!isActive && (
-          <p className="text-[#8A857F] text-xs">Clicca per scoprire</p>
-        )}
-      </motion.div>
-    </motion.div>
-  )
-}
 
 // ============================================
 // BENTO VALUE CARD COMPONENT
@@ -292,27 +145,24 @@ function BentoValueCard({
 }
 
 // ============================================
-// TEAM MEMBER CARD COMPONENT
+// TEAM MEMBER CARD COMPONENT (Expanded)
 // ============================================
 function TeamMemberCard({
   member,
   index,
-  offset
 }: {
   member: typeof teamMembers[0]
   index: number
-  offset: 'up' | 'center' | 'down'
 }) {
   const [isHovered, setIsHovered] = useState(false)
-  const offsetClass = offset === 'up' ? 'lg:-mt-12' : offset === 'down' ? 'lg:mt-12' : ''
 
   return (
     <motion.div
-      className={`relative ${offsetClass}`}
+      className="relative"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
-      transition={{ delay: index * 0.2 }}
+      transition={{ delay: index * 0.1 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -323,7 +173,7 @@ function TeamMemberCard({
           initial={{ clipPath: 'inset(100% 0 0 0)' }}
           whileInView={{ clipPath: 'inset(0)' }}
           viewport={{ once: false }}
-          transition={{ duration: 1.2, delay: index * 0.15 }}
+          transition={{ duration: 1.2, delay: index * 0.1 }}
         >
           <Image
             src={member.image}
@@ -338,7 +188,7 @@ function TeamMemberCard({
 
         {/* Quote overlay on hover */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center p-8"
+          className="absolute inset-0 flex items-center justify-center p-6"
           initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
           animate={{
             opacity: isHovered ? 1 : 0,
@@ -347,7 +197,7 @@ function TeamMemberCard({
           transition={{ duration: 0.5 }}
           style={{ backgroundColor: 'rgba(30, 61, 48, 0.85)' }}
         >
-          <p className="text-white text-center text-lg md:text-xl italic font-light leading-relaxed">
+          <p className="text-white text-center text-base md:text-lg italic font-light leading-relaxed">
             &ldquo;{member.quote}&rdquo;
           </p>
         </motion.div>
@@ -355,10 +205,10 @@ function TeamMemberCard({
 
       {/* Info card */}
       <motion.div
-        className="absolute -bottom-6 left-4 right-4 glass-card rounded-2xl p-5 shadow-premium-lg"
-        whileHover={{ y: -5 }}
+        className="absolute -bottom-4 left-3 right-3 glass-card rounded-2xl p-4 shadow-premium-lg"
+        whileHover={{ y: -3 }}
       >
-        <h3 className="font-bold text-[#1E3D30] text-lg">{member.name}</h3>
+        <h3 className="font-bold text-[#1E3D30] text-base">{member.name}</h3>
         <p className="text-[#C4704B] text-sm font-medium">{member.role}</p>
       </motion.div>
     </motion.div>
@@ -371,7 +221,6 @@ function TeamMemberCard({
 export default function ChiSiamoPage() {
   const containerRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
-  const [activeMilestone, setActiveMilestone] = useState(0)
 
   // Hero parallax
   const { scrollYProgress: heroProgress } = useScroll({
@@ -402,7 +251,7 @@ export default function ChiSiamoPage() {
         {/* Background with Ken Burns */}
         <motion.div className="absolute inset-0" style={{ scale: heroScale }}>
           <Image
-            src="/api/media/file/chi-siamo.jpg"
+            src="/images/chi-siamo-hero.jpg"
             alt="Ecolive Team"
             fill
             className="object-cover"
@@ -440,6 +289,16 @@ export default function ChiSiamoPage() {
               SIAMO
             </motion.h1>
           </div>
+
+          {/* Subtitle - NEW */}
+          <motion.p
+            className="mt-6 text-white/80 text-lg md:text-xl tracking-wide"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            Pionieri delle costruzioni in legno dal 1999
+          </motion.p>
         </motion.div>
 
         {/* Marquee */}
@@ -491,80 +350,120 @@ export default function ChiSiamoPage() {
         </motion.div>
       </section>
 
-      {/* Transition: Hero (dark) to Story (light) */}
+      {/* Transition: Hero (dark) to Intro (cream) */}
       <SectionDivider from="#1E3D30" to="#FAF7F2" height="200px" />
 
       {/* ============================================ */}
-      {/* STORY - Horizontal Timeline */}
+      {/* INTRO - Company Introduction (NEW) */}
       {/* ============================================ */}
       <section className="py-20 lg:py-32 px-4 bg-[#FAF7F2]">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            className="text-center mb-12 lg:mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-          >
-            <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
-              La Nostra Storia
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30] mt-3">
-              25 anni di{' '}
-              <span className="text-[#C4704B]">Innovazione</span>
-            </h2>
-            <p className="text-[#6B6560] text-lg mt-4 max-w-2xl mx-auto">
-              Da Spadola, nel cuore della Calabria, abbiamo rivoluzionato il modo di costruire case in Italia.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Text content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+                Benvenuti in Ecolive
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3 leading-tight">
+                Costruiamo case che
+                <span className="text-[#C4704B]"> rispettano</span> la natura
+              </h2>
+              <div className="mt-6 space-y-4 text-[#6B6560] text-lg leading-relaxed">
+                <p>
+                  Da <strong className="text-[#1E3D30]">Serra San Bruno</strong>, nel cuore della Calabria,
+                  realizziamo abitazioni in legno che combinano tradizione artigianale e tecnologia all&apos;avanguardia.
+                </p>
+                <p>
+                  Ogni casa Ecolive e progettata per durare generazioni, garantendo
+                  <strong className="text-[#C4704B]"> efficienza energetica classe A4</strong>,
+                  resistenza sismica superiore e un impatto ambientale ridotto del 70%.
+                </p>
+                <p>
+                  Il nostro sistema brevettato <strong className="text-[#1E3D30]">X-Frame</strong> rappresenta
+                  l&apos;evoluzione della bioedilizia italiana: la casa dei tuoi sogni, consegnata in 60 giorni.
+                </p>
+              </div>
 
-          {/* Timeline horizontal scroll */}
-          <div className="relative">
-            {/* Progress line */}
-            <div className="hidden md:block absolute top-[52px] left-0 right-0 h-0.5 bg-[#DDD5C9]">
-              <motion.div
-                className="h-full bg-gradient-to-r from-[#C4704B] to-[#D4896A]"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: false }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                style={{ transformOrigin: 'left' }}
-              />
-            </div>
-
-            {/* Cards container */}
-            <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-8 -mx-4 px-4 snap-x snap-mandatory">
-              {milestones.map((milestone, index) => (
-                <div key={milestone.year} className="snap-start">
-                  <MilestoneCard
-                    milestone={milestone}
-                    index={index}
-                    isActive={activeMilestone === index}
-                    onClick={() => setActiveMilestone(index)}
-                  />
+              {/* Quick stats */}
+              <div className="mt-10 flex flex-wrap gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-[#C4704B]/10 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-[#C4704B]" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#1E3D30]">20+</div>
+                    <div className="text-sm text-[#8A857F]">Dipendenti</div>
+                  </div>
                 </div>
-              ))}
-            </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-[#1E3D30]/10 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-[#1E3D30]" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#1E3D30]">100%</div>
+                    <div className="text-sm text-[#8A857F]">Made in Italy</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
-            {/* Pagination dots mobile */}
-            <div className="flex justify-center gap-2 mt-6 md:hidden">
-              {milestones.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    activeMilestone === index
-                      ? 'bg-[#C4704B] w-6'
-                      : 'bg-[#DDD5C9]'
-                  }`}
-                  onClick={() => setActiveMilestone(index)}
+            {/* Image */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+                  alt="Casa Ecolive"
+                  fill
+                  className="object-cover"
                 />
-              ))}
-            </div>
+                {/* Decorative frame */}
+                <div className="absolute inset-4 border-2 border-white/30 rounded-2xl" />
+              </div>
+
+              {/* Floating badge */}
+              <motion.div
+                className="absolute -bottom-6 -left-6 bg-[#1E3D30] text-white p-6 rounded-2xl shadow-premium-lg"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ delay: 0.5, type: 'spring' }}
+              >
+                <div className="text-4xl font-bold">25+</div>
+                <div className="text-sm text-white/70">Anni di esperienza</div>
+              </motion.div>
+
+              {/* Decorative element */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-[#C4704B]/20 rounded-full blur-2xl" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Transition: Story (cream) to Values (white) */}
+      {/* ============================================ */}
+      {/* STORY - Vertical Timeline (NEW) */}
+      {/* ============================================ */}
+      <OurStoryTimeline />
+
+      {/* Transition: Story to Technology Evolution */}
+      <SectionDivider from="#FAF7F2" to="#FAF7F2" height="100px" />
+
+      {/* ============================================ */}
+      {/* TECHNOLOGY EVOLUTION - Sistemi Costruttivi */}
+      {/* ============================================ */}
+      <TechnologyEvolution />
+
+      {/* Transition: Technology Evolution to Values */}
       <SectionDivider from="#FAF7F2" to="#FFFFFF" height="150px" />
 
       {/* ============================================ */}
@@ -608,14 +507,14 @@ export default function ChiSiamoPage() {
       <SectionDivider from="#FAF7F2" to="#1E3D30" height="200px" />
 
       {/* ============================================ */}
-      {/* TEAM - Staggered Gallery */}
+      {/* TEAM - Expanded Grid (6 members) */}
       {/* ============================================ */}
       <section className="py-20 lg:py-32 px-4 bg-[#1E3D30] relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#C4704B]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
           <motion.div
             className="text-center mb-16 lg:mb-20"
@@ -634,80 +533,21 @@ export default function ChiSiamoPage() {
             </p>
           </motion.div>
 
-          {/* Team grid with stagger */}
+          {/* Team grid - 3 members */}
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12 pb-12">
             {teamMembers.map((member, index) => (
               <TeamMemberCard
                 key={member.name}
                 member={member}
                 index={index}
-                offset={index === 0 ? 'down' : index === 1 ? 'center' : 'up'}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Transition: Team (dark) to Numbers (light) */}
-      <SectionDivider from="#1E3D30" to="#FAF7F2" height="200px" />
-
-      {/* ============================================ */}
-      {/* NUMBERS - Counter Wall */}
-      {/* ============================================ */}
-      <section className="py-20 lg:py-32 px-4 bg-gradient-to-br from-[#FAF7F2] via-white to-[#FAF7F2] relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#C4704B]/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#2D5A47]/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-          >
-            <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
-              I Risultati
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30] mt-3">
-              Numeri
-            </h2>
-          </motion.div>
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <motion.div
-                  className="text-counter text-[#1E3D30] group-hover:text-[#C4704B] transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </motion.div>
-                <div className="text-[#1E3D30] font-semibold text-lg mt-2">
-                  {stat.label}
-                </div>
-                <div className="text-[#8A857F] text-sm">
-                  {stat.sublabel}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Transition: Numbers (light) to Mission (dark) */}
-      <SectionDivider from="#FAF7F2" to="#1E3D30" height="200px" />
+      {/* Transition: Team (dark) to Mission (dark) - same color, minimal transition */}
+      <div className="h-px bg-white/10" />
 
       {/* ============================================ */}
       {/* MISSION / VISION - Parallax Split */}
