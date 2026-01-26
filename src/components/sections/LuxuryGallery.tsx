@@ -29,7 +29,7 @@ export default function LuxuryGallery() {
               La Nostra <span className="text-[#C4704B]">Galleria</span>
             </h2>
             <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-              52 progetti luxury che trasformano il modo di abitare
+              Una selezione esclusiva di 22 residenze d'eccellenza
             </p>
           </motion.div>
 
@@ -92,7 +92,7 @@ export default function LuxuryGallery() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Esplora Tutte le Realizzazioni (52)
+              Esplora la Collezione Completa
             </motion.button>
           </motion.div>
         </div>
