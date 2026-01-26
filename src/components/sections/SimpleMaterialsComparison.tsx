@@ -236,7 +236,7 @@ function BeforeAfterSlider({ material, index }: { material: Material; index: num
           </div>
 
           <div className="text-right">
-            <div className="text-white/60 text-xs mb-1">ROI</div>
+            <div className="text-white/60 text-xs mb-1">Guadagno</div>
             <div className="text-green-400 font-bold text-lg">
               {((parseFloat(material.risparmio25anni.replace(/\./g, '')) / parseFloat(material.costoExtra.replace(/[+€\.]/g, ''))) * 100).toFixed(0)}%
             </div>
@@ -347,7 +347,7 @@ export default function SimpleMaterialsComparison() {
                 €{totaleRisparmio.toLocaleString()}
               </div>
               <div className="text-green-300 text-sm font-semibold">
-                +{((totaleRisparmio / totaleInvestimento) * 100).toFixed(0)}% ROI
+                +{((totaleRisparmio / totaleInvestimento) * 100).toFixed(0)}% Guadagno
               </div>
             </div>
           </div>

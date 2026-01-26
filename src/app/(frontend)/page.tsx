@@ -5,6 +5,7 @@ import type { Media } from '@/payload-types'
 // Import Warm Natural section components
 import HeroFullscreen from '@/components/sections/HeroFullscreen'
 import ValueProposition from '@/components/sections/ValueProposition'
+import TrustSection from '@/components/sections/TrustSection'
 import PriceCalculatorWarm from '@/components/sections/PriceCalculatorWarm'
 import ProjectsGrid from '@/components/sections/ProjectsGrid'
 import ProcessJourney from '@/components/sections/ProcessJourney'
@@ -55,10 +56,10 @@ export default async function HomePage() {
       {/* 2. Value Proposition - Interactive */}
       <ValueProposition />
 
-      {/* 4. Price Calculator - Redesigned */}
-      <PriceCalculatorWarm />
+      {/* 3. Trust & Certificazioni */}
+      <TrustSection />
 
-      {/* 5. Projects Grid - 2x2 */}
+      {/* 4. Projects Grid - 2x2 */}
       <ProjectsGrid projects={projects} />
 
       {/* Transition: Light to Dark */}
@@ -73,10 +74,16 @@ export default async function HomePage() {
       {/* 8. Testimonial */}
       <TestimonialSection />
 
-      {/* Transition: Testimonial dark to CTA */}
-      <SectionDivider from="#1E3D30" to="#2C2825" height="150px" />
+      {/* Transition: Dark to Light for Price Calculator */}
+      <SectionDivider from="#1E3D30" to="#FFFFFF" height="150px" />
 
-      {/* 8. Contact CTA */}
+      {/* 9. Price Calculator - Spostato alla fine */}
+      <PriceCalculatorWarm />
+
+      {/* Transition: Light to Dark for Final CTA */}
+      <SectionDivider from="#FFFFFF" to="#2C2825" height="150px" />
+
+      {/* 10. Contact CTA */}
       <ContactCTA />
     </main>
   )

@@ -67,11 +67,11 @@ export interface MaterialEducationData {
   performanceTrend: PerformanceTrendPoint[]
 
   breakdown: {
-    investimentoExtra: number
+    costoAggiuntivo: number
     voci: CostBreakdownItem[]
     risparmi: RisparmioItem[]
     totaleRisparmio: number
-    roiNetto: number
+    guadagnoNetto: number
     valoreAggiunto: string
   }
 }
@@ -176,7 +176,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     ],
 
     breakdown: {
-      investimentoExtra: 15000,
+      costoAggiuntivo: 15000,
       voci: [
         { nome: "Materia prima classe A", costo: 5000, percentuale: 33 },
         { nome: "Processo laminazione", costo: 4000, percentuale: 27 },
@@ -189,7 +189,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
         { nome: "Nessuna sostituzione necessaria", anni: "10-25", valore: 1000 }
       ],
       totaleRisparmio: 3500,
-      roiNetto: -11500,
+      guadagnoNetto: -11500,
       valoreAggiunto: "Valore immobile +10% (€25.000+ su €250k), zero stress problemi strutturali"
     }
   },
@@ -293,7 +293,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     ],
 
     breakdown: {
-      investimentoExtra: 8000,
+      costoAggiuntivo: 8000,
       voci: [
         { nome: "Legno lamellare 3-strati", costo: 3500, percentuale: 44 },
         { nome: "Pressatura continua", costo: 1800, percentuale: 22 },
@@ -306,7 +306,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
         { nome: "Nessuna sostituzione 20 anni", anni: "20", valore: 6000 }
       ],
       totaleRisparmio: 12000,
-      roiNetto: 4000,
+      guadagnoNetto: 4000,
       valoreAggiunto: "Aria più salubre (zero VOC), tranquillità per decenni"
     }
   },
@@ -410,7 +410,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     ],
 
     breakdown: {
-      investimentoExtra: 6000,
+      costoAggiuntivo: 6000,
       voci: [
         { nome: "Sughero naturale espanso", costo: 2800, percentuale: 47 },
         { nome: "Lavorazione vapore", costo: 1500, percentuale: 25 },
@@ -423,7 +423,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
         { nome: "Nessuna sostituzione", anni: "15-25", valore: 6000 }
       ],
       totaleRisparmio: 24000,
-      roiNetto: 18000,
+      guadagnoNetto: 18000,
       valoreAggiunto: "Casa fresca d'estate senza climatizzatori, aria sempre salubre"
     }
   },
@@ -527,7 +527,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     ],
 
     breakdown: {
-      investimentoExtra: 4000,
+      costoAggiuntivo: 4000,
       voci: [
         { nome: "Gesso-fibra 25mm", costo: 1800, percentuale: 45 },
         { nome: "Lavorazione pressatura", costo: 1000, percentuale: 25 },
@@ -540,7 +540,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
         { nome: "Nessun rifacimento", anni: "25", valore: 4000 }
       ],
       totaleRisparmio: 5500,
-      roiNetto: 1500,
+      guadagnoNetto: 1500,
       valoreAggiunto: "Casa più silenziosa, pareti robuste con bambini, sicurezza antincendio"
     }
   }

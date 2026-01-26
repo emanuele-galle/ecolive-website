@@ -8,11 +8,11 @@ import InvestmentDonutChart from "@/components/charts/InvestmentDonutChart"
 import SavingsAreaChart from "@/components/charts/SavingsAreaChart"
 
 interface CostBreakdownInfographicProps {
-  investimentoExtra: number
+  costoAggiuntivo: number
   voci: CostBreakdownItem[]
   risparmi: RisparmioItem[]
   totaleRisparmio: number
-  roiNetto: number
+  guadagnoNetto: number
   valoreAggiunto: string
 }
 
@@ -54,14 +54,14 @@ function AnimatedCounter({
 }
 
 export default function CostBreakdownInfographic({
-  investimentoExtra,
+  costoAggiuntivo,
   voci,
   risparmi,
   totaleRisparmio,
-  roiNetto,
+  guadagnoNetto,
   valoreAggiunto
 }: CostBreakdownInfographicProps) {
-  const isPositiveROI = roiNetto > 0
+  const isConvenient = guadagnoNetto > 0
 
   // Generate savings accumulation data for area chart
   const savingsOverTime = Array.from({ length: 6 }, (_, i) => ({
@@ -74,10 +74,10 @@ export default function CostBreakdownInfographic({
       {/* Title */}
       <div className="text-center">
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-          Breakdown: Perché +€{investimentoExtra.toLocaleString("it-IT")}?
+          Dettaglio: Perché Costa €{costoAggiuntivo.toLocaleString("it-IT")} in Più?
         </h3>
         <p className="text-white/60 text-sm md:text-base">
-          Dove vanno esattamente i soldi dell'investimento premium
+          Dove vanno esattamente i soldi della differenza
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export default function CostBreakdownInfographic({
             <Euro className="w-5 h-5 text-[#C4704B]" />
           </div>
           <div>
-            <div className="text-white font-semibold text-lg">Investimento Extra</div>
+            <div className="text-white font-semibold text-lg">Costo Aggiuntivo</div>
             <div className="text-white/60 text-sm">Dettaglio voci di costo</div>
           </div>
         </div>
@@ -141,10 +141,10 @@ export default function CostBreakdownInfographic({
         <div className="mt-6 pt-6 border-t border-white/10">
           <div className="flex items-center justify-between">
             <span className="text-white font-semibold text-base md:text-lg">
-              Totale Investimento Extra
+              Totale Costo Aggiuntivo
             </span>
             <span className="text-[#C4704B] font-mono font-bold text-xl md:text-2xl">
-              €<AnimatedCounter value={investimentoExtra} />
+              €<AnimatedCounter value={costoAggiuntivo} />
             </span>
           </div>
         </div>
@@ -238,7 +238,7 @@ export default function CostBreakdownInfographic({
       {/* ROI Summary */}
       <motion.div
         className={`bg-gradient-to-br ${
-          isPositiveROI
+          isConvenient
             ? 'from-green-500/10 to-green-500/5 border-green-500/30'
             : 'from-orange-500/10 to-orange-500/5 border-orange-500/30'
         } rounded-2xl p-6 md:p-8 border`}
@@ -249,31 +249,31 @@ export default function CostBreakdownInfographic({
       >
         <div className="flex items-center gap-3 mb-6">
           <div className={`w-12 h-12 rounded-full ${
-            isPositiveROI ? 'bg-green-500/20' : 'bg-orange-500/20'
+            isConvenient ? 'bg-green-500/20' : 'bg-orange-500/20'
           } flex items-center justify-center`}>
-            {isPositiveROI ? (
+            {isConvenient ? (
               <TrendingUp className="w-6 h-6 text-green-400" strokeWidth={2.5} />
             ) : (
               <Award className="w-6 h-6 text-orange-400" strokeWidth={2.5} />
             )}
           </div>
           <div>
-            <div className="text-white font-bold text-xl md:text-2xl">ROI Netto 25 Anni</div>
-            <div className="text-white/60 text-sm">Investimento - Risparmi</div>
+            <div className="text-white font-bold text-xl md:text-2xl">Guadagno Totale in 25 Anni</div>
+            <div className="text-white/60 text-sm">Differenza - Risparmi</div>
           </div>
         </div>
 
         {/* ROI Value */}
         <div className="text-center py-6">
           <div className={`text-5xl md:text-6xl font-black ${
-            isPositiveROI ? 'text-green-400' : 'text-orange-400'
+            isConvenient ? 'text-green-400' : 'text-orange-400'
           } mb-2`}>
-            {isPositiveROI ? '+' : ''}€<AnimatedCounter value={Math.abs(roiNetto)} />
+            {isConvenient ? '+' : ''}€<AnimatedCounter value={Math.abs(guadagnoNetto)} />
           </div>
           <div className="text-white/70 text-base md:text-lg">
-            {isPositiveROI
+            {isConvenient
               ? 'Guadagno netto dopo 25 anni'
-              : 'Investimento netto (senza considerare valore immobile)'}
+              : 'Costo netto (senza considerare valore immobile)'}
           </div>
         </div>
 

@@ -85,7 +85,7 @@ export default function MaterialTabs({ activeId, onSelect }: MaterialTabsProps) 
                   <div className="flex items-baseline gap-1">
                     <span className="text-xl font-bold" style={{ color: material.color }}>+€</span>
                     <NumberFlow
-                      value={material.breakdown.investimentoExtra}
+                      value={material.breakdown.costoAggiuntivo}
                       className="text-xl font-bold"
                       style={{ color: material.color }}
                       format={{ notation: 'standard' }}

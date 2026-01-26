@@ -61,7 +61,7 @@ export default function MaterialFlipCard({ material, index }: MaterialFlipCardPr
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg font-bold text-[#1E3D30]">{material.component}</h3>
-                  <p className="text-sm text-[#8A857F]">Tocca per vedere ROI</p>
+                  <p className="text-sm text-[#8A857F]">Tocca per vedere i Guadagni</p>
                 </div>
                 <div className="px-3 py-1 bg-[#C4704B]/10 rounded-full">
                   <span className="text-[#C4704B] font-bold text-sm">{material.costMultiplier}</span>
@@ -122,7 +122,7 @@ export default function MaterialFlipCard({ material, index }: MaterialFlipCardPr
                 <TrendingUp className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h4 className="text-white font-bold text-lg">ROI nel Tempo</h4>
+                <h4 className="text-white font-bold text-lg">Guadagni negli Anni</h4>
                 <p className="text-white/80 text-sm">{material.component}</p>
               </div>
             </div>

@@ -11,7 +11,7 @@ const premiumMaterials = [
     title: "Telaio in BILAM",
     comparison: "Massello → BILAM (2x costo)",
     benefitImmediate: "Stabilità dimensionale assoluta. Zero deformazioni nel tempo.",
-    roiTimeline: [
+    savingsTimeline: [
       { year: 0, label: "Subito", value: "Nessuna deformazione, tolleranze perfette" },
       { year: 5, label: "5 anni", value: "Zero manutenzione strutturale" },
       { year: 10, label: "10 anni", value: "Risparmio €3.000 su interventi" },
@@ -23,7 +23,7 @@ const premiumMaterials = [
     title: "Pannelli 3-strati",
     comparison: "OSB → 3-strati (3x costo)",
     benefitImmediate: "Resistenza meccanica superiore. Nessun rilascio di formaldeide.",
-    roiTimeline: [
+    savingsTimeline: [
       { year: 0, label: "Subito", value: "Qualità dell'aria eccellente" },
       { year: 5, label: "5 anni", value: "Nessuna sostituzione pannelli" },
       { year: 10, label: "10 anni", value: "Risparmio €5.000 su rifacimenti" },
@@ -35,7 +35,7 @@ const premiumMaterials = [
     title: "Isolamento in Sughero",
     comparison: "Lana di roccia → Sughero (2.5x costo)",
     benefitImmediate: "Comfort termico e acustico superiore. Materiale naturale e traspirante.",
-    roiTimeline: [
+    savingsTimeline: [
       { year: 0, label: "Subito", value: "Risparmio 30% su riscaldamento" },
       { year: 5, label: "5 anni", value: "Recupero investimento" },
       { year: 10, label: "10 anni", value: "Risparmio €8.000 su bollette" },
@@ -47,7 +47,7 @@ const premiumMaterials = [
     title: "Finiture in Gesso-Fibra",
     comparison: "Cartongesso → Gesso-fibra (2x costo)",
     benefitImmediate: "Resistenza meccanica e ignifuga. Pareti che non si ammaccano.",
-    roiTimeline: [
+    savingsTimeline: [
       { year: 0, label: "Subito", value: "Classe antincendio superiore" },
       { year: 5, label: "5 anni", value: "Zero danni da urti quotidiani" },
       { year: 10, label: "10 anni", value: "Risparmio €2.000 su riparazioni" },
@@ -144,7 +144,7 @@ export default function InvestmentExcellenceSection() {
           transition={{ delay: 0.2 }}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Passa il Mouse per Vedere il ROI
+            Passa il Mouse per Vedere i Guadagni
           </h3>
           <div className="h-px w-32 bg-gradient-to-r from-transparent via-[#C4704B] to-transparent mx-auto" />
         </motion.div>

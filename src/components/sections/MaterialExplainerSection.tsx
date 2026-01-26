@@ -86,11 +86,11 @@ export default function MaterialExplainerSection({ material }: MaterialExplainer
 
       {/* Section D: Cost Breakdown */}
       <CostBreakdownInfographic
-        investimentoExtra={material.breakdown.investimentoExtra}
+        costoAggiuntivo={material.breakdown.costoAggiuntivo}
         voci={material.breakdown.voci}
         risparmi={material.breakdown.risparmi}
         totaleRisparmio={material.breakdown.totaleRisparmio}
-        roiNetto={material.breakdown.roiNetto}
+        guadagnoNetto={material.breakdown.guadagnoNetto}
         valoreAggiunto={material.breakdown.valoreAggiunto}
       />
     </div>

@@ -237,7 +237,7 @@ export default function EnhancedMaterialsComparison() {
             </h2>
 
             <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-              Tocca le cards per vedere il ROI reale. Ogni materiale premium ripaga l'investimento nel tempo.
+              Tocca le cards per vedere il guadagno reale. I materiali migliori ti fanno risparmiare nel tempo.
             </p>
           </motion.div>
 

@@ -15,9 +15,9 @@ export default function WhyCostMoreSection() {
   const currentMaterial = materialsEducationData[selectedMaterial]
 
   // Calculate totals
-  const totalInvestment = materialsList.reduce((sum, m) => sum + m.breakdown.investimentoExtra, 0)
+  const totalExtraCost = materialsList.reduce((sum, m) => sum + m.breakdown.costoAggiuntivo, 0)
   const totalSavings = materialsList.reduce((sum, m) => sum + m.breakdown.totaleRisparmio, 0)
-  const totalROI = totalSavings - totalInvestment
+  const totalSavingsNet = totalSavings - totalExtraCost
 
   return (
     <section className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#0a1628] via-[#0f2040] to-[#152822] overflow-hidden">
@@ -117,13 +117,13 @@ export default function WhyCostMoreSection() {
             {/* Investimento */}
             <div className="p-6 bg-white/[0.05] rounded-xl border border-white/10 text-center">
               <div className="text-white/60 text-sm mb-2 uppercase tracking-wide">
-                Investimento Extra
+                Costo Aggiuntivo
               </div>
               <div className="text-[#C4704B] font-bold text-3xl lg:text-4xl mb-1">
-                €{totalInvestment.toLocaleString("it-IT")}
+                €{totalExtraCost.toLocaleString("it-IT")}
               </div>
               <div className="text-white/50 text-xs">
-                4 materiali premium
+                4 materiali migliori
               </div>
             </div>
 
@@ -142,18 +142,18 @@ export default function WhyCostMoreSection() {
 
             {/* ROI */}
             <div className={`p-6 bg-white/[0.05] rounded-xl border ${
-              totalROI > 0 ? 'border-green-500/30' : 'border-orange-500/30'
+              totalSavingsNet > 0 ? 'border-green-500/30' : 'border-orange-500/30'
             } text-center`}>
               <div className="text-white/60 text-sm mb-2 uppercase tracking-wide">
-                ROI Netto
+                Guadagno Netto
               </div>
               <div className={`font-bold text-3xl lg:text-4xl mb-1 ${
-                totalROI > 0 ? 'text-green-400' : 'text-orange-400'
+                totalSavingsNet > 0 ? 'text-green-400' : 'text-orange-400'
               }`}>
-                {totalROI > 0 ? '+' : ''}€{totalROI.toLocaleString("it-IT")}
+                {totalSavingsNet > 0 ? '+' : ''}€{totalSavingsNet.toLocaleString("it-IT")}
               </div>
               <div className="text-white/50 text-xs">
-                {totalROI > 0 ? 'Guadagno netto' : 'Senza valore immobile'}
+                {totalSavingsNet > 0 ? 'Risparmio netto' : 'Senza valore immobile'}
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function WhyCostMoreSection() {
           <div className="mt-8 pt-8 border-t border-white/10 text-center">
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
               💡 <strong className="text-white">Nota:</strong> Questi numeri non considerano l'aumento di valore
-              dell'immobile (stimato +10-15%) e il comfort quotidiano per decenni. Il vero ROI è
+              dell'immobile (stimato +10-15%) e il comfort quotidiano per decenni. Il vero guadagno è
               incalcolabile: <span className="text-[#C4704B] font-semibold">zero stress, zero problemi, zero sorprese</span>.
             </p>
           </div>

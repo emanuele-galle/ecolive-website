@@ -5,7 +5,7 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { LucideIcon } from "lucide-react"
 
-interface ROIStep {
+interface SavingsStep {
   year: number
   label: string
   value: string
@@ -16,7 +16,7 @@ interface InteractiveMaterialCardProps {
   title: string
   comparison: string
   benefitImmediate: string
-  roiTimeline: ROIStep[]
+  savingsTimeline: SavingsStep[]
   className?: string
 }
 
@@ -25,7 +25,7 @@ export function InteractiveMaterialCard({
   title,
   comparison,
   benefitImmediate,
-  roiTimeline,
+  savingsTimeline,
   className,
 }: InteractiveMaterialCardProps) {
   const [isHovered, setIsHovered] = useState(false)
@@ -127,12 +127,12 @@ export function InteractiveMaterialCard({
         style={{ pointerEvents: isHovered ? "auto" : "none" }}
       >
         <h4 className="text-lg md:text-xl font-bold text-white mb-4">
-          ROI nel Tempo
+          Guadagni negli Anni
         </h4>
 
         {/* Timeline steps */}
         <div className="flex flex-col gap-4 flex-1 justify-center">
-          {roiTimeline.map((step, index) => (
+          {savingsTimeline.map((step, index) => (
             <motion.div
               key={step.year}
               initial={{ opacity: 0, x: -20 }}
