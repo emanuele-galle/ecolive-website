@@ -54,6 +54,12 @@ export interface MaterialEducationData {
   icon: any // Lucide icon component
   color: string // Colore principale per grafici e sparklines
 
+  // NUOVO: Campi semplificati per flusso lineare (NO prezzi)
+  descrizioneBreve: string  // 1-2 frasi max (cos'è)
+  benefitPrincipali: string[]  // 3 benefit chiari, NO numeri
+  problemiStandard: string  // 1 frase negativa dello standard
+
+  // ESISTENTI: mantieni per compatibilità
   cosE: {
     descrizione: string
     processo: string[]
@@ -83,6 +89,15 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     sottotitolo: 'BiLam Lamellare vs Legno Massello',
     icon: Layers,
     color: '#40916c', // Verde Ecolive
+
+    // NUOVO: Campi semplificati
+    descrizioneBreve: "Legno fatto con tante tavole incollate in modo incrociato. Molto più forte e stabile del legno normale.",
+    benefitPrincipali: [
+      "Non si deforma mai nel tempo",
+      "Resiste ai terremoti",
+      "Dura per sempre senza manutenzione"
+    ],
+    problemiStandard: "Porte che si incastrano, crepe nei muri, interventi costosi dopo pochi anni",
 
     cosE: {
       descrizione: "Legno fatto con tante tavole incollate in modo incrociato. Questo lo rende molto più forte e stabile del legno normale.",
@@ -201,6 +216,15 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     icon: Grid3x3,
     color: '#2a9d8f', // Teal
 
+    // NUOVO: Campi semplificati
+    descrizioneBreve: "Pannelli fatti con 3 strati di legno incrociati. Ogni strato è messo di traverso per renderlo più stabile.",
+    benefitPrincipali: [
+      "Non si scolla mai",
+      "Aria sempre pulita (zero sostanze nocive)",
+      "Dura più di 50 anni senza interventi"
+    ],
+    problemiStandard: "Si scolla dopo 7-10 anni, rilascia sostanze che non fanno bene, va sostituito periodicamente",
+
     cosE: {
       descrizione: "Pannelli fatti con 3 strati di legno incrociati. Ogni strato è messo di traverso rispetto all'altro per renderlo più stabile.",
       processo: [
@@ -318,6 +342,15 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     icon: Snowflake,
     color: '#e76f51', // Arancione caldo
 
+    // NUOVO: Campi semplificati
+    descrizioneBreve: "Corteccia di quercia sbriciata e pressata con vapore. 100% naturale, nessuna colla chimica.",
+    benefitPrincipali: [
+      "Mantiene la temperatura stabile tutto l'anno",
+      "100% naturale e rinnovabile",
+      "Bollette ridotte per sempre"
+    ],
+    problemiStandard: "Perde efficacia nel tempo, fatto dal petrolio, bollette che aumentano anno dopo anno",
+
     cosE: {
       descrizione: "Pannelli di sughero naturale. Prendiamo la corteccia della quercia da sughero, la sbriciamo, la pressiamo e la cuociamo al vapore senza usare colle chimiche.",
       processo: [
@@ -434,6 +467,15 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     sottotitolo: 'Gesso-Fibra 25mm vs Cartongesso 12mm',
     icon: Home,
     color: '#C4704B', // Marrone terra (Ecolive brand)
+
+    // NUOVO: Campi semplificati
+    descrizioneBreve: "Gesso naturale rinforzato con fibre. Doppio spessore per pareti robuste che durano.",
+    benefitPrincipali: [
+      "Non si ammacca mai (ideale con bambini)",
+      "Isola meglio dai rumori",
+      "Sicurezza antincendio massima"
+    ],
+    problemiStandard: "Si ammacca facilmente, crepe negli angoli, necessarie riparazioni dopo pochi anni",
 
     cosE: {
       descrizione: "Pannelli di gesso naturale rinforzato con fibre. L'impasto viene pressato e fatto asciugare senza usare colle chimiche.",

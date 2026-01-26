@@ -1,0 +1,107 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { LucideIcon, Check } from "lucide-react"
+
+interface MaterialOverviewCardProps {
+  icon: LucideIcon
+  nome: string
+  sottotitolo: string
+  benefitPrincipale: string
+  percheMigliore: string[]
+  color: string
+}
+
+function MaterialOverviewCard({
+  icon: Icon,
+  nome,
+  sottotitolo,
+  benefitPrincipale,
+  percheMigliore,
+  color
+}: MaterialOverviewCardProps) {
+  return (
+    <motion.div
+      className="relative p-8 bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20 transition-all group"
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Icon + Nome */}
+      <div className="flex items-center gap-4 mb-6">
+        <div
+          className="w-14 h-14 rounded-xl flex items-center justify-center"
+          style={{ backgroundColor: `${color}20` }}
+        >
+          <Icon className="w-7 h-7" style={{ color }} />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-white">{nome}</h3>
+          <p className="text-white/60 text-sm">{sottotitolo}</p>
+        </div>
+      </div>
+
+      {/* Benefit Principale */}
+      <p className="text-white/80 text-lg mb-6 leading-relaxed">
+        {benefitPrincipale}
+      </p>
+
+      {/* Lista benefit */}
+      <ul className="space-y-3">
+        {percheMigliore.map((benefit, i) => (
+          <li key={i} className="flex items-start gap-3">
+            <div
+              className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+              style={{ backgroundColor: `${color}30` }}
+            >
+              <Check className="w-3 h-3" style={{ color }} />
+            </div>
+            <span className="text-white/70 text-sm">{benefit}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Badge */}
+      <div className="mt-6 pt-6 border-t border-white/10">
+        <span className="inline-block px-3 py-1 rounded-full bg-white/5 text-xs text-white/60">
+          100% Ecolive Premium
+        </span>
+      </div>
+
+      {/* Glow effect on hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl"
+        style={{ backgroundColor: `${color}20` }}
+      />
+    </motion.div>
+  )
+}
+
+interface MaterialOverviewGridProps {
+  materials: MaterialOverviewCardProps[]
+}
+
+export default function MaterialOverviewGrid({
+  materials
+}: MaterialOverviewGridProps) {
+  return (
+    <motion.div
+      className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-20"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false }}
+      transition={{ duration: 0.8, staggerChildren: 0.1 }}
+    >
+      {materials.map((material, index) => (
+        <motion.div
+          key={material.nome}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: index * 0.1, duration: 0.6 }}
+        >
+          <MaterialOverviewCard {...material} />
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}

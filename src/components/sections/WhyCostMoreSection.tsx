@@ -1,23 +1,48 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
-import { TrendingUp } from "lucide-react"
-import MaterialExplainerSection from "./MaterialExplainerSection"
+import { Layers, Grid3x3, Snowflake, Home } from "lucide-react"
 import HeroComparisonCards from "./HeroComparisonCards"
-import MaterialTabs from "./MaterialTabs"
+import MaterialOverviewGrid from "./MaterialOverviewGrid"
+import WhyItMattersSection from "./WhyItMattersSection"
 import { materialsEducationData } from "@/data/materialsEducationData"
 
 export default function WhyCostMoreSection() {
-  const [selectedMaterial, setSelectedMaterial] = useState<string>("telaio")
-
-  const materialsList = Object.values(materialsEducationData)
-  const currentMaterial = materialsEducationData[selectedMaterial]
-
-  // Calculate totals
-  const totalExtraCost = materialsList.reduce((sum, m) => sum + m.breakdown.costoAggiuntivo, 0)
-  const totalSavings = materialsList.reduce((sum, m) => sum + m.breakdown.totaleRisparmio, 0)
-  const totalSavingsNet = totalSavings - totalExtraCost
+  // Prepara dati per MaterialOverviewGrid
+  const materialsOverview = [
+    {
+      icon: Layers,
+      nome: "Telaio Strutturale",
+      sottotitolo: "BiLam Lamellare",
+      benefitPrincipale: materialsEducationData.telaio.descrizioneBreve,
+      percheMigliore: materialsEducationData.telaio.benefitPrincipali,
+      color: materialsEducationData.telaio.color
+    },
+    {
+      icon: Grid3x3,
+      nome: "Pannelli Parete",
+      sottotitolo: "3-Strati Premium",
+      benefitPrincipale: materialsEducationData.pannelli.descrizioneBreve,
+      percheMigliore: materialsEducationData.pannelli.benefitPrincipali,
+      color: materialsEducationData.pannelli.color
+    },
+    {
+      icon: Snowflake,
+      nome: "Isolamento",
+      sottotitolo: "Sughero Naturale",
+      benefitPrincipale: materialsEducationData.sughero.descrizioneBreve,
+      percheMigliore: materialsEducationData.sughero.benefitPrincipali,
+      color: materialsEducationData.sughero.color
+    },
+    {
+      icon: Home,
+      nome: "Rivestimenti",
+      sottotitolo: "Gesso-Fibra",
+      benefitPrincipale: materialsEducationData.gesso.descrizioneBreve,
+      percheMigliore: materialsEducationData.gesso.benefitPrincipali,
+      color: materialsEducationData.gesso.color
+    }
+  ]
 
   return (
     <section className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#0a1628] via-[#0f2040] to-[#152822] overflow-hidden">
@@ -74,98 +99,14 @@ export default function WhyCostMoreSection() {
           </p>
         </motion.div>
 
-        {/* Hero Comparison Cards - Premium Version */}
+        {/* Hero Comparison Cards - già OK */}
         <HeroComparisonCards />
 
-        {/* Material Tabs - Premium Version with Sparklines */}
-        <MaterialTabs
-          activeId={selectedMaterial}
-          onSelect={setSelectedMaterial}
-        />
+        {/* NUOVO: Material Overview Grid (sostituisce MaterialTabs) */}
+        <MaterialOverviewGrid materials={materialsOverview} />
 
-        {/* Material Deep Dive */}
-        <motion.div
-          key={selectedMaterial}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <MaterialExplainerSection material={currentMaterial} />
-        </motion.div>
-
-        {/* Total Investment Summary */}
-        <motion.div
-          className="mt-20 p-8 lg:p-12 bg-gradient-to-br from-[#C4704B]/20 to-[#C4704B]/5 rounded-2xl border border-[#C4704B]/30"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-3 mb-4">
-              <TrendingUp className="w-8 h-8 text-[#C4704B]" />
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
-                Investimento Totale
-              </h3>
-            </div>
-            <p className="text-white/70 max-w-2xl mx-auto">
-              Somma di tutti e 4 i materiali premium vs risparmio reale in 25 anni
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {/* Investimento */}
-            <div className="p-6 bg-white/[0.05] rounded-xl border border-white/10 text-center">
-              <div className="text-white/60 text-sm mb-2 uppercase tracking-wide">
-                Costo Aggiuntivo
-              </div>
-              <div className="text-[#C4704B] font-bold text-3xl lg:text-4xl mb-1">
-                €{totalExtraCost.toLocaleString("it-IT")}
-              </div>
-              <div className="text-white/50 text-xs">
-                4 materiali migliori
-              </div>
-            </div>
-
-            {/* Risparmio */}
-            <div className="p-6 bg-white/[0.05] rounded-xl border border-white/10 text-center">
-              <div className="text-white/60 text-sm mb-2 uppercase tracking-wide">
-                Risparmio 25 Anni
-              </div>
-              <div className="text-green-400 font-bold text-3xl lg:text-4xl mb-1">
-                +€{totalSavings.toLocaleString("it-IT")}
-              </div>
-              <div className="text-white/50 text-xs">
-                Costi evitati
-              </div>
-            </div>
-
-            {/* ROI */}
-            <div className={`p-6 bg-white/[0.05] rounded-xl border ${
-              totalSavingsNet > 0 ? 'border-green-500/30' : 'border-orange-500/30'
-            } text-center`}>
-              <div className="text-white/60 text-sm mb-2 uppercase tracking-wide">
-                Guadagno Netto
-              </div>
-              <div className={`font-bold text-3xl lg:text-4xl mb-1 ${
-                totalSavingsNet > 0 ? 'text-green-400' : 'text-orange-400'
-              }`}>
-                {totalSavingsNet > 0 ? '+' : ''}€{totalSavingsNet.toLocaleString("it-IT")}
-              </div>
-              <div className="text-white/50 text-xs">
-                {totalSavingsNet > 0 ? 'Risparmio netto' : 'Senza valore immobile'}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-8 border-t border-white/10 text-center">
-            <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
-              💡 <strong className="text-white">Nota:</strong> Questi numeri non considerano l'aumento di valore
-              dell'immobile (stimato +10-15%) e il comfort quotidiano per decenni. Il vero guadagno è
-              incalcolabile: <span className="text-[#C4704B] font-semibold">zero stress, zero problemi, zero sorprese</span>.
-            </p>
-          </div>
-        </motion.div>
+        {/* NUOVO: Why It Matters (sostituisce Total Investment Summary) */}
+        <WhyItMattersSection />
       </div>
     </section>
   )
