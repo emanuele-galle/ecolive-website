@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Layers, Grid3x3, Snowflake, Home } from "lucide-react"
 import HeroComparisonCards from "./HeroComparisonCards"
+import PerformanceEvolutionSection from "./PerformanceEvolutionSection"
 import MaterialOverviewGrid from "./MaterialOverviewGrid"
 import WhyItMattersSection from "./WhyItMattersSection"
 import { materialsEducationData } from "@/data/materialsEducationData"
@@ -16,7 +17,13 @@ export default function WhyCostMoreSection() {
       sottotitolo: "BiLam Lamellare",
       benefitPrincipale: materialsEducationData.telaio.descrizioneBreve,
       percheMigliore: materialsEducationData.telaio.benefitPrincipali,
-      color: materialsEducationData.telaio.color
+      color: materialsEducationData.telaio.color,
+      numeroGigante: 30,
+      numeroLabel: "Anni di garanzia",
+      numeroSuffix: "",
+      numeroPrefix: "",
+      performanceTrend: materialsEducationData.telaio.performanceTrend,
+      badge: "Zero deformazioni"
     },
     {
       icon: Grid3x3,
@@ -24,7 +31,13 @@ export default function WhyCostMoreSection() {
       sottotitolo: "3-Strati Premium",
       benefitPrincipale: materialsEducationData.pannelli.descrizioneBreve,
       percheMigliore: materialsEducationData.pannelli.benefitPrincipali,
-      color: materialsEducationData.pannelli.color
+      color: materialsEducationData.pannelli.color,
+      numeroGigante: 50,
+      numeroLabel: "Anni di durata",
+      numeroSuffix: "+",
+      numeroPrefix: "",
+      performanceTrend: materialsEducationData.pannelli.performanceTrend,
+      badge: "Aria 100% pulita"
     },
     {
       icon: Snowflake,
@@ -32,7 +45,13 @@ export default function WhyCostMoreSection() {
       sottotitolo: "Sughero Naturale",
       benefitPrincipale: materialsEducationData.sughero.descrizioneBreve,
       percheMigliore: materialsEducationData.sughero.benefitPrincipali,
-      color: materialsEducationData.sughero.color
+      color: materialsEducationData.sughero.color,
+      numeroGigante: 18000,
+      numeroLabel: "Risparmio netto 25 anni",
+      numeroSuffix: "",
+      numeroPrefix: "€",
+      performanceTrend: materialsEducationData.sughero.performanceTrend,
+      badge: "Bollette -30%"
     },
     {
       icon: Home,
@@ -40,7 +59,13 @@ export default function WhyCostMoreSection() {
       sottotitolo: "Gesso-Fibra",
       benefitPrincipale: materialsEducationData.gesso.descrizioneBreve,
       percheMigliore: materialsEducationData.gesso.benefitPrincipali,
-      color: materialsEducationData.gesso.color
+      color: materialsEducationData.gesso.color,
+      numeroGigante: 2,
+      numeroLabel: "Volte più spesso",
+      numeroSuffix: "x",
+      numeroPrefix: "",
+      performanceTrend: materialsEducationData.gesso.performanceTrend,
+      badge: "Antincendio A1"
     }
   ]
 
@@ -101,6 +126,9 @@ export default function WhyCostMoreSection() {
 
         {/* Hero Comparison Cards - già OK */}
         <HeroComparisonCards />
+
+        {/* NUOVO: Performance Evolution Timeline */}
+        <PerformanceEvolutionSection />
 
         {/* NUOVO: Material Overview Grid (sostituisce MaterialTabs) */}
         <MaterialOverviewGrid materials={materialsOverview} />
