@@ -2,12 +2,13 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Home, Heart, Leaf, TreePine, Shield, ShieldCheck, Award, Clock, Gauge } from 'lucide-react'
+import { Home, Heart, Leaf, Award, Euro, MapPin, Ruler, Check, ArrowRight, CheckCircle2, Gem } from 'lucide-react'
+import Link from 'next/link'
 import PulsarGridBackground from '@/components/ui/PulsarGridBackground'
 import { BouncyCard3D } from '@/components/ui/BouncyCard3D'
 import EnhancedFeatureCard from '@/components/ui/EnhancedFeatureCard'
-import SeismographVisual from '@/components/ui/SeismographVisual'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
+import WarrantyTimelineCard from '@/components/ui/WarrantyTimelineCard'
 
 // Animation variants
 const containerVariants = {
@@ -154,7 +155,7 @@ export default function ValueProposition() {
                     {[
                       { icon: Home, text: '40+ Case Realizzate' },
                       { icon: Heart, text: '98% Clienti Soddisfatti' },
-                      { icon: Leaf, text: 'Certificazione PEFC' }
+                      { icon: MapPin, text: 'Vieni a Trovarci a Spadola' }
                     ].map((badge, idx) => (
                       <motion.div
                         key={idx}
@@ -176,100 +177,103 @@ export default function ValueProposition() {
               </BouncyCard3D>
             </motion.div>
 
-            {/* 2. Sostenibilità Card */}
+            {/* 2. Artigianato Sartoriale Card */}
             <motion.div variants={itemVariants}>
               <BouncyCard3D className="h-full min-h-[320px]">
                 <EnhancedFeatureCard
-                  icon={Leaf}
-                  title="Sostenibilità"
-                  description="Materiali eco-compatibili per un futuro migliore"
-                  stats={[
-                    { label: 'CO₂ Assorbita', value: '~30 ton' },
-                    { label: 'Riciclabili', value: '95%' },
-                    { label: 'Sprechi', value: '0%' }
-                  ]}
-                  badge={{ text: 'PEFC Certificato', icon: TreePine }}
-                  gradient="from-green-500/20 to-emerald-600/20"
-                />
-              </BouncyCard3D>
-            </motion.div>
-
-            {/* 3. Sicurezza Antisismica Card */}
-            <motion.div variants={itemVariants}>
-              <BouncyCard3D className="h-full min-h-[320px]">
-                <EnhancedFeatureCard
-                  icon={Shield}
-                  title="Sicurezza Antisismica"
-                  description="Strutture testate per resistere a eventi sismici estremi"
-                  stats={[
-                    { label: 'Zona Sismica', value: '1' },
-                    { label: 'Test Superati', value: '7.2 R' },
-                    { label: 'Peso', value: '-50%' }
-                  ]}
-                  badge={{ text: 'Certificato', icon: ShieldCheck }}
-                  gradient="from-red-500/20 to-orange-600/20"
+                  icon={Gem}
+                  title="Casa su Misura"
+                  description="Come un sarto crea abiti su misura, noi costruiamo case uniche. Pochi progetti all'anno, massima cura."
+                  badge={{ text: 'Approccio Sartoriale', icon: Ruler }}
+                  gradient="from-[#C4704B]/20 to-[#1E3D30]/20"
                 >
-                  <div className="mt-4">
-                    <SeismographVisual amplitude={15} color="#C4704B" />
+                  {/* Split comparison mini */}
+                  <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
+                    <div className="p-3 bg-[#1E3D30]/10 rounded-lg border border-[#1E3D30]/20">
+                      <div className="font-bold text-[#1E3D30] mb-1 flex items-center gap-1">
+                        <Check className="w-3 h-3" />
+                        Ecolive
+                      </div>
+                      <div className="text-[#6B6560]">• Poche case/anno</div>
+                      <div className="text-[#6B6560]">• Progetto unico</div>
+                      <div className="text-[#6B6560]">• Rapporto diretto</div>
+                    </div>
+                    <div className="p-3 bg-[#8A857F]/10 rounded-lg">
+                      <div className="font-bold text-[#6B6560] mb-1">Standard</div>
+                      <div className="text-[#8A857F]">• Centinaia unità</div>
+                      <div className="text-[#8A857F]">• Catalogo fisso</div>
+                      <div className="text-[#8A857F]">• Call center</div>
+                    </div>
                   </div>
                 </EnhancedFeatureCard>
               </BouncyCard3D>
             </motion.div>
 
-            {/* 4. Tempi di Realizzazione */}
+            {/* 3. Risparmio €15.000 Card */}
             <motion.div variants={itemVariants}>
-              <BouncyCard3D className="h-full min-h-[280px]">
+              <BouncyCard3D className="h-full min-h-[320px]">
                 <EnhancedFeatureCard
-                  icon={Clock}
-                  title="Tempi Rapidi"
-                  description="Dalla progettazione al montaggio in tempi record"
+                  icon={Euro}
+                  title="€15.000 Risparmiati"
+                  description="Bollette ridotte del 70%. Clima perfetto 365 giorni senza riscaldamento aggiuntivo."
                   stats={[
-                    { label: 'Progettazione', value: '2-3 sett' },
-                    { label: 'Produzione', value: '8-12 sett' },
-                    { label: 'Montaggio', value: '3-5 gg' }
+                    { label: 'Risparmio Annuo', value: '€1,500' },
+                    { label: 'Classe Energetica', value: 'A4' },
+                    { label: 'Comfort Termico', value: '365 gg' }
                   ]}
-                  badge={{ text: 'Chiavi in Mano', icon: Home }}
-                  gradient="from-blue-500/20 to-indigo-600/20"
-                />
+                  badge={{ text: 'Casa Passiva', icon: Leaf }}
+                  gradient="from-green-500/20 to-emerald-600/20"
+                >
+                  <div className="mt-4 pt-4 border-t border-[#E5E0D8]">
+                    <AnimatedCounter
+                      value={15000}
+                      prefix="€"
+                      duration={2}
+                      className="text-3xl font-bold text-[#C4704B]"
+                    />
+                    <p className="text-xs text-[#6B6560] mt-1">Risparmio totale in 10 anni</p>
+                  </div>
+                </EnhancedFeatureCard>
               </BouncyCard3D>
             </motion.div>
 
-            {/* 5. Efficienza Energetica */}
-            <motion.div variants={itemVariants}>
-              <BouncyCard3D className="h-full min-h-[280px]">
-                <EnhancedFeatureCard
-                  icon={Gauge}
-                  title="Efficienza Energetica"
-                  description="Risparmio garantito sulle bollette energetiche"
-                  stats={[
-                    { label: 'Classe Energetica', value: 'A4' },
-                    { label: 'Risparmio', value: '-70%' },
-                    { label: 'Isolamento', value: '0.15 W/mK' }
+            {/* 4. Garanzia 30 Anni Timeline - Full span */}
+            <motion.div variants={itemVariants} className="lg:col-span-3">
+              <BouncyCard3D>
+                <WarrantyTimelineCard
+                  milestones={[
+                    { year: 0, label: 'Consegna', status: 'Perfetta' },
+                    { year: 10, label: '10 Anni', status: 'Come Nuova' },
+                    { year: 20, label: '20 Anni', status: 'Intatta' },
+                    { year: 30, label: '30 Anni', status: 'Garanzia Attiva' }
                   ]}
-                  badge={{ text: 'Casa Passiva', icon: Leaf }}
-                  gradient="from-yellow-500/20 to-amber-600/20"
                 />
               </BouncyCard3D>
             </motion.div>
           </motion.div>
 
-          {/* Call to Action */}
+          {/* Call to Action Specifico */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 1.2, duration: 0.8 }}
           >
-            <motion.button
-              className="px-8 py-4 rounded-full bg-[#C4704B] text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-shadow"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: '0 25px 50px -12px rgba(196, 112, 75, 0.5)'
-              }}
-              whileTap={{ scale: 0.95 }}
+            <p className="text-[#6B6560] mb-4 text-lg">
+              Vuoi toccare con mano i nostri materiali?
+            </p>
+            <Link
+              href="/contatti"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#C4704B] text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all group"
             >
-              Scopri Tutti i Vantaggi →
-            </motion.button>
+              <MapPin className="w-5 h-5" />
+              <span>Visita il Laboratorio a Spadola</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <p className="text-[#8A857F] text-sm mt-4 flex items-center justify-center gap-1">
+              <CheckCircle2 className="w-4 h-4" />
+              Via Conte Ruggiero 128, Spadola (VV)
+            </p>
           </motion.div>
         </div>
       </PulsarGridBackground>
