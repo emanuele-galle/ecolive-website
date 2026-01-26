@@ -7,7 +7,8 @@ import HeroFullscreen from '@/components/sections/HeroFullscreen'
 import ValueProposition from '@/components/sections/ValueProposition'
 import LifestyleVision from '@/components/sections/LifestyleVision'
 import PriceCalculatorWarm from '@/components/sections/PriceCalculatorWarm'
-import ProjectsGrid from '@/components/sections/ProjectsGrid'
+import LuxuryGallery from '@/components/sections/LuxuryGallery'
+// import ProjectsGrid from '@/components/sections/ProjectsGrid' // Replaced with LuxuryGallery
 import ProcessJourney from '@/components/sections/ProcessJourney'
 import AssemblyShowcase from '@/components/sections/AssemblyShowcase'
 import TestimonialSection from '@/components/sections/TestimonialSection'
@@ -29,12 +30,13 @@ export default async function HomePage() {
   }
 
   // Fetch latest projects for showcase
-  const { docs: projects } = await payload.find({
-    collection: 'projects',
-    where: { _status: { equals: 'published' } },
-    limit: 4,
-    sort: '-createdAt',
-  })
+  // const { docs: projects } = await payload.find({
+  //   collection: 'projects',
+  //   where: { _status: { equals: 'published' } },
+  //   limit: 4,
+  //   sort: '-createdAt',
+  // })
+  // ↑ Disabled: LuxuryGallery uses static images
 
   // Extract hero settings
   const heroImage = siteSettings?.heroImage as Media | null
@@ -59,8 +61,8 @@ export default async function HomePage() {
       {/* 3. Lifestyle Vision - Fa Sognare */}
       <LifestyleVision />
 
-      {/* 4. Projects Grid - 2x2 */}
-      <ProjectsGrid projects={projects} />
+      {/* 4. Luxury Gallery - 52 progetti luxury */}
+      <LuxuryGallery />
 
       {/* Transition: Light to Dark */}
       <SectionDivider from="#FAF7F2" to="#1E3D30" height="200px" />
