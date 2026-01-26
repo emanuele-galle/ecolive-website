@@ -4,7 +4,6 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Home, Heart, Leaf, Award, Euro, MapPin, Ruler, Check, ArrowRight, CheckCircle2, Gem } from 'lucide-react'
 import Link from 'next/link'
-import PulsarGridBackground from '@/components/ui/PulsarGridBackground'
 import { BouncyCard3D } from '@/components/ui/BouncyCard3D'
 import EnhancedFeatureCard from '@/components/ui/EnhancedFeatureCard'
 import AnimatedCounter from '@/components/ui/AnimatedCounter'
@@ -44,15 +43,24 @@ export default function ValueProposition() {
   const titleWords = "Perché Scegliere Ecolive".split(" ")
 
   return (
-    <section ref={ref} className="relative overflow-hidden">
-      {/* Pulsar Grid Background - Interactive */}
-      <PulsarGridBackground
-        backgroundColor="#FAF7F2"
-        dotColor="rgba(196, 112, 75, 0.8)"
-        gridSpacing={50}
-        className="py-24 lg:py-32 px-4"
-      >
-        <div className="max-w-7xl mx-auto relative z-10">
+    <section ref={ref} className="relative overflow-hidden bg-[#FAF7F2]">
+      {/* Static background with subtle pattern */}
+      <div className="absolute inset-0">
+        {/* Dot pattern - statico e delicato */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(196, 112, 75, 0.6) 1px, transparent 0)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+        {/* Subtle gradient overlays */}
+        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-[#C4704B]/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-[#1E3D30]/5 to-transparent rounded-full blur-3xl" />
+      </div>
+
+      <div className="py-24 lg:py-32 px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
           {/* Header with animated text reveal */}
           <motion.div
             className="text-center mb-20"
@@ -79,9 +87,9 @@ export default function ValueProposition() {
                     type: 'spring',
                     stiffness: 100
                   }}
-                  className={word === "Ecolive" ? "text-[#C4704B] inline-block" : "inline-block"}
+                  className={word === "Ecolive" ? "text-[#C4704B] inline-block mr-2" : "inline-block mr-2"}
                 >
-                  {word}{' '}
+                  {word}
                 </motion.span>
               ))}
             </h2>
@@ -276,7 +284,7 @@ export default function ValueProposition() {
             </p>
           </motion.div>
         </div>
-      </PulsarGridBackground>
+      </div>
     </section>
   )
 }
