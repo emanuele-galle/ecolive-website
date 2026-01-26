@@ -5,7 +5,7 @@ import type { Media } from '@/payload-types'
 // Import Warm Natural section components
 import HeroFullscreen from '@/components/sections/HeroFullscreen'
 import ValueProposition from '@/components/sections/ValueProposition'
-import TrustSection from '@/components/sections/TrustSection'
+import LifestyleVision from '@/components/sections/LifestyleVision'
 import PriceCalculatorWarm from '@/components/sections/PriceCalculatorWarm'
 import ProjectsGrid from '@/components/sections/ProjectsGrid'
 import ProcessJourney from '@/components/sections/ProcessJourney'
@@ -56,8 +56,8 @@ export default async function HomePage() {
       {/* 2. Value Proposition - Interactive */}
       <ValueProposition />
 
-      {/* 3. Trust & Certificazioni */}
-      <TrustSection />
+      {/* 3. Lifestyle Vision - Fa Sognare */}
+      <LifestyleVision />
 
       {/* 4. Projects Grid - 2x2 */}
       <ProjectsGrid projects={projects} />
