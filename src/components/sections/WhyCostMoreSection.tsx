@@ -58,19 +58,19 @@ export default function WhyCostMoreSection() {
               transition={{ duration: 1, repeat: Infinity }}
             />
             <span className="text-white/90 text-sm font-semibold tracking-widest uppercase">
-              Investimento Trasparente
+              Prezzi Chiari
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Perché Costa di Più{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] to-[#E8956B]">
-              (e perché ne vale la pena)
+              (e perché conviene)
             </span>
           </h2>
 
           <p className="text-[#7da0b2] text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-            4 materiali premium che fanno la differenza tra una casa che dura 30 anni e una che ne dura 100.
+            4 materiali migliori che fanno durare la tua casa 100 anni invece di 30.
           </p>
         </motion.div>
 

@@ -85,60 +85,60 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     color: '#40916c', // Verde Ecolive
 
     cosE: {
-      descrizione: "Legno lamellare stratificato con fibre incrociate. Le tavole vengono incollate sotto pressione creando un materiale più stabile del massello.",
+      descrizione: "Legno fatto con tante tavole incollate in modo incrociato. Questo lo rende molto più forte e stabile del legno normale.",
       processo: [
-        "Selezione tavole classe A (zero nodi critici)",
-        "Essiccazione controllata al 12% umidità",
-        "Incollaggio con colle certificate classe D4",
-        "Pressatura 8 bar per 24h",
-        "Controllo ultrasuoni per difetti interni",
-        "Certificazione CE secondo EN 14080"
+        "Scegliamo solo legno perfetto (senza buchi o difetti)",
+        "Lo asciughiamo alla giusta umidità",
+        "Lo incolliamo con colle super resistenti",
+        "Lo pressiamo forte per 24 ore",
+        "Lo controlliamo con ultrasuoni per trovare difetti nascosti",
+        "Ha tutte le certificazioni europee"
       ]
     },
 
     specs: [
       {
-        metrica: "Stabilità dimensionale",
+        metrica: "Si deforma nel tempo?",
         standard: {
-          valore: "±3-5mm variazione",
-          problemi: "Deformazioni con umidità, ritiri stagionali"
+          valore: "Sì, fino a 3-5mm",
+          problemi: "Si muove con l'umidità e cambia con le stagioni"
         },
         ecolive: {
-          valore: "±0.2mm tolleranza",
-          benefici: "Stabilità assoluta, zero deformazioni"
+          valore: "Quasi per niente (0.2mm)",
+          benefici: "Resta sempre uguale, non si deforma mai"
         }
       },
       {
-        metrica: "Resistenza flessionale",
+        metrica: "Quanto è resistente?",
         standard: {
-          valore: "18 N/mm²",
-          problemi: "Nodi riducono resistenza 30-40%"
+          valore: "Normale",
+          problemi: "I buchi nel legno lo indeboliscono del 30-40%"
         },
         ecolive: {
-          valore: "28 N/mm²",
-          benefici: "Nodi eliminati, fibre incrociate"
+          valore: "Molto più resistente",
+          benefici: "Senza buchi, le fibre incrociate lo rendono più forte"
         }
       },
       {
-        metrica: "Contenuto umidità",
+        metrica: "Cambia con l'umidità?",
         standard: {
-          valore: "8-18% variabile",
-          problemi: "Influisce su stabilità e durabilità"
+          valore: "Sì, cambia molto",
+          problemi: "L'umidità lo fa gonfiare o restringere"
         },
         ecolive: {
-          valore: "12% controllato",
-          benefici: "Costante in ogni condizione climatica"
+          valore: "Sempre uguale",
+          benefici: "Resta stabile con qualsiasi tempo"
         }
       },
       {
-        metrica: "Garanzia strutturale",
+        metrica: "Garanzia",
         standard: {
           valore: "2 anni",
-          problemi: "Dopo garanzia: problemi a carico cliente"
+          problemi: "Dopo devi pagare tu le riparazioni"
         },
         ecolive: {
           valore: "30 anni",
-          benefici: "Tranquillità a lungo termine"
+          benefici: "Stai tranquillo per decenni"
         }
       }
     ],
@@ -202,60 +202,60 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     color: '#2a9d8f', // Teal
 
     cosE: {
-      descrizione: "Pannelli in legno lamellare a 3 strati incrociati. Ogni strato è orientato perpendicolarmente agli altri per massima stabilità.",
+      descrizione: "Pannelli fatti con 3 strati di legno incrociati. Ogni strato è messo di traverso rispetto all'altro per renderlo più stabile.",
       processo: [
-        "Selezione legno abete classe A/B",
-        "Stratificazione 3 strati incrociati 90°",
-        "Pressatura continua 12 bar",
-        "Taglio dimensionale CNC",
-        "Controllo emissioni formaldeide (E1)",
-        "Test resistenza meccanica"
+        "Scegliamo legno di buona qualità",
+        "Incolliamo 3 strati messi di traverso",
+        "Li pressiamo forte insieme",
+        "Li tagliamo con precisione",
+        "Controlliamo che non rilascino sostanze nocive",
+        "Verifichiamo che siano resistenti"
       ]
     },
 
     specs: [
       {
-        metrica: "Resistenza meccanica",
+        metrica: "Quanto è resistente?",
         standard: {
-          valore: "2.8 kN/m²",
-          problemi: "Scollamenti dopo 7-10 anni"
+          valore: "Normale",
+          problemi: "Si scolla dopo 7-10 anni"
         },
         ecolive: {
-          valore: "4.5 kN/m²",
-          benefici: "Struttura monolitica, nessun scollamento"
+          valore: "Molto più resistente",
+          benefici: "Fatto tutto insieme, non si scolla mai"
         }
       },
       {
-        metrica: "Emissioni formaldeide",
+        metrica: "Fa male respirarlo?",
         standard: {
-          valore: "E2 (0.12 mg/m³)",
-          problemi: "Limiti legali ma non salutari"
+          valore: "Un po' (nei limiti di legge)",
+          problemi: "Rilascia sostanze che non fanno bene"
         },
         ecolive: {
-          valore: "E0 (0.03 mg/m³)",
-          benefici: "Praticamente zero emissioni"
+          valore: "Per niente (aria pulita)",
+          benefici: "Non rilascia quasi nulla, aria sempre salubre"
         }
       },
       {
-        metrica: "Stabilità dimensionale",
+        metrica: "Si gonfia con l'umidità?",
         standard: {
-          valore: "±8mm ogni 2m",
-          problemi: "Gonfiamenti con umidità"
+          valore: "Sì, fino a 8mm",
+          problemi: "Si gonfia quando c'è umidità"
         },
         ecolive: {
-          valore: "±1mm ogni 2m",
-          benefici: "Fibre incrociate compensano"
+          valore: "Quasi per niente (1mm)",
+          benefici: "Gli strati incrociati lo tengono fermo"
         }
       },
       {
-        metrica: "Durata stimata",
+        metrica: "Quanto dura?",
         standard: {
           valore: "10-12 anni",
-          problemi: "Degradazione irreversibile"
+          problemi: "Poi si rovina e va cambiato"
         },
         ecolive: {
-          valore: "50+ anni",
-          benefici: "Materiale strutturale permanente"
+          valore: "Più di 50 anni",
+          benefici: "Dura per sempre"
         }
       }
     ],
@@ -319,60 +319,60 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     color: '#e76f51', // Arancione caldo
 
     cosE: {
-      descrizione: "Pannelli di sughero naturale espanso. La corteccia della quercia da sughero viene granulata, pressata e cotta al vapore senza collanti artificiali.",
+      descrizione: "Pannelli di sughero naturale. Prendiamo la corteccia della quercia da sughero, la sbriciamo, la pressiamo e la cuociamo al vapore senza usare colle chimiche.",
       processo: [
-        "Estrazione corteccia quercia (rinnovabile ogni 9 anni)",
-        "Stagionatura naturale 6 mesi",
-        "Granulazione meccanica",
-        "Pressatura vapore 350°C (resine naturali)",
-        "Taglio dimensionale",
-        "Certificazione ANAB-IBR (bioedilizia)"
+        "Prendiamo la corteccia dalla quercia (ricresce ogni 9 anni)",
+        "La lasciamo stagionare 6 mesi",
+        "La sbriciamo in piccoli pezzi",
+        "La pressiamo con vapore caldissimo (le resine naturali fanno da colla)",
+        "La tagliamo nelle misure giuste",
+        "Ha certificazioni per bioedilizia"
       ]
     },
 
     specs: [
       {
-        metrica: "Lambda termico",
+        metrica: "Isola dal caldo/freddo?",
         standard: {
-          valore: "0.038 W/mK",
-          problemi: "Degrada con UV, perde efficacia"
+          valore: "Benissimo",
+          problemi: "Ma con il tempo perde efficacia"
         },
         ecolive: {
-          valore: "0.040 W/mK",
-          benefici: "Stabile per decenni, traspirante"
+          valore: "Benissimo",
+          benefici: "E resta così per sempre, traspira meglio"
         }
       },
       {
-        metrica: "Densità",
+        metrica: "Mantiene la temperatura?",
         standard: {
-          valore: "15-20 kg/m³",
-          problemi: "Leggero, zero inerzia termica"
+          valore: "Poco",
+          problemi: "Troppo leggero, la casa cambia temperatura subito"
         },
         ecolive: {
-          valore: "110-120 kg/m³",
-          benefici: "Elevata inerzia, accumulo termico"
+          valore: "Molto bene",
+          benefici: "Più pesante, mantiene la temperatura stabile"
         }
       },
       {
-        metrica: "Rinnovabilità",
+        metrica: "È naturale?",
         standard: {
-          valore: "Derivato petrolio",
-          problemi: "Non rinnovabile, CO₂ alta"
+          valore: "No (fatto dal petrolio)",
+          problemi: "Non rinnovabile, inquina"
         },
         ecolive: {
-          valore: "100% naturale",
-          benefici: "Carbon negative, rigenerabile"
+          valore: "Sì (100% naturale)",
+          benefici: "Rinnovabile, non inquina"
         }
       },
       {
-        metrica: "Durata isolamento",
+        metrica: "Quanto dura?",
         standard: {
           valore: "15-20 anni",
-          problemi: "Degrado UV, assestamento"
+          problemi: "Poi si degrada e perde efficacia"
         },
         ecolive: {
-          valore: "100+ anni",
-          benefici: "Stabile, nessun degrado"
+          valore: "Più di 100 anni",
+          benefici: "Resta uguale per sempre"
         }
       }
     ],
@@ -436,60 +436,60 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     color: '#C4704B', // Marrone terra (Ecolive brand)
 
     cosE: {
-      descrizione: "Pannelli di gesso naturale rinforzato con fibre di cellulosa. L'impasto viene pressato e essiccato senza collanti chimici.",
+      descrizione: "Pannelli di gesso naturale rinforzato con fibre. L'impasto viene pressato e fatto asciugare senza usare colle chimiche.",
       processo: [
-        "Impasto gesso naturale + fibre cellulosa",
-        "Pressatura continua 18 bar",
-        "Essiccazione controllata 48h",
-        "Controllo planarità (±0.5mm)",
-        "Test resistenza urti",
-        "Certificazione ignifugo classe A1"
+        "Mescoliamo gesso naturale con fibre di carta",
+        "Lo pressiamo forte",
+        "Lo lasciamo asciugare 48 ore",
+        "Controlliamo che sia perfettamente piatto",
+        "Verifichiamo che resista agli urti",
+        "Ha certificazione antincendio massima"
       ]
     },
 
     specs: [
       {
-        metrica: "Resistenza urti",
+        metrica: "Resiste agli urti?",
         standard: {
-          valore: "0.5 kN (fragile)",
-          problemi: "Ammaccature facili, buchi con colpi"
+          valore: "Si ammacca facilmente",
+          problemi: "Basta un colpo per fare buchi o ammaccature"
         },
         ecolive: {
-          valore: "1.8 kN (robusto)",
-          benefici: "Resistente a urti quotidiani"
+          valore: "Non si ammacca quasi mai",
+          benefici: "Resiste agli urti di tutti i giorni"
         }
       },
       {
-        metrica: "Accumulo termico",
+        metrica: "Mantiene la temperatura?",
         standard: {
-          valore: "6 Wh/mK (basso)",
-          problemi: "Nessuna inerzia, sbalzi temperatura"
+          valore: "Poco",
+          problemi: "La temperatura cambia subito"
         },
         ecolive: {
-          valore: "18 Wh/mK (elevato)",
-          benefici: "Stabilizza temperatura, comfort"
+          valore: "Molto bene",
+          benefici: "Tiene stabile la temperatura, più comfort"
         }
       },
       {
-        metrica: "Spessore",
+        metrica: "È spesso?",
         standard: {
-          valore: "12mm (sottile)",
-          problemi: "Flessibile, trasmette rumori"
+          valore: "Sottile (12mm)",
+          problemi: "Si sente tutto attraverso le pareti"
         },
         ecolive: {
-          valore: "25mm (doppio)",
-          benefici: "Rigido, isolamento acustico"
+          valore: "Doppio spessore (25mm)",
+          benefici: "Rigido, isola meglio i rumori"
         }
       },
       {
-        metrica: "Classe ignifugo",
+        metrica: "È ignifugo?",
         standard: {
-          valore: "A2 (combustibile)",
-          problemi: "Rilascia fumi in caso incendio"
+          valore: "Buono",
+          problemi: "In caso di incendio rilascia fumo"
         },
         ecolive: {
-          valore: "A1 (incombustibile)",
-          benefici: "Zero propagazione fiamma"
+          valore: "Eccellente (non brucia)",
+          benefici: "Non prende fuoco, sicurezza massima"
         }
       }
     ],

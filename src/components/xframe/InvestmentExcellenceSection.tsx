@@ -112,27 +112,27 @@ export default function InvestmentExcellenceSection() {
               transition={{ duration: 2, repeat: Infinity }}
             />
             <span className="text-white/90 text-sm font-semibold tracking-widest uppercase">
-              Qualità Sartoriale
+              Materiali di Qualità
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Investimento in{" "}
+            Perché Usiamo{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] via-[#E8956B] to-[#D4896A]">
-              Eccellenza
+              Materiali Migliori
             </span>
           </h2>
 
           <p className="text-[#7da0b2] text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
-            Materiali Premium, Risultati a Lungo Termine
+            Costano un po' di più, ma durano molto di più
           </p>
 
           <p className="text-white/60 text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
-            I colossi dell'edilizia usano materiali economici per competere sul prezzo.
-            Noi scegliamo{" "}
-            <span className="text-[#C4704B] font-medium">materiali premium</span> che
-            costano di più oggi ma che{" "}
-            <span className="text-[#C4704B] font-medium">ripagano l'investimento</span> nel tempo.
+            Le grandi aziende usano materiali economici per abbassare i prezzi.
+            Noi usiamo{" "}
+            <span className="text-[#C4704B] font-medium">materiali migliori</span>.
+            Costano di più all'inizio, ma{" "}
+            <span className="text-[#C4704B] font-medium">ti fanno risparmiare</span> negli anni.
           </p>
         </motion.div>
 
@@ -200,30 +200,30 @@ export default function InvestmentExcellenceSection() {
             {/* Content */}
             <div className="flex-1 text-center lg:text-left">
               <h4 className="text-2xl font-bold text-white mb-3">
-                Connessioni di Precisione
+                Come Fissiamo il Legno
               </h4>
               <p className="text-white/60 leading-relaxed mb-4">
-                Le nostre connessioni sono realizzate con{" "}
+                Usiamo{" "}
                 <span className="text-[#C4704B] font-medium">
-                  viti in acciaio al carbonio
+                  viti in acciaio resistente
                 </span>
-                , avvitate singolarmente a bassa velocità. Le macchine automatiche dei
-                grandi produttori "sparano" chiodi in un secondo, ma sul legno si lavora
-                a bassa velocità per garantire tenuta perfetta nel tempo, resistenza alle
-                sollecitazioni sismiche e al rifollamento naturale del legno.
+                , avvitate una per una con calma. Le grandi aziende usano chiodi sparati
+                velocemente da macchine automatiche. Noi lavoriamo lentamente per garantire
+                che ogni vite tenga perfettamente, anche in caso di terremoto, e che il
+                legno non si muova nel tempo.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full">
                   <Check className="w-4 h-4 text-green-400" />
-                  <span className="text-white/70 text-sm">Tenuta sismica superiore</span>
+                  <span className="text-white/70 text-sm">Resistente ai terremoti</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full">
                   <Check className="w-4 h-4 text-green-400" />
-                  <span className="text-white/70 text-sm">Durabilità nel tempo</span>
+                  <span className="text-white/70 text-sm">Dura per sempre</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full">
                   <Check className="w-4 h-4 text-green-400" />
-                  <span className="text-white/70 text-sm">Nessun rifollamento</span>
+                  <span className="text-white/70 text-sm">Il legno resta fermo</span>
                 </div>
               </div>
             </div>

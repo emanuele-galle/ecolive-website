@@ -1,14 +1,13 @@
 'use client'
 
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Home, Heart, Leaf, TreePine, Shield, ShieldCheck } from 'lucide-react'
-import TiltWrapper from '@/components/ui/TiltWrapper'
-import HeroStatCard from '@/components/ui/HeroStatCard'
-import InteractiveTimelineCard from '@/components/ui/InteractiveTimelineCard'
-import Feature3DCard from '@/components/ui/Feature3DCard'
-import ParticleBackground from '@/components/ui/ParticleBackground'
+import { Home, Heart, Leaf, TreePine, Shield, ShieldCheck, Award, Clock, Gauge } from 'lucide-react'
+import PulsarGridBackground from '@/components/ui/PulsarGridBackground'
+import { BouncyCard3D } from '@/components/ui/BouncyCard3D'
+import EnhancedFeatureCard from '@/components/ui/EnhancedFeatureCard'
 import SeismographVisual from '@/components/ui/SeismographVisual'
+import AnimatedCounter from '@/components/ui/AnimatedCounter'
 
 // Animation variants
 const containerVariants = {
@@ -16,17 +15,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2
+      staggerChildren: 0.15,
+      delayChildren: 0.3
     }
   }
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       type: 'spring' as const,
       stiffness: 100,
@@ -39,181 +39,240 @@ export default function ValueProposition() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: false, margin: "-100px" })
 
-  // Scroll parallax
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  })
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -30])
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -20])
-
   // Text reveal animation
   const titleWords = "Perché Scegliere Ecolive".split(" ")
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 px-4 bg-[#FAF7F2] relative overflow-hidden">
-      {/* Particle Background (z-0) */}
-      <ParticleBackground
-        particleCount={180}
-        particleColor="rgba(196, 112, 75, 0.3)"
-        className="z-0"
-      />
-
-      {/* Animated gradient orbs (z-5) */}
-      <motion.div
-        className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#C4704B]/10 rounded-full blur-3xl z-5"
-        animate={{
-          x: [0, 50, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-[#1E3D30]/10 rounded-full blur-3xl z-5"
-        animate={{
-          x: [0, -40, 0],
-          y: [0, 40, 0],
-          scale: [1, 1.15, 1]
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-80 h-80 bg-[#C9A86C]/8 rounded-full blur-3xl z-5"
-        animate={{
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-      />
-
-      <div className="max-w-6xl 3xl:max-w-7xl mx-auto relative z-10">
-        {/* Header with text reveal */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9 }}
-        >
-          <span className="text-[#C4704B] font-semibold text-sm uppercase tracking-wider">
-            Perché Noi
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1E3D30] mt-2">
-            {titleWords.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className={word === "Ecolive" ? "text-[#C4704B]" : ""}
-              >
-                {word}{' '}
-              </motion.span>
-            ))}
-          </h2>
-          <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-            Oltre 25 anni di esperienza nella bioedilizia per case che durano nel tempo
-          </p>
-        </motion.div>
-
-        {/* Bento Grid with Parallax */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {/* 1. Hero Stat Card - tall (md:row-span-2 md:col-span-1) with parallax */}
+    <section ref={ref} className="relative overflow-hidden">
+      {/* Pulsar Grid Background - Interactive */}
+      <PulsarGridBackground
+        backgroundColor="#FAF7F2"
+        dotColor="rgba(196, 112, 75, 0.8)"
+        gridSpacing={50}
+        className="py-24 lg:py-32 px-4"
+      >
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header with animated text reveal */}
           <motion.div
-            variants={itemVariants}
-            className="md:row-span-2 md:col-span-1"
-            style={{ y: y1 }}
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9 }}
           >
-            <TiltWrapper>
-              <HeroStatCard
-                statValue={25}
-                statSuffix="+"
-                statLabel="Anni di Esperienza"
-                badges={[
-                  { text: '40+ Case Realizzate', icon: Home },
-                  { text: '98% Clienti Soddisfatti', icon: Heart },
-                  { text: 'Certificazione PEFC', icon: Leaf }
-                ]}
-              />
-            </TiltWrapper>
+            <motion.span
+              className="inline-block px-4 py-2 rounded-full bg-[#C4704B]/10 border border-[#C4704B]/30 text-[#C4704B] font-semibold text-sm uppercase tracking-wider mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              Perché Noi
+            </motion.span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#1E3D30] mt-4">
+              {titleWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20, rotateX: -90 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: i * 0.15,
+                    duration: 0.7,
+                    type: 'spring',
+                    stiffness: 100
+                  }}
+                  className={word === "Ecolive" ? "text-[#C4704B] inline-block" : "inline-block"}
+                >
+                  {word}{' '}
+                </motion.span>
+              ))}
+            </h2>
+            <motion.p
+              className="text-[#6B6560] text-xl max-w-3xl mx-auto mt-6"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              Oltre 25 anni di esperienza nella bioedilizia per case che durano nel tempo
+            </motion.p>
           </motion.div>
 
-          {/* 2. Timeline Card - wide (md:col-span-2) with parallax */}
+          {/* Enhanced Grid Layout */}
           <motion.div
-            variants={itemVariants}
-            className="md:col-span-2"
-            style={{ y: y2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <TiltWrapper>
-              <InteractiveTimelineCard />
-            </TiltWrapper>
+            {/* 1. Esperienza Hero Card - Large */}
+            <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-1 lg:row-span-2">
+              <BouncyCard3D className="h-full">
+                <div className="h-full rounded-2xl bg-gradient-to-br from-[#C4704B] to-[#1E3D30] p-8 text-white flex flex-col justify-between relative overflow-hidden">
+                  {/* Animated background pattern */}
+                  <motion.div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+                      backgroundSize: '20px 20px'
+                    }}
+                    animate={{
+                      backgroundPosition: ['0px 0px', '20px 20px'],
+                    }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: 'linear'
+                    }}
+                  />
+
+                  <div className="relative z-10">
+                    <motion.div
+                      className="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-white/20 backdrop-blur-sm mb-6"
+                      whileHover={{ scale: 1.1, rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Award className="w-8 h-8" />
+                    </motion.div>
+
+                    <div className="mb-6">
+                      <motion.div
+                        className="text-7xl font-bold mb-2 flex items-baseline gap-2"
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
+                      >
+                        <AnimatedCounter
+                          value={25}
+                          duration={2}
+                          className="text-7xl font-bold"
+                        />
+                        <span className="text-4xl">+</span>
+                      </motion.div>
+                      <p className="text-2xl font-semibold opacity-90">Anni di Esperienza</p>
+                    </div>
+                  </div>
+
+                  {/* Stats badges */}
+                  <div className="space-y-3 relative z-10">
+                    {[
+                      { icon: Home, text: '40+ Case Realizzate' },
+                      { icon: Heart, text: '98% Clienti Soddisfatti' },
+                      { icon: Leaf, text: 'Certificazione PEFC' }
+                    ].map((badge, idx) => (
+                      <motion.div
+                        key={idx}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: 0.8 + idx * 0.1 }}
+                        whileHover={{
+                          scale: 1.05,
+                          backgroundColor: 'rgba(255, 255, 255, 0.2)'
+                        }}
+                      >
+                        <badge.icon className="w-5 h-5" />
+                        <span className="font-medium">{badge.text}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </BouncyCard3D>
+            </motion.div>
+
+            {/* 2. Sostenibilità Card */}
+            <motion.div variants={itemVariants}>
+              <BouncyCard3D className="h-full min-h-[320px]">
+                <EnhancedFeatureCard
+                  icon={Leaf}
+                  title="Sostenibilità"
+                  description="Materiali eco-compatibili per un futuro migliore"
+                  stats={[
+                    { label: 'CO₂ Assorbita', value: '~30 ton' },
+                    { label: 'Riciclabili', value: '95%' },
+                    { label: 'Sprechi', value: '0%' }
+                  ]}
+                  badge={{ text: 'PEFC Certificato', icon: TreePine }}
+                  gradient="from-green-500/20 to-emerald-600/20"
+                />
+              </BouncyCard3D>
+            </motion.div>
+
+            {/* 3. Sicurezza Antisismica Card */}
+            <motion.div variants={itemVariants}>
+              <BouncyCard3D className="h-full min-h-[320px]">
+                <EnhancedFeatureCard
+                  icon={Shield}
+                  title="Sicurezza Antisismica"
+                  description="Strutture testate per resistere a eventi sismici estremi"
+                  stats={[
+                    { label: 'Zona Sismica', value: '1' },
+                    { label: 'Test Superati', value: '7.2 R' },
+                    { label: 'Peso', value: '-50%' }
+                  ]}
+                  badge={{ text: 'Certificato', icon: ShieldCheck }}
+                  gradient="from-red-500/20 to-orange-600/20"
+                >
+                  <div className="mt-4">
+                    <SeismographVisual amplitude={15} color="#C4704B" />
+                  </div>
+                </EnhancedFeatureCard>
+              </BouncyCard3D>
+            </motion.div>
+
+            {/* 4. Tempi di Realizzazione */}
+            <motion.div variants={itemVariants}>
+              <BouncyCard3D className="h-full min-h-[280px]">
+                <EnhancedFeatureCard
+                  icon={Clock}
+                  title="Tempi Rapidi"
+                  description="Dalla progettazione al montaggio in tempi record"
+                  stats={[
+                    { label: 'Progettazione', value: '2-3 sett' },
+                    { label: 'Produzione', value: '8-12 sett' },
+                    { label: 'Montaggio', value: '3-5 gg' }
+                  ]}
+                  badge={{ text: 'Chiavi in Mano', icon: Home }}
+                  gradient="from-blue-500/20 to-indigo-600/20"
+                />
+              </BouncyCard3D>
+            </motion.div>
+
+            {/* 5. Efficienza Energetica */}
+            <motion.div variants={itemVariants}>
+              <BouncyCard3D className="h-full min-h-[280px]">
+                <EnhancedFeatureCard
+                  icon={Gauge}
+                  title="Efficienza Energetica"
+                  description="Risparmio garantito sulle bollette energetiche"
+                  stats={[
+                    { label: 'Classe Energetica', value: 'A4' },
+                    { label: 'Risparmio', value: '-70%' },
+                    { label: 'Isolamento', value: '0.15 W/mK' }
+                  ]}
+                  badge={{ text: 'Casa Passiva', icon: Leaf }}
+                  gradient="from-yellow-500/20 to-amber-600/20"
+                />
+              </BouncyCard3D>
+            </motion.div>
           </motion.div>
 
-          {/* 3. Sostenibilità Card - standard (md:col-span-1) with progress bars and icon animation */}
+          {/* Call to Action */}
           <motion.div
-            variants={itemVariants}
-            style={{ y: y3 }}
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 1.2, duration: 0.8 }}
           >
-            <TiltWrapper>
-              <Feature3DCard
-                icon={Leaf}
-                title="Sostenibilità"
-                stats={[
-                  { label: 'CO₂ Assorbita (50 anni)', value: '~30 ton' },
-                  { label: 'Materiali Riciclabili', value: '95%' },
-                  { label: 'Sprechi Produzione', value: '0%' }
-                ]}
-                badge={{ text: 'Legno PEFC Certificato', icon: TreePine }}
-                showProgressBars={true}
-                progressValues={[100, 95, 100]}
-                animateIcons={true}
-              />
-            </TiltWrapper>
+            <motion.button
+              className="px-8 py-4 rounded-full bg-[#C4704B] text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-shadow"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: '0 25px 50px -12px rgba(196, 112, 75, 0.5)'
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Scopri Tutti i Vantaggi →
+            </motion.button>
           </motion.div>
-
-          {/* 4. Sicurezza Card - standard (md:col-span-1) with seismograph visual */}
-          <motion.div
-            variants={itemVariants}
-            style={{ y: y3 }}
-          >
-            <TiltWrapper>
-              <Feature3DCard
-                icon={Shield}
-                title="Sicurezza Antisismica"
-                stats={[
-                  { label: 'Zona Sismica', value: '1' },
-                  { label: 'Test Superati', value: '7.2 R' },
-                  { label: 'Peso vs Laterizio', value: '-50%' }
-                ]}
-                badge={{ text: 'Certificato Antisismico', icon: ShieldCheck }}
-                animateIcons={true}
-                customVisual={<SeismographVisual amplitude={15} color="#C4704B" />}
-              />
-            </TiltWrapper>
-          </motion.div>
-        </motion.div>
-      </div>
+        </div>
+      </PulsarGridBackground>
     </section>
   )
 }
