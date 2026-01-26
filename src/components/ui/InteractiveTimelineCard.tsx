@@ -11,6 +11,12 @@ interface TimelineStep {
   days: string
   icon: LucideIcon
   description: string
+  status: 'completed' | 'current' | 'upcoming'
+  category: string
+  details?: {
+    team: string
+    cost: string
+  }
 }
 
 const steps: TimelineStep[] = [
@@ -19,30 +25,76 @@ const steps: TimelineStep[] = [
     label: 'Progettazione',
     days: '10 giorni',
     icon: Lightbulb,
-    description: 'Design personalizzato e approvazione finale'
+    description: 'Design personalizzato e approvazione finale',
+    status: 'completed',
+    category: 'Design',
+    details: {
+      team: 'Architetti + Cliente',
+      cost: '15% totale'
+    }
   },
   {
     number: 2,
     label: 'Produzione',
     days: '20 giorni',
     icon: Cog,
-    description: 'Fabbricazione componenti prefabbricati'
+    description: 'Fabbricazione componenti prefabbricati',
+    status: 'completed',
+    category: 'Fabbrica',
+    details: {
+      team: 'Produzione CNC',
+      cost: '40% totale'
+    }
   },
   {
     number: 3,
     label: 'Montaggio',
     days: '20 giorni',
     icon: Hammer,
-    description: 'Assemblaggio on-site della struttura'
+    description: 'Assemblaggio on-site della struttura',
+    status: 'current',
+    category: 'Cantiere',
+    details: {
+      team: 'Squadra Montaggio',
+      cost: '30% totale'
+    }
   },
   {
     number: 4,
     label: 'Finiture',
     days: '10 giorni',
     icon: Sparkles,
-    description: 'Dettagli finali e consegna chiavi'
+    description: 'Dettagli finali e consegna chiavi',
+    status: 'upcoming',
+    category: 'Rifinitura',
+    details: {
+      team: 'Artigiani + QA',
+      cost: '15% totale'
+    }
   }
 ]
+
+// Status colors
+const statusColors = {
+  completed: {
+    bg: 'bg-green-500',
+    border: 'border-green-500',
+    text: 'text-green-600',
+    glow: 'shadow-green-500/30'
+  },
+  current: {
+    bg: 'bg-[#C4704B]',
+    border: 'border-[#C4704B]',
+    text: 'text-[#C4704B]',
+    glow: 'shadow-[#C4704B]/30'
+  },
+  upcoming: {
+    bg: 'bg-gray-300',
+    border: 'border-gray-300',
+    text: 'text-gray-500',
+    glow: 'shadow-gray-500/20'
+  }
+}
 
 export default function InteractiveTimelineCard() {
   const ref = useRef<HTMLDivElement>(null)
@@ -70,11 +122,14 @@ export default function InteractiveTimelineCard() {
       {/* Timeline */}
       <div className="relative">
         {/* Progress bar background */}
-        <div className="absolute top-6 left-0 right-0 h-1 bg-gray-200 rounded-full" />
+        <div className="absolute top-10 left-0 right-0 h-1 bg-gray-200 rounded-full" />
 
-        {/* Animated progress bar */}
+        {/* Multi-color animated progress bar */}
         <motion.div
-          className="absolute top-6 left-0 h-1 bg-gradient-to-r from-[#C4704B] to-[#1E3D30] rounded-full"
+          className="absolute top-10 left-0 h-1 rounded-full"
+          style={{
+            background: 'linear-gradient(to right, #10b981 0%, #10b981 50%, #C4704B 50%, #C4704B 75%, #9CA3AF 75%)'
+          }}
           initial={{ width: '0%' }}
           animate={isInView ? { width: '100%' } : { width: '0%' }}
           transition={{ duration: 2, delay: 0.3, ease: 'easeInOut' }}
@@ -85,6 +140,8 @@ export default function InteractiveTimelineCard() {
           {steps.map((step, index) => {
             const Icon = step.icon
             const isHovered = hoveredStep === index
+            const isCurrent = step.status === 'current'
+            const colors = statusColors[step.status]
 
             return (
               <div
@@ -93,7 +150,25 @@ export default function InteractiveTimelineCard() {
                 onMouseEnter={() => setHoveredStep(index)}
                 onMouseLeave={() => setHoveredStep(null)}
               >
-                {/* Step node */}
+                {/* Category badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
+                  transition={{ delay: index * 0.2 + 0.4 }}
+                  className="mb-2"
+                >
+                  <span className={cn(
+                    'text-[10px] font-semibold px-2 py-1 rounded-full',
+                    colors.text,
+                    colors.bg === 'bg-green-500' ? 'bg-green-50' :
+                    colors.bg === 'bg-[#C4704B]' ? 'bg-[#C4704B]/10' :
+                    'bg-gray-100'
+                  )}>
+                    {step.category}
+                  </span>
+                </motion.div>
+
+                {/* Avatar circular node */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
@@ -104,16 +179,16 @@ export default function InteractiveTimelineCard() {
                     delay: index * 0.2 + 0.5
                   }}
                   className={cn(
-                    'w-12 h-12 rounded-full flex items-center justify-center z-10 transition-all duration-300 cursor-pointer',
-                    isHovered
-                      ? 'bg-[#C4704B] shadow-lg shadow-[#C4704B]/30 scale-110'
-                      : 'bg-white border-2 border-[#C4704B]'
+                    'w-14 h-14 rounded-full flex items-center justify-center z-10 transition-all duration-300 cursor-pointer',
+                    'border-4',
+                    isHovered || isCurrent ? `${colors.bg} shadow-lg ${colors.glow} scale-110` : `bg-white ${colors.border}`,
+                    isCurrent && 'animate-pulse'
                   )}
                 >
                   <Icon
                     className={cn(
-                      'w-5 h-5 transition-colors',
-                      isHovered ? 'text-white' : 'text-[#C4704B]'
+                      'w-6 h-6 transition-colors',
+                      isHovered || isCurrent ? 'text-white' : colors.text
                     )}
                   />
                 </motion.div>
@@ -125,24 +200,42 @@ export default function InteractiveTimelineCard() {
                   transition={{ delay: index * 0.2 + 0.7 }}
                   className="mt-4 text-center"
                 >
-                  <p className="text-sm font-semibold text-[#1E3D30] mb-1">
+                  <p className={cn(
+                    'text-sm font-semibold mb-1',
+                    isCurrent ? colors.text : 'text-[#1E3D30]'
+                  )}>
                     {step.label}
                   </p>
-                  <p className="text-xs text-[#C4704B] font-medium">
+                  <p className={cn(
+                    'text-xs font-medium',
+                    colors.text
+                  )}>
                     {step.days}
                   </p>
                 </motion.div>
 
-                {/* Hover tooltip */}
+                {/* Enhanced hover tooltip */}
                 {isHovered && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-16 left-1/2 -translate-x-1/2 mt-12 w-48 p-3 bg-white rounded-lg shadow-xl border border-[#C4704B]/20 z-20"
+                    className="absolute top-20 left-1/2 -translate-x-1/2 mt-12 w-52 p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-[#C4704B]/20 z-20"
                   >
-                    <p className="text-xs text-gray-600 text-center">
+                    <p className="text-xs text-gray-700 font-semibold mb-2">
                       {step.description}
                     </p>
+                    {step.details && (
+                      <div className="space-y-1 pt-2 border-t border-gray-200">
+                        <div className="flex justify-between items-center">
+                          <span className="text-[10px] text-gray-500">Team:</span>
+                          <span className="text-[10px] text-gray-700 font-medium">{step.details.team}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-[10px] text-gray-500">Costo:</span>
+                          <span className="text-[10px] text-[#C4704B] font-semibold">{step.details.cost}</span>
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </div>
