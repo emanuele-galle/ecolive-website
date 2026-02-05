@@ -4,7 +4,7 @@
 #
 # Database: usa vps-panel-postgres esistente
 # Storage: usa vps-panel-minio esistente
-# Routing: Traefik con SSL
+# Routing: Traefik con SSL (Docker labels)
 #
 
 services:
@@ -18,7 +18,6 @@ services:
       - .env.docker
     environment:
       - NODE_ENV=production
-    # Nessuna porta pubblica - accesso solo via Traefik
     networks:
       - traefik-public
       - panel-internal
@@ -27,15 +26,32 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
 
-      # Router preview (ecolive-website.fodivps2.cloud)
-      # NOTA: Router per www.ecolive.srl da abilitare quando DNS punta a questo server
-      - "traefik.http.routers.ecolive-preview.rule=Host(`ecolive-website.fodivps2.cloud`)"
-      - "traefik.http.routers.ecolive-preview.entrypoints=websecure"
-      - "traefik.http.routers.ecolive-preview.tls=true"
-      - "traefik.http.routers.ecolive-preview.tls.certresolver=letsencrypt"
+      # Production router (www.ecolive.srl + ecolive.srl + preview)
+      - "traefik.http.routers.ecolive.rule=Host(`www.ecolive.srl`) || Host(`ecolive.srl`) || Host(`ecolive.fodivps2.cloud`) || Host(`ecolive-website.fodivps2.cloud`)"
+      - "traefik.http.routers.ecolive.entrypoints=websecure"
+      - "traefik.http.routers.ecolive.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ecolive.middlewares=ecolive-security-headers"
+      - "traefik.http.routers.ecolive.service=ecolive"
 
       # Service
-      - "traefik.http.services.ecolive-preview.loadbalancer.server.port=3000"
+      - "traefik.http.services.ecolive.loadbalancer.server.port=3000"
+
+      # Custom middleware: security headers with Sketchfab CSP
+      - "traefik.http.middlewares.ecolive-security-headers.headers.frameDeny=false"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.sslRedirect=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.browserXssFilter=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.stsPreload=true"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.customFrameOptionsValue=SAMEORIGIN"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; frame-src 'self' https://sketchfab.com https://superspl.at; connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), payment=()"
+
+      # www-redirect middleware (ecolive.srl → www.ecolive.srl)
+      # Note: handled at DNS level via Cloudflare, Docker label redirect optional
 
       # Metadata per VPS Panel
       - "com.docker.compose.project=ecolive-website"

@@ -46,3 +46,14 @@ next-env.d.ts
 # Large render files (use WebP versions in optimized/)
 public/images/xframe-render/*.png
 public/models/*.ply
+
+# Raw assets (large, unoptimized files)
+.raw-assets/
+**/*.raw
+**/*.psd
+**/*.ai
+**/*.mov
+**/*.avi
+**/*.mkv
+**/*.flv
+**/*unoptimized*

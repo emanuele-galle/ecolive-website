@@ -168,6 +168,12 @@ export default function Footer() {
               <p className="text-sm text-white/40">
                 &copy; {currentYear} Ecolive S.r.l. - P.IVA 03012345678 - Tutti i diritti riservati
               </p>
+              <p className="text-xs text-white/30 mt-1">
+                Realizzato da{"{" "}"}{" "}
+                <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Fodi S.r.l.
+                </a>
+              </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <Link
                   href="/privacy"
