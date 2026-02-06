@@ -322,21 +322,26 @@ export default function TerminiPage() {
             </div>
           </motion.div>
         </div>
-      </section>
-    
+      
           {/* Sviluppo e Gestione Tecnica */}
-          <div className="mt-16 pt-8 border-t border-white/10">
-            <h2 className="text-2xl font-bold text-white mb-4">Sviluppo e Gestione Tecnica del Sito</h2>
-            <p className="text-white/70">Questo sito web è stato realizzato e viene gestito da:</p>
-            <p className="text-white/70 mt-2">
-              <strong className="text-white">FODI S.r.l. – Startup Innovativa</strong><br/>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-12 pt-8 border-t border-gray-200"
+          >
+            <h2 className="text-xl font-bold text-[#1E3D30] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
+            <p className="text-gray-600">Questo sito web è stato realizzato e viene gestito da:</p>
+            <p className="text-gray-600 mt-2">
+              <strong className="text-[#1E3D30]">FODI S.r.l. – Startup Innovativa</strong><br/>
               Via Santicelli 18/A, 88068 Soverato (CZ)<br/>
               P.IVA: 03856160793<br/>
-              Email: <a href="mailto:info@fodisrl.it" className="text-[var(--color-primary)] hover:underline">info@fodisrl.it</a><br/>
+              Email: <a href="mailto:info@fodisrl.it" className="text-[#C4704B] hover:underline">info@fodisrl.it</a><br/>
               Tel: +39 0963 576433<br/>
-              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">www.fodisrl.it</a>
+              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#C4704B] hover:underline">www.fodisrl.it</a>
             </p>
-          </div>
+          </motion.div>
+        </section>
     </main>
   )
 }
