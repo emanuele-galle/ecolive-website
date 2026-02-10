@@ -5,20 +5,21 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Tent, Clock, Leaf, Zap, Shield, Phone, ArrowLeft, Wrench, Sparkles } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-}
+import BlurText from '@/components/ui/BlurText'
+import ScrollReveal from '@/components/ui/ScrollReveal'
+import SpotlightCard from '@/components/ui/SpotlightCard'
+import SectionTransition from '@/components/ui/SectionTransition'
+import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
+import ImageLightbox from '@/components/ui/ImageLightbox'
+import GlassCard from '@/components/ui/GlassCard'
 
 const galleryImages = [
-  { src: '/images/glamping/glamping-triple-path.webp', alt: 'Glamping triplo immerso nel verde' },
-  { src: '/images/glamping/glamping-triple-frontal.webp', alt: 'Vista frontale glamping triplo' },
-  { src: '/images/glamping/glamping-aframe-balcony.webp', alt: 'A-frame con balcone panoramico' },
-  { src: '/images/glamping/glamping-single-forest.webp', alt: 'Glamping singolo nella foresta' },
-  { src: '/images/glamping/glamping-duo-garden.webp', alt: 'Due glamping con giardino' },
-  { src: '/images/glamping/glamping-duo-nature.webp', alt: 'Glamping duo immerso nella natura' },
+  { src: '/images/glamping/glamping-triple-path.webp', alt: 'Glamping triplo immerso nel verde', title: 'Glamping Triplo' },
+  { src: '/images/glamping/glamping-triple-frontal.webp', alt: 'Vista frontale glamping triplo', title: 'Vista Frontale' },
+  { src: '/images/glamping/glamping-aframe-balcony.webp', alt: 'A-frame con balcone panoramico', title: 'A-Frame Panoramico' },
+  { src: '/images/glamping/glamping-single-forest.webp', alt: 'Glamping singolo nella foresta', title: 'Forest Lodge' },
+  { src: '/images/glamping/glamping-duo-garden.webp', alt: 'Due glamping con giardino', title: 'Duo Garden' },
+  { src: '/images/glamping/glamping-duo-nature.webp', alt: 'Glamping duo immerso nella natura', title: 'Natura Suite' },
 ]
 
 const featureIcons = [Tent, Leaf, Sparkles, Wrench, Clock, Zap]
@@ -40,6 +41,17 @@ const processSteps = [
   { step: '05', title: 'Consegna', desc: 'Struttura pronta all\'uso, chiavi in mano' },
 ]
 
+const glampingMarqueeItems = [
+  'Eco-Tourism',
+  'Luxury Camping',
+  'Zero Impact',
+  'Design Naturale',
+  'Comfort Premium',
+  'A-Frame',
+  'Forest Lodge',
+  'Pronte in 60 Giorni',
+]
+
 export default function GlampingPage() {
   const tipologia = getTipologiaById('glamping')!
 
@@ -47,7 +59,7 @@ export default function GlampingPage() {
     <main className="min-h-screen">
 
       {/* HERO */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={tipologia.heroImage}
@@ -59,198 +71,219 @@ export default function GlampingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[#1E3D30]/90" />
         </div>
 
+        {/* Floating orbs */}
+        <motion.div
+          className="absolute top-1/4 -left-16 w-72 h-72 rounded-full bg-[#2D5A47]/25 blur-[100px] pointer-events-none"
+          animate={{ y: [0, 30, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 -right-16 w-64 h-64 rounded-full bg-[#C4704B]/10 blur-[80px] pointer-events-none"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-32">
-          <motion.span
-            {...fadeUp}
-            className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium tracking-wider mb-6"
-          >
-            {tipologia.category}
-          </motion.span>
+          <ScrollReveal direction="up">
+            <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium tracking-wider mb-8">
+              {tipologia.category}
+            </span>
+          </ScrollReveal>
 
-          <motion.h1
-            {...fadeUp}
-            transition={{ delay: 0.1 }}
-            className="font-serif text-5xl md:text-7xl text-white mb-6"
-          >
-            {tipologia.title}
-          </motion.h1>
+          <BlurText
+            text={tipologia.title}
+            className="font-serif text-5xl md:text-7xl text-white mb-8"
+            delay={120}
+            animateBy="words"
+            direction="bottom"
+          />
 
-          <motion.p
-            {...fadeUp}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10"
-          >
-            {tipologia.description}
-          </motion.p>
+          <ScrollReveal direction="up" delay={0.2}>
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed">
+              {tipologia.description}
+            </p>
+          </ScrollReveal>
 
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-8 mb-10"
-          >
-            {tipologia.specs.map((spec) => (
-              <div key={spec.label} className="text-center">
-                <p className="text-2xl font-bold text-white">{spec.value}</p>
-                <p className="text-white/50 text-sm">{spec.label}</p>
-              </div>
-            ))}
-          </motion.div>
+          <ScrollReveal direction="up" delay={0.3}>
+            <div className="flex flex-wrap justify-center gap-10 md:gap-14 mb-12">
+              {tipologia.specs.map((spec) => (
+                <div key={spec.label} className="text-center">
+                  <p className="text-3xl md:text-4xl font-bold text-white">{spec.value}</p>
+                  <p className="text-white/50 text-sm mt-1">{spec.label}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
 
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              href="/contatti"
-              className="inline-flex items-center justify-center px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-xl hover:bg-[#b5623f] transition-colors"
-            >
-              Richiedi Preventivo
-            </Link>
-            <Link
-              href="/tipologie"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Torna alle Tipologie
-            </Link>
-          </motion.div>
+          <ScrollReveal direction="up" delay={0.4}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contatti"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-full hover:bg-[#b5623f] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/20"
+              >
+                Richiedi Preventivo
+              </Link>
+              <Link
+                href="/tipologie"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Torna alle Tipologie
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
+      {/* MARQUEE */}
+      <div className="bg-[#1E3D30] pb-1">
+        <div className="bg-[#C4704B]/10 border-y border-[#C4704B]/20 py-4">
+          <InfiniteMarquee
+            items={glampingMarqueeItems}
+            speed={25}
+            className="text-white/70"
+          />
+        </div>
+      </div>
+
+      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+
       {/* CARATTERISTICHE */}
-      <section className="py-20 lg:py-28 px-4 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-4 bg-[#FAF7F2]">
         <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mb-4">
+          <ScrollReveal direction="up" className="text-center mb-20">
+            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+              Vantaggi
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mt-3 mb-4">
               Caratteristiche
             </h2>
             <p className="text-[#6B6560] text-lg max-w-2xl mx-auto">
               Tutto il necessario per un turismo eco-sostenibile di lusso
             </p>
-          </motion.div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tipologia.features.map((feature, i) => {
               const Icon = featureIcons[i] || Tent
               return (
-                <motion.div
-                  key={feature}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="p-6 bg-white rounded-2xl border border-[#E8E0D5] hover:shadow-lg transition-shadow"
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `${tipologia.color}15` }}
+                <ScrollReveal key={feature} delay={i * 0.08} direction="up">
+                  <SpotlightCard
+                    className="p-7 bg-white border border-[#E8E0D5] hover:border-[#C4704B]/30 transition-all duration-300 h-full"
+                    spotlightColor={`${tipologia.color}20`}
                   >
-                    <Icon className="w-6 h-6" style={{ color: tipologia.color }} />
-                  </div>
-                  <h3 className="text-lg font-semibold text-[#1E3D30] mb-2">{feature}</h3>
-                  <p className="text-[#6B6560] text-sm leading-relaxed">
-                    {featureDescriptions[feature] || ''}
-                  </p>
-                </motion.div>
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                      style={{ backgroundColor: `${tipologia.color}15` }}
+                    >
+                      <Icon className="w-7 h-7" style={{ color: tipologia.color }} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-[#1E3D30] mb-2">{feature}</h3>
+                    <p className="text-[#6B6560] text-sm leading-relaxed">
+                      {featureDescriptions[feature] || ''}
+                    </p>
+                  </SpotlightCard>
+                </ScrollReveal>
               )
             })}
           </div>
         </div>
       </section>
 
+      <SectionTransition from="#FAF7F2" to="#ffffff" variant="gradient" height={60} />
+
       {/* GALLERY */}
-      <section className="py-20 lg:py-28 px-4 bg-white">
+      <section className="py-28 lg:py-36 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mb-4">
+          <ScrollReveal direction="up" className="text-center mb-20">
+            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+              Portfolio
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mt-3 mb-4">
               Galleria
             </h2>
             <p className="text-[#6B6560] text-lg">Le nostre realizzazioni glamping</p>
-          </motion.div>
+          </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleryImages.map((img, i) => (
-              <motion.div
-                key={img.src}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </motion.div>
-            ))}
-          </div>
+          <ScrollReveal direction="up" delay={0.15}>
+            <ImageLightbox images={galleryImages} columns={3} />
+          </ScrollReveal>
         </div>
       </section>
 
+      <SectionTransition from="#ffffff" to="#1E3D30" variant="angle" height={80} />
+
       {/* PROCESSO */}
-      <section className="py-20 lg:py-28 px-4 bg-[#1E3D30]">
-        <div className="max-w-4xl mx-auto">
-          <motion.div {...fadeUp} className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-white mb-4">
+      <section className="relative py-28 lg:py-36 px-4 bg-[#1E3D30] overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#C4704B]/5 blur-[150px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <ScrollReveal direction="up" className="text-center mb-20">
+            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+              Come lavoriamo
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-white mt-3 mb-4">
               Il Processo
             </h2>
             <p className="text-white/60 text-lg">Da idea a realtà in 5 semplici step</p>
-          </motion.div>
+          </ScrollReveal>
 
           <div className="space-y-6">
             {processSteps.map((item, i) => (
-              <motion.div
-                key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 items-start"
-              >
-                <span className="text-3xl font-bold text-[#C4704B] shrink-0 w-12">
-                  {item.step}
-                </span>
-                <div className="pb-6 border-b border-white/10 flex-1">
-                  <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
-                  <p className="text-white/50">{item.desc}</p>
-                </div>
-              </motion.div>
+              <ScrollReveal key={item.step} delay={i * 0.1} direction="left">
+                <GlassCard intensity="light" className="flex gap-6 items-start !p-6">
+                  <span className="text-3xl font-bold text-[#C4704B] shrink-0 w-12">
+                    {item.step}
+                  </span>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
+                    <p className="text-white/50 leading-relaxed">{item.desc}</p>
+                  </div>
+                </GlassCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      <SectionTransition from="#1E3D30" to="#C4704B" variant="wave" height={80} />
+
       {/* CTA */}
-      <section className="py-20 lg:py-28 px-4 bg-[#C4704B]">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div {...fadeUp}>
-            <h2 className="font-serif text-3xl md:text-5xl text-white mb-6">
+      <section className="relative py-28 lg:py-36 px-4 bg-[#C4704B] overflow-hidden">
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-[150px] pointer-events-none"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <ScrollReveal direction="up">
+            <h2 className="font-serif text-3xl md:text-5xl text-white mb-8">
               Pronto a trasformare la tua ospitalità?
             </h2>
-            <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.1}>
+            <p className="text-white/80 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
               Contattaci per un preventivo personalizzato o per visitare le nostre strutture demo.
             </p>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.2}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1E3D30] font-semibold rounded-xl hover:bg-white/90 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1E3D30] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
               >
                 Richiedi Preventivo
               </Link>
               <a
                 href="tel:+3909631951395"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
                 Chiama Ora
               </a>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
 

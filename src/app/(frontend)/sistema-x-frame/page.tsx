@@ -1,16 +1,22 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Phone } from 'lucide-react'
+import BlurText from '@/components/ui/BlurText'
+import ScrollReveal from '@/components/ui/ScrollReveal'
+import SpotlightCard from '@/components/ui/SpotlightCard'
+import GlassCard from '@/components/ui/GlassCard'
+import CountUp from '@/components/ui/CountUp'
+import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 // --- Static Data ---
 
 const heroStats = [
-  { value: '29 cm', label: 'Spessore parete' },
-  { value: 'A4', label: 'Classe energetica' },
-  { value: '30 anni', label: 'Garanzia struttura' },
+  { value: 29, label: 'Spessore parete', suffix: ' cm', display: null },
+  { value: null, label: 'Classe energetica', suffix: '', display: 'A4' },
+  { value: 30, label: 'Garanzia struttura', suffix: ' anni', display: null },
 ]
 
 const threePillars = [
@@ -55,28 +61,33 @@ const wallLayers = [
 
 const technicalSpecs = [
   {
-    value: '0.169',
+    value: 0.169,
     unit: 'W/m\u00b2K',
     label: 'Trasmittanza parete',
     context: 'Il limite di legge e 0.26: superiamo lo standard del 35%',
+    isDecimal: true,
   },
   {
-    value: '10.8',
+    value: 10.8,
     unit: 'ore',
     label: 'Sfasamento termico',
     context: 'Il calore estivo impiega quasi 11 ore per attraversare la parete',
+    isDecimal: true,
   },
   {
-    value: '58',
+    value: 58,
     unit: 'dB',
     label: 'Abbattimento acustico',
     context: 'Silenzio assoluto: supera ampiamente i 40 dB richiesti dalla norma',
+    isDecimal: false,
   },
   {
-    value: 'Zona 1',
+    value: null,
     unit: '',
     label: 'Resistenza sismica',
     context: 'Certificata per le zone a massima sismicita del territorio italiano',
+    displayValue: 'Zona 1',
+    isDecimal: false,
   },
 ]
 
@@ -152,6 +163,17 @@ const renderImages = [
   },
 ]
 
+const marqueeItems = [
+  'Brevettato',
+  'Classe A4',
+  'Antisismica Zona 1',
+  '29 cm di Parete',
+  'Zero Ponti Termici',
+  '30 Anni Garanzia',
+  'Made in Italy',
+  'PEFC Certified',
+]
+
 // --- Page Component ---
 
 export default function SistemaXFramePage() {
@@ -159,7 +181,7 @@ export default function SistemaXFramePage() {
     <main className="min-h-screen">
 
       {/* ========== 1. HERO ========== */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1E3D30]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-secondary-dark)]">
         {/* Background image */}
         <div className="absolute inset-0">
           <Image
@@ -171,355 +193,321 @@ export default function SistemaXFramePage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30]/60 via-[#1E3D30]/40 to-[#1E3D30]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-secondary-dark)]/60 via-[var(--color-secondary-dark)]/40 to-[var(--color-secondary-dark)]/80" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <motion.span
-            className="inline-block px-4 py-2 mb-8 text-sm font-semibold text-[#C4704B] bg-white/10 backdrop-blur-sm rounded-full border border-[#C4704B]/30"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Tecnologia Brevettata
-          </motion.span>
+          <ScrollReveal>
+            <span className="inline-block px-4 py-2 mb-8 text-sm font-semibold text-[var(--color-primary)] bg-white/10 backdrop-blur-sm rounded-full border border-[var(--color-primary)]/30">
+              Tecnologia Brevettata
+            </span>
+          </ScrollReveal>
 
-          <motion.h1
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            Sistema <span className="text-[#C4704B]">X-Frame</span> 2.0
-          </motion.h1>
+          <BlurText
+            text="Sistema X-Frame 2.0"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 justify-center"
+            delay={80}
+            animateBy="words"
+          />
 
-          <motion.p
-            className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            La tecnologia costruttiva che ridefinisce il concetto di casa in legno.
-            Struttura, isolamento e finitura in un unico pannello.
-          </motion.p>
+          <ScrollReveal delay={0.2}>
+            <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-14">
+              La tecnologia costruttiva che ridefinisce il concetto di casa in legno.
+              Struttura, isolamento e finitura in un unico pannello.
+            </p>
+          </ScrollReveal>
 
           {/* 3 hero stats */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-white/10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#C4704B]">{stat.value}</div>
-                <div className="text-sm text-white/50 mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
+          <ScrollReveal delay={0.3}>
+            <div className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-white/10">
+              {heroStats.map((stat, i) => (
+                <div key={stat.label} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">
+                    {stat.value !== null ? (
+                      <CountUp to={stat.value} duration={2} delay={0.3 + i * 0.15} suffix={stat.suffix} />
+                    ) : (
+                      stat.display
+                    )}
+                  </div>
+                  <div className="text-sm text-white/50 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ========== 2. CHE COS'E X-FRAME ========== */}
-      <section className="py-24 lg:py-32 bg-[#FAF7F2]">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
-              Tre Sistemi, <span className="text-[#C4704B]">Un Pannello</span>
-            </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-              X-Frame unisce il meglio del Platform Frame, dell'X-Lam e del Post &amp; Beam
-              in un unico sistema costruttivo brevettato.
-            </p>
-          </motion.div>
+      {/* Marquee */}
+      <div className="py-5 bg-[var(--color-surface)] border-y border-[#E8E0D5]">
+        <InfiniteMarquee
+          items={marqueeItems}
+          speed={25}
+          className="text-[var(--color-secondary-dark)]/60"
+        />
+      </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-16">
+      {/* ========== 2. CHE COS'E X-FRAME ========== */}
+      <section className="py-28 lg:py-36 bg-[var(--color-surface)]">
+        <div className="max-w-6xl mx-auto px-6">
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
+                Tre Sistemi, <span className="text-[var(--color-primary)]">Un Pannello</span>
+              </h2>
+              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+                X-Frame unisce il meglio del Platform Frame, dell'X-Lam e del Post &amp; Beam
+                in un unico sistema costruttivo brevettato.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20">
             {threePillars.map((pillar, i) => (
-              <motion.div
-                key={pillar.title}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#1E3D30]/5 text-[#1E3D30] mb-5">
-                  {pillar.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-[#1E3D30] mb-3">{pillar.title}</h3>
-                <p className="text-[#6B6560] leading-relaxed">{pillar.description}</p>
-              </motion.div>
+              <ScrollReveal key={pillar.title} delay={i * 0.12}>
+                <SpotlightCard className="bg-white border border-[#E8E0D5] h-full">
+                  <div className="p-8 text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-secondary-dark)]/5 text-[var(--color-secondary-dark)] mb-5">
+                      {pillar.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-[var(--color-secondary-dark)] mb-3">{pillar.title}</h3>
+                    <p className="text-[var(--color-muted)] leading-relaxed">{pillar.description}</p>
+                  </div>
+                </SpotlightCard>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Large image */}
-          <motion.div
-            className="relative aspect-[16/9] rounded-2xl overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src="/images/xframe-render/optimized/spaccato-copertina.webp"
-              alt="Spaccato costruttivo del pannello X-Frame"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1200px"
-            />
-          </motion.div>
+          <ScrollReveal>
+            <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-premium-xl">
+              <Image
+                src="/images/xframe-render/optimized/spaccato-copertina.webp"
+                alt="Spaccato costruttivo del pannello X-Frame"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 1200px"
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
+      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+
       {/* ========== 3. STRATIGRAFIA ========== */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-28 lg:py-36 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
-              Stratigrafia della <span className="text-[#C4704B]">Parete</span>
-            </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-              7 strati ingegnerizzati per 29 cm di parete ad altissime prestazioni
-            </p>
-          </motion.div>
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
+                Stratigrafia della <span className="text-[var(--color-primary)]">Parete</span>
+              </h2>
+              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+                7 strati ingegnerizzati per 29 cm di parete ad altissime prestazioni
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
-            <motion.div
-              className="relative aspect-[4/5] rounded-2xl overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <Image
-                src="/images/xframe-render/optimized/render-base.webp"
-                alt="Stratigrafia parete X-Frame"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 600px"
-              />
-            </motion.div>
+            <ScrollReveal direction="left">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-premium-lg">
+                <Image
+                  src="/images/xframe-render/optimized/render-base.webp"
+                  alt="Stratigrafia parete X-Frame"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                />
+              </div>
+            </ScrollReveal>
 
             {/* Layers list */}
             <div className="space-y-0">
               {wallLayers.map((layer, i) => (
-                <motion.div
-                  key={layer.name}
-                  className="flex items-center gap-4 py-4 border-b border-[#1E3D30]/10 last:border-b-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                >
-                  <div
-                    className="w-4 h-4 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: layer.color }}
-                  />
-                  <div className="flex-1">
-                    <span className="text-[#1E3D30] font-medium">{layer.name}</span>
+                <ScrollReveal key={layer.name} delay={i * 0.06} direction="right">
+                  <div className="flex items-center gap-4 py-4 border-b border-[var(--color-secondary-dark)]/10 last:border-b-0">
+                    <div
+                      className="w-4 h-4 rounded-full flex-shrink-0 shadow-sm"
+                      style={{ backgroundColor: layer.color }}
+                    />
+                    <div className="flex-1">
+                      <span className="text-[var(--color-secondary-dark)] font-medium">{layer.name}</span>
+                    </div>
+                    <span className="text-[var(--color-primary)] font-semibold tabular-nums">{layer.thickness}</span>
                   </div>
-                  <span className="text-[#C4704B] font-semibold tabular-nums">{layer.thickness}</span>
-                </motion.div>
+                </ScrollReveal>
               ))}
 
               {/* Total */}
-              <div className="flex items-center gap-4 pt-6 mt-2 border-t-2 border-[#1E3D30]">
-                <div className="w-4 h-4 flex-shrink-0" />
-                <div className="flex-1">
-                  <span className="text-[#1E3D30] font-bold text-lg">Spessore totale</span>
+              <ScrollReveal delay={0.5} direction="right">
+                <div className="flex items-center gap-4 pt-6 mt-2 border-t-2 border-[var(--color-secondary-dark)]">
+                  <div className="w-4 h-4 flex-shrink-0" />
+                  <div className="flex-1">
+                    <span className="text-[var(--color-secondary-dark)] font-bold text-lg">Spessore totale</span>
+                  </div>
+                  <span className="text-[var(--color-primary)] font-bold text-xl">28.7 cm</span>
                 </div>
-                <span className="text-[#C4704B] font-bold text-xl">28.7 cm</span>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
+      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+
       {/* ========== 4. PRESTAZIONI TECNICHE ========== */}
-      <section className="py-24 lg:py-32 bg-[#1E3D30]">
+      <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">
-              Prestazioni <span className="text-[#C4704B]">Certificate</span>
-            </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mt-4">
-              Valori che superano ampiamente gli standard normativi italiani
-            </p>
-          </motion.div>
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">
+                Prestazioni <span className="text-[var(--color-primary)]">Certificate</span>
+              </h2>
+              <p className="text-white/60 text-lg max-w-2xl mx-auto mt-4">
+                Valori che superano ampiamente gli standard normativi italiani
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {technicalSpecs.map((spec, i) => (
-              <motion.div
-                key={spec.label}
-                className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <div className="text-4xl md:text-5xl font-bold text-[#C4704B] mb-1">
-                  {spec.value}
-                </div>
-                {spec.unit && (
-                  <div className="text-white/40 text-sm mb-4">{spec.unit}</div>
-                )}
-                {!spec.unit && <div className="mb-4" />}
-                <div className="text-white font-semibold text-lg mb-3">{spec.label}</div>
-                <p className="text-white/50 text-sm leading-relaxed">{spec.context}</p>
-              </motion.div>
+              <ScrollReveal key={spec.label} delay={i * 0.1}>
+                <GlassCard intensity="medium" className="p-8 text-center h-full">
+                  <div className="text-4xl md:text-5xl font-bold text-[var(--color-primary)] mb-1">
+                    {spec.value !== null ? (
+                      spec.isDecimal ? spec.value : <CountUp to={spec.value} duration={2} delay={0.2 + i * 0.1} />
+                    ) : (
+                      spec.displayValue
+                    )}
+                  </div>
+                  {spec.unit && (
+                    <div className="text-white/40 text-sm mb-4">{spec.unit}</div>
+                  )}
+                  {!spec.unit && <div className="mb-4" />}
+                  <div className="text-white font-semibold text-lg mb-3">{spec.label}</div>
+                  <p className="text-white/50 text-sm leading-relaxed">{spec.context}</p>
+                </GlassCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ========== 5. CONFRONTO ========== */}
-      <section className="py-24 lg:py-32 bg-[#FAF7F2]">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
-              Perche <span className="text-[#C4704B]">X-Frame</span>
-            </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-              Un confronto diretto con i sistemi costruttivi tradizionali
-            </p>
-          </motion.div>
+      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
 
-          <motion.div
-            className="overflow-x-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <table className="w-full min-w-[600px]">
-              <thead>
-                <tr className="border-b-2 border-[#1E3D30]">
-                  <th className="text-left py-4 pr-4 text-[#6B6560] font-medium text-sm uppercase tracking-wider">
-                    Caratteristica
-                  </th>
-                  <th className="py-4 px-4 text-center">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1E3D30] text-white rounded-full text-sm font-semibold">
-                      X-Frame
-                    </span>
-                  </th>
-                  <th className="py-4 px-4 text-center text-[#6B6560] font-medium text-sm">
-                    Tradizionale
-                  </th>
-                  <th className="py-4 pl-4 text-center text-[#6B6560] font-medium text-sm">
-                    X-Lam
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((row, i) => (
-                  <tr key={row.feature} className="border-b border-[#1E3D30]/10">
-                    <td className="py-4 pr-4 text-[#1E3D30] font-medium">{row.feature}</td>
-                    <td className="py-4 px-4 text-center text-[#C4704B] font-semibold">{row.xframe}</td>
-                    <td className="py-4 px-4 text-center text-[#6B6560]">{row.traditional}</td>
-                    <td className="py-4 pl-4 text-center text-[#6B6560]">{row.xlam}</td>
+      {/* ========== 5. CONFRONTO ========== */}
+      <section className="py-28 lg:py-36 bg-[var(--color-surface)]">
+        <div className="max-w-5xl mx-auto px-6">
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
+                Perche <span className="text-[var(--color-primary)]">X-Frame</span>
+              </h2>
+              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+                Un confronto diretto con i sistemi costruttivi tradizionali
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.15}>
+            <div className="overflow-x-auto bg-white rounded-2xl shadow-premium border border-[#E8E0D5] p-2">
+              <table className="w-full min-w-[600px]">
+                <thead>
+                  <tr className="border-b-2 border-[var(--color-secondary-dark)]">
+                    <th className="text-left py-4 pr-4 pl-4 text-[var(--color-muted)] font-medium text-sm uppercase tracking-wider">
+                      Caratteristica
+                    </th>
+                    <th className="py-4 px-4 text-center">
+                      <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[var(--color-secondary-dark)] text-white rounded-full text-sm font-semibold">
+                        X-Frame
+                      </span>
+                    </th>
+                    <th className="py-4 px-4 text-center text-[var(--color-muted)] font-medium text-sm">
+                      Tradizionale
+                    </th>
+                    <th className="py-4 pl-4 pr-4 text-center text-[var(--color-muted)] font-medium text-sm">
+                      X-Lam
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
+                </thead>
+                <tbody>
+                  {comparison.map((row, i) => (
+                    <tr key={row.feature} className={`border-b border-[var(--color-secondary-dark)]/10 ${i % 2 === 0 ? 'bg-[var(--color-surface)]/50' : ''}`}>
+                      <td className="py-4 pr-4 pl-4 text-[var(--color-secondary-dark)] font-medium">{row.feature}</td>
+                      <td className="py-4 px-4 text-center text-[var(--color-primary)] font-semibold">{row.xframe}</td>
+                      <td className="py-4 px-4 text-center text-[var(--color-muted)]">{row.traditional}</td>
+                      <td className="py-4 pl-4 pr-4 text-center text-[var(--color-muted)]">{row.xlam}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
+      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+
       {/* ========== 6. RENDER SHOWCASE ========== */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-28 lg:py-36 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
-              Dettagli <span className="text-[#C4704B]">Costruttivi</span>
-            </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
-              Render tecnici della struttura e della copertura X-Frame
-            </p>
-          </motion.div>
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
+                Dettagli <span className="text-[var(--color-primary)]">Costruttivi</span>
+              </h2>
+              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+                Render tecnici della struttura e della copertura X-Frame
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-6">
             {renderImages.map((img, i) => (
-              <motion.div
+              <ScrollReveal
                 key={img.src}
-                className={`group relative overflow-hidden rounded-2xl ${
-                  i === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
-                }`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
+                delay={i * 0.08}
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes={i === 0 ? '(max-width: 768px) 100vw, 1200px' : '(max-width: 768px) 100vw, 600px'}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="text-white font-semibold text-lg">{img.caption}</span>
+                <div
+                  className={`group relative overflow-hidden rounded-2xl shadow-premium hover:shadow-premium-lg transition-shadow duration-500 ${
+                    i === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
+                  }`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes={i === 0 ? '(max-width: 768px) 100vw, 1200px' : '(max-width: 768px) 100vw, 600px'}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="text-white font-semibold text-lg">{img.caption}</span>
+                  </div>
                 </div>
-              </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+
       {/* ========== 7. CTA ========== */}
-      <section className="py-24 lg:py-32 bg-[#1E3D30]">
+      <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <ScrollReveal>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-              Scopri come X-Frame puo trasformare il tuo <span className="text-[#C4704B]">progetto</span>
+              Scopri come X-Frame puo trasformare il tuo <span className="text-[var(--color-primary)]">progetto</span>
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-12">
               Prenota una consulenza gratuita con i nostri tecnici per scoprire
               la soluzione costruttiva ideale per la tua casa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold text-lg rounded-xl transition-colors duration-300"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold text-lg rounded-xl transition-colors duration-300"
               >
                 Richiedi Consulenza Gratuita
                 <ArrowRight className="w-5 h-5" />
@@ -532,10 +520,10 @@ export default function SistemaXFramePage() {
                 Chiama Ora
               </a>
             </div>
-            <p className="text-white/30 text-sm mt-6">
+            <p className="text-white/30 text-sm mt-8">
               Consulenza gratuita &middot; Risposta entro 24 ore
             </p>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
 
