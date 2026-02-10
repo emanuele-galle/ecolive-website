@@ -46,7 +46,7 @@ services:
       - "traefik.http.middlewares.ecolive-security-headers.headers.stsPreload=true"
       - "traefik.http.middlewares.ecolive-security-headers.headers.stsSeconds=31536000"
       - "traefik.http.middlewares.ecolive-security-headers.headers.customFrameOptionsValue=SAMEORIGIN"
-      - "traefik.http.middlewares.ecolive-security-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; frame-src 'self' https://sketchfab.com https://superspl.at; connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+      - "traefik.http.middlewares.ecolive-security-headers.headers.contentSecurityPolicy=default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; frame-src 'self' https://sketchfab.com https://superspl.at https://www.google.com https://maps.google.com; connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
       - "traefik.http.middlewares.ecolive-security-headers.headers.referrerPolicy=strict-origin-when-cross-origin"
       - "traefik.http.middlewares.ecolive-security-headers.headers.permissionsPolicy=camera=(), microphone=(), geolocation=(), payment=()"
 
