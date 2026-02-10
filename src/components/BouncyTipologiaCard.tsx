@@ -42,18 +42,18 @@ export default function BouncyTipologiaCard({ tipologia, index }: BouncyTipologi
           </span>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-2">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-2">
             {tipologia.title}
           </h3>
 
           {/* Description */}
-          <p className="text-[#6B6560] text-sm leading-relaxed max-w-[90%]">
+          <p className="text-[#86868B] text-sm leading-relaxed max-w-[90%]">
             {tipologia.description}
           </p>
 
           {/* Surface Range */}
           <div className="mt-3 flex items-center gap-2">
-            <span className="text-xs text-[#6B6560]">Superficie:</span>
+            <span className="text-xs text-[#86868B]">Superficie:</span>
             <span
               className="text-sm font-semibold"
               style={{ color: tipologia.color }}

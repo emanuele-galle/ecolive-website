@@ -165,16 +165,16 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
       >
         <table className="w-full min-w-[800px]">
           <thead>
-            <tr className="bg-gradient-to-r from-[#0f2040]/80 via-[#1a3a5c]/50 to-[#0f2040]/80 border-b-2 border-[#C4704B]/30">
+            <tr className="bg-gradient-to-r from-[#0f2040]/80 via-[#1a3a5c]/50 to-[#0f2040]/80 border-b-2 border-[#A0845C]/30">
               <th className="text-left p-5 font-bold text-white tracking-wide">
                 Caratteristica
               </th>
               <th className="text-center p-5 relative">
                 {/* XFrame header glow */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#C4704B]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#A0845C]/20 to-transparent" />
                 <div className="relative flex flex-col items-center">
                   <span className="font-bold text-[#E8956B] text-lg">X-Frame</span>
-                  <span className="text-xs font-normal text-[#C4704B]/80">Ecolive</span>
+                  <span className="text-xs font-normal text-[#A0845C]/80">Ecolive</span>
                 </div>
               </th>
               <th className="text-center p-5 font-semibold text-white">
@@ -208,12 +208,12 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
               >
                 {/* Left accent bar on hover */}
                 <td className="p-5 text-white/80 group-hover:text-white transition-colors relative">
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#C4704B] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-r" />
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#A0845C] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-r" />
                   <span className="pl-2">{row.feature}</span>
                 </td>
                 <td className="p-5 relative">
                   {/* XFrame column highlight */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#C4704B]/10 to-[#C4704B]/5 group-hover:from-[#C4704B]/20 group-hover:to-[#C4704B]/10 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#A0845C]/10 to-[#A0845C]/5 group-hover:from-[#A0845C]/20 group-hover:to-[#A0845C]/10 transition-all duration-300" />
                   <div className="relative flex justify-center">
                     <StatusIcon status={row.xframe} darkTheme isXFrame />
                   </div>
@@ -267,43 +267,43 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9 }}
-        className="overflow-x-auto rounded-2xl border border-[#DDD5C9] bg-white"
+        className="overflow-x-auto rounded-2xl border border-[#D2D2D7] bg-white"
       >
         <table className="w-full min-w-[800px]">
           <thead>
-            <tr className="bg-[#FAF7F2]">
+            <tr className="bg-[#F5F5F7]">
               <th className="text-left p-5 font-semibold text-[#2C2825]">Caratteristica</th>
-              <th className="text-center p-5 font-bold text-[#C4704B] bg-[#C4704B]/5">
+              <th className="text-center p-5 font-bold text-[#A0845C] bg-[#A0845C]/5">
                 <div className="flex flex-col items-center">
                   <span>X-Frame</span>
-                  <span className="text-xs font-normal text-[#6B6560]">Ecolive</span>
+                  <span className="text-xs font-normal text-[#86868B]">Ecolive</span>
                 </div>
               </th>
               <th className="text-center p-5 font-semibold text-[#2C2825]">
                 <div className="flex flex-col items-center">
                   <span>X-Lam (CLT)</span>
-                  <span className="text-xs font-normal text-[#6B6560]">Pannelli massicci</span>
+                  <span className="text-xs font-normal text-[#86868B]">Pannelli massicci</span>
                 </div>
               </th>
               <th className="text-center p-5 font-semibold text-[#2C2825]">
                 <div className="flex flex-col items-center">
                   <span>Platform Frame</span>
-                  <span className="text-xs font-normal text-[#6B6560]">Telaio leggero</span>
+                  <span className="text-xs font-normal text-[#86868B]">Telaio leggero</span>
                 </div>
               </th>
               <th className="text-center p-5 font-semibold text-[#2C2825]">
                 <div className="flex flex-col items-center">
                   <span>Muratura Tradizionale</span>
-                  <span className="text-xs font-normal text-[#6B6560]">Tradizionale</span>
+                  <span className="text-xs font-normal text-[#86868B]">Tradizionale</span>
                 </div>
               </th>
             </tr>
           </thead>
           <tbody>
             {comparisonData.map((row, index) => (
-              <tr key={index} className="border-t border-[#DDD5C9] hover:bg-[#FAF7F2]/50 transition-colors">
+              <tr key={index} className="border-t border-[#D2D2D7] hover:bg-[#F5F5F7]/50 transition-colors">
                 <td className="p-5 text-[#2C2825]">{row.feature}</td>
-                <td className="p-5 bg-[#C4704B]/5">
+                <td className="p-5 bg-[#A0845C]/5">
                   <div className="flex justify-center">
                     <StatusIcon status={row.xframe} />
                   </div>
@@ -335,19 +335,19 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
           <div className="w-6 h-6 rounded-full flex items-center justify-center bg-green-100">
             <Check className="w-3.5 h-3.5 text-green-600" />
           </div>
-          <span className="text-[#6B6560]">Eccellente</span>
+          <span className="text-[#86868B]">Eccellente</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full flex items-center justify-center bg-amber-100">
             <Minus className="w-3.5 h-3.5 text-amber-600" />
           </div>
-          <span className="text-[#6B6560]">Parziale</span>
+          <span className="text-[#86868B]">Parziale</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full flex items-center justify-center bg-red-100">
             <X className="w-3.5 h-3.5 text-red-500" />
           </div>
-          <span className="text-[#6B6560]">Limitato/Assente</span>
+          <span className="text-[#86868B]">Limitato/Assente</span>
         </div>
       </div>
     </>
@@ -361,13 +361,13 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
     <section ref={ref} className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-[#C4704B] font-semibold text-sm uppercase tracking-wider">
+          <span className="text-[#A0845C] font-semibold text-sm uppercase tracking-wider">
             Confronto Tecnologie
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#2C2825] mt-2 mb-4">
             X-Frame vs Altri Sistemi
           </h2>
-          <p className="text-[#6B6560] text-lg max-w-2xl mx-auto">
+          <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
             Scopri perche X-Frame rappresenta l'evoluzione dei sistemi costruttivi in legno.
           </p>
         </div>

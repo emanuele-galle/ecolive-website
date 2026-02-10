@@ -88,7 +88,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     nome: 'Telaio Strutturale',
     sottotitolo: 'BiLam Lamellare vs Legno Massello',
     icon: Layers,
-    color: '#40916c', // Verde Ecolive
+    color: '#6B8F71', // Verde Ecolive
 
     // NUOVO: Campi semplificati
     descrizioneBreve: "Legno fatto con tante tavole incollate in modo incrociato. Molto più forte e stabile del legno normale.",
@@ -466,7 +466,7 @@ export const materialsEducationData: Record<string, MaterialEducationData> = {
     nome: 'Rivestimenti Interni',
     sottotitolo: 'Gesso-Fibra 25mm vs Cartongesso 12mm',
     icon: Home,
-    color: '#C4704B', // Marrone terra (Ecolive brand)
+    color: '#A0845C', // Marrone terra (Ecolive brand)
 
     // NUOVO: Campi semplificati
     descrizioneBreve: "Gesso naturale rinforzato con fibre. Doppio spessore per pareti robuste che durano.",

@@ -27,14 +27,14 @@ export default function AnimatedTimeline() {
         >
           <div className="flex items-center gap-4">
             {/* Step number */}
-            <div className="w-8 h-8 rounded-full bg-[#C4704B] text-white flex items-center justify-center font-bold text-sm">
+            <div className="w-8 h-8 rounded-full bg-[#A0845C] text-white flex items-center justify-center font-bold text-sm">
               {index + 1}
             </div>
 
             {/* Step info */}
             <div className="flex-1">
               <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold text-[#1E3D30]">{step.label}</span>
+                <span className="font-semibold text-[#1D1D1F]">{step.label}</span>
                 <span className="text-sm text-gray-500">{step.days} giorni</span>
               </div>
 
@@ -46,7 +46,7 @@ export default function AnimatedTimeline() {
                 transition={{ delay: index * 0.1 + 0.2 }}
               >
                 <motion.div
-                  className="h-full bg-gradient-to-r from-[#C4704B] to-[#A55A3A]"
+                  className="h-full bg-gradient-to-r from-[#A0845C] to-[#A55A3A]"
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
                   transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
@@ -57,8 +57,8 @@ export default function AnimatedTimeline() {
         </motion.div>
       ))}
 
-      <div className="mt-4 p-4 bg-[#C4704B]/10 rounded-lg">
-        <p className="text-sm text-[#1E3D30] font-semibold">
+      <div className="mt-4 p-4 bg-[#A0845C]/10 rounded-lg">
+        <p className="text-sm text-[#1D1D1F] font-semibold">
           Totale: 30 giorni
         </p>
         <p className="text-xs text-gray-600 mt-1">

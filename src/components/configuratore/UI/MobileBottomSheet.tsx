@@ -169,7 +169,7 @@ export default function MobileBottomSheet() {
 
           {/* Selected module indicator */}
           {selectedPresetId && (
-            <div className="mt-2 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#2D5A47] text-white">
+            <div className="mt-2 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#48484A] text-white">
               <MousePointerClick className="w-4 h-4" />
               <span className="text-xs font-medium">
                 Tocca la griglia per piazzare
@@ -190,7 +190,7 @@ export default function MobileBottomSheet() {
                 onClick={() => setActiveCategory(tab.id)}
                 className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
                   activeCategory === tab.id
-                    ? 'bg-[#2D5A47] text-white'
+                    ? 'bg-[#48484A] text-white'
                     : 'text-gray-500 hover:bg-gray-100'
                 }`}
               >
@@ -242,7 +242,7 @@ export default function MobileBottomSheet() {
                 onClick={() => setActiveCategory(tab.id)}
                 className={`flex-1 flex items-center justify-center gap-1.5 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
                   activeCategory === tab.id
-                    ? 'bg-[#2D5A47] text-white'
+                    ? 'bg-[#48484A] text-white'
                     : 'text-gray-500 hover:bg-gray-100'
                 }`}
               >
@@ -301,7 +301,7 @@ function MobileModuleCard({
       className={`
         flex-shrink-0 w-36 p-3 rounded-xl border-2 transition-all touch-manipulation
         ${isSelected
-          ? 'border-[#2D5A47] bg-[#2D5A47]/5'
+          ? 'border-[#48484A] bg-[#48484A]/5'
           : 'border-gray-200 bg-white'
         }
       `}
@@ -319,7 +319,7 @@ function MobileModuleCard({
       </div>
 
       {/* Name */}
-      <h4 className={`font-medium text-sm truncate ${isSelected ? 'text-[#2D5A47]' : 'text-gray-900'}`}>
+      <h4 className={`font-medium text-sm truncate ${isSelected ? 'text-[#48484A]' : 'text-gray-900'}`}>
         {preset.name}
       </h4>
 
@@ -332,7 +332,7 @@ function MobileModuleCard({
       {/* Add indicator */}
       <div className={`mt-2 py-1.5 rounded-lg text-center text-xs font-medium ${
         isSelected
-          ? 'bg-[#2D5A47] text-white'
+          ? 'bg-[#48484A] text-white'
           : 'bg-gray-100 text-gray-600'
       }`}>
         {isSelected ? 'Selezionato' : '+ Aggiungi'}
@@ -360,7 +360,7 @@ function FullModuleCard({
       className={`
         w-full p-3 rounded-xl border-2 transition-all text-left touch-manipulation flex items-center gap-3
         ${isSelected
-          ? 'border-[#2D5A47] bg-[#2D5A47]/5'
+          ? 'border-[#48484A] bg-[#48484A]/5'
           : 'border-gray-200 bg-white'
         }
       `}
@@ -379,7 +379,7 @@ function FullModuleCard({
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <h4 className={`font-medium truncate ${isSelected ? 'text-[#2D5A47]' : 'text-gray-900'}`}>
+        <h4 className={`font-medium truncate ${isSelected ? 'text-[#48484A]' : 'text-gray-900'}`}>
           {preset.name}
         </h4>
         <p className="text-xs text-gray-500 truncate">{preset.description}</p>
@@ -393,7 +393,7 @@ function FullModuleCard({
       {/* Price & action */}
       <div className="text-right flex-shrink-0">
         <span className="text-sm font-semibold text-[#B85C38] block">{formatPrice(preset.basePrice)}</span>
-        <span className={`text-xs ${isSelected ? 'text-[#2D5A47]' : 'text-gray-400'}`}>
+        <span className={`text-xs ${isSelected ? 'text-[#48484A]' : 'text-gray-400'}`}>
           {isSelected ? 'Selezionato' : '+ Aggiungi'}
         </span>
       </div>

@@ -137,7 +137,7 @@ export default function ActionBar() {
           <button
             onClick={() => setShowExportMenu(!showExportMenu)}
             disabled={moduleCount === 0}
-            className="flex items-center gap-2 px-4 py-2 bg-[#2D5A47] text-white rounded-lg shadow-sm hover:bg-[#1D3D2D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 bg-[#48484A] text-white rounded-lg shadow-sm hover:bg-[#1D3D2D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Download className="w-4 h-4" />
             <span className="font-medium text-sm">Esporta</span>

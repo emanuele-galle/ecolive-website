@@ -12,7 +12,7 @@ const ONBOARDING_STEPS = [
     title: 'Scegli un punto di partenza',
     description: 'Seleziona una configurazione preset oppure inizia con una griglia vuota.',
     Icon: Home,
-    color: '#2D5A47',
+    color: '#48484A',
   },
   {
     id: 'place',
@@ -122,7 +122,7 @@ export default function OnboardingTour() {
           {/* Progress bar */}
           <div className="h-1 bg-gray-100">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#2D5A47] to-[#B85C38]"
+              className="h-full bg-gradient-to-r from-[#48484A] to-[#B85C38]"
               initial={{ width: 0 }}
               animate={{ width: `${((currentStep + 1) / ONBOARDING_STEPS.length) * 100}%` }}
               transition={{ duration: 0.3 }}
@@ -166,9 +166,9 @@ export default function OnboardingTour() {
                   className={`
                     h-2 rounded-full transition-all duration-300
                     ${i === currentStep
-                      ? 'w-8 bg-[#2D5A47]'
+                      ? 'w-8 bg-[#48484A]'
                       : i < currentStep
-                      ? 'w-2 bg-[#2D5A47]/40'
+                      ? 'w-2 bg-[#48484A]/40'
                       : 'w-2 bg-gray-200'
                     }
                   `}
@@ -195,7 +195,7 @@ export default function OnboardingTour() {
               )}
               <button
                 onClick={handleNext}
-                className="flex-1 px-4 py-2.5 bg-[#2D5A47] text-white rounded-xl text-sm font-medium hover:bg-[#1D3D2D] transition-colors shadow-lg shadow-[#2D5A47]/25"
+                className="flex-1 px-4 py-2.5 bg-[#48484A] text-white rounded-xl text-sm font-medium hover:bg-[#1D3D2D] transition-colors shadow-lg shadow-[#48484A]/25"
               >
                 {currentStep === ONBOARDING_STEPS.length - 1 ? 'Inizia!' : 'Avanti'}
               </button>

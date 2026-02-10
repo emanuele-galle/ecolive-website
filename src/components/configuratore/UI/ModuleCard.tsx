@@ -68,8 +68,8 @@ export default function ModuleCard({ preset }: ModuleCardProps) {
       className={`
         w-full p-3 bg-white rounded-xl border-2 transition-all duration-200 text-left group cursor-pointer select-none
         ${isSelected
-          ? 'border-[#2D5A47] shadow-lg ring-2 ring-[#2D5A47]/20'
-          : 'border-gray-200 hover:border-[#2D5A47]/50 hover:shadow-md'
+          ? 'border-[#48484A] shadow-lg ring-2 ring-[#48484A]/20'
+          : 'border-gray-200 hover:border-[#48484A]/50 hover:shadow-md'
         }
       `}
     >
@@ -87,7 +87,7 @@ export default function ModuleCard({ preset }: ModuleCardProps) {
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className={`font-medium transition-colors truncate ${isSelected ? 'text-[#2D5A47]' : 'text-gray-900 group-hover:text-[#2D5A47]'}`}>
+          <h4 className={`font-medium transition-colors truncate ${isSelected ? 'text-[#48484A]' : 'text-gray-900 group-hover:text-[#48484A]'}`}>
             {preset.name}
           </h4>
           <p className="text-xs text-gray-500 truncate">{preset.description}</p>
@@ -116,7 +116,7 @@ export default function ModuleCard({ preset }: ModuleCardProps) {
       {/* Action button - Esplicito invece di double-click */}
       <div className="mt-3">
         {isSelected ? (
-          <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#2D5A47] text-white">
+          <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#48484A] text-white">
             <MousePointerClick className="w-4 h-4" />
             <span className="text-xs font-medium">
               Clicca sulla griglia per piazzare
@@ -125,7 +125,7 @@ export default function ModuleCard({ preset }: ModuleCardProps) {
         ) : (
           <button
             onClick={handleAddClick}
-            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-gray-100 hover:bg-[#2D5A47] text-gray-600 hover:text-white transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-gray-100 hover:bg-[#48484A] text-gray-600 hover:text-white transition-all duration-200"
           >
             <Plus className="w-4 h-4" />
             <span className="text-xs font-medium">

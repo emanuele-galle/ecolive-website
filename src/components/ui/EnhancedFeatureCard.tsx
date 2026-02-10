@@ -21,7 +21,7 @@ export default function EnhancedFeatureCard({
   description,
   stats,
   badge,
-  gradient = 'from-[#C4704B]/20 to-[#1E3D30]/20',
+  gradient = 'from-[#A0845C]/20 to-[#1D1D1F]/20',
   children,
   className = ''
 }: EnhancedFeatureCardProps) {
@@ -55,7 +55,7 @@ export default function EnhancedFeatureCard({
 
   return (
     <motion.div
-      className={`relative h-full rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-[#C4704B]/20 p-6 overflow-hidden ${className}`}
+      className={`relative h-full rounded-2xl bg-white/80 backdrop-blur-sm border-2 border-[#A0845C]/20 p-6 overflow-hidden ${className}`}
       style={{
         rotateY,
         rotateX,
@@ -103,7 +103,7 @@ export default function EnhancedFeatureCard({
       >
         {/* Icon with bounce animation */}
         <motion.div
-          className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#C4704B] to-[#1E3D30] mb-4"
+          className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#A0845C] to-[#1D1D1F] mb-4"
           whileHover={{
             scale: 1.1,
             rotate: [0, -5, 5, 0],
@@ -114,10 +114,10 @@ export default function EnhancedFeatureCard({
         </motion.div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-[#1E3D30] mb-2">{title}</h3>
+        <h3 className="text-xl font-bold text-[#1D1D1F] mb-2">{title}</h3>
 
         {/* Description */}
-        <p className="text-[#6B6560] text-sm mb-4">{description}</p>
+        <p className="text-[#86868B] text-sm mb-4">{description}</p>
 
         {/* Stats */}
         {stats && (
@@ -130,8 +130,8 @@ export default function EnhancedFeatureCard({
                 animate={{ opacity: isHovered ? 1 : 0.7, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
               >
-                <span className="text-[#6B6560]">{stat.label}</span>
-                <span className="font-bold text-[#C4704B]">{stat.value}</span>
+                <span className="text-[#86868B]">{stat.label}</span>
+                <span className="font-bold text-[#A0845C]">{stat.value}</span>
               </motion.div>
             ))}
           </div>
@@ -140,11 +140,11 @@ export default function EnhancedFeatureCard({
         {/* Badge */}
         {badge && (
           <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1E3D30]/10 border border-[#1E3D30]/20"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1D1D1F]/10 border border-[#1D1D1F]/20"
             whileHover={{ scale: 1.05 }}
           >
-            <badge.icon className="w-3.5 h-3.5 text-[#1E3D30]" />
-            <span className="text-xs font-medium text-[#1E3D30]">{badge.text}</span>
+            <badge.icon className="w-3.5 h-3.5 text-[#1D1D1F]" />
+            <span className="text-xs font-medium text-[#1D1D1F]">{badge.text}</span>
           </motion.div>
         )}
 
@@ -154,7 +154,7 @@ export default function EnhancedFeatureCard({
 
       {/* Border glow on hover */}
       <motion.div
-        className="absolute inset-0 rounded-2xl border-2 border-[#C4704B]/0"
+        className="absolute inset-0 rounded-2xl border-2 border-[#A0845C]/0"
         animate={{
           borderColor: isHovered ? 'rgba(196, 112, 75, 0.5)' : 'rgba(196, 112, 75, 0)',
         }}

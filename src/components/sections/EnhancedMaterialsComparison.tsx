@@ -196,7 +196,7 @@ export default function EnhancedMaterialsComparison() {
     <>
       <section
         ref={containerRef}
-        className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1E3D30] to-[#1a2c26] overflow-hidden"
+        className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1D1D1F] to-[#1a2c26] overflow-hidden"
       >
         {/* Background patterns */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -207,7 +207,7 @@ export default function EnhancedMaterialsComparison() {
               backgroundSize: '32px 32px',
             }}
           />
-          <div className="absolute top-20 right-10 w-80 h-80 bg-[#C4704B]/10 rounded-full blur-[120px]" />
+          <div className="absolute top-20 right-10 w-80 h-80 bg-[#A0845C]/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-40 left-10 w-96 h-96 bg-white/5 rounded-full blur-[100px]" />
         </div>
 
@@ -226,14 +226,14 @@ export default function EnhancedMaterialsComparison() {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.2 }}
             >
-              <Sparkles className="w-4 h-4 text-[#C4704B]" />
+              <Sparkles className="w-4 h-4 text-[#A0845C]" />
               <span className="text-white/90 text-xs sm:text-sm font-medium uppercase tracking-wider">
                 Confronto Interattivo
               </span>
             </motion.div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-              Perché costa <span className="text-[#C4704B]">di più</span>
+              Perché costa <span className="text-[#A0845C]">di più</span>
             </h2>
 
             <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -261,7 +261,7 @@ export default function EnhancedMaterialsComparison() {
                     px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300
                     ${
                       activeCategory === cat.id
-                        ? "bg-[#C4704B] text-white shadow-lg shadow-[#C4704B]/30"
+                        ? "bg-[#A0845C] text-white shadow-lg shadow-[#A0845C]/30"
                         : "text-white/70 hover:text-white hover:bg-white/10"
                     }
                   `}
@@ -291,7 +291,7 @@ export default function EnhancedMaterialsComparison() {
             transition={{ delay: 0.8 }}
           >
             <p className="text-white/60 text-sm mb-4">
-              <span className="text-[#C4704B] font-semibold">💡 Suggerimento:</span> Tocca le cards per vedere il risparmio reale nel tempo
+              <span className="text-[#A0845C] font-semibold">💡 Suggerimento:</span> Tocca le cards per vedere il risparmio reale nel tempo
             </p>
           </motion.div>
         </div>

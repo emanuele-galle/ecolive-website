@@ -28,8 +28,8 @@ export default function InteractiveBenefitCard({
         'relative p-8 rounded-2xl cursor-pointer transition-all duration-300',
         'bg-white border-2',
         isActive
-          ? 'border-[#C4704B] shadow-2xl shadow-[#C4704B]/20'
-          : 'border-[#DDD5C9] hover:border-[#C4704B]/50'
+          ? 'border-[#A0845C] shadow-2xl shadow-[#A0845C]/20'
+          : 'border-[#D2D2D7] hover:border-[#A0845C]/50'
       )}
       whileHover={{ y: -8 }}
       animate={{ height: 'auto' }}
@@ -38,14 +38,14 @@ export default function InteractiveBenefitCard({
       <div className="flex items-center gap-4 mb-4">
         <div className={cn(
           'w-12 h-12 rounded-xl flex items-center justify-center transition-colors',
-          isActive ? 'bg-[#C4704B]' : 'bg-[#C4704B]/10'
+          isActive ? 'bg-[#A0845C]' : 'bg-[#A0845C]/10'
         )}>
           <Icon className={cn(
             'w-6 h-6 transition-colors',
-            isActive ? 'text-white' : 'text-[#C4704B]'
+            isActive ? 'text-white' : 'text-[#A0845C]'
           )} />
         </div>
-        <h3 className="text-xl font-bold text-[#1E3D30]">{title}</h3>
+        <h3 className="text-xl font-bold text-[#1D1D1F]">{title}</h3>
       </div>
 
       <p className="text-gray-600 mb-2">{collapsedText}</p>
@@ -59,7 +59,7 @@ export default function InteractiveBenefitCard({
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="mt-6 pt-6 border-t border-[#DDD5C9]">
+            <div className="mt-6 pt-6 border-t border-[#D2D2D7]">
               {expandedContent}
             </div>
           </motion.div>
@@ -71,7 +71,7 @@ export default function InteractiveBenefitCard({
         <motion.div
           animate={{ rotate: isActive ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="text-[#C4704B]"
+          className="text-[#A0845C]"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path

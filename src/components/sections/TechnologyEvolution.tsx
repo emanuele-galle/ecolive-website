@@ -19,7 +19,7 @@ const technologies = [
       'Velocità di costruzione elevata',
       'Ideale per architetture complesse',
     ],
-    color: '#2D5A47',
+    color: '#48484A',
   },
   {
     id: 'xlam',
@@ -32,7 +32,7 @@ const technologies = [
       'Precisione industriale',
       'Eccellente isolamento termico',
     ],
-    color: '#1E3D30',
+    color: '#1D1D1F',
   },
   {
     id: 'xframe',
@@ -45,7 +45,7 @@ const technologies = [
       'Il meglio di Platform + X-Lam',
       'Montaggio in soli 60 giorni',
     ],
-    color: '#C4704B',
+    color: '#A0845C',
     isNew: true,
   },
 ]
@@ -110,7 +110,7 @@ function TechnologyCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-[#DDD5C9] overflow-hidden h-full"
+        className="relative bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-[#D2D2D7] overflow-hidden h-full"
         whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)' }}
         transition={{ duration: 0.3 }}
       >
@@ -135,7 +135,7 @@ function TechnologyCard({
         {/* New badge for X-Frame */}
         {tech.isNew && (
           <motion.div
-            className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#C4704B] text-white text-xs font-bold uppercase tracking-wider"
+            className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#A0845C] text-white text-xs font-bold uppercase tracking-wider"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.5, type: 'spring' }}
@@ -160,10 +160,10 @@ function TechnologyCard({
 
         {/* Content */}
         <div className="relative">
-          <h3 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-3">
+          <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-3">
             {tech.name}
           </h3>
-          <p className="text-[#6B6560] text-sm md:text-base leading-relaxed mb-6">
+          <p className="text-[#86868B] text-sm md:text-base leading-relaxed mb-6">
             {tech.description}
           </p>
 
@@ -183,7 +183,7 @@ function TechnologyCard({
                 transition={{ delay: i * 0.1 }}
               >
                 <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: tech.color }} />
-                <span className="text-[#1E3D30]">{feature}</span>
+                <span className="text-[#1D1D1F]">{feature}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -222,10 +222,10 @@ function TechnologyCard({
 // ============================================
 export default function TechnologyEvolution() {
   return (
-    <section className="py-20 lg:py-32 px-4 bg-[#FAF7F2] relative overflow-hidden">
+    <section className="py-20 lg:py-32 px-4 bg-[#F5F5F7] relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-[#C4704B]/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#1E3D30]/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-[#A0845C]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#1D1D1F]/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -236,14 +236,14 @@ export default function TechnologyEvolution() {
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+          <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
             La Nostra Evoluzione
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30] mt-3">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mt-3">
             Evoluzione{' '}
-            <span className="text-[#C4704B]">Tecnologica</span>
+            <span className="text-[#A0845C]">Tecnologica</span>
           </h2>
-          <p className="text-[#6B6560] text-lg mt-4 max-w-2xl mx-auto">
+          <p className="text-[#86868B] text-lg mt-4 max-w-2xl mx-auto">
             Da costruttori tradizionali a innovatori del settore: tre sistemi costruttivi
             che rappresentano 25 anni di ricerca e sviluppo.
           </p>
@@ -264,30 +264,30 @@ export default function TechnologyEvolution() {
           viewport={{ once: false }}
           transition={{ delay: 0.5 }}
         >
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#DDD5C9] to-[#2D5A47]" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#D2D2D7] to-[#48484A]" />
           <motion.div
-            className="w-3 h-3 rounded-full bg-[#2D5A47]"
+            className="w-3 h-3 rounded-full bg-[#48484A]"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <div className="flex-1 h-px bg-[#1E3D30]" />
+          <div className="flex-1 h-px bg-[#1D1D1F]" />
           <motion.div
-            className="w-3 h-3 rounded-full bg-[#1E3D30]"
+            className="w-3 h-3 rounded-full bg-[#1D1D1F]"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
           />
-          <div className="flex-1 h-px bg-gradient-to-r from-[#1E3D30] to-[#C4704B]" />
+          <div className="flex-1 h-px bg-gradient-to-r from-[#1D1D1F] to-[#A0845C]" />
           <motion.div
-            className="w-4 h-4 rounded-full bg-[#C4704B]"
+            className="w-4 h-4 rounded-full bg-[#A0845C]"
             animate={{ scale: [1, 1.3, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
           />
-          <div className="flex-1 h-px bg-gradient-to-r from-[#C4704B] to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-[#A0845C] to-transparent" />
         </motion.div>
 
         {/* Stats Counter Section */}
         <motion.div
-          className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-[#DDD5C9]"
+          className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-[#D2D2D7]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -304,8 +304,8 @@ export default function TechnologyEvolution() {
                 transition={{ delay: 0.4 + index * 0.1 }}
               >
                 <motion.div
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30]"
-                  whileHover={{ scale: 1.05, color: '#C4704B' }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F]"
+                  whileHover={{ scale: 1.05, color: '#A0845C' }}
                   transition={{ duration: 0.2 }}
                 >
                   <AnimatedCounter
@@ -314,7 +314,7 @@ export default function TechnologyEvolution() {
                     prefix={stat.prefix}
                   />
                 </motion.div>
-                <div className="text-[#6B6560] text-sm md:text-base mt-2 font-medium">
+                <div className="text-[#86868B] text-sm md:text-base mt-2 font-medium">
                   {stat.label}
                 </div>
               </motion.div>

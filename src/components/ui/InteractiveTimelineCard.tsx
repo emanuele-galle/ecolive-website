@@ -83,10 +83,10 @@ const statusColors = {
     glow: 'shadow-green-500/30'
   },
   current: {
-    bg: 'bg-[#C4704B]',
-    border: 'border-[#C4704B]',
-    text: 'text-[#C4704B]',
-    glow: 'shadow-[#C4704B]/30'
+    bg: 'bg-[#A0845C]',
+    border: 'border-[#A0845C]',
+    text: 'text-[#A0845C]',
+    glow: 'shadow-[#A0845C]/30'
   },
   upcoming: {
     bg: 'bg-gray-300',
@@ -104,15 +104,15 @@ export default function InteractiveTimelineCard() {
   return (
     <div
       ref={ref}
-      className="relative h-full rounded-2xl p-8 bg-gradient-to-br from-white/80 to-[#C4704B]/5 backdrop-blur-xl border border-[#C4704B]/20 shadow-xl shadow-black/5 overflow-hidden"
+      className="relative h-full rounded-2xl p-8 bg-gradient-to-br from-white/80 to-[#A0845C]/5 backdrop-blur-xl border border-[#A0845C]/20 shadow-xl shadow-black/5 overflow-hidden"
     >
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-[#C4704B] flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-[#A0845C] flex items-center justify-center">
             <Clock className="w-5 h-5 text-white" />
           </div>
-          <h3 className="text-2xl font-bold text-[#1E3D30]">60 Giorni Consegna</h3>
+          <h3 className="text-2xl font-bold text-[#1D1D1F]">60 Giorni Consegna</h3>
         </div>
         <p className="text-sm text-gray-600">
           Dalla firma alla consegna chiavi in mano
@@ -128,7 +128,7 @@ export default function InteractiveTimelineCard() {
         <motion.div
           className="absolute top-10 left-0 h-1 rounded-full"
           style={{
-            background: 'linear-gradient(to right, #10b981 0%, #10b981 50%, #C4704B 50%, #C4704B 75%, #9CA3AF 75%)'
+            background: 'linear-gradient(to right, #10b981 0%, #10b981 50%, #A0845C 50%, #A0845C 75%, #9CA3AF 75%)'
           }}
           initial={{ width: '0%' }}
           animate={isInView ? { width: '100%' } : { width: '0%' }}
@@ -161,7 +161,7 @@ export default function InteractiveTimelineCard() {
                     'text-[10px] font-semibold px-2 py-1 rounded-full',
                     colors.text,
                     colors.bg === 'bg-green-500' ? 'bg-green-50' :
-                    colors.bg === 'bg-[#C4704B]' ? 'bg-[#C4704B]/10' :
+                    colors.bg === 'bg-[#A0845C]' ? 'bg-[#A0845C]/10' :
                     'bg-gray-100'
                   )}>
                     {step.category}
@@ -202,7 +202,7 @@ export default function InteractiveTimelineCard() {
                 >
                   <p className={cn(
                     'text-sm font-semibold mb-1',
-                    isCurrent ? colors.text : 'text-[#1E3D30]'
+                    isCurrent ? colors.text : 'text-[#1D1D1F]'
                   )}>
                     {step.label}
                   </p>
@@ -219,7 +219,7 @@ export default function InteractiveTimelineCard() {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-20 left-1/2 -translate-x-1/2 mt-12 w-52 p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-[#C4704B]/20 z-20"
+                    className="absolute top-20 left-1/2 -translate-x-1/2 mt-12 w-52 p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-[#A0845C]/20 z-20"
                   >
                     <p className="text-xs text-gray-700 font-semibold mb-2">
                       {step.description}
@@ -232,7 +232,7 @@ export default function InteractiveTimelineCard() {
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-[10px] text-gray-500">Costo:</span>
-                          <span className="text-[10px] text-[#C4704B] font-semibold">{step.details.cost}</span>
+                          <span className="text-[10px] text-[#A0845C] font-semibold">{step.details.cost}</span>
                         </div>
                       </div>
                     )}
@@ -255,7 +255,7 @@ export default function InteractiveTimelineCard() {
           Tradizionale:{' '}
           <span className="line-through">12-24 mesi</span>
           {' '}• Ecolive:{' '}
-          <span className="text-[#C4704B] font-semibold">60 giorni</span>
+          <span className="text-[#A0845C] font-semibold">60 giorni</span>
         </p>
       </motion.div>
     </div>

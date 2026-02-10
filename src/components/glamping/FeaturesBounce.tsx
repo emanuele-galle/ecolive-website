@@ -23,39 +23,39 @@ const featureDetails: Feature[] = [
     icon: Clock,
     title: 'Pronte in 30 giorni',
     description: 'Dalla conferma alla consegna chiavi in mano. Tempi certi e garantiti per contratto.',
-    color: '#40916c',
+    color: '#6B8F71',
   },
   {
     icon: Leaf,
     title: 'Zero fondazioni invasive',
     description: 'Rispetto totale del terreno e dell\'ambiente circostante grazie al sistema costruttivo X-Frame.',
-    color: '#2D5A47',
+    color: '#48484A',
     bgImage: '/images/glamping/glamping-single-forest.webp',
   },
   {
     icon: Palette,
     title: 'Design personalizzabile',
     description: 'Ogni struttura è unica come il tuo progetto. Scegli finiture, layout e materiali.',
-    color: '#40916c',
+    color: '#6B8F71',
     bgImage: '/images/glamping/glamping-duo-symmetric.webp',
   },
   {
     icon: Wrench,
     title: 'Manutenzione minima',
     description: 'Materiali duraturi per costi di gestione ridotti nel lungo periodo.',
-    color: '#2D5A47',
+    color: '#48484A',
   },
   {
     icon: Mountain,
     title: 'Integrazione paesaggio',
     description: 'Design pensato per fondersi naturalmente con l\'ambiente circostante.',
-    color: '#40916c',
+    color: '#6B8F71',
   },
   {
     icon: Sparkles,
     title: 'Comfort premium',
     description: 'Lusso e natura in perfetto equilibrio per esperienze indimenticabili.',
-    color: '#2D5A47',
+    color: '#48484A',
   }
 ]
 
@@ -106,8 +106,8 @@ function BentoFeatureCard({
       whileHover={{ y: -10, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
       className={`
         relative overflow-hidden rounded-3xl
-        bg-gradient-to-br from-white to-[#FAF7F2]
-        border border-[#E8E0D5]/60
+        bg-gradient-to-br from-white to-[#F5F5F7]
+        border border-[#EDE6DB]/60
         shadow-sm hover:shadow-2xl
         transition-shadow duration-500
         group
@@ -169,7 +169,7 @@ function BentoFeatureCard({
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, #1E3D30 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #1D1D1F 1px, transparent 0)',
           backgroundSize: '24px 24px'
         }}
       />
@@ -214,7 +214,7 @@ function BentoFeatureCard({
         <div>
           {/* Title */}
           <h3 className={`
-            font-bold text-[#1E3D30] mb-2
+            font-bold text-[#1D1D1F] mb-2
             ${isLarge ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}
           `}>
             {feature.title}
@@ -222,7 +222,7 @@ function BentoFeatureCard({
 
           {/* Description */}
           <p className={`
-            text-[#6B6560] leading-relaxed
+            text-[#86868B] leading-relaxed
             ${isLarge ? 'text-base md:text-lg max-w-lg' : 'text-sm'}
           `}>
             {feature.description}
@@ -259,7 +259,7 @@ export default function FeaturesBounce({ features, color }: FeaturesBounceProps)
 
   return (
     <section ref={containerRef} className="py-20 lg:py-28 px-4 bg-white relative overflow-hidden">
-      <AnimatedGridBackground color="#40916c" />
+      <AnimatedGridBackground color="#6B8F71" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -274,11 +274,11 @@ export default function FeaturesBounce({ features, color }: FeaturesBounceProps)
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.1, type: 'spring', stiffness: 300 }}
             className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4"
-            style={{ color: '#C4704B', backgroundColor: '#C4704B12' }}
+            style={{ color: '#A0845C', backgroundColor: '#A0845C12' }}
           >
             Tutto Incluso
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1E3D30] mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] mb-4">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -314,7 +314,7 @@ export default function FeaturesBounce({ features, color }: FeaturesBounceProps)
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5 }}
-            className="text-[#6B6560] text-lg max-w-xl mx-auto"
+            className="text-[#86868B] text-lg max-w-xl mx-auto"
           >
             Ogni dettaglio pensato per offrire un&apos;esperienza unica ai tuoi ospiti
           </motion.p>

@@ -44,7 +44,7 @@ export default function DegradationTimeline({
           className="absolute top-0 left-4 md:left-1/2 w-1 md:-translate-x-1/2 origin-top"
           style={{
             height: lineHeight,
-            background: 'linear-gradient(180deg, #C4704B 0%, #40916c 100%)'
+            background: 'linear-gradient(180deg, #A0845C 0%, #6B8F71 100%)'
           }}
         />
 
@@ -74,7 +74,7 @@ export default function DegradationTimeline({
                   >
                     {/* Pulsing ring */}
                     <motion.div
-                      className="absolute w-10 h-10 rounded-full border-2 border-[#C4704B]"
+                      className="absolute w-10 h-10 rounded-full border-2 border-[#A0845C]"
                       animate={{
                         scale: [1, 1.5, 1],
                         opacity: [0.5, 0, 0.5]
@@ -86,20 +86,20 @@ export default function DegradationTimeline({
                       }}
                     />
 
-                    <div className="w-10 h-10 rounded-full bg-[#C4704B] border-4 border-[#152822] flex items-center justify-center shadow-lg shadow-[#C4704B]/30">
+                    <div className="w-10 h-10 rounded-full bg-[#A0845C] border-4 border-[#152822] flex items-center justify-center shadow-lg shadow-[#A0845C]/30">
                       <span className="text-white font-bold text-xs">
                         {milestone.anno}
                       </span>
                     </div>
 
-                    <div className="md:hidden bg-[#C4704B]/20 px-4 py-1 rounded-full backdrop-blur-sm">
-                      <span className="text-[#C4704B] font-bold text-sm">
+                    <div className="md:hidden bg-[#A0845C]/20 px-4 py-1 rounded-full backdrop-blur-sm">
+                      <span className="text-[#A0845C] font-bold text-sm">
                         Anno {milestone.anno}
                       </span>
                     </div>
 
                     {/* Particle glow effect */}
-                    <div className="absolute inset-0 w-10 h-10 rounded-full bg-[#C4704B]/20 blur-xl animate-pulse" />
+                    <div className="absolute inset-0 w-10 h-10 rounded-full bg-[#A0845C]/20 blur-xl animate-pulse" />
                   </motion.div>
                 </div>
 
@@ -204,7 +204,7 @@ export default function DegradationTimeline({
 
       {/* Summary Footer */}
       <motion.div
-        className="mt-12 p-6 bg-gradient-to-br from-[#C4704B]/10 to-[#40916c]/10 backdrop-blur-sm rounded-xl border border-[#C4704B]/20"
+        className="mt-12 p-6 bg-gradient-to-br from-[#A0845C]/10 to-[#6B8F71]/10 backdrop-blur-sm rounded-xl border border-[#A0845C]/20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

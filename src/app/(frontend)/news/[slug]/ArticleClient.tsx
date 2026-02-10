@@ -140,10 +140,10 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   }
 
   return (
-    <main className="min-h-screen bg-[#FFFCF7]">
+    <main className="min-h-screen bg-[#FFFFFF]">
       {/* Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C4704B] to-[#E8956B] z-50 origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A0845C] to-[#E8956B] z-50 origin-left"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -166,7 +166,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
 
           {/* Gradient overlay */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-[#1E3D30] via-[#1E3D30]/50 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F] via-[#1D1D1F]/50 to-transparent"
             style={{ opacity: heroOpacity }}
           />
 
@@ -199,7 +199,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
                   {article.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-[#C4704B] text-white text-sm font-medium rounded-full"
+                      className="px-3 py-1 bg-[#A0845C] text-white text-sm font-medium rounded-full"
                     >
                       {tagLabels[tag] || tag}
                     </span>
@@ -259,7 +259,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
 
             {/* Rich Text Content */}
             <motion.div
-              className="prose prose-lg max-w-none prose-headings:text-[#1E3D30] prose-a:text-[#C4704B] prose-strong:text-[#2C2825]"
+              className="prose prose-lg max-w-none prose-headings:text-[#1D1D1F] prose-a:text-[#A0845C] prose-strong:text-[#2C2825]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -323,13 +323,13 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
 
             {/* Author Bio Premium */}
             <motion.div
-              className="mt-12 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] rounded-2xl p-6 md:p-8"
+              className="mt-12 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] rounded-2xl p-6 md:p-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 bg-[#C4704B] rounded-full flex items-center justify-center flex-shrink-0 ring-4 ring-[#C4704B]/30">
+                <div className="w-16 h-16 bg-[#A0845C] rounded-full flex items-center justify-center flex-shrink-0 ring-4 ring-[#A0845C]/30">
                   <svg
                     className="w-8 h-8 text-white"
                     fill="none"
@@ -368,7 +368,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <h4 className="font-bold text-[#1E3D30] mb-4 text-sm uppercase tracking-wider">
+                  <h4 className="font-bold text-[#1D1D1F] mb-4 text-sm uppercase tracking-wider">
                     In questo articolo
                   </h4>
                   <nav className="space-y-2">
@@ -377,7 +377,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
                         key={index}
                         href={`#${heading.id}`}
                         className={`
-                          block text-sm transition-colors hover:text-[#C4704B]
+                          block text-sm transition-colors hover:text-[#A0845C]
                           ${heading.level === 3 ? 'pl-4 text-gray-500' : 'text-gray-700 font-medium'}
                         `}
                         onClick={(e) => {
@@ -402,7 +402,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <h4 className="font-bold text-[#1E3D30] mb-4 text-sm uppercase tracking-wider">
+                <h4 className="font-bold text-[#1D1D1F] mb-4 text-sm uppercase tracking-wider">
                   Condividi
                 </h4>
                 <div className="flex gap-2">
@@ -441,10 +441,10 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section ref={relatedRef} className="py-16 lg:py-20 bg-[#FAF7F2]">
+        <section ref={relatedRef} className="py-16 lg:py-20 bg-[#F5F5F7]">
           <div className="max-w-6xl mx-auto px-4">
             <motion.h2
-              className="text-3xl font-bold text-[#1E3D30] mb-8"
+              className="text-3xl font-bold text-[#1D1D1F] mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={relatedInView ? { opacity: 1, y: 0 } : {}}
             >
@@ -471,7 +471,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
       {/* Back to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 w-12 h-12 bg-[#C4704B] text-white rounded-full shadow-lg flex items-center justify-center z-40 ${
+        className={`fixed bottom-8 right-8 w-12 h-12 bg-[#A0845C] text-white rounded-full shadow-lg flex items-center justify-center z-40 ${
           showBackToTop ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
         initial={{ opacity: 0, scale: 0.8 }}

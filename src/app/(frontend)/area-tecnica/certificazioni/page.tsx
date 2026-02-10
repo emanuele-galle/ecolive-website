@@ -34,7 +34,7 @@ const certifications = [
       'Ventilazione meccanica con recupero calore > 75%',
     ],
     link: 'https://passivehouse.com/',
-    accent: '#C4704B',
+    accent: '#A0845C',
     icon: Home,
   },
   {
@@ -52,7 +52,7 @@ const certifications = [
       'Qualita dell\'aria interna garantita',
     ],
     link: 'https://www.agenziacasaclima.it/',
-    accent: '#40916c',
+    accent: '#6B8F71',
     icon: Leaf,
   },
   {
@@ -70,7 +70,7 @@ const certifications = [
       'Sostenibilita ambientale verificata',
     ],
     link: 'https://www.arcacert.com/',
-    accent: '#2D5A47',
+    accent: '#48484A',
     icon: Shield,
   },
   {
@@ -225,7 +225,7 @@ export default function CertificazioniPage() {
             <div className="flex flex-wrap gap-8 md:gap-12">
               {[
                 { value: 4, label: 'Certificazioni', numValue: true },
-                { value: 15, label: 'kWh/m\u00b2/anno', numValue: true, color: '#C4704B' },
+                { value: 15, label: 'kWh/m\u00b2/anno', numValue: true, color: '#A0845C' },
                 { value: 1, label: 'Zona Sismica', numValue: true },
                 { value: null, label: 'Classe NZEB', numValue: false, display: 'A4' },
               ].map((stat, i) => (
@@ -246,7 +246,7 @@ export default function CertificazioniPage() {
       </section>
 
       {/* Marquee */}
-      <div className="py-5 bg-[var(--color-surface)] border-y border-[#E8E0D5]">
+      <div className="py-5 bg-[var(--color-surface)] border-y border-[#EDE6DB]">
         <InfiniteMarquee
           items={marqueeItems}
           speed={25}
@@ -268,10 +268,10 @@ export default function CertificazioniPage() {
               const Icon = cert.icon
               return (
                 <ScrollReveal key={cert.id} delay={i * 0.1}>
-                  <SpotlightCard className="bg-white border border-[#E8E0D5] h-full">
+                  <SpotlightCard className="bg-white border border-[#EDE6DB] h-full">
                     <div className="p-6 text-center">
                       {cert.logo ? (
-                        <div className="w-16 h-16 bg-white rounded-xl p-2 flex items-center justify-center shadow-sm border border-[#E8E0D5] mx-auto mb-4">
+                        <div className="w-16 h-16 bg-white rounded-xl p-2 flex items-center justify-center shadow-sm border border-[#EDE6DB] mx-auto mb-4">
                           <Image src={cert.logo} alt={cert.name} width={48} height={48} className="object-contain" />
                         </div>
                       ) : (
@@ -291,7 +291,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
 
       {/* ===== DETTAGLIO CERTIFICAZIONI (Tabs) ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -305,7 +305,7 @@ export default function CertificazioniPage() {
           {/* Tab Buttons */}
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap justify-center gap-2 mb-10">
-              <div className="inline-flex bg-[var(--color-surface)] rounded-2xl p-2 gap-2 border border-[#E8E0D5]">
+              <div className="inline-flex bg-[var(--color-surface)] rounded-2xl p-2 gap-2 border border-[#EDE6DB]">
                 {certifications.map((cert) => {
                   const Icon = cert.icon
                   return (
@@ -338,11 +338,11 @@ export default function CertificazioniPage() {
               className="grid md:grid-cols-2 gap-8 items-start"
             >
               {/* Left - Info Card */}
-              <SpotlightCard className="bg-[var(--color-surface)] border border-[#E8E0D5]">
+              <SpotlightCard className="bg-[var(--color-surface)] border border-[#EDE6DB]">
                 <div className="p-8">
                   <div className="flex items-center gap-4 mb-6">
                     {activeCertData.logo ? (
-                      <div className="w-20 h-20 bg-white rounded-2xl p-3 flex items-center justify-center shadow-sm border border-[#E8E0D5]">
+                      <div className="w-20 h-20 bg-white rounded-2xl p-3 flex items-center justify-center shadow-sm border border-[#EDE6DB]">
                         <Image src={activeCertData.logo} alt={activeCertData.name} width={56} height={56} className="object-contain" />
                       </div>
                     ) : (
@@ -361,7 +361,7 @@ export default function CertificazioniPage() {
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-2xl p-6 border border-[#E8E0D5] mb-6">
+                  <div className="bg-white rounded-2xl p-6 border border-[#EDE6DB] mb-6">
                     <span className="text-4xl font-bold" style={{ color: activeCertData.accent }}>{activeCertData.mainStat}</span>
                     <p className="text-[var(--color-muted)] mt-1">{activeCertData.statLabel}</p>
                   </div>
@@ -371,7 +371,7 @@ export default function CertificazioniPage() {
               </SpotlightCard>
 
               {/* Right - Details */}
-              <SpotlightCard className="bg-white border border-[#E8E0D5]">
+              <SpotlightCard className="bg-white border border-[#EDE6DB]">
                 <div className="p-8">
                   <h4 className="font-bold text-[var(--color-secondary-dark)] mb-6 flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-[var(--color-primary)]" />
@@ -392,7 +392,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== SICUREZZA SISMICA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -445,7 +445,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* ===== DOCUMENTAZIONE ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-surface)]">
@@ -467,7 +467,7 @@ export default function CertificazioniPage() {
                   href={doc.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-6 p-6 bg-white rounded-2xl border border-[#E8E0D5] hover:border-[var(--color-primary)]/30 hover:shadow-premium-lg transition-all"
+                  className="group flex items-center gap-6 p-6 bg-white rounded-2xl border border-[#EDE6DB] hover:border-[var(--color-primary)]/30 hover:shadow-premium-lg transition-all"
                 >
                   <div className="w-14 h-14 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-primary)] transition-colors">
                     <Download className="w-7 h-7 text-[var(--color-primary)] group-hover:text-white transition-colors" />
@@ -487,7 +487,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== NORMATIVE ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -552,7 +552,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#C4704B" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#A0845C" variant="wave" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-primary)]">

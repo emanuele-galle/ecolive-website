@@ -184,7 +184,7 @@ export default function Stratigraphy3D() {
         style={{ x: glowLeft.x, y: glowLeft.y }}
       />
       <motion.div
-        className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#C4704B]/8 rounded-full blur-3xl pointer-events-none"
+        className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#A0845C]/8 rounded-full blur-3xl pointer-events-none"
         style={{ x: glowRight.x, y: glowRight.y }}
       />
       <motion.div
@@ -200,13 +200,13 @@ export default function Stratigraphy3D() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C4704B]/10 rounded-full border border-[#C4704B]/20 mb-6">
-            <Shield className="w-4 h-4 text-[#C4704B]" />
-            <span className="text-[#C4704B] text-sm font-medium">La Tua Protezione</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#A0845C]/10 rounded-full border border-[#A0845C]/20 mb-6">
+            <Shield className="w-4 h-4 text-[#A0845C]" />
+            <span className="text-[#A0845C] text-sm font-medium">La Tua Protezione</span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            <span className="text-[#C4704B]">290mm</span> di Comfort e Sicurezza
+            <span className="text-[#A0845C]">290mm</span> di Comfort e Sicurezza
           </h2>
 
           <p className="text-[#8ba3b5] text-lg max-w-2xl mx-auto leading-relaxed">
@@ -315,7 +315,7 @@ export default function Stratigraphy3D() {
                         <span className="text-[#6b8e9f] text-sm block">{detail.label}</span>
                         <span className="text-[#8ba3b5] text-xs">{detail.explanation}</span>
                       </div>
-                      <span className="text-[#C4704B] font-bold text-lg sm:text-xl font-mono">
+                      <span className="text-[#A0845C] font-bold text-lg sm:text-xl font-mono">
                         {detail.value}
                       </span>
                     </motion.div>

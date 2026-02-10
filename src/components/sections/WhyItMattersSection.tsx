@@ -19,7 +19,7 @@ export default function WhyItMattersSection() {
         {/* Header */}
         <motion.div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Perché <span className="text-[#C4704B]">Ti Conviene</span>
+            Perché <span className="text-[#A0845C]">Ti Conviene</span>
           </h2>
           <p className="text-white/70 text-lg">
             I numeri parlano chiaro. Ecco il valore reale.
@@ -35,7 +35,7 @@ export default function WhyItMattersSection() {
             viewport={{ once: false }}
             transition={{ delay: 0, duration: 0.6 }}
           >
-            <div className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#C4704B]/20 shadow-xl overflow-hidden group">
+            <div className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#A0845C]/20 shadow-xl overflow-hidden group">
               {/* Animated gradient background */}
               <motion.div
                 className="absolute inset-0 rounded-2xl"
@@ -56,19 +56,19 @@ export default function WhyItMattersSection() {
               {/* Content */}
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="mb-4">
-                  <div className="text-8xl lg:text-9xl font-bold text-[#C4704B] leading-none">
+                  <div className="text-8xl lg:text-9xl font-bold text-[#A0845C] leading-none">
                     €25k
                   </div>
-                  <p className="text-lg lg:text-xl text-[#1E3D30] font-semibold mt-2">
+                  <p className="text-lg lg:text-xl text-[#1D1D1F] font-semibold mt-2">
                     Valore Aggiunto
                   </p>
                 </div>
 
                 {/* Progress Bar */}
                 <div className="my-6">
-                  <p className="text-sm text-[#1E3D30]/70 mb-2">Rivalutazione immobile</p>
-                  <AnimatedProgressBar value={10} color="#C4704B" height="h-3" />
-                  <p className="text-xs text-[#1E3D30]/60 mt-1">+10% su casa €250k</p>
+                  <p className="text-sm text-[#1D1D1F]/70 mb-2">Rivalutazione immobile</p>
+                  <AnimatedProgressBar value={10} color="#A0845C" height="h-3" />
+                  <p className="text-xs text-[#1D1D1F]/60 mt-1">+10% su casa €250k</p>
                 </div>
 
                 {/* Badges */}
@@ -79,12 +79,12 @@ export default function WhyItMattersSection() {
                     viewport={{ once: false }}
                     transition={{ delay: 0.5, duration: 0.4 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#C4704B]/10 shadow-sm"
+                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#A0845C]/10 shadow-sm"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#C4704B]/10 flex items-center justify-center flex-shrink-0">
-                      <TrendingUp className="w-4 h-4 text-[#C4704B]" />
+                    <div className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0">
+                      <TrendingUp className="w-4 h-4 text-[#A0845C]" />
                     </div>
-                    <span className="text-sm text-[#1E3D30] font-medium">
+                    <span className="text-sm text-[#1D1D1F] font-medium">
                       +10% rivalutazione
                     </span>
                   </motion.div>
@@ -94,12 +94,12 @@ export default function WhyItMattersSection() {
                     viewport={{ once: false }}
                     transition={{ delay: 0.65, duration: 0.4 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#C4704B]/10 shadow-sm"
+                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#A0845C]/10 shadow-sm"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#C4704B]/10 flex items-center justify-center flex-shrink-0">
-                      <Award className="w-4 h-4 text-[#C4704B]" />
+                    <div className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0">
+                      <Award className="w-4 h-4 text-[#A0845C]" />
                     </div>
-                    <span className="text-sm text-[#1E3D30] font-medium">
+                    <span className="text-sm text-[#1D1D1F] font-medium">
                       Certificato CasaClima
                     </span>
                   </motion.div>
@@ -116,13 +116,13 @@ export default function WhyItMattersSection() {
             transition={{ delay: 0.1, duration: 0.6 }}
           >
             <motion.div
-              className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#C4704B]/20 shadow-xl"
+              className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#A0845C]/20 shadow-xl"
               whileHover={{ scale: 1.02 }}
             >
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="mb-4">
-                  <div className="text-8xl lg:text-9xl font-bold text-[#40916c] leading-none">0</div>
-                  <p className="text-lg lg:text-xl text-[#1E3D30] font-semibold mt-2">
+                  <div className="text-8xl lg:text-9xl font-bold text-[#6B8F71] leading-none">0</div>
+                  <p className="text-lg lg:text-xl text-[#1D1D1F] font-semibold mt-2">
                     Interventi Necessari
                   </p>
                 </div>
@@ -133,12 +133,12 @@ export default function WhyItMattersSection() {
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <CheckCircle className="w-20 h-20 text-[#40916c]" />
+                    <CheckCircle className="w-20 h-20 text-[#6B8F71]" />
                   </motion.div>
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-[#1E3D30]/70 mb-4 line-through">
+                <p className="text-sm text-[#1D1D1F]/70 mb-4 line-through">
                   Standard: 3-5 interventi (€15k)
                 </p>
 
@@ -150,8 +150,8 @@ export default function WhyItMattersSection() {
                     transition={{ delay: 0.5, duration: 0.4 }}
                     className="flex items-center gap-3 p-3 bg-white/80 rounded-lg"
                   >
-                    <CheckCircle className="w-4 h-4 text-[#40916c]" />
-                    <span className="text-sm text-[#1E3D30]">Zero sorprese</span>
+                    <CheckCircle className="w-4 h-4 text-[#6B8F71]" />
+                    <span className="text-sm text-[#1D1D1F]">Zero sorprese</span>
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -160,8 +160,8 @@ export default function WhyItMattersSection() {
                     transition={{ delay: 0.65, duration: 0.4 }}
                     className="flex items-center gap-3 p-3 bg-white/80 rounded-lg"
                   >
-                    <Shield className="w-4 h-4 text-[#40916c]" />
-                    <span className="text-sm text-[#1E3D30]">Garanzia totale</span>
+                    <Shield className="w-4 h-4 text-[#6B8F71]" />
+                    <span className="text-sm text-[#1D1D1F]">Garanzia totale</span>
                   </motion.div>
                 </div>
               </div>
@@ -175,23 +175,23 @@ export default function WhyItMattersSection() {
             viewport={{ once: false }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <div className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#C4704B]/20 shadow-xl overflow-hidden">
+            <div className="relative h-full rounded-2xl p-8 backdrop-blur-xl bg-white/60 border border-[#A0845C]/20 shadow-xl overflow-hidden">
               {/* Content */}
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="mb-4">
-                  <div className="text-8xl lg:text-9xl font-bold text-[#C4704B] leading-none">
+                  <div className="text-8xl lg:text-9xl font-bold text-[#A0845C] leading-none">
                     30
                   </div>
-                  <p className="text-lg lg:text-xl text-[#1E3D30] font-semibold mt-2">
+                  <p className="text-lg lg:text-xl text-[#1D1D1F] font-semibold mt-2">
                     Anni di Garanzia
                   </p>
                 </div>
 
                 {/* Timeline visual */}
                 <div className="my-6">
-                  <p className="text-sm text-[#1E3D30]/70 mb-2">2026 ━━━━━ 2056</p>
-                  <AnimatedProgressBar value={100} color="#C4704B" height="h-3" delay={0.3} />
-                  <p className="text-xs text-[#1E3D30]/60 mt-1 line-through">Standard: 2 anni (15x meno)</p>
+                  <p className="text-sm text-[#1D1D1F]/70 mb-2">2026 ━━━━━ 2056</p>
+                  <AnimatedProgressBar value={100} color="#A0845C" height="h-3" delay={0.3} />
+                  <p className="text-xs text-[#1D1D1F]/60 mt-1 line-through">Standard: 2 anni (15x meno)</p>
                 </div>
 
                 {/* Badges */}
@@ -202,12 +202,12 @@ export default function WhyItMattersSection() {
                     viewport={{ once: false }}
                     transition={{ delay: 0.5, duration: 0.4 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#C4704B]/10 shadow-sm"
+                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#A0845C]/10 shadow-sm"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#C4704B]/10 flex items-center justify-center flex-shrink-0">
-                      <FileCheck className="w-4 h-4 text-[#C4704B]" />
+                    <div className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0">
+                      <FileCheck className="w-4 h-4 text-[#A0845C]" />
                     </div>
-                    <span className="text-sm text-[#1E3D30] font-medium">
+                    <span className="text-sm text-[#1D1D1F] font-medium">
                       Certificato EN 14080
                     </span>
                   </motion.div>
@@ -217,12 +217,12 @@ export default function WhyItMattersSection() {
                     viewport={{ once: false }}
                     transition={{ delay: 0.65, duration: 0.4 }}
                     whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#C4704B]/10 shadow-sm"
+                    className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#A0845C]/10 shadow-sm"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-[#C4704B]/10 flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-4 h-4 text-[#C4704B]" />
+                    <div className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-4 h-4 text-[#A0845C]" />
                     </div>
-                    <span className="text-sm text-[#1E3D30] font-medium">
+                    <span className="text-sm text-[#1D1D1F] font-medium">
                       Stai tranquillo
                     </span>
                   </motion.div>

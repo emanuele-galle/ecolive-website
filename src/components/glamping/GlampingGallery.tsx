@@ -16,7 +16,7 @@ interface GlampingGalleryProps {
   color: string
 }
 
-const TERRACOTTA = '#C4704B'
+const TERRACOTTA = '#A0845C'
 
 const galleryImages: GalleryImage[] = [
   {
@@ -560,7 +560,7 @@ export default function GlampingGallery({ color }: GlampingGalleryProps) {
 
   return (
     <>
-      <section className="py-20 lg:py-28 px-4 bg-[#1E3D30] relative overflow-hidden">
+      <section className="py-20 lg:py-28 px-4 bg-[#1D1D1F] relative overflow-hidden">
         {/* Animated aurora background */}
         <motion.div
           className="absolute inset-0 pointer-events-none"

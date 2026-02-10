@@ -52,7 +52,7 @@ export default function ProcessTimeline() {
       className="py-24 lg:py-32 px-4 relative overflow-hidden"
     >
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1E3D30] via-[#2D5A47] to-[#1E3D30]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1D1D1F] via-[#48484A] to-[#1D1D1F]" />
 
       {/* Dot pattern */}
       <div
@@ -64,10 +64,10 @@ export default function ProcessTimeline() {
       />
 
       {/* Decorative blurs - espansi su ultrawide */}
-      <div className="absolute top-0 left-1/4 3xl:left-10 w-96 3xl:w-[500px] h-96 3xl:h-[500px] bg-[#C4704B]/10 3xl:bg-[#C4704B]/15 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 3xl:right-10 w-80 3xl:w-[450px] h-80 3xl:h-[450px] bg-[#C4704B]/10 3xl:bg-[#C4704B]/15 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 3xl:left-10 w-96 3xl:w-[500px] h-96 3xl:h-[500px] bg-[#A0845C]/10 3xl:bg-[#A0845C]/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 3xl:right-10 w-80 3xl:w-[450px] h-80 3xl:h-[450px] bg-[#A0845C]/10 3xl:bg-[#A0845C]/15 rounded-full blur-3xl" />
       <div className="hidden 3xl:block absolute top-1/2 -left-20 w-[400px] h-[400px] bg-[#E8956B]/8 rounded-full blur-3xl" />
-      <div className="hidden 3xl:block absolute top-1/3 -right-20 w-[350px] h-[350px] bg-[#C4704B]/8 rounded-full blur-3xl" />
+      <div className="hidden 3xl:block absolute top-1/3 -right-20 w-[350px] h-[350px] bg-[#A0845C]/8 rounded-full blur-3xl" />
 
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -77,11 +77,11 @@ export default function ProcessTimeline() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9 }}
         >
-          <span className="text-[#C4704B] font-semibold text-sm uppercase tracking-wider">
+          <span className="text-[#A0845C] font-semibold text-sm uppercase tracking-wider">
             Come Lavoriamo
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-2">
-            Il Nostro <span className="text-[#C4704B]">Processo</span>
+            Il Nostro <span className="text-[#A0845C]">Processo</span>
           </h2>
           <p className="text-white/60 text-lg max-w-xl mx-auto mt-4">
             Dalla prima consulenza alla consegna delle chiavi in soli 60 giorni
@@ -97,7 +97,7 @@ export default function ProcessTimeline() {
 
             {/* Animated fill */}
             <motion.div
-              className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-[#C4704B] to-[#E8956B] rounded-full -translate-y-1/2"
+              className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-[#A0845C] to-[#E8956B] rounded-full -translate-y-1/2"
               style={{ width: `${progressWidth.get()}%` }}
               initial={{ width: '0%' }}
               animate={isInView ? { width: '100%' } : { width: '0%' }}
@@ -114,9 +114,9 @@ export default function ProcessTimeline() {
                   animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ delay: 0.5 + index * 0.2, type: "spring", stiffness: 200 }}
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#C4704B] border-4 border-[#1E3D30] shadow-lg shadow-[#C4704B]/30" />
+                  <div className="w-5 h-5 rounded-full bg-[#A0845C] border-4 border-[#1D1D1F] shadow-lg shadow-[#A0845C]/30" />
                   <motion.div
-                    className="absolute inset-0 rounded-full bg-[#C4704B]"
+                    className="absolute inset-0 rounded-full bg-[#A0845C]"
                     animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                   />
@@ -136,21 +136,21 @@ export default function ProcessTimeline() {
                 transition={{ delay: 0.3 + index * 0.15, duration: 0.9 }}
               >
                 <motion.div
-                  className="relative h-full p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#C4704B]/50 transition-all duration-500 overflow-hidden"
+                  className="relative h-full p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#A0845C]/50 transition-all duration-500 overflow-hidden"
                   whileHover={{ y: -8, scale: 1.02 }}
                 >
                   {/* Glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#C4704B]/0 to-[#C4704B]/0 group-hover:from-[#C4704B]/10 group-hover:to-transparent transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#A0845C]/0 to-[#A0845C]/0 group-hover:from-[#A0845C]/10 group-hover:to-transparent transition-all duration-500" />
 
                   {/* Number */}
                   <div className="relative">
-                    <span className="text-5xl font-bold text-white/10 group-hover:text-[#C4704B]/20 transition-colors duration-500">
+                    <span className="text-5xl font-bold text-white/10 group-hover:text-[#A0845C]/20 transition-colors duration-500">
                       {step.number}
                     </span>
                   </div>
 
                   {/* Icon */}
-                  <div className="relative w-14 h-14 -mt-4 mb-4 rounded-xl bg-[#C4704B] flex items-center justify-center shadow-lg shadow-[#C4704B]/20 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-14 h-14 -mt-4 mb-4 rounded-xl bg-[#A0845C] flex items-center justify-center shadow-lg shadow-[#A0845C]/20 group-hover:scale-110 transition-transform duration-300">
                     <step.icon className="w-7 h-7 text-white" />
                   </div>
 
@@ -177,7 +177,7 @@ export default function ProcessTimeline() {
           <div className="relative">
             {/* Vertical line */}
             <motion.div
-              className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#C4704B] via-[#C4704B] to-[#C4704B]/30"
+              className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#A0845C] via-[#A0845C] to-[#A0845C]/30"
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
@@ -195,7 +195,7 @@ export default function ProcessTimeline() {
                 >
                   {/* Dot */}
                   <motion.div
-                    className="absolute left-4 top-6 w-5 h-5 rounded-full bg-[#C4704B] border-4 border-[#1E3D30] shadow-lg z-10"
+                    className="absolute left-4 top-6 w-5 h-5 rounded-full bg-[#A0845C] border-4 border-[#1D1D1F] shadow-lg z-10"
                     initial={{ scale: 0 }}
                     animate={isInView ? { scale: 1 } : { scale: 0 }}
                     transition={{ delay: 0.5 + index * 0.2, type: "spring" }}
@@ -205,13 +205,13 @@ export default function ProcessTimeline() {
                   <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
                     <div className="flex items-start gap-4">
                       {/* Icon */}
-                      <div className="w-12 h-12 rounded-xl bg-[#C4704B] flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-[#A0845C] flex items-center justify-center flex-shrink-0">
                         <step.icon className="w-6 h-6 text-white" />
                       </div>
 
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-[#C4704B] font-bold">{step.number}</span>
+                          <span className="text-[#A0845C] font-bold">{step.number}</span>
                           <span className="text-white/40">•</span>
                           <span className="text-white/50 text-xs">{step.duration}</span>
                         </div>

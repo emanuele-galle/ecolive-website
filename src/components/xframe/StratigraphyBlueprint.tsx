@@ -160,7 +160,7 @@ export default function StratigraphyBlueprint() {
 
         {/* Glow effects */}
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#4a9eff]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#C4704B]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#A0845C]/10 rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           {/* Header */}
@@ -178,7 +178,7 @@ export default function StratigraphyBlueprint() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Stratigrafia Parete <span className="text-[#C4704B]">290 mm</span>
+              Stratigrafia Parete <span className="text-[#A0845C]">290 mm</span>
             </h2>
 
             <p className="text-[#6b8e9f] text-lg max-w-2xl mx-auto">
@@ -312,9 +312,9 @@ export default function StratigraphyBlueprint() {
                     className="absolute -right-16 top-0 flex flex-col items-center"
                     style={{ height: totalHeight }}
                   >
-                    <div className="w-px h-full bg-[#C4704B]" />
+                    <div className="w-px h-full bg-[#A0845C]" />
                     <div className="absolute top-1/2 -translate-y-1/2 -right-2 bg-[#0a1628] px-2">
-                      <span className="text-[#C4704B] font-mono font-bold text-sm whitespace-nowrap transform -rotate-90 block">
+                      <span className="text-[#A0845C] font-mono font-bold text-sm whitespace-nowrap transform -rotate-90 block">
                         290 mm
                       </span>
                     </div>
@@ -423,7 +423,7 @@ export default function StratigraphyBlueprint() {
                 whileHover={{ scale: 1.02, borderColor: '#4a9eff' }}
               >
                 <div className="text-2xl mb-2">{stat.icon}</div>
-                <div className="text-[#C4704B] font-bold text-2xl md:text-3xl">
+                <div className="text-[#A0845C] font-bold text-2xl md:text-3xl">
                   {stat.value}
                   {stat.unit && <span className="text-sm font-normal text-[#6b8e9f] ml-1">{stat.unit}</span>}
                 </div>
@@ -436,14 +436,14 @@ export default function StratigraphyBlueprint() {
 
           {/* Innovation Note */}
           <motion.div
-            className="mt-8 p-5 bg-gradient-to-r from-[#C4704B]/10 to-transparent rounded-xl border border-[#C4704B]/20"
+            className="mt-8 p-5 bg-gradient-to-r from-[#A0845C]/10 to-transparent rounded-xl border border-[#A0845C]/20"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.9, delay: 0.8 }}
           >
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#C4704B]/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[#C4704B] font-bold text-lg">L</span>
+              <div className="w-12 h-12 rounded-xl bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[#A0845C] font-bold text-lg">L</span>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Innovazione Fondamenta</h4>

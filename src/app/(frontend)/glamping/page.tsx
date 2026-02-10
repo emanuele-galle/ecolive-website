@@ -68,17 +68,17 @@ export default function GlampingPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[#1E3D30]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-[#1D1D1F]/90" />
         </div>
 
         {/* Floating orbs */}
         <motion.div
-          className="absolute top-1/4 -left-16 w-72 h-72 rounded-full bg-[#2D5A47]/25 blur-[100px] pointer-events-none"
+          className="absolute top-1/4 -left-16 w-72 h-72 rounded-full bg-[#48484A]/25 blur-[100px] pointer-events-none"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute bottom-1/4 -right-16 w-64 h-64 rounded-full bg-[#C4704B]/10 blur-[80px] pointer-events-none"
+          className="absolute bottom-1/4 -right-16 w-64 h-64 rounded-full bg-[#A0845C]/10 blur-[80px] pointer-events-none"
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -119,7 +119,7 @@ export default function GlampingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-full hover:bg-[#b5623f] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/20"
+                className="inline-flex items-center justify-center px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#b5623f] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
               >
                 Richiedi Preventivo
               </Link>
@@ -136,8 +136,8 @@ export default function GlampingPage() {
       </section>
 
       {/* MARQUEE */}
-      <div className="bg-[#1E3D30] pb-1">
-        <div className="bg-[#C4704B]/10 border-y border-[#C4704B]/20 py-4">
+      <div className="bg-[#1D1D1F] pb-1">
+        <div className="bg-[#A0845C]/10 border-y border-[#A0845C]/20 py-4">
           <InfiniteMarquee
             items={glampingMarqueeItems}
             speed={25}
@@ -146,19 +146,19 @@ export default function GlampingPage() {
         </div>
       </div>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* CARATTERISTICHE */}
-      <section className="py-28 lg:py-36 px-4 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Vantaggi
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mt-3 mb-4">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1D1D1F] mt-3 mb-4">
               Caratteristiche
             </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto">
+            <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
               Tutto il necessario per un turismo eco-sostenibile di lusso
             </p>
           </ScrollReveal>
@@ -169,7 +169,7 @@ export default function GlampingPage() {
               return (
                 <ScrollReveal key={feature} delay={i * 0.08} direction="up">
                   <SpotlightCard
-                    className="p-7 bg-white border border-[#E8E0D5] hover:border-[#C4704B]/30 transition-all duration-300 h-full"
+                    className="p-7 bg-white border border-[#EDE6DB] hover:border-[#A0845C]/30 transition-all duration-300 h-full"
                     spotlightColor={`${tipologia.color}20`}
                   >
                     <div
@@ -178,8 +178,8 @@ export default function GlampingPage() {
                     >
                       <Icon className="w-7 h-7" style={{ color: tipologia.color }} />
                     </div>
-                    <h3 className="text-lg font-semibold text-[#1E3D30] mb-2">{feature}</h3>
-                    <p className="text-[#6B6560] text-sm leading-relaxed">
+                    <h3 className="text-lg font-semibold text-[#1D1D1F] mb-2">{feature}</h3>
+                    <p className="text-[#86868B] text-sm leading-relaxed">
                       {featureDescriptions[feature] || ''}
                     </p>
                   </SpotlightCard>
@@ -190,19 +190,19 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#ffffff" variant="gradient" height={60} />
+      <SectionTransition from="#F5F5F7" to="#ffffff" variant="gradient" height={60} />
 
       {/* GALLERY */}
       <section className="py-28 lg:py-36 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Portfolio
             </span>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1E3D30] mt-3 mb-4">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1D1D1F] mt-3 mb-4">
               Galleria
             </h2>
-            <p className="text-[#6B6560] text-lg">Le nostre realizzazioni glamping</p>
+            <p className="text-[#86868B] text-lg">Le nostre realizzazioni glamping</p>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.15}>
@@ -211,15 +211,15 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#ffffff" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#ffffff" to="#1D1D1F" variant="angle" height={80} />
 
       {/* PROCESSO */}
-      <section className="relative py-28 lg:py-36 px-4 bg-[#1E3D30] overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#C4704B]/5 blur-[150px] pointer-events-none" />
+      <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#A0845C]/5 blur-[150px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Come lavoriamo
             </span>
             <h2 className="font-serif text-3xl md:text-5xl text-white mt-3 mb-4">
@@ -232,7 +232,7 @@ export default function GlampingPage() {
             {processSteps.map((item, i) => (
               <ScrollReveal key={item.step} delay={i * 0.1} direction="left">
                 <GlassCard intensity="light" className="flex gap-6 items-start !p-6">
-                  <span className="text-3xl font-bold text-[#C4704B] shrink-0 w-12">
+                  <span className="text-3xl font-bold text-[#A0845C] shrink-0 w-12">
                     {item.step}
                   </span>
                   <div className="flex-1">
@@ -246,10 +246,10 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#C4704B" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#A0845C" variant="wave" height={80} />
 
       {/* CTA */}
-      <section className="relative py-28 lg:py-36 px-4 bg-[#C4704B] overflow-hidden">
+      <section className="relative py-28 lg:py-36 px-4 bg-[#A0845C] overflow-hidden">
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-[150px] pointer-events-none"
           animate={{ scale: [1, 1.2, 1] }}
@@ -271,7 +271,7 @@ export default function GlampingPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1E3D30] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1D1D1F] font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
               >
                 Richiedi Preventivo
               </Link>

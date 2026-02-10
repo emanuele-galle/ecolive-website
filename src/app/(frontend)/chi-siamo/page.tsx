@@ -68,11 +68,11 @@ export default function ChiSiamoPage() {
     <main className="overflow-hidden">
 
       {/* HERO */}
-      <section className="relative bg-[#1E3D30] py-32 md:py-40 lg:py-48">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30] via-[#1E3D30] to-[#152922]" />
+      <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F] via-[#1D1D1F] to-[#141414]" />
         {/* Subtle decorative elements */}
-        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#C4704B]/30" />
-        <div className="absolute top-32 right-20 w-1.5 h-1.5 rounded-full bg-[#C4704B]/20" />
+        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#A0845C]/30" />
+        <div className="absolute top-32 right-20 w-1.5 h-1.5 rounded-full bg-[#A0845C]/20" />
         <div className="absolute bottom-24 left-1/4 w-1 h-1 rounded-full bg-white/10" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <BlurText
@@ -119,37 +119,37 @@ export default function ChiSiamoPage() {
       </section>
 
       {/* MARQUEE VALUES */}
-      <div className="bg-[#FAF7F2] py-5 border-b border-[#DDD5C9]/50">
+      <div className="bg-[#F5F5F7] py-5 border-b border-[#D2D2D7]/50">
         <InfiniteMarquee
           items={['Bioedilizia', 'Innovazione', 'Sostenibilita', 'Qualita', 'Tradizione', 'Made in Italy']}
           speed={25}
-          className="text-[#1E3D30]/60"
+          className="text-[#1D1D1F]/60"
         />
       </div>
 
       {/* LA NOSTRA STORIA */}
-      <section className="py-28 lg:py-36 px-6 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-6 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <ScrollReveal direction="left" duration={0.7}>
-            <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+            <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
               La Nostra Storia
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3 leading-tight">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
               Da Serra San Bruno al futuro della bioedilizia
             </h2>
             {/* Decorative separator */}
             <div className="mt-6 flex items-center gap-3">
-              <div className="w-12 h-0.5 bg-[#C4704B]" />
-              <div className="w-2 h-2 rounded-full bg-[#C4704B]/40" />
+              <div className="w-12 h-0.5 bg-[#A0845C]" />
+              <div className="w-2 h-2 rounded-full bg-[#A0845C]/40" />
             </div>
-            <div className="mt-6 space-y-4 text-[#6B6560] text-lg leading-relaxed">
+            <div className="mt-6 space-y-4 text-[#86868B] text-lg leading-relaxed">
               <p>
                 Ecolive nasce nel cuore della Calabria dalla visione di chi crede che
                 costruire in legno significhi costruire meglio. Da oltre 25 anni realizziamo
                 abitazioni che combinano tradizione artigianale e tecnologia all&apos;avanguardia.
               </p>
               <p>
-                Il nostro sistema brevettato <strong className="text-[#1E3D30]">X-Frame</strong> rappresenta
+                Il nostro sistema brevettato <strong className="text-[#1D1D1F]">X-Frame</strong> rappresenta
                 l&apos;evoluzione della bioedilizia italiana: case in classe energetica A4,
                 antisismiche, consegnate in 60 giorni.
               </p>
@@ -158,7 +158,7 @@ export default function ChiSiamoPage() {
 
           {/* Timeline compatta */}
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
-            <div className="relative pl-8 border-l-2 border-[#C4704B]/30 space-y-10">
+            <div className="relative pl-8 border-l-2 border-[#A0845C]/30 space-y-10">
               {milestones.map((m, i) => (
                 <ScrollReveal
                   key={m.year}
@@ -167,9 +167,9 @@ export default function ChiSiamoPage() {
                   distance={20}
                 >
                   <div className="relative">
-                    <div className="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-[#C4704B] ring-4 ring-[#FAF7F2]" />
-                    <span className="text-[#C4704B] font-bold text-lg">{m.year}</span>
-                    <p className="text-[#1E3D30] font-medium mt-0.5">{m.title}</p>
+                    <div className="absolute -left-[calc(2rem+7px)] top-1 w-3 h-3 rounded-full bg-[#A0845C] ring-4 ring-[#F5F5F7]" />
+                    <span className="text-[#A0845C] font-bold text-lg">{m.year}</span>
+                    <p className="text-[#1D1D1F] font-medium mt-0.5">{m.title}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -178,24 +178,24 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
 
       {/* IL TEAM */}
       <section className="py-28 lg:py-36 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
                 Le Persone
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
                 Il nostro team
               </h2>
               {/* Decorative separator centered */}
               <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#C4704B]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#C4704B]" />
-                <div className="w-8 h-0.5 bg-[#C4704B]/40" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
             </div>
           </ScrollReveal>
@@ -208,19 +208,19 @@ export default function ChiSiamoPage() {
                 direction="up"
               >
                 <div className="group">
-                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#FAF7F2] shadow-premium">
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F5F7] shadow-premium">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1E3D30]/60 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/60 via-transparent to-transparent" />
                   </div>
                   <div className="mt-5">
-                    <h3 className="text-xl font-bold text-[#1E3D30]">{member.name}</h3>
-                    <p className="text-[#C4704B] font-medium text-sm mt-0.5">{member.role}</p>
-                    <p className="text-[#6B6560] text-sm mt-2 leading-relaxed">{member.bio}</p>
+                    <h3 className="text-xl font-bold text-[#1D1D1F]">{member.name}</h3>
+                    <p className="text-[#A0845C] font-medium text-sm mt-0.5">{member.role}</p>
+                    <p className="text-[#86868B] text-sm mt-2 leading-relaxed">{member.bio}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -229,23 +229,23 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" variant="wave" height={80} />
 
       {/* I NOSTRI VALORI */}
-      <section className="py-28 lg:py-36 px-6 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-6 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
                 I Nostri Principi
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
                 Valori che ci guidano
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#C4704B]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#C4704B]" />
-                <div className="w-8 h-0.5 bg-[#C4704B]/40" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
             </div>
           </ScrollReveal>
@@ -259,12 +259,12 @@ export default function ChiSiamoPage() {
                   delay={i * 0.1}
                   direction="up"
                 >
-                  <SpotlightCard className="bg-white p-7 border border-[#DDD5C9] h-full gradient-sweep hover-lift">
-                    <div className="w-14 h-14 rounded-xl bg-[#1E3D30]/10 flex items-center justify-center mb-5">
-                      <Icon className="w-7 h-7 text-[#1E3D30]" />
+                  <SpotlightCard className="bg-white p-7 border border-[#D2D2D7] h-full gradient-sweep hover-lift">
+                    <div className="w-14 h-14 rounded-xl bg-[#1D1D1F]/10 flex items-center justify-center mb-5">
+                      <Icon className="w-7 h-7 text-[#1D1D1F]" />
                     </div>
-                    <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{value.title}</h3>
-                    <p className="text-[#6B6560] text-sm leading-relaxed">{value.description}</p>
+                    <h3 className="text-lg font-bold text-[#1D1D1F] mb-2">{value.title}</h3>
+                    <p className="text-[#86868B] text-sm leading-relaxed">{value.description}</p>
                   </SpotlightCard>
                 </ScrollReveal>
               )
@@ -273,10 +273,10 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#1E3D30" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="wave" height={80} />
 
       {/* CTA */}
-      <section className="py-28 lg:py-36 px-6 bg-[#1E3D30]">
+      <section className="py-28 lg:py-36 px-6 bg-[#1D1D1F]">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
@@ -289,7 +289,7 @@ export default function ChiSiamoPage() {
             <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-full hover:bg-[#A85A3A] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
               >
                 Prenota una visita
                 <ArrowRight className="w-5 h-5" />
@@ -304,7 +304,7 @@ export default function ChiSiamoPage() {
             </div>
 
             <div className="mt-12 flex items-center justify-center gap-2 text-white/50 text-sm">
-              <MapPin className="w-4 h-4 text-[#C4704B]" />
+              <MapPin className="w-4 h-4 text-[#A0845C]" />
               <span>Via Conte Ruggiero 128, Spadola (VV) — 0963 195 1395</span>
             </div>
           </ScrollReveal>

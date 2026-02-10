@@ -259,7 +259,7 @@ export default function GridFloor({
       <group position={[0, 0.05, offsetZ - 0.5]}>
         <mesh position={[0, 0, 0]}>
           <boxGeometry args={[cellsX * GRID_CELL_SIZE, 0.02, 0.02]} />
-          <meshBasicMaterial color="#6B6560" />
+          <meshBasicMaterial color="#86868B" />
         </mesh>
       </group>
     </group>

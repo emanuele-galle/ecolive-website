@@ -139,7 +139,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
               <div className="text-3xl font-bold text-[var(--color-primary)]">5-7</div>
               <div className="text-sm text-[var(--color-muted)]">giorni montaggio</div>
             </div>
-            <ArrowRight className="w-6 h-6 text-[#E8E0D5] hidden sm:block" />
+            <ArrowRight className="w-6 h-6 text-[#EDE6DB] hidden sm:block" />
             <div className="text-center p-4 bg-[var(--color-secondary-dark)]/10 rounded-xl flex-1 min-w-[120px]">
               <div className="text-3xl font-bold text-[var(--color-secondary-dark)]">30</div>
               <div className="text-sm text-[var(--color-muted)]">giorni chiavi in mano</div>
@@ -349,7 +349,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
 function FAQItemComponent({ faq, isOpen, onToggle, index }: { faq: FAQItem; isOpen: boolean; onToggle: () => void; index: number }) {
   return (
     <ScrollReveal delay={index * 0.08}>
-      <div className="bg-white rounded-2xl border border-[#E8E0D5] shadow-premium overflow-hidden hover:shadow-premium-lg transition-all duration-300">
+      <div className="bg-white rounded-2xl border border-[#EDE6DB] shadow-premium overflow-hidden hover:shadow-premium-lg transition-all duration-300">
         <button
           onClick={onToggle}
           className="w-full flex items-center gap-4 p-6 text-left hover:bg-[var(--color-surface)] transition-colors"
@@ -365,7 +365,7 @@ function FAQItemComponent({ faq, isOpen, onToggle, index }: { faq: FAQItem; isOp
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`transition-colors duration-300 ${isOpen ? 'text-[var(--color-primary)]' : 'text-[#E8E0D5]'}`}
+            className={`transition-colors duration-300 ${isOpen ? 'text-[var(--color-primary)]' : 'text-[#EDE6DB]'}`}
           >
             <ChevronDown className="w-5 h-5" />
           </motion.div>
@@ -427,10 +427,10 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <SectionTransition from="#2D5A47" to="#FAF7F2" variant="wave" height={60} />
+      <SectionTransition from="#48484A" to="#F5F5F7" variant="wave" height={60} />
 
       {/* ===== CATEGORY TABS ===== */}
-      <section className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-[#E8E0D5] shadow-premium">
+      <section className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-[#EDE6DB] shadow-premium">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
             {categories.map((cat) => {
@@ -446,7 +446,7 @@ export default function FAQPage() {
                   className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap ${
                     isActive
                       ? 'bg-[var(--color-secondary-dark)] text-white shadow-lg shadow-[var(--color-secondary-dark)]/20'
-                      : 'bg-[var(--color-surface)] text-[var(--color-muted)] hover:bg-[#E8E0D5] hover:text-[var(--color-secondary-dark)]'
+                      : 'bg-[var(--color-surface)] text-[var(--color-muted)] hover:bg-[#EDE6DB] hover:text-[var(--color-secondary-dark)]'
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-[var(--color-primary)]' : ''}`} />
@@ -484,7 +484,7 @@ export default function FAQPage() {
       </section>
 
       {/* Marquee */}
-      <div className="py-5 bg-white border-y border-[#E8E0D5]">
+      <div className="py-5 bg-white border-y border-[#EDE6DB]">
         <InfiniteMarquee
           items={marqueeItems}
           speed={20}
@@ -492,7 +492,7 @@ export default function FAQPage() {
         />
       </div>
 
-      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -548,7 +548,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#FFFFFF" variant="wave" height={60} />
+      <SectionTransition from="#1D1D1F" to="#FFFFFF" variant="wave" height={60} />
 
       {/* ===== BROCHURE ===== */}
       <section className="py-20 px-4 bg-white">

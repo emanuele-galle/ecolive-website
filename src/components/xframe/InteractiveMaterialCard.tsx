@@ -93,11 +93,11 @@ export function InteractiveMaterialCard({
       >
         {/* Icon */}
         <motion.div
-          className="w-14 h-14 rounded-xl bg-[#C4704B]/20 flex items-center justify-center mb-4"
+          className="w-14 h-14 rounded-xl bg-[#A0845C]/20 flex items-center justify-center mb-4"
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 400 }}
         >
-          <Icon className="w-7 h-7 text-[#C4704B]" />
+          <Icon className="w-7 h-7 text-[#A0845C]" />
         </motion.div>
 
         {/* Title */}
@@ -120,7 +120,7 @@ export function InteractiveMaterialCard({
 
       {/* ROI Timeline Overlay (shown on hover) */}
       <motion.div
-        className="absolute inset-0 z-20 p-6 md:p-8 flex flex-col bg-gradient-to-br from-[#C4704B]/90 to-[#1E3D30]/90 backdrop-blur-lg"
+        className="absolute inset-0 z-20 p-6 md:p-8 flex flex-col bg-gradient-to-br from-[#A0845C]/90 to-[#1D1D1F]/90 backdrop-blur-lg"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -170,7 +170,7 @@ export function InteractiveMaterialCard({
 
       {/* Glassmorphism border glow on hover */}
       <motion.div
-        className="absolute inset-0 rounded-2xl border-2 border-[#C4704B]/50 pointer-events-none"
+        className="absolute inset-0 rounded-2xl border-2 border-[#A0845C]/50 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}

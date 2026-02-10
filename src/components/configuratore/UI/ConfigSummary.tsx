@@ -95,7 +95,7 @@ export default function ConfigSummary({ compact = false }: ConfigSummaryProps) {
           className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#2D5A47]" />
+            <div className="w-2 h-2 rounded-full bg-[#48484A]" />
             <span className="font-medium text-gray-900">Riepilogo</span>
             <span className="text-sm text-gray-500">
               ({moduleCount} moduli)
@@ -170,7 +170,7 @@ export default function ConfigSummary({ compact = false }: ConfigSummaryProps) {
                                 ? '#B85C38'
                                 : totalSqm / maxSqm > 0.7
                                 ? '#D4A574'
-                                : '#2D5A47',
+                                : '#48484A',
                           }}
                         />
                       </div>
@@ -181,7 +181,7 @@ export default function ConfigSummary({ compact = false }: ConfigSummaryProps) {
                       {modulesByCategory.living.count > 0 && (
                         <CategoryRow
                           label="Zona Giorno"
-                          color="#2D5A47"
+                          color="#48484A"
                           count={modulesByCategory.living.count}
                           sqm={modulesByCategory.living.sqm}
                         />

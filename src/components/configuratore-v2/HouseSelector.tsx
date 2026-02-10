@@ -28,7 +28,7 @@ export default function HouseSelector() {
         {/* Divider */}
         <div className="w-px bg-white/20 relative z-10">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center z-20">
-            <span className="text-[#1E3D30] font-bold text-sm">VS</span>
+            <span className="text-[#1D1D1F] font-bold text-sm">VS</span>
           </div>
         </div>
         <HouseCard
@@ -75,7 +75,7 @@ function MobileHouseCard({
           alt={config.label}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E3D30]/95 via-[#1E3D30]/60 to-[#1E3D30]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/95 via-[#1D1D1F]/60 to-[#1D1D1F]/30" />
       </div>
 
       {/* Content */}
@@ -88,12 +88,12 @@ function MobileHouseCard({
               </div>
               <h2 className="text-2xl font-bold text-white">{config.label}</h2>
             </div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#C4704B]/90 rounded-full">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#A0845C]/90 rounded-full">
               <span className="text-white text-sm font-medium">Da {config.minSqm} mq</span>
             </div>
           </div>
           <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-            <ArrowRight className="w-6 h-6 text-[#1E3D30]" />
+            <ArrowRight className="w-6 h-6 text-[#1D1D1F]" />
           </div>
         </div>
       </div>

@@ -32,13 +32,13 @@ export default function NewsPageClient({
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-[#1E3D30] py-28 lg:py-36 px-4">
+      <section className="relative bg-[#1D1D1F] py-28 lg:py-36 px-4">
         {/* Subtle decorative elements */}
-        <div className="absolute top-16 right-20 w-2 h-2 rounded-full bg-[#C4704B]/25" />
+        <div className="absolute top-16 right-20 w-2 h-2 rounded-full bg-[#A0845C]/25" />
         <div className="absolute bottom-20 left-16 w-1.5 h-1.5 rounded-full bg-white/10" />
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <ScrollReveal>
-            <span className="inline-block px-4 py-2 mb-8 text-sm font-semibold text-[#C4704B] bg-white/10 rounded-full border border-[#C4704B]/30">
+            <span className="inline-block px-4 py-2 mb-8 text-sm font-semibold text-[#A0845C] bg-white/10 rounded-full border border-[#A0845C]/30">
               Blog & Approfondimenti
             </span>
           </ScrollReveal>
@@ -61,25 +61,25 @@ export default function NewsPageClient({
 
       {/* MARQUEE CATEGORIES */}
       {categoryNames.length > 0 && (
-        <div className="bg-white py-4 border-b border-[#DDD5C9]/50">
+        <div className="bg-white py-4 border-b border-[#D2D2D7]/50">
           <InfiniteMarquee
             items={categoryNames}
             speed={20}
-            className="text-[#1E3D30]/50"
+            className="text-[#1D1D1F]/50"
           />
         </div>
       )}
 
       {/* Filter Bar */}
-      <section className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-[#DDD5C9]/50">
+      <section className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-[#D2D2D7]/50">
         <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex flex-wrap gap-2 justify-center">
             <Link
               href="/news"
               className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                 !selectedTag
-                  ? 'bg-[#1E3D30] text-white shadow-md'
-                  : 'bg-[#FAF7F2] text-[#6B6560] hover:bg-[#1E3D30]/10 border border-[#DDD5C9]'
+                  ? 'bg-[#1D1D1F] text-white shadow-md'
+                  : 'bg-[#F5F5F7] text-[#86868B] hover:bg-[#1D1D1F]/10 border border-[#D2D2D7]'
               }`}
             >
               Tutti
@@ -90,8 +90,8 @@ export default function NewsPageClient({
                 href={`/news?tag=${value}`}
                 className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                   selectedTag === value
-                    ? 'bg-[#1E3D30] text-white shadow-md'
-                    : 'bg-[#FAF7F2] text-[#6B6560] hover:bg-[#1E3D30]/10 border border-[#DDD5C9]'
+                    ? 'bg-[#1D1D1F] text-white shadow-md'
+                    : 'bg-[#F5F5F7] text-[#86868B] hover:bg-[#1D1D1F]/10 border border-[#D2D2D7]'
                 }`}
               >
                 {label}
@@ -101,15 +101,15 @@ export default function NewsPageClient({
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#FAF7F2" variant="wave" height={60} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" variant="wave" height={60} />
 
       {/* Articles Section */}
-      <section className="py-20 lg:py-28 px-4 bg-[#FAF7F2]">
+      <section className="py-20 lg:py-28 px-4 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto">
           {articles.length === 0 ? (
             <ScrollReveal>
               <div className="text-center py-20">
-                <p className="text-xl text-[#6B6560]">
+                <p className="text-xl text-[#86868B]">
                   Nessun articolo trovato per questa categoria.
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default function NewsPageClient({
               {currentPage === 1 && regularArticles.length === 0 && articles.length === 1 && (
                 <ScrollReveal>
                   <div className="text-center py-12">
-                    <p className="text-[#6B6560]">Altri articoli in arrivo...</p>
+                    <p className="text-[#86868B]">Altri articoli in arrivo...</p>
                   </div>
                 </ScrollReveal>
               )}
@@ -156,7 +156,7 @@ export default function NewsPageClient({
                 {currentPage > 1 && (
                   <Link
                     href={`/news?${selectedTag ? `tag=${selectedTag}&` : ''}page=${currentPage - 1}`}
-                    className="flex items-center gap-1 px-5 py-2.5 rounded-xl bg-white text-[#1E3D30] font-medium hover:bg-[#1E3D30] hover:text-white transition-all duration-300 border border-[#DDD5C9] shadow-sm"
+                    className="flex items-center gap-1 px-5 py-2.5 rounded-xl bg-white text-[#1D1D1F] font-medium hover:bg-[#1D1D1F] hover:text-white transition-all duration-300 border border-[#D2D2D7] shadow-sm"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Precedente
@@ -170,8 +170,8 @@ export default function NewsPageClient({
                       href={`/news?${selectedTag ? `tag=${selectedTag}&` : ''}page=${page}`}
                       className={`w-10 h-10 flex items-center justify-center rounded-xl font-medium transition-all duration-300 ${
                         page === currentPage
-                          ? 'bg-[#1E3D30] text-white shadow-md'
-                          : 'bg-white text-[#6B6560] hover:bg-[#1E3D30]/10 border border-[#DDD5C9]'
+                          ? 'bg-[#1D1D1F] text-white shadow-md'
+                          : 'bg-white text-[#86868B] hover:bg-[#1D1D1F]/10 border border-[#D2D2D7]'
                       }`}
                     >
                       {page}
@@ -182,7 +182,7 @@ export default function NewsPageClient({
                 {currentPage < totalPages && (
                   <Link
                     href={`/news?${selectedTag ? `tag=${selectedTag}&` : ''}page=${currentPage + 1}`}
-                    className="flex items-center gap-1 px-5 py-2.5 rounded-xl bg-white text-[#1E3D30] font-medium hover:bg-[#1E3D30] hover:text-white transition-all duration-300 border border-[#DDD5C9] shadow-sm"
+                    className="flex items-center gap-1 px-5 py-2.5 rounded-xl bg-white text-[#1D1D1F] font-medium hover:bg-[#1D1D1F] hover:text-white transition-all duration-300 border border-[#D2D2D7] shadow-sm"
                   >
                     Successivo
                     <ChevronRight className="w-4 h-4" />

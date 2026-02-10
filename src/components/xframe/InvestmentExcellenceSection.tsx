@@ -63,7 +63,7 @@ export default function InvestmentExcellenceSection() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 lg:py-32 px-4 bg-gradient-to-b from-[#1E3D30] via-[#152822] to-[#0a1628] overflow-hidden"
+      className="relative py-24 lg:py-32 px-4 bg-gradient-to-b from-[#1D1D1F] via-[#152822] to-[#0a1628] overflow-hidden"
     >
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 opacity-20">
@@ -83,7 +83,7 @@ export default function InvestmentExcellenceSection() {
 
       {/* Animated Glow Orbs */}
       <motion.div
-        className="absolute top-[10%] right-[8%] w-[400px] h-[400px] bg-gradient-to-br from-[#C4704B]/20 to-[#C4704B]/5 rounded-full blur-[120px]"
+        className="absolute top-[10%] right-[8%] w-[400px] h-[400px] bg-gradient-to-br from-[#A0845C]/20 to-[#A0845C]/5 rounded-full blur-[120px]"
         animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -107,7 +107,7 @@ export default function InvestmentExcellenceSection() {
             whileHover={{ scale: 1.02, borderColor: "rgba(196, 112, 75, 0.3)" }}
           >
             <motion.span
-              className="w-2.5 h-2.5 bg-[#C4704B] rounded-full"
+              className="w-2.5 h-2.5 bg-[#A0845C] rounded-full"
               animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
@@ -118,7 +118,7 @@ export default function InvestmentExcellenceSection() {
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Perché Usiamo{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] via-[#E8956B] to-[#D4896A]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B89B74] via-[#E8956B] to-[#B89B74]">
               Materiali Migliori
             </span>
           </h2>
@@ -130,9 +130,9 @@ export default function InvestmentExcellenceSection() {
           <p className="text-white/60 text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
             Le grandi aziende usano materiali economici per abbassare i prezzi.
             Noi usiamo{" "}
-            <span className="text-[#C4704B] font-medium">materiali migliori</span>.
+            <span className="text-[#A0845C] font-medium">materiali migliori</span>.
             Costano di più all'inizio, ma{" "}
-            <span className="text-[#C4704B] font-medium">ti fanno risparmiare</span> negli anni.
+            <span className="text-[#A0845C] font-medium">ti fanno risparmiare</span> negli anni.
           </p>
         </motion.div>
 
@@ -146,7 +146,7 @@ export default function InvestmentExcellenceSection() {
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Passa il Mouse per Vedere i Guadagni
           </h3>
-          <div className="h-px w-32 bg-gradient-to-r from-transparent via-[#C4704B] to-transparent mx-auto" />
+          <div className="h-px w-32 bg-gradient-to-r from-transparent via-[#A0845C] to-transparent mx-auto" />
         </motion.div>
 
         {/* Materials Cards Grid (2x2) */}
@@ -169,12 +169,12 @@ export default function InvestmentExcellenceSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7 }}
-          className="relative bg-gradient-to-br from-[#2D5A47]/30 to-[#1E3D30]/50 rounded-3xl p-8 lg:p-12 border border-white/10"
+          className="relative bg-gradient-to-br from-[#48484A]/30 to-[#1D1D1F]/50 rounded-3xl p-8 lg:p-12 border border-white/10"
         >
           <div className="flex flex-col lg:flex-row items-center gap-8">
             {/* Icon */}
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#C4704B] to-[#a85a3a] flex items-center justify-center shadow-xl shadow-[#C4704B]/30">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#A0845C] to-[#a85a3a] flex items-center justify-center shadow-xl shadow-[#A0845C]/30">
                 <svg
                   className="w-10 h-10 text-white"
                   fill="none"
@@ -204,7 +204,7 @@ export default function InvestmentExcellenceSection() {
               </h4>
               <p className="text-white/60 leading-relaxed mb-4">
                 Usiamo{" "}
-                <span className="text-[#C4704B] font-medium">
+                <span className="text-[#A0845C] font-medium">
                   viti in acciaio resistente
                 </span>
                 , avvitate una per una con calma. Le grandi aziende usano chiodi sparati

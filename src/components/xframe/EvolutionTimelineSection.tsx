@@ -27,7 +27,7 @@ const technologies = [
       "Solidità strutturale",
       "Durabilità nel tempo"
     ],
-    color: "#C4704B"
+    color: "#A0845C"
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const technologies = [
       "Estetica tradizionale",
       "Grandi campate"
     ],
-    color: "#2D5A47"
+    color: "#48484A"
   }
 ]
 
@@ -50,7 +50,7 @@ export default function EvolutionTimelineSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 lg:py-32 px-4 bg-gradient-to-b from-[#1E3D30] via-[#1a3329] to-[#152822] overflow-hidden"
+      className="relative py-24 lg:py-32 px-4 bg-gradient-to-b from-[#1D1D1F] via-[#1a3329] to-[#152822] overflow-hidden"
     >
       {/* Grid Background */}
       <div
@@ -66,7 +66,7 @@ export default function EvolutionTimelineSection() {
 
       {/* Animated Glow Orbs */}
       <motion.div
-        className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#C4704B]/20 rounded-full blur-[150px]"
+        className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#A0845C]/20 rounded-full blur-[150px]"
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -84,7 +84,7 @@ export default function EvolutionTimelineSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             className="inline-flex items-center gap-2 px-5 py-2.5 mb-8 bg-white/5 backdrop-blur-md rounded-full border border-white/10"
           >
-            <span className="w-2 h-2 bg-[#C4704B] rounded-full animate-pulse" />
+            <span className="w-2 h-2 bg-[#A0845C] rounded-full animate-pulse" />
             <span className="text-white/80 text-sm font-medium tracking-wide">
               L'Evoluzione dei Sistemi in Legno
             </span>
@@ -98,11 +98,11 @@ export default function EvolutionTimelineSection() {
           >
             Come Nasce{" "}
             <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4704B] via-[#e08860] to-[#C4704B]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A0845C] via-[#e08860] to-[#A0845C]">
                 X-Frame
               </span>
               <motion.span
-                className="absolute -inset-2 bg-[#C4704B]/20 blur-2xl rounded-full -z-10"
+                className="absolute -inset-2 bg-[#A0845C]/20 blur-2xl rounded-full -z-10"
                 animate={{ opacity: [0.5, 0.8, 0.5] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
@@ -191,7 +191,7 @@ export default function EvolutionTimelineSection() {
                     animate={{ y: [0, 5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <ChevronDown className="w-6 h-6 text-[#C4704B]/50" />
+                    <ChevronDown className="w-6 h-6 text-[#A0845C]/50" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -213,19 +213,19 @@ export default function EvolutionTimelineSection() {
           >
             <div className="flex gap-2 mb-2">
               <motion.div
-                className="w-20 h-0.5 bg-gradient-to-r from-[#4a9eff] to-[#C4704B]"
+                className="w-20 h-0.5 bg-gradient-to-r from-[#4a9eff] to-[#A0845C]"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : {}}
                 transition={{ delay: 1, duration: 0.8 }}
               />
               <motion.div
-                className="w-20 h-0.5 bg-gradient-to-r from-[#C4704B] to-[#2D5A47]"
+                className="w-20 h-0.5 bg-gradient-to-r from-[#A0845C] to-[#48484A]"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : {}}
                 transition={{ delay: 1.2, duration: 0.8 }}
               />
             </div>
-            <svg className="w-12 h-12 text-[#C4704B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-12 h-12 text-[#A0845C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
             <span className="text-white/40 text-xs mt-2 tracking-wider uppercase">Convergono in</span>
@@ -240,13 +240,13 @@ export default function EvolutionTimelineSection() {
           className="relative"
         >
           {/* Outer glow */}
-          <div className="absolute -inset-4 bg-gradient-to-br from-[#C4704B]/30 via-[#C4704B]/20 to-transparent rounded-3xl blur-3xl" />
+          <div className="absolute -inset-4 bg-gradient-to-br from-[#A0845C]/30 via-[#A0845C]/20 to-transparent rounded-3xl blur-3xl" />
 
-          <div className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.04] backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-[#C4704B]/40 shadow-2xl">
+          <div className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.04] backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-[#A0845C]/40 shadow-2xl">
             {/* Badge top */}
             <div className="flex justify-center mb-8">
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-[#C4704B]/20 rounded-full border border-[#C4704B]/40">
-                <Zap className="w-5 h-5 text-[#C4704B]" />
+              <div className="inline-flex items-center gap-3 px-6 py-3 bg-[#A0845C]/20 rounded-full border border-[#A0845C]/40">
+                <Zap className="w-5 h-5 text-[#A0845C]" />
                 <span className="text-white font-semibold tracking-wide">
                   Sistema Brevettato
                 </span>
@@ -255,7 +255,7 @@ export default function EvolutionTimelineSection() {
 
             {/* Title */}
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C4704B] via-[#e08860] to-[#C4704B]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A0845C] via-[#e08860] to-[#A0845C]">
                 X-FRAME 3IN1
               </span>
             </h3>
@@ -269,9 +269,9 @@ export default function EvolutionTimelineSection() {
             <div className="grid md:grid-cols-2 gap-4 mb-8">
               {[
                 { icon: Layers, text: "Velocità del Platform Frame", color: "#4a9eff" },
-                { icon: Shield, text: "Solidità dell'X-Lam", color: "#C4704B" },
-                { icon: Columns3, text: "Flessibilità del Post & Beam", color: "#2D5A47" },
-                { icon: Zap, text: "+ Brevetto Ecolive", color: "#C4704B" },
+                { icon: Shield, text: "Solidità dell'X-Lam", color: "#A0845C" },
+                { icon: Columns3, text: "Flessibilità del Post & Beam", color: "#48484A" },
+                { icon: Zap, text: "+ Brevetto Ecolive", color: "#A0845C" },
               ].map((benefit, index) => {
                 const BenefitIcon = benefit.icon
                 return (
@@ -310,7 +310,7 @@ export default function EvolutionTimelineSection() {
                   transition={{ delay: 1.6 + index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-[#C4704B] mb-1">
+                  <div className="text-3xl md:text-4xl font-bold text-[#A0845C] mb-1">
                     {stat.value}
                   </div>
                   <div className="text-white/60 text-sm">{stat.label}</div>

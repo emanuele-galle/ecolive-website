@@ -48,14 +48,14 @@ export default function RoomSelector() {
               priority
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1E3D30]/80 via-[#1E3D30]/40 to-transparent lg:bg-gradient-to-t lg:from-[#1E3D30]/60 lg:via-transparent lg:to-[#1E3D30]/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1D1D1F]/80 via-[#1D1D1F]/40 to-transparent lg:bg-gradient-to-t lg:from-[#1D1D1F]/60 lg:via-transparent lg:to-[#1D1D1F]/30" />
           </motion.div>
         </AnimatePresence>
 
         {/* Back button (desktop only - in image area) - top-28 per evitare conflitto con Header */}
         <motion.button
           onClick={goBack}
-          className="hidden lg:flex absolute top-28 left-8 items-center gap-2 px-5 py-2.5 bg-white text-[#1E3D30] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
+          className="hidden lg:flex absolute top-28 left-8 items-center gap-2 px-5 py-2.5 bg-white text-[#1D1D1F] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
@@ -93,7 +93,7 @@ export default function RoomSelector() {
           {/* Mobile back button */}
           <button
             onClick={goBack}
-            className="lg:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 text-[#1E3D30] rounded-full hover:bg-gray-200 mb-4 transition-colors"
+            className="lg:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 text-[#1D1D1F] rounded-full hover:bg-gray-200 mb-4 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm font-semibold">Indietro</span>
@@ -101,16 +101,16 @@ export default function RoomSelector() {
 
           {/* Mobile house type */}
           <div className="lg:hidden flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#1E3D30]/10 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-[#1E3D30]" />
+            <div className="w-10 h-10 rounded-xl bg-[#1D1D1F]/10 flex items-center justify-center">
+              <Icon className="w-5 h-5 text-[#1D1D1F]" />
             </div>
             <div>
-              <p className="font-semibold text-[#1E3D30]">{houseConfig.label}</p>
+              <p className="font-semibold text-[#1D1D1F]">{houseConfig.label}</p>
               <p className="text-gray-500 text-sm">Da {houseConfig.minSqm} mq</p>
             </div>
           </div>
 
-          <h2 className="text-2xl lg:text-3xl font-bold text-[#1E3D30]">
+          <h2 className="text-2xl lg:text-3xl font-bold text-[#1D1D1F]">
             Quante camere da letto?
           </h2>
           <p className="text-gray-500 mt-2">
@@ -146,7 +146,7 @@ export default function RoomSelector() {
               w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300
               ${
                 selectedRooms
-                  ? 'bg-[#C4704B] text-white shadow-lg shadow-[#C4704B]/30 hover:bg-[#B35F3A]'
+                  ? 'bg-[#A0845C] text-white shadow-lg shadow-[#A0845C]/30 hover:bg-[#B35F3A]'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }
             `}

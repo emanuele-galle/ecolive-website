@@ -105,7 +105,7 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
         </div>
 
         {/* Glow effects */}
-        <div className="absolute top-1/3 -left-20 w-96 h-96 bg-[#C4704B]/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-20 w-96 h-96 bg-[#A0845C]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 -right-20 w-96 h-96 bg-[#4a9eff]/10 rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -116,15 +116,15 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9 }}
           >
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#C4704B]/10 rounded-full border border-[#C4704B]/20 mb-6">
-              <Camera className="w-4 h-4 text-[#C4704B]" />
-              <span className="text-[#C4704B] text-sm font-medium tracking-wider uppercase">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#A0845C]/10 rounded-full border border-[#A0845C]/20 mb-6">
+              <Camera className="w-4 h-4 text-[#A0845C]" />
+              <span className="text-[#A0845C] text-sm font-medium tracking-wider uppercase">
                 Visualizzazione Dettagliata
               </span>
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Render <span className="text-[#C4704B]">Architettonici</span>
+              Render <span className="text-[#A0845C]">Architettonici</span>
             </h2>
 
             <p className="text-[#6b8e9f] text-lg max-w-2xl mx-auto">
@@ -151,7 +151,7 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
                       px-5 py-3 rounded-xl font-medium text-sm transition-all duration-300
                       flex items-center gap-2
                       ${activeCategory === cat
-                        ? 'bg-[#C4704B] text-white shadow-lg shadow-[#C4704B]/30'
+                        ? 'bg-[#A0845C] text-white shadow-lg shadow-[#A0845C]/30'
                         : 'text-[#6b8e9f] hover:text-white hover:bg-[#1a3a5c]/50'}
                     `}
                     whileHover={{ scale: 1.02 }}
@@ -195,9 +195,9 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
                     onClick={() => openLightbox(index)}
                   >
                     {/* Glow effect on hover */}
-                    <div className="absolute -inset-2 bg-[#C4704B]/0 group-hover:bg-[#C4704B]/20 rounded-3xl blur-2xl transition-all duration-500 -z-10" />
+                    <div className="absolute -inset-2 bg-[#A0845C]/0 group-hover:bg-[#A0845C]/20 rounded-3xl blur-2xl transition-all duration-500 -z-10" />
 
-                    <div className="relative w-full h-full bg-[#0f2040]/50 border border-white/10 group-hover:border-[#C4704B]/40 transition-all duration-300 overflow-hidden">
+                    <div className="relative w-full h-full bg-[#0f2040]/50 border border-white/10 group-hover:border-[#A0845C]/40 transition-all duration-300 overflow-hidden">
                       <Image
                         src={img.src}
                         alt={img.alt}
@@ -241,7 +241,7 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.3 + index * 0.05 }}
                         >
-                          <span className="text-[#C4704B] text-xs font-medium tracking-wide uppercase">
+                          <span className="text-[#A0845C] text-xs font-medium tracking-wide uppercase">
                             Clicca per espandere
                           </span>
                           <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -278,8 +278,8 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
                   </span>
                 </div>
                 {/* Category badge */}
-                <div className="px-4 py-2 bg-[#C4704B]/20 backdrop-blur-md rounded-full border border-[#C4704B]/30">
-                  <span className="text-[#C4704B] text-sm font-medium">
+                <div className="px-4 py-2 bg-[#A0845C]/20 backdrop-blur-md rounded-full border border-[#A0845C]/30">
+                  <span className="text-[#A0845C] text-sm font-medium">
                     {images[lightboxIndex].category}
                   </span>
                 </div>

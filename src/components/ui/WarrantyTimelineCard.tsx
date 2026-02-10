@@ -19,7 +19,7 @@ export default function WarrantyTimelineCard({ milestones }: WarrantyTimelineCar
   const isInView = useInView(ref, { once: false, margin: "-100px" })
 
   return (
-    <div ref={ref} className="bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] rounded-3xl p-8 text-white">
+    <div ref={ref} className="bg-gradient-to-br from-[#1D1D1F] to-[#48484A] rounded-3xl p-8 text-white">
       {/* Header centrato */}
       <motion.div
         className="text-center mb-8"
@@ -38,7 +38,7 @@ export default function WarrantyTimelineCard({ milestones }: WarrantyTimelineCar
 
         {/* Animated progress line (scroll-triggered) */}
         <motion.div
-          className="absolute top-0 left-0 h-1 bg-gradient-to-r from-[#C4704B] to-[#E8956B] rounded-full"
+          className="absolute top-0 left-0 h-1 bg-gradient-to-r from-[#A0845C] to-[#E8956B] rounded-full"
           initial={{ width: '0%' }}
           animate={isInView ? { width: '100%' } : { width: '0%' }}
           transition={{ duration: 2, ease: 'easeOut', delay: 0.3 }}
@@ -58,7 +58,7 @@ export default function WarrantyTimelineCard({ milestones }: WarrantyTimelineCar
               <div className="relative mb-3">
                 {/* Pulsing ring effect */}
                 <motion.div
-                  className="absolute inset-0 w-6 h-6 rounded-full border-2 border-[#C4704B]"
+                  className="absolute inset-0 w-6 h-6 rounded-full border-2 border-[#A0845C]"
                   animate={{
                     scale: [1, 1.8, 1],
                     opacity: [0.5, 0, 0.5]
@@ -72,14 +72,14 @@ export default function WarrantyTimelineCard({ milestones }: WarrantyTimelineCar
 
                 {/* Main dot */}
                 <motion.div
-                  className="relative w-6 h-6 rounded-full bg-[#C4704B] border-4 border-[#1E3D30] shadow-lg shadow-[#C4704B]/30"
+                  className="relative w-6 h-6 rounded-full bg-[#A0845C] border-4 border-[#1D1D1F] shadow-lg shadow-[#A0845C]/30"
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ delay: 0.5 + idx * 0.2, type: "spring", stiffness: 200 }}
                 />
 
                 {/* Particle glow effect */}
-                <div className="absolute inset-0 w-6 h-6 rounded-full bg-[#C4704B]/20 blur-xl" />
+                <div className="absolute inset-0 w-6 h-6 rounded-full bg-[#A0845C]/20 blur-xl" />
               </div>
 
               {/* Label and status */}

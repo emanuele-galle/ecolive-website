@@ -58,7 +58,7 @@ export default function CustomCursor() {
               height: dotSize,
               translateX: '-50%',
               translateY: '-50%',
-              backgroundColor: '#2D5A47', // Verde scuro hardcoded
+              backgroundColor: '#48484A', // Verde scuro hardcoded
               boxShadow: '0 0 6px rgba(45, 90, 71, 0.5)',
             }}
           />
@@ -73,7 +73,7 @@ export default function CustomCursor() {
               height: ringSize,
               translateX: '-50%',
               translateY: '-50%',
-              border: '2px solid #C4704B', // Terracotta hardcoded
+              border: '2px solid #A0845C', // Terracotta hardcoded
               opacity: variant === 'pointer' ? 0.9 : 0.6,
             }}
           />

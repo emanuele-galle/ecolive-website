@@ -57,7 +57,7 @@ export default function HeroImmersive() {
       />
       {/* Additional floating shape */}
       <motion.div
-        className="absolute top-1/2 left-1/4 w-48 h-48 bg-[#40916c]/8 rounded-full blur-2xl"
+        className="absolute top-1/2 left-1/4 w-48 h-48 bg-[#6B8F71]/8 rounded-full blur-2xl"
         style={{ x: floatingFast.x, y: floatingFast.y }}
       />
 
@@ -161,8 +161,8 @@ export default function HeroImmersive() {
             transition={{ duration: 1.2, delay: 1.2 }}
           >
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#40916c]/10 rounded-xl flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-[#40916c]" />
+              <div className="w-12 h-12 bg-[#6B8F71]/10 rounded-xl flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-[#6B8F71]" />
               </div>
               <div>
                 <div className="font-semibold text-[#0a2540]">100% Ecosostenibile</div>

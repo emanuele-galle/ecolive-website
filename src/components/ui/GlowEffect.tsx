@@ -13,8 +13,8 @@ interface GlowEffectProps {
 
 export default function GlowEffect({
   children,
-  color = '#1E3D30',
-  secondaryColor = '#C4704B',
+  color = '#1D1D1F',
+  secondaryColor = '#A0845C',
   className = '',
   intensity = 'medium'
 }: GlowEffectProps) {
@@ -129,8 +129,8 @@ export function ShimmerButton({
         px-8 py-4 rounded-2xl font-semibold
         overflow-hidden
         ${isPrimary
-          ? 'bg-[#1E3D30] text-white'
-          : 'bg-transparent text-[#1E3D30] border-2 border-[#1E3D30]'
+          ? 'bg-[#1D1D1F] text-white'
+          : 'bg-transparent text-[#1D1D1F] border-2 border-[#1D1D1F]'
         }
         ${className}
       `}
@@ -177,7 +177,7 @@ interface AnimatedGridBackgroundProps {
 }
 
 export function AnimatedGridBackground({
-  color = '#1E3D30',
+  color = '#1D1D1F',
   className = ''
 }: AnimatedGridBackgroundProps) {
   return (

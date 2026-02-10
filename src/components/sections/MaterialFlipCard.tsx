@@ -52,36 +52,36 @@ export default function MaterialFlipCard({ material, index }: MaterialFlipCardPr
           className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <div className="h-full bg-white border border-[#E5E0D8] shadow-lg">
+          <div className="h-full bg-white border border-[#D2D2D7] shadow-lg">
             {/* Header */}
-            <div className="p-5 sm:p-6 border-b border-[#E5E0D8]/50 bg-gradient-to-br from-[#1E3D30]/5 to-transparent">
+            <div className="p-5 sm:p-6 border-b border-[#D2D2D7]/50 bg-gradient-to-br from-[#1D1D1F]/5 to-transparent">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] flex items-center justify-center text-white flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D1D1F] to-[#48484A] flex items-center justify-center text-white flex-shrink-0">
                   {material.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-bold text-[#1E3D30]">{material.component}</h3>
-                  <p className="text-sm text-[#8A857F]">Tocca per vedere i Guadagni</p>
+                  <h3 className="text-lg font-bold text-[#1D1D1F]">{material.component}</h3>
+                  <p className="text-sm text-[#AEAEB2]">Tocca per vedere i Guadagni</p>
                 </div>
-                <div className="px-3 py-1 bg-[#C4704B]/10 rounded-full">
-                  <span className="text-[#C4704B] font-bold text-sm">{material.costMultiplier}</span>
+                <div className="px-3 py-1 bg-[#A0845C]/10 rounded-full">
+                  <span className="text-[#A0845C] font-bold text-sm">{material.costMultiplier}</span>
                 </div>
               </div>
             </div>
 
             {/* Comparison grid */}
-            <div className="grid grid-cols-2 divide-x divide-[#E5E0D8]/50 h-[calc(100%-88px)]">
+            <div className="grid grid-cols-2 divide-x divide-[#D2D2D7]/50 h-[calc(100%-88px)]">
               {/* Ecolive side */}
-              <div className="p-4 sm:p-5 bg-gradient-to-br from-[#1E3D30]/5 to-transparent">
+              <div className="p-4 sm:p-5 bg-gradient-to-br from-[#1D1D1F]/5 to-transparent">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="px-2 py-0.5 bg-[#1E3D30] text-white text-xs font-semibold rounded">ECOLIVE</span>
+                  <span className="px-2 py-0.5 bg-[#1D1D1F] text-white text-xs font-semibold rounded">ECOLIVE</span>
                 </div>
-                <p className="font-semibold text-[#1E3D30] text-sm sm:text-base mb-4">{material.ecolive.name}</p>
+                <p className="font-semibold text-[#1D1D1F] text-sm sm:text-base mb-4">{material.ecolive.name}</p>
 
                 <ul className="space-y-3">
                   {material.ecolive.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#4A4540]">
-                      <Check className="w-4 h-4 text-[#2D5A47] flex-shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-[#48484A] flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -91,14 +91,14 @@ export default function MaterialFlipCard({ material, index }: MaterialFlipCardPr
               {/* Standard side */}
               <div className="p-4 sm:p-5 bg-[#F8F6F3]">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="px-2 py-0.5 bg-[#8A857F] text-white text-xs font-semibold rounded">STANDARD</span>
+                  <span className="px-2 py-0.5 bg-[#AEAEB2] text-white text-xs font-semibold rounded">STANDARD</span>
                 </div>
-                <p className="font-semibold text-[#6B6560] text-sm sm:text-base mb-4">{material.standard.name}</p>
+                <p className="font-semibold text-[#86868B] text-sm sm:text-base mb-4">{material.standard.name}</p>
 
                 <ul className="space-y-3">
                   {material.standard.issues.map((issue, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#8A857F]">
-                      <X className="w-4 h-4 text-[#C4704B]/70 flex-shrink-0 mt-0.5" />
+                    <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#AEAEB2]">
+                      <X className="w-4 h-4 text-[#A0845C]/70 flex-shrink-0 mt-0.5" />
                       <span>{issue}</span>
                     </li>
                   ))}
@@ -116,7 +116,7 @@ export default function MaterialFlipCard({ material, index }: MaterialFlipCardPr
             transform: "rotateY(180deg)"
           }}
         >
-          <div className="h-full bg-gradient-to-br from-[#C4704B] to-[#A85A3A] p-6 sm:p-8 flex flex-col">
+          <div className="h-full bg-gradient-to-br from-[#A0845C] to-[#856B45] p-6 sm:p-8 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-white" />

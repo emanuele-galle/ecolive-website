@@ -127,7 +127,7 @@ export default function AreaTecnicaPage() {
       </section>
 
       {/* ===== MARQUEE ===== */}
-      <div className="py-5 bg-[var(--color-surface)] border-y border-[#E8E0D5]">
+      <div className="py-5 bg-[var(--color-surface)] border-y border-[#EDE6DB]">
         <InfiniteMarquee
           items={marqueeItems}
           speed={25}
@@ -154,7 +154,7 @@ export default function AreaTecnicaPage() {
               const Icon = cert.icon
               return (
                 <ScrollReveal key={cert.name} delay={i * 0.1}>
-                  <SpotlightCard className="bg-white border border-[#E8E0D5] h-full">
+                  <SpotlightCard className="bg-white border border-[#EDE6DB] h-full">
                     <div className="p-8">
                       <div className="flex items-start gap-4 mb-5">
                         <div className="w-12 h-12 bg-[var(--color-secondary-dark)]/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -197,7 +197,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
 
       {/* ===== PRESTAZIONI ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -218,7 +218,7 @@ export default function AreaTecnicaPage() {
               const Icon = perf.icon
               return (
                 <ScrollReveal key={perf.name} delay={i * 0.1}>
-                  <SpotlightCard className="bg-[var(--color-surface)] border border-[#E8E0D5] h-full">
+                  <SpotlightCard className="bg-[var(--color-surface)] border border-[#EDE6DB] h-full">
                     <div className="p-8">
                       <div className="flex items-center gap-4">
                         <div className="w-14 h-14 bg-[var(--color-secondary-dark)]/10 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -248,7 +248,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== CONFRONTO ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -292,7 +292,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* ===== NUMERI IN SINTESI ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-surface)]">
@@ -308,7 +308,7 @@ export default function AreaTecnicaPage() {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             {summaryStats.map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.08}>
-                <SpotlightCard className="bg-white border border-[#E8E0D5] h-full">
+                <SpotlightCard className="bg-white border border-[#EDE6DB] h-full">
                   <div className="p-6 text-center">
                     <div className="flex items-baseline justify-center gap-1.5">
                       <span className="text-3xl md:text-4xl font-bold text-[var(--color-secondary-dark)]">
@@ -329,7 +329,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">

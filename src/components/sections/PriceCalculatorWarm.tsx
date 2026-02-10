@@ -216,7 +216,7 @@ function RoomSelector({
   return (
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-2">
-        <Icon className="w-4 h-4 text-[#C4704B]" />
+        <Icon className="w-4 h-4 text-[#A0845C]" />
         <span className="text-white/80 text-sm font-medium">{label}</span>
       </div>
       <div className="flex items-center gap-1">
@@ -377,9 +377,9 @@ export default function PriceCalculatorWarm() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="font-inter text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2825] mb-4">
-            Calcola il Tuo <span className="text-[#C4704B]">Investimento</span>
+            Calcola il Tuo <span className="text-[#A0845C]">Investimento</span>
           </h2>
-          <p className="text-[#6B6560] text-lg max-w-xl mx-auto">
+          <p className="text-[#86868B] text-lg max-w-xl mx-auto">
             Usa lo slider o seleziona le stanze per calcolare il preventivo
           </p>
         </motion.div>
@@ -393,7 +393,7 @@ export default function PriceCalculatorWarm() {
         >
           <div className="relative rounded-3xl overflow-hidden">
             {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1E3D30] via-[#2D5A47] to-[#1E3D30]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1D1D1F] via-[#48484A] to-[#1D1D1F]" />
 
             {/* Dot pattern */}
             <div
@@ -405,8 +405,8 @@ export default function PriceCalculatorWarm() {
             />
 
             {/* Glow effects */}
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#C4704B]/30 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[#C4704B]/20 rounded-full blur-3xl" />
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#A0845C]/30 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
             {/* Content Grid */}
             <div className="relative z-10 p-6 md:p-10">
@@ -425,7 +425,7 @@ export default function PriceCalculatorWarm() {
                     onClick={() => setSyncEnabled(!syncEnabled)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                       syncEnabled
-                        ? 'bg-[#C4704B]/20 text-[#C4704B] border border-[#C4704B]/30'
+                        ? 'bg-[#A0845C]/20 text-[#A0845C] border border-[#A0845C]/30'
                         : 'bg-white/10 text-white/60 border border-white/20'
                     }`}
                     title={syncEnabled ? 'Sincronizzazione attiva - clicca per scollegare' : 'Sincronizzazione disattivata - clicca per ricollegare'}
@@ -456,7 +456,7 @@ export default function PriceCalculatorWarm() {
                       animate={{ opacity: 1, scale: 1 }}
                       className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full"
                     >
-                      <SizeIcon className="w-4 h-4 text-[#C4704B]" />
+                      <SizeIcon className="w-4 h-4 text-[#A0845C]" />
                       <span className="text-white/90 text-sm font-medium">{sizeInfo.label}</span>
                     </motion.div>
                   </div>
@@ -493,7 +493,7 @@ export default function PriceCalculatorWarm() {
                     >
                       <div className={`px-3 py-1.5 rounded-lg text-sm font-bold transition-all duration-200 ${
                         isDragging
-                          ? 'bg-white text-[#1E3D30] shadow-lg'
+                          ? 'bg-white text-[#1D1D1F] shadow-lg'
                           : 'bg-white/15 text-white backdrop-blur-sm'
                       }`}>
                         {squareMeters} mq
@@ -511,7 +511,7 @@ export default function PriceCalculatorWarm() {
                         <motion.div
                           className="absolute inset-y-0 left-0 rounded-full"
                           style={{
-                            background: 'linear-gradient(90deg, #C4704B 0%, #E8956B 50%, #F5C4A1 100%)',
+                            background: 'linear-gradient(90deg, #A0845C 0%, #E8956B 50%, #F5C4A1 100%)',
                             width: `${progressPercent}%`
                           }}
                           animate={{ width: `${progressPercent}%` }}
@@ -578,11 +578,11 @@ export default function PriceCalculatorWarm() {
                           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                         >
                           {/* Border Ring */}
-                          <div className="absolute inset-0 rounded-full border-[3px] border-[#C4704B]" />
+                          <div className="absolute inset-0 rounded-full border-[3px] border-[#A0845C]" />
 
                           {/* Inner Dot */}
                           <motion.div
-                            className="absolute inset-[7px] rounded-full bg-gradient-to-br from-[#C4704B] to-[#E8956B]"
+                            className="absolute inset-[7px] rounded-full bg-gradient-to-br from-[#A0845C] to-[#E8956B]"
                             animate={{ scale: isDragging ? [1, 1.3, 1] : 1 }}
                             transition={{ duration: 1.0, repeat: isDragging ? Infinity : 0 }}
                           />
@@ -600,7 +600,7 @@ export default function PriceCalculatorWarm() {
                           <div key={step} className="flex flex-col items-center">
                             {/* Tick */}
                             <div className={`w-0.5 h-2 rounded-full transition-colors duration-300 ${
-                              isActive ? 'bg-[#C4704B]' : 'bg-white/20'
+                              isActive ? 'bg-[#A0845C]' : 'bg-white/20'
                             }`} />
 
                             {/* Label */}
@@ -629,7 +629,7 @@ export default function PriceCalculatorWarm() {
                         whileTap={{ scale: 0.95 }}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                           squareMeters === preset
-                            ? 'bg-[#C4704B] text-white shadow-lg shadow-[#C4704B]/30'
+                            ? 'bg-[#A0845C] text-white shadow-lg shadow-[#A0845C]/30'
                             : 'bg-white/10 text-white/70 hover:bg-white/15 hover:text-white'
                         }`}
                       >
@@ -668,7 +668,7 @@ export default function PriceCalculatorWarm() {
                     {/* Cucina toggle */}
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2">
-                        <ChefHat className="w-4 h-4 text-[#C4704B]" />
+                        <ChefHat className="w-4 h-4 text-[#A0845C]" />
                         <span className="text-white/80 text-sm font-medium">Cucina</span>
                       </div>
                       <div className="flex gap-1 bg-white/5 rounded-lg p-1">
@@ -677,7 +677,7 @@ export default function PriceCalculatorWarm() {
                           onClick={() => updateKitchenType('open')}
                           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                             roomConfig.kitchenType === 'open'
-                              ? 'bg-[#C4704B] text-white'
+                              ? 'bg-[#A0845C] text-white'
                               : 'text-white/60 hover:text-white/80'
                           }`}
                         >
@@ -688,7 +688,7 @@ export default function PriceCalculatorWarm() {
                           onClick={() => updateKitchenType('separate')}
                           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                             roomConfig.kitchenType === 'separate'
-                              ? 'bg-[#C4704B] text-white'
+                              ? 'bg-[#A0845C] text-white'
                               : 'text-white/60 hover:text-white/80'
                           }`}
                         >
@@ -709,7 +709,7 @@ export default function PriceCalculatorWarm() {
                       </span>
                       <div className="flex items-center gap-2">
                         {scaledSizes.scaleFactor !== 1 && (
-                          <span className={`text-xs font-medium ${scaledSizes.scaleFactor < 1 ? 'text-amber-400' : 'text-[#C4704B]'}`}>
+                          <span className={`text-xs font-medium ${scaledSizes.scaleFactor < 1 ? 'text-amber-400' : 'text-[#A0845C]'}`}>
                             {scaledSizes.scaleFactor > 1 ? '+' : ''}{Math.round((scaledSizes.scaleFactor - 1) * 100)}% spazio
                           </span>
                         )}
@@ -730,7 +730,7 @@ export default function PriceCalculatorWarm() {
                           key={scaledSizes.living}
                           initial={{ scale: 1.1 }}
                           animate={{ scale: 1 }}
-                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BA888]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
+                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BAF90]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
                         >
                           {scaledSizes.living} mq
                         </motion.span>
@@ -741,7 +741,7 @@ export default function PriceCalculatorWarm() {
                           key={scaledSizes.masterBedroom + scaledSizes.bedroom}
                           initial={{ scale: 1.1 }}
                           animate={{ scale: 1 }}
-                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BA888]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
+                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BAF90]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
                         >
                           {scaledSizes.masterBedroom + (roomConfig.bedrooms - 1) * scaledSizes.bedroom} mq
                         </motion.span>
@@ -752,7 +752,7 @@ export default function PriceCalculatorWarm() {
                           key={scaledSizes.bathroomMain + scaledSizes.bathroomSecondary}
                           initial={{ scale: 1.1 }}
                           animate={{ scale: 1 }}
-                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BA888]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
+                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BAF90]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
                         >
                           {scaledSizes.bathroomMain + (roomConfig.bathrooms - 1) * scaledSizes.bathroomSecondary} mq
                         </motion.span>
@@ -763,7 +763,7 @@ export default function PriceCalculatorWarm() {
                           key={scaledSizes.kitchen}
                           initial={{ scale: 1.1 }}
                           animate={{ scale: 1 }}
-                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BA888]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
+                          className={scaledSizes.scaleFactor > 1 ? 'text-[#8BAF90]' : scaledSizes.scaleFactor < 1 ? 'text-amber-400' : ''}
                         >
                           {scaledSizes.kitchen} mq
                         </motion.span>
@@ -825,11 +825,11 @@ export default function PriceCalculatorWarm() {
             >
               <div className={`h-full p-6 lg:p-8 rounded-2xl border transition-all duration-300 ${
                 tier.highlight
-                  ? 'bg-[#2D5A47] border-[#2D5A47] text-white'
-                  : 'bg-white border-[#DDD5C9] hover:border-[#C4704B]/50'
+                  ? 'bg-[#48484A] border-[#48484A] text-white'
+                  : 'bg-white border-[#D2D2D7] hover:border-[#A0845C]/50'
               }`}>
                 {tier.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C4704B] text-white text-xs font-semibold rounded-full">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#A0845C] text-white text-xs font-semibold rounded-full">
                     Consigliato
                   </div>
                 )}
@@ -843,7 +843,7 @@ export default function PriceCalculatorWarm() {
                 <h3 className={`text-lg font-bold mb-1 ${tier.highlight ? 'text-white' : 'text-[#2C2825]'}`}>
                   {tier.name}
                 </h3>
-                <p className={`text-sm mb-5 ${tier.highlight ? 'text-white/70' : 'text-[#6B6560]'}`}>
+                <p className={`text-sm mb-5 ${tier.highlight ? 'text-white/70' : 'text-[#86868B]'}`}>
                   {tier.description}
                 </p>
 
@@ -852,17 +852,17 @@ export default function PriceCalculatorWarm() {
                     <span className={`text-3xl lg:text-4xl font-bold font-inter ${tier.highlight ? 'text-white' : 'text-[#2C2825]'}`}>
                       <AnimatedPrice value={tier.price} />
                     </span>
-                    <span className={`text-sm ${tier.highlight ? 'text-white/70' : 'text-[#6B6560]'}`}>EUR</span>
+                    <span className={`text-sm ${tier.highlight ? 'text-white/70' : 'text-[#86868B]'}`}>EUR</span>
                   </div>
-                  <div className={`text-sm font-medium mt-1 ${tier.highlight ? 'text-[#D4896A]' : 'text-[#C4704B]'}`}>
+                  <div className={`text-sm font-medium mt-1 ${tier.highlight ? 'text-[#B89B74]' : 'text-[#A0845C]'}`}>
                     {tier.pricePerMq.toLocaleString('it-IT')} EUR/mq
                   </div>
                 </div>
 
                 <ul className="space-y-2">
                   {tier.features.map((feature, i) => (
-                    <li key={i} className={`flex items-center gap-2 text-sm ${tier.highlight ? 'text-white/80' : 'text-[#6B6560]'}`}>
-                      <svg className={`w-4 h-4 flex-shrink-0 ${tier.highlight ? 'text-[#8BA888]' : 'text-[#2D5A47]'}`} fill="currentColor" viewBox="0 0 20 20">
+                    <li key={i} className={`flex items-center gap-2 text-sm ${tier.highlight ? 'text-white/80' : 'text-[#86868B]'}`}>
+                      <svg className={`w-4 h-4 flex-shrink-0 ${tier.highlight ? 'text-[#8BAF90]' : 'text-[#48484A]'}`} fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                       {feature}
@@ -881,12 +881,12 @@ export default function PriceCalculatorWarm() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <p className="text-[#6B6560] text-sm mb-6">
+          <p className="text-[#86868B] text-sm mb-6">
             * Prezzi indicativi, possono variare in base alle specifiche del progetto
           </p>
           <Link href="/contatti">
             <motion.span
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold rounded-xl shadow-lg shadow-[#C4704B]/20 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold rounded-xl shadow-lg shadow-[#A0845C]/20 transition-colors"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >

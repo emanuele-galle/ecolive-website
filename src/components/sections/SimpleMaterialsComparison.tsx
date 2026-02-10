@@ -25,7 +25,7 @@ const materials: Material[] = [
     costoExtra: "+€15.000",
     beneficioPrincipale: "Zero deformazioni, stabilità perfetta",
     risparmio25anni: "€3.500",
-    colorPrimary: "#C4704B",
+    colorPrimary: "#A0845C",
     colorSecondary: "#8B7355"
   },
   {
@@ -36,8 +36,8 @@ const materials: Material[] = [
     costoExtra: "+€8.000",
     beneficioPrincipale: "Nessuna sostituzione necessaria",
     risparmio25anni: "€5.000",
-    colorPrimary: "#2D5A47",
-    colorSecondary: "#8A857F"
+    colorPrimary: "#48484A",
+    colorSecondary: "#AEAEB2"
   },
   {
     id: "isolamento",
@@ -47,7 +47,7 @@ const materials: Material[] = [
     costoExtra: "+€6.000",
     beneficioPrincipale: "Risparmio 30% bollette energia",
     risparmio25anni: "€12.000",
-    colorPrimary: "#40916c",
+    colorPrimary: "#6B8F71",
     colorSecondary: "#666"
   },
   {
@@ -59,7 +59,7 @@ const materials: Material[] = [
     beneficioPrincipale: "Zero ammaccature, durata doppia",
     risparmio25anni: "€2.500",
     colorPrimary: "#C9A86C",
-    colorSecondary: "#8A857F"
+    colorSecondary: "#AEAEB2"
   }
 ]
 
@@ -262,7 +262,7 @@ export default function SimpleMaterialsComparison() {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1E3D30] to-[#1a2c26] overflow-hidden"
+      className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1D1D1F] to-[#1a2c26] overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 opacity-[0.03]">
@@ -284,12 +284,12 @@ export default function SimpleMaterialsComparison() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Perché costa <span className="text-[#C4704B]">di più</span>
+            Perché costa <span className="text-[#A0845C]">di più</span>
           </h2>
           <p className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Trascina gli slider per vedere visivamente la differenza tra materiali standard e premium Ecolive.
             <br />
-            <span className="text-[#C4704B] font-semibold">La qualità si vede.</span>
+            <span className="text-[#A0845C] font-semibold">La qualità si vede.</span>
           </p>
         </motion.div>
 
@@ -320,7 +320,7 @@ export default function SimpleMaterialsComparison() {
               <div className="text-white/60 text-sm uppercase tracking-wide mb-2">
                 Investimento Extra Oggi
               </div>
-              <div className="text-3xl md:text-4xl font-bold text-[#C4704B] mb-1">
+              <div className="text-3xl md:text-4xl font-bold text-[#A0845C] mb-1">
                 €{totaleInvestimento.toLocaleString()}
               </div>
               <div className="text-white/50 text-sm">una tantum</div>
@@ -332,7 +332,7 @@ export default function SimpleMaterialsComparison() {
                 animate={{ x: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                <svg className="w-16 h-16 text-[#C4704B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-16 h-16 text-[#A0845C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </motion.div>
@@ -356,7 +356,7 @@ export default function SimpleMaterialsComparison() {
           <div className="mt-8 text-center">
             <p className="text-white text-base md:text-lg leading-relaxed">
               Ogni euro investito oggi in materiali premium ti ripaga{" "}
-              <span className="text-[#C4704B] font-bold">
+              <span className="text-[#A0845C] font-bold">
                 {((totaleRisparmio / totaleInvestimento)).toFixed(1)}x
               </span>{" "}
               nei prossimi 25 anni.

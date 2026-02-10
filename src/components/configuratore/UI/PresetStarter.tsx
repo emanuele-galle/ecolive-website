@@ -74,7 +74,7 @@ export default function PresetStarter() {
           className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
         >
           {/* Header gradient */}
-          <div className="h-1.5 bg-gradient-to-r from-[#1D3D2D] via-[#2D5A47] to-[#B85C38]" />
+          <div className="h-1.5 bg-gradient-to-r from-[#1D3D2D] via-[#48484A] to-[#B85C38]" />
 
           <div className="p-6 md:p-8">
             {/* Title */}
@@ -104,7 +104,7 @@ export default function PresetStarter() {
                       relative p-5 rounded-xl border-2 text-left transition-all duration-200
                       ${isBlank
                         ? 'border-dashed border-gray-300 hover:border-gray-400 bg-gray-50'
-                        : 'border-gray-200 hover:border-[#2D5A47] bg-white hover:shadow-lg'
+                        : 'border-gray-200 hover:border-[#48484A] bg-white hover:shadow-lg'
                       }
                     `}
                   >
@@ -112,11 +112,11 @@ export default function PresetStarter() {
                     <div
                       className={`
                         w-12 h-12 rounded-xl flex items-center justify-center mb-4
-                        ${isBlank ? 'bg-gray-200' : 'bg-[#2D5A47]/10'}
+                        ${isBlank ? 'bg-gray-200' : 'bg-[#48484A]/10'}
                       `}
                     >
                       <Icon
-                        className={`w-6 h-6 ${isBlank ? 'text-gray-500' : 'text-[#2D5A47]'}`}
+                        className={`w-6 h-6 ${isBlank ? 'text-gray-500' : 'text-[#48484A]'}`}
                       />
                     </div>
 
@@ -142,7 +142,7 @@ export default function PresetStarter() {
 
                     {/* Arrow indicator */}
                     <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ArrowRight className="w-5 h-5 text-[#2D5A47]" />
+                      <ArrowRight className="w-5 h-5 text-[#48484A]" />
                     </div>
                   </motion.button>
                 )

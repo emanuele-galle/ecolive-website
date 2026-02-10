@@ -13,7 +13,7 @@ interface AnimatedProgressBarProps {
 
 export default function AnimatedProgressBar({
   value,
-  color = '#40916c',
+  color = '#6B8F71',
   duration = 1.5,
   delay = 0,
   height = 'h-2',

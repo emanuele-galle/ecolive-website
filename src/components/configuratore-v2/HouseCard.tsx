@@ -92,7 +92,7 @@ export default function HouseCard({
 
           {/* Min sqm badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#C4704B]/90 backdrop-blur-sm rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#A0845C]/90 backdrop-blur-sm rounded-full"
             animate={{
               scale: isHovered ? 1.05 : 1,
             }}
@@ -122,7 +122,7 @@ export default function HouseCard({
             }}
             transition={{ duration: 0.4 }}
           >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#1E3D30] font-semibold rounded-full shadow-lg group">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#1D1D1F] font-semibold rounded-full shadow-lg group">
               <span>Scopri</span>
               <ArrowRight
                 className="w-5 h-5 transition-transform duration-300"

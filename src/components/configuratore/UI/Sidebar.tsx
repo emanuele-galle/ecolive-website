@@ -48,7 +48,7 @@ export default function Sidebar() {
             onClick={() => setActiveCategory(tab.id)}
             className={`flex-1 flex flex-col items-center gap-1 px-2 py-2 rounded-lg text-xs font-medium transition-all ${
               activeCategory === tab.id
-                ? 'bg-white text-[#2D5A47] shadow-sm'
+                ? 'bg-white text-[#48484A] shadow-sm'
                 : 'text-gray-500 hover:text-gray-700 hover:bg-white/50'
             }`}
           >

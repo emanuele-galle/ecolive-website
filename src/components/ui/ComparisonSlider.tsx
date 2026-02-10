@@ -41,7 +41,7 @@ export default function ComparisonSlider() {
           }}
         >
           <button
-            className="bg-white rounded-full hover:scale-110 transition-all w-12 h-12 select-none -translate-y-1/2 absolute top-1/2 -ml-6 z-30 cursor-ew-resize flex justify-center items-center shadow-xl border-2 border-[#C4704B]"
+            className="bg-white rounded-full hover:scale-110 transition-all w-12 h-12 select-none -translate-y-1/2 absolute top-1/2 -ml-6 z-30 cursor-ew-resize flex justify-center items-center shadow-xl border-2 border-[#A0845C]"
             onTouchStart={(e) => {
               setOnMouseDown(true)
               onMouseMove(e)
@@ -53,7 +53,7 @@ export default function ComparisonSlider() {
             onTouchEnd={() => setOnMouseDown(false)}
             onMouseUp={() => setOnMouseDown(false)}
           >
-            <GripVertical className="h-5 w-5 select-none text-[#C4704B]" />
+            <GripVertical className="h-5 w-5 select-none text-[#A0845C]" />
           </button>
         </div>
 
@@ -74,20 +74,20 @@ export default function ComparisonSlider() {
 
           {/* Badge overlay - Casa Ecolive */}
           <div className="absolute top-6 right-6 flex flex-col gap-3 z-30">
-            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#C4704B]/20">
-              <div className="flex items-center gap-2 text-[#C4704B]">
+            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#A0845C]/20">
+              <div className="flex items-center gap-2 text-[#A0845C]">
                 <Clock className="w-4 h-4" />
                 <span className="font-bold text-sm">30 giorni</span>
               </div>
             </div>
-            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#C4704B]/20">
-              <div className="flex items-center gap-2 text-[#C4704B]">
+            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#A0845C]/20">
+              <div className="flex items-center gap-2 text-[#A0845C]">
                 <Award className="w-4 h-4" />
                 <span className="font-bold text-sm">Classe A4</span>
               </div>
             </div>
-            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#C4704B]/20">
-              <div className="flex items-center gap-2 text-[#C4704B]">
+            <div className="px-4 py-2 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-[#A0845C]/20">
+              <div className="flex items-center gap-2 text-[#A0845C]">
                 <Wrench className="w-4 h-4" />
                 <span className="font-bold text-sm">100+ anni</span>
               </div>
@@ -96,7 +96,7 @@ export default function ComparisonSlider() {
 
           {/* Label - Casa Ecolive */}
           <div className="absolute bottom-6 right-6 z-30">
-            <div className="px-6 py-3 bg-gradient-to-r from-[#C4704B] to-[#A55A3A] backdrop-blur-md rounded-xl shadow-xl">
+            <div className="px-6 py-3 bg-gradient-to-r from-[#A0845C] to-[#A55A3A] backdrop-blur-md rounded-xl shadow-xl">
               <span className="font-bold text-white text-lg">Casa Ecolive</span>
             </div>
           </div>

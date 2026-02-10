@@ -44,9 +44,9 @@ export default function ConfiguratoreClient({ onSubmit }: ConfiguratoreClientPro
 
   if (!isLoaded) {
     return (
-      <div className="min-h-[calc(100vh-80px)] bg-[#FAF7F2] flex items-center justify-center">
+      <div className="min-h-[calc(100vh-80px)] bg-[#F5F5F7] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#2D5A47] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-16 h-16 border-4 border-[#48484A] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-500">Inizializzazione configuratore...</p>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function ConfiguratoreClient({ onSubmit }: ConfiguratoreClientPro
   }
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-[#FAF7F2] flex flex-col">
+    <div className="min-h-[calc(100vh-80px)] bg-[#F5F5F7] flex flex-col">
       {/* Main content - Header del sito è già visibile */}
       <main className="flex-1">
         <AnimatePresence mode="wait">

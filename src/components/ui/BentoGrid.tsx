@@ -41,8 +41,8 @@ export function BentoItem({
       className={`
         ${sizeClasses[size]}
         relative overflow-hidden rounded-3xl
-        bg-gradient-to-br from-white to-[#FAF7F2]
-        border border-[#E8E0D5]/60
+        bg-gradient-to-br from-white to-[#F5F5F7]
+        border border-[#EDE6DB]/60
         shadow-sm hover:shadow-xl
         transition-shadow duration-500
         ${className}
@@ -86,7 +86,7 @@ export function BentoFeatureCard({
   title,
   description,
   size = 'medium',
-  color = '#1E3D30',
+  color = '#1D1D1F',
   delay = 0,
   gradient
 }: BentoFeatureCardProps) {
@@ -134,7 +134,7 @@ export function BentoFeatureCard({
 
         {/* Title */}
         <h3 className={`
-          font-bold text-[#1E3D30]
+          font-bold text-[#1D1D1F]
           ${isLarge ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}
         `}>
           {title}
@@ -143,7 +143,7 @@ export function BentoFeatureCard({
         {/* Description */}
         {description && (
           <p className={`
-            text-[#6B6560] leading-relaxed mt-3
+            text-[#86868B] leading-relaxed mt-3
             ${isLarge ? 'text-base md:text-lg' : 'text-sm'}
           `}>
             {description}

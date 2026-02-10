@@ -64,7 +64,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
   const isInView = useInView(containerRef, { once: true, margin: '-100px' })
 
   return (
-    <section ref={containerRef} className="py-20 lg:py-28 px-4 bg-[#FAF7F2] relative overflow-hidden">
+    <section ref={containerRef} className="py-20 lg:py-28 px-4 bg-[#F5F5F7] relative overflow-hidden">
       {/* Large decorative quote watermark with floating animation */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
@@ -89,7 +89,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
       />
       <motion.div
         className="absolute bottom-0 left-10 w-64 h-64 rounded-full blur-3xl"
-        style={{ backgroundColor: '#1E3D3008' }}
+        style={{ backgroundColor: '#1D1D1F08' }}
         animate={{ x: [0, -35, 20, 0], y: [0, -30, 0], scale: [1, 0.8, 1.15, 1] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -113,27 +113,27 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
           {/* Decorative line above title */}
           <div className="flex items-center justify-center gap-4 mb-6">
             <motion.div
-              className="h-[1px] w-12 md:w-20 bg-[#E8E0D5]"
+              className="h-[1px] w-12 md:w-20 bg-[#EDE6DB]"
               initial={{ scaleX: 0, originX: 1 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
             />
             <motion.div
               className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: '#C4704B' }}
+              style={{ backgroundColor: '#A0845C' }}
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
               transition={{ delay: 0.3, type: 'spring', stiffness: 300 }}
             />
             <motion.div
-              className="h-[1px] w-12 md:w-20 bg-[#E8E0D5]"
+              className="h-[1px] w-12 md:w-20 bg-[#EDE6DB]"
               initial={{ scaleX: 0, originX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
             />
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1E3D30] mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] mb-4">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -154,20 +154,20 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
           {/* Decorative line below title */}
           <div className="flex items-center justify-center gap-4 mt-4 mb-4">
             <motion.div
-              className="h-[1px] w-8 md:w-14 bg-[#E8E0D5]"
+              className="h-[1px] w-8 md:w-14 bg-[#EDE6DB]"
               initial={{ scaleX: 0, originX: 1 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
             />
             <motion.div
               className="h-[1px] w-6 rounded-full"
-              style={{ backgroundColor: '#C4704B' }}
+              style={{ backgroundColor: '#A0845C' }}
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.4 }}
             />
             <motion.div
-              className="h-[1px] w-8 md:w-14 bg-[#E8E0D5]"
+              className="h-[1px] w-8 md:w-14 bg-[#EDE6DB]"
               initial={{ scaleX: 0, originX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -178,7 +178,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5 }}
-            className="text-[#6B6560] max-w-xl mx-auto text-lg"
+            className="text-[#86868B] max-w-xl mx-auto text-lg"
           >
             Chi ha scelto Ecolive per le proprie strutture glamping
           </motion.p>
@@ -220,7 +220,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                 />
               </div>
 
-              <div className="relative p-8 bg-white rounded-3xl border border-[#E8E0D5]/60 shadow-sm group-hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <div className="relative p-8 bg-white rounded-3xl border border-[#EDE6DB]/60 shadow-sm group-hover:shadow-2xl transition-all duration-500 overflow-hidden">
                 {/* Ambient colored glow */}
                 <motion.div
                   className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -277,7 +277,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                         className={`w-4.5 h-4.5 ${
                           j < testimonial.rating
                             ? 'fill-amber-400 text-amber-400'
-                            : 'text-[#E8E0D5]'
+                            : 'text-[#EDE6DB]'
                         }`}
                       />
                     </motion.div>
@@ -285,7 +285,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                 </div>
 
                 {/* Quote text */}
-                <blockquote className="text-[#1E3D30] leading-relaxed mb-8 text-[1.05rem]">
+                <blockquote className="text-[#1D1D1F] leading-relaxed mb-8 text-[1.05rem]">
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
@@ -316,13 +316,13 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                   </motion.div>
 
                   <div>
-                    <div className="font-semibold text-[#1E3D30]">
+                    <div className="font-semibold text-[#1D1D1F]">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-[#6B6560]">
+                    <div className="text-sm text-[#86868B]">
                       {testimonial.role}
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-[#6B6560]/70 mt-0.5">
+                    <div className="flex items-center gap-1 text-xs text-[#86868B]/70 mt-0.5">
                       <MapPin className="w-3 h-3" />
                       <span>{testimonial.location}</span>
                     </div>
@@ -350,7 +350,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                   animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
                   transition={{ delay: 0.8 + i * 0.12, type: 'spring', stiffness: 200 }}
                   whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.2 } }}
-                  className="text-center p-4 md:p-6 bg-white rounded-2xl border border-[#E8E0D5]/60 shadow-sm hover:shadow-xl transition-all group/stat relative overflow-hidden"
+                  className="text-center p-4 md:p-6 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all group/stat relative overflow-hidden"
                 >
                   {/* Animated background on hover */}
                   <motion.div
@@ -377,7 +377,7 @@ export default function GlampingTestimonials({ color }: GlampingTestimonialsProp
                         style={{ color } as React.CSSProperties}
                       />
                     </div>
-                    <div className="text-xs md:text-sm text-[#6B6560] mt-1">{stat.label}</div>
+                    <div className="text-xs md:text-sm text-[#86868B] mt-1">{stat.label}</div>
                   </div>
                 </motion.div>
               )

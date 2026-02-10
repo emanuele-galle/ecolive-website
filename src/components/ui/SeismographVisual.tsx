@@ -11,7 +11,7 @@ interface SeismographVisualProps {
 export default function SeismographVisual({
   className = '',
   amplitude = 20,
-  color = '#C4704B'
+  color = '#A0845C'
 }: SeismographVisualProps) {
   // Generate seismograph wave path
   const generateWavePath = () => {

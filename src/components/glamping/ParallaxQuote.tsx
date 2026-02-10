@@ -61,7 +61,7 @@ export default function ParallaxQuote({ color }: ParallaxQuoteProps) {
         <motion.div
           className="w-16 h-[2px] rounded-full mb-8"
           style={{
-            backgroundColor: '#C4704B',
+            backgroundColor: '#A0845C',
             scaleX: lineScale,
           }}
         />
@@ -70,7 +70,7 @@ export default function ParallaxQuote({ color }: ParallaxQuoteProps) {
         <blockquote className="max-w-3xl mx-auto">
           <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white leading-snug md:leading-tight tracking-tight">
             &ldquo;Il lusso non è avere di più,{' '}
-            <span className="font-medium" style={{ color: '#C4704B' }}>
+            <span className="font-medium" style={{ color: '#A0845C' }}>
               è vivere meglio
             </span>
             &mdash;a contatto con la natura.&rdquo;
@@ -81,7 +81,7 @@ export default function ParallaxQuote({ color }: ParallaxQuoteProps) {
         <motion.div
           className="w-16 h-[2px] rounded-full mt-8"
           style={{
-            backgroundColor: '#C4704B',
+            backgroundColor: '#A0845C',
             scaleX: lineScale,
           }}
         />

@@ -144,7 +144,7 @@ export default function LayerDetailModal({ layer, isOpen, onClose }: Props) {
           >
             {/* Glow effect */}
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#4a9eff]/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#C4704B]/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
             {/* Close button */}
             <button
@@ -225,7 +225,7 @@ export default function LayerDetailModal({ layer, isOpen, onClose }: Props) {
                 {layer.properties?.fireClass && (
                   <div className="bg-[#1a3a5c]/30 rounded-xl p-4 border border-[#1a3a5c]/50">
                     <div className="flex items-center gap-2 mb-2">
-                      <Shield className="w-4 h-4 text-[#C4704B]" />
+                      <Shield className="w-4 h-4 text-[#A0845C]" />
                       <span className="text-[#6b8e9f] text-xs uppercase tracking-wider">Classe Fuoco</span>
                     </div>
                     <div className="text-white font-bold text-xl">
@@ -249,9 +249,9 @@ export default function LayerDetailModal({ layer, isOpen, onClose }: Props) {
               {/* Certification Badge */}
               {layer.properties?.certification && (
                 <div className="flex items-center justify-center">
-                  <div className="inline-flex items-center gap-3 px-5 py-3 bg-[#C4704B]/10 rounded-full border border-[#C4704B]/30">
-                    <Shield className="w-5 h-5 text-[#C4704B]" />
-                    <span className="text-[#C4704B] font-semibold">
+                  <div className="inline-flex items-center gap-3 px-5 py-3 bg-[#A0845C]/10 rounded-full border border-[#A0845C]/30">
+                    <Shield className="w-5 h-5 text-[#A0845C]" />
+                    <span className="text-[#A0845C] font-semibold">
                       {layer.properties.certification}
                     </span>
                   </div>
@@ -260,7 +260,7 @@ export default function LayerDetailModal({ layer, isOpen, onClose }: Props) {
             </div>
 
             {/* Bottom gradient line */}
-            <div className="h-1 bg-gradient-to-r from-[#4a9eff] via-[#C4704B] to-[#4a9eff]" />
+            <div className="h-1 bg-gradient-to-r from-[#4a9eff] via-[#A0845C] to-[#4a9eff]" />
           </motion.div>
         </motion.div>
       )}

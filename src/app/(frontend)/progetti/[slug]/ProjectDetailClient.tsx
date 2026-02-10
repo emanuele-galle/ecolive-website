@@ -62,7 +62,7 @@ export default function ProjectDetailClient({
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3])
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2]">
+    <main className="min-h-screen bg-[#F5F5F7]">
       {/* HERO IMMERSIVO CON PARALLAX */}
       <section ref={heroRef} className="relative h-[70vh] md:h-[85vh] overflow-hidden">
         {/* Background Image with Parallax */}
@@ -83,7 +83,7 @@ export default function ProjectDetailClient({
 
         {/* Multi-layer gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E3D30]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D1D1F]/40 to-transparent" />
 
         {/* Dot pattern overlay */}
         <motion.div
@@ -102,8 +102,8 @@ export default function ProjectDetailClient({
           transition={{ duration: 0.9, delay: 0.2 }}
           className="absolute top-8 left-8 z-10"
         >
-          <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm rounded-full text-[#1E3D30] font-semibold shadow-lg">
-            <Home className="w-4 h-4 text-[#C4704B]" />
+          <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm rounded-full text-[#1D1D1F] font-semibold shadow-lg">
+            <Home className="w-4 h-4 text-[#A0845C]" />
             {categoryLabels[project.category]}
           </span>
         </motion.div>
@@ -130,25 +130,25 @@ export default function ProjectDetailClient({
             >
               {project.location && (
                 <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-xl text-white border border-white/20">
-                  <MapPin className="w-5 h-5 text-[#C4704B]" />
+                  <MapPin className="w-5 h-5 text-[#A0845C]" />
                   <span className="font-medium">{project.location}</span>
                 </div>
               )}
               {project.year && (
                 <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-xl text-white border border-white/20">
-                  <Calendar className="w-5 h-5 text-[#C4704B]" />
+                  <Calendar className="w-5 h-5 text-[#A0845C]" />
                   <span className="font-medium">{project.year}</span>
                 </div>
               )}
               {project.area && (
                 <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-xl text-white border border-white/20">
-                  <Maximize2 className="w-5 h-5 text-[#C4704B]" />
+                  <Maximize2 className="w-5 h-5 text-[#A0845C]" />
                   <span className="font-medium">{project.area} mq</span>
                 </div>
               )}
               {project.floors && (
                 <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-sm rounded-xl text-white border border-white/20">
-                  <Layers className="w-5 h-5 text-[#C4704B]" />
+                  <Layers className="w-5 h-5 text-[#A0845C]" />
                   <span className="font-medium">{project.floors} {project.floors === 1 ? 'Piano' : 'Piani'}</span>
                 </div>
               )}
@@ -158,24 +158,24 @@ export default function ProjectDetailClient({
       </section>
 
       {/* BREADCRUMB DECORATIVO */}
-      <section className="bg-white border-b border-[#1E3D30]/10">
+      <section className="bg-white border-b border-[#1D1D1F]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center gap-2 text-sm">
             <Link
               href="/"
-              className="text-[#1E3D30]/60 hover:text-[#C4704B] transition-colors"
+              className="text-[#1D1D1F]/60 hover:text-[#A0845C] transition-colors"
             >
               Home
             </Link>
-            <ChevronRight className="w-4 h-4 text-[#1E3D30]/30" />
+            <ChevronRight className="w-4 h-4 text-[#1D1D1F]/30" />
             <Link
               href="/tipologie"
-              className="text-[#1E3D30]/60 hover:text-[#C4704B] transition-colors"
+              className="text-[#1D1D1F]/60 hover:text-[#A0845C] transition-colors"
             >
               Tipologie
             </Link>
-            <ChevronRight className="w-4 h-4 text-[#1E3D30]/30" />
-            <span className="text-[#1E3D30] font-medium">{project.title}</span>
+            <ChevronRight className="w-4 h-4 text-[#1D1D1F]/30" />
+            <span className="text-[#1D1D1F] font-medium">{project.title}</span>
           </nav>
         </div>
       </section>
@@ -193,31 +193,31 @@ export default function ProjectDetailClient({
               className="grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {project.location && (
-                <div className="p-5 bg-gradient-to-br from-white to-[#FAF7F2] rounded-2xl border border-[#1E3D30]/10 shadow-sm">
-                  <MapPin className="w-8 h-8 text-[#C4704B] mb-3" />
-                  <div className="text-sm text-[#1E3D30]/60 mb-1">Località</div>
-                  <div className="text-lg font-bold text-[#1E3D30]">{project.location}</div>
+                <div className="p-5 bg-gradient-to-br from-white to-[#F5F5F7] rounded-2xl border border-[#1D1D1F]/10 shadow-sm">
+                  <MapPin className="w-8 h-8 text-[#A0845C] mb-3" />
+                  <div className="text-sm text-[#1D1D1F]/60 mb-1">Località</div>
+                  <div className="text-lg font-bold text-[#1D1D1F]">{project.location}</div>
                 </div>
               )}
               {project.year && (
-                <div className="p-5 bg-gradient-to-br from-white to-[#FAF7F2] rounded-2xl border border-[#1E3D30]/10 shadow-sm">
-                  <Calendar className="w-8 h-8 text-[#C4704B] mb-3" />
-                  <div className="text-sm text-[#1E3D30]/60 mb-1">Anno</div>
-                  <div className="text-lg font-bold text-[#1E3D30]">{project.year}</div>
+                <div className="p-5 bg-gradient-to-br from-white to-[#F5F5F7] rounded-2xl border border-[#1D1D1F]/10 shadow-sm">
+                  <Calendar className="w-8 h-8 text-[#A0845C] mb-3" />
+                  <div className="text-sm text-[#1D1D1F]/60 mb-1">Anno</div>
+                  <div className="text-lg font-bold text-[#1D1D1F]">{project.year}</div>
                 </div>
               )}
               {project.area && (
-                <div className="p-5 bg-gradient-to-br from-white to-[#FAF7F2] rounded-2xl border border-[#1E3D30]/10 shadow-sm">
-                  <Maximize2 className="w-8 h-8 text-[#C4704B] mb-3" />
-                  <div className="text-sm text-[#1E3D30]/60 mb-1">Superficie</div>
-                  <div className="text-lg font-bold text-[#1E3D30]">{project.area} mq</div>
+                <div className="p-5 bg-gradient-to-br from-white to-[#F5F5F7] rounded-2xl border border-[#1D1D1F]/10 shadow-sm">
+                  <Maximize2 className="w-8 h-8 text-[#A0845C] mb-3" />
+                  <div className="text-sm text-[#1D1D1F]/60 mb-1">Superficie</div>
+                  <div className="text-lg font-bold text-[#1D1D1F]">{project.area} mq</div>
                 </div>
               )}
               {project.floors && (
-                <div className="p-5 bg-gradient-to-br from-white to-[#FAF7F2] rounded-2xl border border-[#1E3D30]/10 shadow-sm">
-                  <Layers className="w-8 h-8 text-[#C4704B] mb-3" />
-                  <div className="text-sm text-[#1E3D30]/60 mb-1">Piani</div>
-                  <div className="text-lg font-bold text-[#1E3D30]">{project.floors}</div>
+                <div className="p-5 bg-gradient-to-br from-white to-[#F5F5F7] rounded-2xl border border-[#1D1D1F]/10 shadow-sm">
+                  <Layers className="w-8 h-8 text-[#A0845C] mb-3" />
+                  <div className="text-sm text-[#1D1D1F]/60 mb-1">Piani</div>
+                  <div className="text-lg font-bold text-[#1D1D1F]">{project.floors}</div>
                 </div>
               )}
             </motion.div>
@@ -230,12 +230,12 @@ export default function ProjectDetailClient({
                 viewport={{ once: false }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1 h-8 bg-gradient-to-b from-[#C4704B] to-[#1E3D30] rounded-full" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1E3D30]">
+                  <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
                     Descrizione
                   </h2>
                 </div>
-                <div className="prose prose-lg max-w-none text-[#1E3D30]/80">
+                <div className="prose prose-lg max-w-none text-[#1D1D1F]/80">
                   <RichTextRenderer data={project.description} />
                 </div>
               </motion.div>
@@ -249,8 +249,8 @@ export default function ProjectDetailClient({
                 viewport={{ once: false }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1 h-8 bg-gradient-to-b from-[#C4704B] to-[#1E3D30] rounded-full" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1E3D30]">
+                  <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
                     Galleria
                   </h2>
                 </div>
@@ -274,8 +274,8 @@ export default function ProjectDetailClient({
                 viewport={{ once: false }}
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1 h-8 bg-gradient-to-b from-[#C4704B] to-[#1E3D30] rounded-full" />
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1E3D30]">
+                  <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">
                     Video
                   </h2>
                 </div>
@@ -301,19 +301,19 @@ export default function ProjectDetailClient({
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false }}
-                  className="p-6 bg-white rounded-2xl shadow-lg border border-[#1E3D30]/10"
+                  className="p-6 bg-white rounded-2xl shadow-lg border border-[#1D1D1F]/10"
                 >
-                  <h3 className="text-xl font-bold text-[#1E3D30] mb-5 flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-[#C4704B]" />
+                  <h3 className="text-xl font-bold text-[#1D1D1F] mb-5 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-[#A0845C]" />
                     Caratteristiche
                   </h3>
                   <ul className="space-y-3">
                     {project.features.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-[#C4704B]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle2 className="w-4 h-4 text-[#C4704B]" />
+                        <div className="w-6 h-6 bg-[#A0845C]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#A0845C]" />
                         </div>
-                        <span className="text-[#1E3D30]/80">{item.feature}</span>
+                        <span className="text-[#1D1D1F]/80">{item.feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -327,17 +327,17 @@ export default function ProjectDetailClient({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false }}
                   transition={{ delay: 0.1 }}
-                  className="p-6 bg-white rounded-2xl shadow-lg border border-[#1E3D30]/10"
+                  className="p-6 bg-white rounded-2xl shadow-lg border border-[#1D1D1F]/10"
                 >
-                  <h3 className="text-xl font-bold text-[#1E3D30] mb-5 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-[#C4704B]" />
+                  <h3 className="text-xl font-bold text-[#1D1D1F] mb-5 flex items-center gap-2">
+                    <Award className="w-5 h-5 text-[#A0845C]" />
                     Certificazioni
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.certifications.map((cert, index) => (
                       <span
                         key={index}
-                        className="px-4 py-2 bg-gradient-to-r from-[#1E3D30] to-[#2D5A47] text-white text-sm font-medium rounded-full"
+                        className="px-4 py-2 bg-gradient-to-r from-[#1D1D1F] to-[#48484A] text-white text-sm font-medium rounded-full"
                       >
                         {certificationLabels[cert]}
                       </span>
@@ -355,7 +355,7 @@ export default function ProjectDetailClient({
                 className="relative p-6 rounded-2xl overflow-hidden"
               >
                 {/* Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1E3D30] to-[#0F1F18]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1D1D1F] to-[#0F1F18]" />
 
                 {/* Dot pattern */}
                 <div
@@ -367,7 +367,7 @@ export default function ProjectDetailClient({
                 />
 
                 {/* Glow */}
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#C4704B]/30 rounded-full blur-2xl" />
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#A0845C]/30 rounded-full blur-2xl" />
 
                 <div className="relative">
                   <h3 className="text-xl font-bold text-white mb-3">
@@ -378,7 +378,7 @@ export default function ProjectDetailClient({
                   </p>
                   <Link
                     href="/contatti"
-                    className="group flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#C4704B] to-[#D4805B] text-white font-bold rounded-xl shadow-lg shadow-[#C4704B]/30 hover:shadow-xl transition-all duration-300"
+                    className="group flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-[#A0845C] to-[#D4805B] text-white font-bold rounded-xl shadow-lg shadow-[#A0845C]/30 hover:shadow-xl transition-all duration-300"
                   >
                     Richiedi informazioni
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -394,7 +394,7 @@ export default function ProjectDetailClient({
       {relatedProjects.length > 0 && (
         <section className="relative py-20 overflow-hidden">
           {/* Dark background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1E3D30] to-[#0F1F18]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1D1D1F] to-[#0F1F18]" />
 
           {/* Dot pattern */}
           <div
@@ -406,8 +406,8 @@ export default function ProjectDetailClient({
           />
 
           {/* Glow effects */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C4704B]/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#A0845C]/10 rounded-full blur-3xl" />
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -420,7 +420,7 @@ export default function ProjectDetailClient({
                 Esplora altri progetti
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-white">
-                Progetti <span className="text-[#C4704B]">Correlati</span>
+                Progetti <span className="text-[#A0845C]">Correlati</span>
               </h2>
             </motion.div>
 
@@ -437,7 +437,7 @@ export default function ProjectDetailClient({
                   >
                     <Link
                       href={`/progetti/${related.slug}`}
-                      className="group block bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#C4704B]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#C4704B]/10"
+                      className="group block bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#A0845C]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#A0845C]/10"
                     >
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {relatedImage?.url && (
@@ -452,11 +452,11 @@ export default function ProjectDetailClient({
                       </div>
                       <div className="p-5">
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="px-3 py-1 bg-[#C4704B]/20 text-[#C4704B] text-xs font-semibold rounded-full">
+                          <span className="px-3 py-1 bg-[#A0845C]/20 text-[#A0845C] text-xs font-semibold rounded-full">
                             {categoryLabels[related.category]}
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-white group-hover:text-[#C4704B] transition-colors mb-2">
+                        <h3 className="text-xl font-bold text-white group-hover:text-[#A0845C] transition-colors mb-2">
                           {related.title}
                         </h3>
                         {related.location && (
@@ -481,7 +481,7 @@ export default function ProjectDetailClient({
             >
               <Link
                 href="/tipologie"
-                className="inline-flex items-center gap-2 text-white/80 hover:text-[#C4704B] font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-white/80 hover:text-[#A0845C] font-medium transition-colors"
               >
                 Tutte le Tipologie
                 <ArrowRight className="w-4 h-4" />

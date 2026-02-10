@@ -33,10 +33,10 @@ export default function TipologiePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative bg-[#1E3D30] text-white py-28 lg:py-40 overflow-hidden">
+      <section className="relative bg-[#1D1D1F] text-white py-28 lg:py-40 overflow-hidden">
         {/* Decorative orbs */}
-        <div className="absolute top-20 -left-32 w-96 h-96 rounded-full bg-[#C4704B]/10 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-[#2D5A47]/30 blur-[100px] pointer-events-none" />
+        <div className="absolute top-20 -left-32 w-96 h-96 rounded-full bg-[#A0845C]/10 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-[#48484A]/30 blur-[100px] pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <ScrollReveal direction="up" delay={0}>
@@ -73,8 +73,8 @@ export default function TipologiePage() {
       </section>
 
       {/* Marquee */}
-      <div className="bg-[#1E3D30] pb-1">
-        <div className="bg-[#C4704B]/10 border-y border-[#C4704B]/20 py-4">
+      <div className="bg-[#1D1D1F] pb-1">
+        <div className="bg-[#A0845C]/10 border-y border-[#A0845C]/20 py-4">
           <InfiniteMarquee
             items={marqueeItems}
             speed={25}
@@ -83,16 +83,16 @@ export default function TipologiePage() {
         </div>
       </div>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* Griglia Tipologie */}
-      <section className="bg-[#FAF7F2] py-28 lg:py-36">
+      <section className="bg-[#F5F5F7] py-28 lg:py-36">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal direction="up" className="text-center mb-16">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Esplora
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
               Trova la tua soluzione ideale
             </h2>
           </ScrollReveal>
@@ -149,12 +149,12 @@ export default function TipologiePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
 
       {/* CTA Finale */}
-      <section className="relative bg-[#1E3D30] text-white py-28 lg:py-36 overflow-hidden">
+      <section className="relative bg-[#1D1D1F] text-white py-28 lg:py-36 overflow-hidden">
         {/* Decorative orbs */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#C4704B]/5 blur-[150px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#A0845C]/5 blur-[150px] pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal direction="up">
@@ -170,7 +170,7 @@ export default function TipologiePage() {
           <ScrollReveal direction="up" delay={0.2}>
             <Link
               href="/contatti"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#C4704B] hover:bg-[#b56140] text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/20"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#A0845C] hover:bg-[#b56140] text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
             >
               Contattaci per una consulenza gratuita
               <ArrowRight className="w-5 h-5" />

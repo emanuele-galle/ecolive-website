@@ -91,7 +91,7 @@ function QualityCard({ quality, index, isInView }: { quality: typeof distinctive
   return (
     <motion.div
       ref={ref}
-      className="bg-white rounded-2xl p-6 border border-[#E5E0D8] shadow-sm hover:shadow-lg transition-shadow"
+      className="bg-white rounded-2xl p-6 border border-[#D2D2D7] shadow-sm hover:shadow-lg transition-shadow"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 0.7 + index * 0.1 }}
@@ -105,19 +105,19 @@ function QualityCard({ quality, index, isInView }: { quality: typeof distinctive
       {...handlers}
     >
       <motion.div
-        className="w-12 h-12 rounded-xl bg-[#C4704B]/10 flex items-center justify-center mb-4"
+        className="w-12 h-12 rounded-xl bg-[#A0845C]/10 flex items-center justify-center mb-4"
         style={{ translateZ: 20 }}
       >
-        <Icon className="w-6 h-6 text-[#C4704B]" />
+        <Icon className="w-6 h-6 text-[#A0845C]" />
       </motion.div>
       <motion.h4
-        className="font-bold text-[#1E3D30] mb-2"
+        className="font-bold text-[#1D1D1F] mb-2"
         style={{ translateZ: 30 }}
       >
         {quality.title}
       </motion.h4>
       <motion.p
-        className="text-[#6B6560] text-sm"
+        className="text-[#86868B] text-sm"
         style={{ translateZ: 15 }}
       >
         {quality.description}
@@ -142,16 +142,16 @@ export default function CraftmanshipSection() {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 lg:py-28 px-4 bg-[#FAF7F2] overflow-hidden"
+      className="relative py-20 lg:py-28 px-4 bg-[#F5F5F7] overflow-hidden"
     >
       {/* Background decoration with mouse follow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-[#C4704B]/5 rounded-full blur-[120px]"
+          className="absolute top-20 right-20 w-96 h-96 bg-[#A0845C]/5 rounded-full blur-[120px]"
           style={{ x: floatingSlow.x, y: floatingSlow.y }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-80 h-80 bg-[#1E3D30]/5 rounded-full blur-[100px]"
+          className="absolute bottom-20 left-20 w-80 h-80 bg-[#1D1D1F]/5 rounded-full blur-[100px]"
           style={{ x: floatingMedium.x, y: floatingMedium.y }}
         />
       </div>
@@ -164,13 +164,13 @@ export default function CraftmanshipSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#C4704B] text-sm uppercase tracking-[0.2em] font-medium">
+          <span className="text-[#A0845C] text-sm uppercase tracking-[0.2em] font-medium">
             Il Nostro Approccio
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3 leading-tight">
-            Non siamo una <span className="text-[#C4704B]">fabbrica</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
+            Non siamo una <span className="text-[#A0845C]">fabbrica</span>
           </h2>
-          <p className="text-[#6B6560] text-base sm:text-lg max-w-2xl mx-auto mt-4">
+          <p className="text-[#86868B] text-base sm:text-lg max-w-2xl mx-auto mt-4">
             Come un sarto crea abiti su misura, noi costruiamo case uniche.
             Pochi progetti, massima cura per ogni dettaglio.
           </p>
@@ -183,7 +183,7 @@ export default function CraftmanshipSection() {
             ref={craftTilt.ref}
             className={`
               relative bg-white rounded-3xl p-6 sm:p-8 border-2 transition-all duration-300
-              ${hoveredSide === 'craft' ? 'border-[#1E3D30] shadow-2xl' : 'border-[#E5E0D8] shadow-lg'}
+              ${hoveredSide === 'craft' ? 'border-[#1D1D1F] shadow-2xl' : 'border-[#D2D2D7] shadow-lg'}
             `}
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -207,16 +207,16 @@ export default function CraftmanshipSection() {
               className="absolute -top-3 left-6"
               style={{ translateZ: 40 }}
             >
-              <span className="px-4 py-1.5 bg-[#1E3D30] text-white text-xs font-bold rounded-full uppercase tracking-wider">
+              <span className="px-4 py-1.5 bg-[#1D1D1F] text-white text-xs font-bold rounded-full uppercase tracking-wider">
                 Ecolive
               </span>
             </motion.div>
 
             <motion.div className="mt-4" style={{ translateZ: 20 }}>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1E3D30]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#1D1D1F]">
                 {craftVsIndustrial.craft.title}
               </h3>
-              <p className="text-[#C4704B] font-medium mt-1">{craftVsIndustrial.craft.subtitle}</p>
+              <p className="text-[#A0845C] font-medium mt-1">{craftVsIndustrial.craft.subtitle}</p>
             </motion.div>
 
             <div className="mt-8 space-y-6">
@@ -231,12 +231,12 @@ export default function CraftmanshipSection() {
                     transition={{ delay: 0.3 + index * 0.1 }}
                     style={{ translateZ: 15 }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D1D1F] to-[#48484A] flex items-center justify-center flex-shrink-0">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#1E3D30]">{point.title}</h4>
-                      <p className="text-[#6B6560] text-sm mt-0.5">{point.description}</p>
+                      <h4 className="font-bold text-[#1D1D1F]">{point.title}</h4>
+                      <p className="text-[#86868B] text-sm mt-0.5">{point.description}</p>
                     </div>
                   </motion.div>
                 )
@@ -244,7 +244,7 @@ export default function CraftmanshipSection() {
             </div>
 
             {/* Visual accent */}
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#1E3D30]/5 to-transparent rounded-tl-full" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#1D1D1F]/5 to-transparent rounded-tl-full" />
           </motion.div>
 
           {/* Industrial side */}
@@ -252,7 +252,7 @@ export default function CraftmanshipSection() {
             ref={industrialTilt.ref}
             className={`
               relative bg-[#F5F2EE] rounded-3xl p-6 sm:p-8 border-2 transition-all duration-300
-              ${hoveredSide === 'industrial' ? 'border-[#8A857F]/50' : 'border-transparent'}
+              ${hoveredSide === 'industrial' ? 'border-[#AEAEB2]/50' : 'border-transparent'}
             `}
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -272,10 +272,10 @@ export default function CraftmanshipSection() {
             }}
           >
             <motion.div style={{ translateZ: 20 }}>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#6B6560]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#86868B]">
                 {craftVsIndustrial.industrial.title}
               </h3>
-              <p className="text-[#8A857F] font-medium mt-1">{craftVsIndustrial.industrial.subtitle}</p>
+              <p className="text-[#AEAEB2] font-medium mt-1">{craftVsIndustrial.industrial.subtitle}</p>
             </motion.div>
 
             <div className="mt-8 space-y-6">
@@ -288,12 +288,12 @@ export default function CraftmanshipSection() {
                   transition={{ delay: 0.4 + index * 0.1 }}
                   style={{ translateZ: 15 }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#DDD5C9]/50 flex items-center justify-center flex-shrink-0">
-                    <Factory className="w-6 h-6 text-[#8A857F]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#D2D2D7]/50 flex items-center justify-center flex-shrink-0">
+                    <Factory className="w-6 h-6 text-[#AEAEB2]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#6B6560]">{point.title}</h4>
-                    <p className="text-[#8A857F] text-sm mt-0.5">{point.description}</p>
+                    <h4 className="font-bold text-[#86868B]">{point.title}</h4>
+                    <p className="text-[#AEAEB2] text-sm mt-0.5">{point.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -303,7 +303,7 @@ export default function CraftmanshipSection() {
 
         {/* Quote */}
         <motion.div
-          className="relative bg-[#1E3D30] rounded-3xl p-8 sm:p-12 mb-16 overflow-hidden"
+          className="relative bg-[#1D1D1F] rounded-3xl p-8 sm:p-12 mb-16 overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5 }}
@@ -318,13 +318,13 @@ export default function CraftmanshipSection() {
           />
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <Quote className="w-12 h-12 text-[#C4704B] mx-auto mb-6 opacity-60" />
+            <Quote className="w-12 h-12 text-[#A0845C] mx-auto mb-6 opacity-60" />
             <blockquote className="text-xl sm:text-2xl lg:text-3xl text-white font-light leading-relaxed italic">
               &ldquo;Non costruiamo case in serie. Costruiamo la casa che hai sempre sognato,
               con la cura che meriti.&rdquo;
             </blockquote>
             <div className="mt-8 flex items-center justify-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#C4704B] flex items-center justify-center text-white font-bold">
+              <div className="w-12 h-12 rounded-full bg-[#A0845C] flex items-center justify-center text-white font-bold">
                 DG
               </div>
               <div className="text-left">
@@ -359,17 +359,17 @@ export default function CraftmanshipSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.9 }}
         >
-          <p className="text-[#6B6560] mb-4">
+          <p className="text-[#86868B] mb-4">
             Vuoi vedere come lavoriamo?
           </p>
           <Link
             href="/contatti"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#1E3D30] text-white font-semibold rounded-full hover:bg-[#2D5A47] transition-colors group"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#1D1D1F] text-white font-semibold rounded-full hover:bg-[#48484A] transition-colors group"
           >
             <span>Vieni a trovarci in laboratorio</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <p className="text-[#8A857F] text-sm mt-4">
+          <p className="text-[#AEAEB2] text-sm mt-4">
             <CheckCircle2 className="w-4 h-4 inline mr-1" />
             Via Conte Ruggiero 128, Spadola (VV)
           </p>

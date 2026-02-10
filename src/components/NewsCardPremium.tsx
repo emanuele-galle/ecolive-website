@@ -25,7 +25,7 @@ const tagColors: Record<string, string> = {
   bioedilizia: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
   sostenibilita: 'bg-green-500/20 text-green-300 border-green-500/30',
   innovazione: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  progetti: 'bg-[#C4704B]/20 text-[#E8956B] border-[#C4704B]/30',
+  progetti: 'bg-[#A0845C]/20 text-[#E8956B] border-[#A0845C]/30',
   eventi: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
   normative: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
 }
@@ -47,7 +47,7 @@ export function NewsCardPremium({ article, featured = false }: NewsCardPremiumPr
     return (
       <Link
         href={`/news/${article.slug}`}
-        className="group block overflow-hidden rounded-3xl bg-[#1E3D30] shadow-xl"
+        className="group block overflow-hidden rounded-3xl bg-[#1D1D1F] shadow-xl"
       >
         <div className="grid lg:grid-cols-2 gap-0">
           {/* Image */}
@@ -58,9 +58,9 @@ export function NewsCardPremium({ article, featured = false }: NewsCardPremiumPr
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1E3D30]/80 via-transparent to-transparent lg:bg-gradient-to-r" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/80 via-transparent to-transparent lg:bg-gradient-to-r" />
 
-            <div className="absolute top-4 left-4 px-4 py-2 bg-[#C4704B] text-white text-sm font-semibold rounded-full">
+            <div className="absolute top-4 left-4 px-4 py-2 bg-[#A0845C] text-white text-sm font-semibold rounded-full">
               In Evidenza
             </div>
 
@@ -72,7 +72,7 @@ export function NewsCardPremium({ article, featured = false }: NewsCardPremiumPr
 
           {/* Content */}
           <div className="p-8 lg:p-10 flex flex-col justify-center">
-            <time className="text-[#C4704B] text-sm font-medium mb-3">
+            <time className="text-[#A0845C] text-sm font-medium mb-3">
               {formatDate(article.publishedDate)}
             </time>
 
@@ -99,7 +99,7 @@ export function NewsCardPremium({ article, featured = false }: NewsCardPremiumPr
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-[#C4704B] font-semibold group-hover:gap-4 transition-all duration-300">
+            <div className="flex items-center gap-2 text-[#A0845C] font-semibold group-hover:gap-4 transition-all duration-300">
               Leggi articolo
               <ArrowRight className="w-5 h-5" />
             </div>
@@ -133,11 +133,11 @@ export function NewsCardPremium({ article, featured = false }: NewsCardPremiumPr
 
         {/* Content */}
         <div className="p-5">
-          <time className="text-[#C4704B] text-xs font-medium mb-2 block">
+          <time className="text-[#A0845C] text-xs font-medium mb-2 block">
             {formatDate(article.publishedDate)}
           </time>
 
-          <h3 className="text-lg font-bold text-[#2C2825] mb-2 line-clamp-2 group-hover:text-[#C4704B] transition-colors duration-300">
+          <h3 className="text-lg font-bold text-[#2C2825] mb-2 line-clamp-2 group-hover:text-[#A0845C] transition-colors duration-300">
             {article.title}
           </h3>
 

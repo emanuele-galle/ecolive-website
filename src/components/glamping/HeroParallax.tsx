@@ -36,7 +36,7 @@ function NatureBadge({ category, color }: { category: string; color: string }) {
       <motion.div
         className="absolute -inset-[2px] rounded-full opacity-60"
         style={{
-          background: `linear-gradient(90deg, ${color}, #1E3D30, ${color}cc, ${color})`,
+          background: `linear-gradient(90deg, ${color}, #1D1D1F, ${color}cc, ${color})`,
           backgroundSize: '300% 100%'
         }}
         animate={{
@@ -182,7 +182,7 @@ export default function HeroParallax({
           priority
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/25 to-[#1E3D30]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/25 to-[#1D1D1F]/95" />
       </motion.div>
 
       {/* Animated gradient orbs */}
@@ -303,7 +303,7 @@ export default function HeroParallax({
         >
           <motion.a
             href="/contatti"
-            className="relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1E3D30] font-semibold rounded-2xl overflow-hidden group"
+            className="relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#1D1D1F] font-semibold rounded-2xl overflow-hidden group"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -328,7 +328,7 @@ export default function HeroParallax({
       <ScrollIndicator color={color} />
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#1E3D30] via-[#1E3D30]/50 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#1D1D1F] via-[#1D1D1F]/50 to-transparent z-10" />
     </section>
   )
 }

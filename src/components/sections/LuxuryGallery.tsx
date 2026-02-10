@@ -13,7 +13,7 @@ export default function LuxuryGallery() {
   return (
     <>
       {/* SECTION 1: Preview Grid */}
-      <section className="py-20 lg:py-28 px-4 bg-[#FAF7F2]">
+      <section className="py-20 lg:py-28 px-4 bg-[#F5F5F7]">
         <div className="max-w-6xl 3xl:max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -22,13 +22,13 @@ export default function LuxuryGallery() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="text-sm text-[#2D5A47] font-semibold uppercase tracking-wider">
+            <span className="text-sm text-[#48484A] font-semibold uppercase tracking-wider">
               Portfolio
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30] mt-2">
-              La Nostra <span className="text-[#C4704B]">Galleria</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mt-2">
+              La Nostra <span className="text-[#A0845C]">Galleria</span>
             </h2>
-            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
+            <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-4">
               Una selezione esclusiva di 22 residenze d'eccellenza
             </p>
           </motion.div>
@@ -88,7 +88,7 @@ export default function LuxuryGallery() {
                 setImgIndex(0)
                 setIsFullscreen(true)
               }}
-              className="px-8 py-4 rounded-xl bg-[#C4704B] text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all"
+              className="px-8 py-4 rounded-xl bg-[#A0845C] text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

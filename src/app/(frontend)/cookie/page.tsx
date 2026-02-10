@@ -51,15 +51,15 @@ export default function CookiePage() {
             <div key={i} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
               <div className="flex items-start gap-4">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                  cookie.required ? 'bg-[#1E3D30]' : 'bg-[#C4704B]/10'
+                  cookie.required ? 'bg-[#1D1D1F]' : 'bg-[#A0845C]/10'
                 }`}>
-                  <cookie.icon className={`w-6 h-6 ${cookie.required ? 'text-white' : 'text-[#C4704B]'}`} />
+                  <cookie.icon className={`w-6 h-6 ${cookie.required ? 'text-white' : 'text-[#A0845C]'}`} />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-semibold text-[#1E3D30]">{cookie.title}</h4>
+                    <h4 className="font-semibold text-[#1D1D1F]">{cookie.title}</h4>
                     {cookie.required && (
-                      <span className="text-xs px-2 py-0.5 bg-[#1E3D30]/10 text-[#1E3D30] rounded-full font-medium">
+                      <span className="text-xs px-2 py-0.5 bg-[#1D1D1F]/10 text-[#1D1D1F] rounded-full font-medium">
                         Necessari
                       </span>
                     )}
@@ -94,14 +94,14 @@ export default function CookiePage() {
               { name: 'YouTube', purpose: 'Video incorporati', link: 'https://policies.google.com/privacy' },
               { name: 'Facebook', purpose: 'Widget social', link: 'https://www.facebook.com/privacy/policy' },
             ].map((service, i) => (
-              <div key={i} className="p-4 bg-[#1E3D30]/5 rounded-xl">
-                <h4 className="font-semibold text-[#1E3D30]">{service.name}</h4>
+              <div key={i} className="p-4 bg-[#1D1D1F]/5 rounded-xl">
+                <h4 className="font-semibold text-[#1D1D1F]">{service.name}</h4>
                 <p className="text-sm text-gray-600">{service.purpose}</p>
                 <a
                   href={service.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#C4704B] hover:underline"
+                  className="text-xs text-[#A0845C] hover:underline"
                 >
                   Privacy Policy →
                 </a>
@@ -125,9 +125,9 @@ export default function CookiePage() {
               { title: 'Opt-out Analytics', desc: 'Installa il componente aggiuntivo per disattivare Google Analytics' },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#C4704B] mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-[#A0845C] mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-[#1E3D30]">{item.title}</h4>
+                  <h4 className="font-semibold text-[#1D1D1F]">{item.title}</h4>
                   <p className="text-sm text-gray-600">{item.desc}</p>
                 </div>
               </div>
@@ -157,10 +157,10 @@ export default function CookiePage() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group"
               >
-                <div className="w-10 h-10 bg-[#C4704B]/10 rounded-lg flex items-center justify-center group-hover:bg-[#C4704B]/20 transition-colors">
-                  <Settings className="w-5 h-5 text-[#C4704B]" />
+                <div className="w-10 h-10 bg-[#A0845C]/10 rounded-lg flex items-center justify-center group-hover:bg-[#A0845C]/20 transition-colors">
+                  <Settings className="w-5 h-5 text-[#A0845C]" />
                 </div>
-                <span className="font-medium text-[#1E3D30]">{item.browser}</span>
+                <span className="font-medium text-[#1D1D1F]">{item.browser}</span>
               </a>
             ))}
           </div>
@@ -180,9 +180,9 @@ export default function CookiePage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2]">
+    <main className="min-h-screen bg-[#F5F5F7]">
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] overflow-hidden">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -190,7 +190,7 @@ export default function CookiePage() {
             backgroundSize: '32px 32px'
           }}
         />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -198,7 +198,7 @@ export default function CookiePage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
-            <Cookie className="w-4 h-4 text-[#C4704B]" />
+            <Cookie className="w-4 h-4 text-[#A0845C]" />
             <span className="text-white/90 text-sm font-medium">Informativa Cookie</span>
           </motion.div>
 
@@ -208,7 +208,7 @@ export default function CookiePage() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Cookie <span className="text-[#C4704B]">Policy</span>
+            Cookie <span className="text-[#A0845C]">Policy</span>
           </motion.h1>
 
           <motion.p
@@ -241,7 +241,7 @@ export default function CookiePage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#C4704B] transition-colors"
+              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#A0845C] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Torna alla Home
@@ -257,8 +257,8 @@ export default function CookiePage() {
                 transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
-                <h2 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-4 flex items-center gap-3">
-                  <span className="w-8 h-8 bg-[#C4704B]/10 rounded-lg flex items-center justify-center text-[#C4704B] font-bold text-sm">
+                <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
+                  <span className="w-8 h-8 bg-[#A0845C]/10 rounded-lg flex items-center justify-center text-[#A0845C] font-bold text-sm">
                     {index + 1}
                   </span>
                   {section.title}
@@ -273,7 +273,7 @@ export default function CookiePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mt-12 p-8 bg-[#1E3D30] rounded-2xl"
+            className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl"
           >
             <h3 className="text-xl font-bold text-white mb-4 text-center">Documenti Correlati</h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -285,7 +285,7 @@ export default function CookiePage() {
               </Link>
               <Link
                 href="/termini"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-medium rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#A0845C] hover:bg-[#856B45] text-white font-medium rounded-xl transition-colors"
               >
                 Termini di Servizio
               </Link>
@@ -300,15 +300,15 @@ export default function CookiePage() {
             transition={{ delay: 0.6 }}
             className="mt-12 pt-8 border-t border-gray-200"
           >
-            <h2 className="text-xl font-bold text-[#1E3D30] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
+            <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
             <p className="text-gray-600">Questo sito web è stato realizzato e viene gestito da:</p>
             <p className="text-gray-600 mt-2">
-              <strong className="text-[#1E3D30]">FODI S.r.l. – Startup Innovativa</strong><br/>
+              <strong className="text-[#1D1D1F]">FODI S.r.l. – Startup Innovativa</strong><br/>
               Via Santicelli 18/A, 88068 Soverato (CZ)<br/>
               P.IVA: 03856160793<br/>
-              Email: <a href="mailto:info@fodisrl.it" className="text-[#C4704B] hover:underline">info@fodisrl.it</a><br/>
+              Email: <a href="mailto:info@fodisrl.it" className="text-[#A0845C] hover:underline">info@fodisrl.it</a><br/>
               Tel: +39 0963 576433<br/>
-              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#C4704B] hover:underline">www.fodisrl.it</a>
+              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#A0845C] hover:underline">www.fodisrl.it</a>
             </p>
           </motion.div>
         </section>

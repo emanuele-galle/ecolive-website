@@ -74,19 +74,19 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
     bg-gray-50
     border-2 border-transparent
     rounded-xl
-    text-[#1E3D30]
+    text-[#1D1D1F]
     placeholder:text-gray-400
     transition-all duration-300
-    focus:bg-white focus:border-[#C4704B]/30 focus:shadow-lg focus:shadow-[#C4704B]/10
+    focus:bg-white focus:border-[#A0845C]/30 focus:shadow-lg focus:shadow-[#A0845C]/10
     disabled:bg-gray-100 disabled:cursor-not-allowed
     outline-none
-    ${focusedField === fieldName ? 'bg-white border-[#C4704B]/30 shadow-lg shadow-[#C4704B]/10' : ''}
+    ${focusedField === fieldName ? 'bg-white border-[#A0845C]/30 shadow-lg shadow-[#A0845C]/10' : ''}
   `
 
   const iconClasses = (fieldName: string) => `
     absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5
     transition-colors duration-300
-    ${focusedField === fieldName ? 'text-[#C4704B]' : 'text-gray-400'}
+    ${focusedField === fieldName ? 'text-[#A0845C]' : 'text-gray-400'}
   `
 
   // Success state
@@ -107,13 +107,13 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
             <CheckCircle2 className="w-10 h-10 text-green-600" />
           </motion.div>
 
-          <h2 className="text-2xl font-bold text-[#1E3D30] mb-3">Richiesta Inviata!</h2>
+          <h2 className="text-2xl font-bold text-[#1D1D1F] mb-3">Richiesta Inviata!</h2>
           <p className="text-gray-600 mb-8">{result.message}</p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1E3D30] text-white rounded-xl hover:bg-[#2D5A47] transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1D1D1F] text-white rounded-xl hover:bg-[#48484A] transition-colors"
             >
               Torna alla Home
               <ArrowRight className="w-4 h-4" />
@@ -147,12 +147,12 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E3D30]/70 via-[#1E3D30]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D1D1F]/70 via-[#1D1D1F]/40 to-transparent" />
 
         {/* Back button - top-28 per evitare conflitto con Header */}
         <motion.button
           onClick={goBack}
-          className="absolute top-28 left-8 flex items-center gap-2 px-5 py-2.5 bg-white text-[#1E3D30] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
+          className="absolute top-28 left-8 flex items-center gap-2 px-5 py-2.5 bg-white text-[#1D1D1F] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
@@ -179,7 +179,7 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
           {/* Mobile back button */}
           <button
             onClick={goBack}
-            className="lg:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 text-[#1E3D30] rounded-full hover:bg-gray-200 mb-4 transition-colors"
+            className="lg:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 text-[#1D1D1F] rounded-full hover:bg-gray-200 mb-4 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm font-semibold">Modifica configurazione</span>
@@ -190,7 +190,7 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
             <ConfigSummary onEdit={goBack} />
           </div>
 
-          <h2 className="text-2xl lg:text-3xl font-bold text-[#1E3D30]">
+          <h2 className="text-2xl lg:text-3xl font-bold text-[#1D1D1F]">
             Richiedi Preventivo
           </h2>
           <p className="text-gray-500 mt-2">
@@ -221,8 +221,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
           <form id="quote-form" action={handleSubmit} className="space-y-5">
             {/* Nome */}
             <div>
-              <label htmlFor="nome" className="block text-sm font-medium text-[#1E3D30] mb-2">
-                Nome e Cognome <span className="text-[#C4704B]">*</span>
+              <label htmlFor="nome" className="block text-sm font-medium text-[#1D1D1F] mb-2">
+                Nome e Cognome <span className="text-[#A0845C]">*</span>
               </label>
               <div className="relative">
                 <User className={iconClasses('nome')} />
@@ -242,8 +242,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#1E3D30] mb-2">
-                Email <span className="text-[#C4704B]">*</span>
+              <label htmlFor="email" className="block text-sm font-medium text-[#1D1D1F] mb-2">
+                Email <span className="text-[#A0845C]">*</span>
               </label>
               <div className="relative">
                 <Mail className={iconClasses('email')} />
@@ -263,7 +263,7 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
 
             {/* Telefono */}
             <div>
-              <label htmlFor="telefono" className="block text-sm font-medium text-[#1E3D30] mb-2">
+              <label htmlFor="telefono" className="block text-sm font-medium text-[#1D1D1F] mb-2">
                 Telefono
               </label>
               <div className="relative">
@@ -283,13 +283,13 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
 
             {/* Messaggio */}
             <div>
-              <label htmlFor="messaggio" className="block text-sm font-medium text-[#1E3D30] mb-2">
+              <label htmlFor="messaggio" className="block text-sm font-medium text-[#1D1D1F] mb-2">
                 Note aggiuntive
               </label>
               <div className="relative">
                 <MessageSquare
                   className={`absolute left-4 top-4 w-5 h-5 transition-colors duration-300 ${
-                    focusedField === 'messaggio' ? 'text-[#C4704B]' : 'text-gray-400'
+                    focusedField === 'messaggio' ? 'text-[#A0845C]' : 'text-gray-400'
                   }`}
                 />
                 <textarea
@@ -304,13 +304,13 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                     bg-gray-50
                     border-2 border-transparent
                     rounded-xl
-                    text-[#1E3D30]
+                    text-[#1D1D1F]
                     placeholder:text-gray-400
                     transition-all duration-300
-                    focus:bg-white focus:border-[#C4704B]/30 focus:shadow-lg focus:shadow-[#C4704B]/10
+                    focus:bg-white focus:border-[#A0845C]/30 focus:shadow-lg focus:shadow-[#A0845C]/10
                     disabled:bg-gray-100 disabled:cursor-not-allowed
                     outline-none resize-none
-                    ${focusedField === 'messaggio' ? 'bg-white border-[#C4704B]/30 shadow-lg shadow-[#C4704B]/10' : ''}
+                    ${focusedField === 'messaggio' ? 'bg-white border-[#A0845C]/30 shadow-lg shadow-[#A0845C]/10' : ''}
                   `}
                   placeholder="Eventuali richieste particolari..."
                 />
@@ -325,15 +325,15 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                 name="privacy"
                 required
                 disabled={isPending}
-                className="mt-1 w-5 h-5 text-[#C4704B] border-gray-300 rounded focus:ring-[#C4704B] focus:ring-2 disabled:cursor-not-allowed cursor-pointer"
+                className="mt-1 w-5 h-5 text-[#A0845C] border-gray-300 rounded focus:ring-[#A0845C] focus:ring-2 disabled:cursor-not-allowed cursor-pointer"
               />
               <label htmlFor="privacy" className="text-sm text-gray-600 leading-relaxed cursor-pointer">
                 Accetto la{' '}
-                <Link href="/privacy" className="text-[#C4704B] hover:underline font-medium">
+                <Link href="/privacy" className="text-[#A0845C] hover:underline font-medium">
                   privacy policy
                 </Link>{' '}
                 e autorizzo il trattamento dei miei dati personali{' '}
-                <span className="text-[#C4704B]">*</span>
+                <span className="text-[#A0845C]">*</span>
               </label>
             </div>
 
@@ -343,7 +343,7 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
               disabled={isPending}
               whileHover={{ scale: isPending ? 1 : 1.02 }}
               whileTap={{ scale: isPending ? 1 : 0.98 }}
-              className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-xl shadow-lg shadow-[#C4704B]/25 hover:bg-[#B35F3A] disabled:opacity-70 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-300"
+              className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-xl shadow-lg shadow-[#A0845C]/25 hover:bg-[#B35F3A] disabled:opacity-70 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-300"
             >
               {isPending ? (
                 <>
@@ -359,7 +359,7 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
             </motion.button>
 
             <p className="text-xs text-gray-400 text-center">
-              <span className="text-[#C4704B]">*</span> Campi obbligatori
+              <span className="text-[#A0845C]">*</span> Campi obbligatori
             </p>
           </form>
         </div>

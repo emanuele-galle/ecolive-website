@@ -129,9 +129,9 @@ export default function GaussianSplatLocal({
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#FAFAFA] to-[#F5F5F7] z-10">
           <div className="text-center">
             <div className="relative mb-4">
-              <div className="w-16 h-16 rounded-full border-3 border-gray-200 border-t-[#C4704B] animate-spin" />
+              <div className="w-16 h-16 rounded-full border-3 border-gray-200 border-t-[#A0845C] animate-spin" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[#C4704B] font-bold text-sm">{loadProgress}%</span>
+                <span className="text-[#A0845C] font-bold text-sm">{loadProgress}%</span>
               </div>
             </div>
             <p className="text-gray-500 text-sm">Caricamento modello 3D...</p>

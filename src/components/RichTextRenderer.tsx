@@ -60,7 +60,7 @@ export default function RichTextRenderer({ data, className = '' }: RichTextRende
   if (!data) return null
 
   return (
-    <div className={`prose prose-lg max-w-none prose-headings:text-[#1E3D30] prose-p:text-gray-700 prose-a:text-[#C4704B] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#1E3D30] prose-ul:text-gray-700 prose-ol:text-gray-700 ${className}`}>
+    <div className={`prose prose-lg max-w-none prose-headings:text-[#1D1D1F] prose-p:text-gray-700 prose-a:text-[#A0845C] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#1D1D1F] prose-ul:text-gray-700 prose-ol:text-gray-700 ${className}`}>
       <RichText data={data} converters={jsxConverters} />
     </div>
   )

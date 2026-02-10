@@ -13,21 +13,21 @@ export default function PrivacyPage() {
           <p className="text-gray-600 mb-4">
             Il Titolare del trattamento dei dati personali e:
           </p>
-          <div className="bg-[#1E3D30]/5 rounded-xl p-6 space-y-3">
-            <p className="font-semibold text-[#1E3D30]">Ecolive S.r.l.</p>
+          <div className="bg-[#1D1D1F]/5 rounded-xl p-6 space-y-3">
+            <p className="font-semibold text-[#1D1D1F]">Ecolive S.r.l.</p>
             <p className="flex items-center gap-2 text-gray-600">
-              <MapPin className="w-4 h-4 text-[#C4704B]" />
+              <MapPin className="w-4 h-4 text-[#A0845C]" />
               Via Conte Ruggiero 128, 89822 Spadola (VV)
             </p>
             <p className="flex items-center gap-2 text-gray-600">
-              <Mail className="w-4 h-4 text-[#C4704B]" />
-              <a href="mailto:info@ecolive.srl" className="hover:text-[#C4704B] transition-colors">
+              <Mail className="w-4 h-4 text-[#A0845C]" />
+              <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors">
                 info@ecolive.srl
               </a>
             </p>
             <p className="flex items-center gap-2 text-gray-600">
-              <Phone className="w-4 h-4 text-[#C4704B]" />
-              <a href="tel:+3909631951395" className="hover:text-[#C4704B] transition-colors">
+              <Phone className="w-4 h-4 text-[#A0845C]" />
+              <a href="tel:+3909631951395" className="hover:text-[#A0845C] transition-colors">
                 +39 0963 1951395
               </a>
             </p>
@@ -44,16 +44,16 @@ export default function PrivacyPage() {
           </p>
           <ul className="space-y-2 text-gray-600">
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Dati di contatto:</strong> nome, cognome, email, numero di telefono</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Dati di contatto:</strong> nome, cognome, email, numero di telefono</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Dati di navigazione:</strong> cookie tecnici e di analytics</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Dati di navigazione:</strong> cookie tecnici e di analytics</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Dati del progetto:</strong> informazioni fornite per richieste di preventivo</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Dati del progetto:</strong> informazioni fornite per richieste di preventivo</span>
             </li>
           </ul>
         </>
@@ -74,11 +74,11 @@ export default function PrivacyPage() {
               { title: 'Marketing (con consenso)', desc: 'Invio di comunicazioni promozionali' },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
-                <div className="w-8 h-8 bg-[#C4704B] rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-[#A0845C] rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-sm">{i + 1}</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#1E3D30]">{item.title}</h4>
+                  <h4 className="font-semibold text-[#1D1D1F]">{item.title}</h4>
                   <p className="text-sm text-gray-600">{item.desc}</p>
                 </div>
               </div>
@@ -91,10 +91,10 @@ export default function PrivacyPage() {
       title: 'Base Giuridica del Trattamento',
       content: (
         <p className="text-gray-600">
-          Il trattamento dei dati personali si basa su: <strong className="text-[#1E3D30]">consenso dell&apos;interessato</strong> per
-          l&apos;invio di comunicazioni commerciali; <strong className="text-[#1E3D30]">esecuzione di un contratto</strong> per la gestione
-          delle richieste di preventivo; <strong className="text-[#1E3D30]">legittimo interesse</strong> del Titolare per finalita
-          statistiche e di miglioramento del servizio; <strong className="text-[#1E3D30]">obbligo legale</strong> per adempimenti normativi.
+          Il trattamento dei dati personali si basa su: <strong className="text-[#1D1D1F]">consenso dell&apos;interessato</strong> per
+          l&apos;invio di comunicazioni commerciali; <strong className="text-[#1D1D1F]">esecuzione di un contratto</strong> per la gestione
+          delle richieste di preventivo; <strong className="text-[#1D1D1F]">legittimo interesse</strong> del Titolare per finalita
+          statistiche e di miglioramento del servizio; <strong className="text-[#1D1D1F]">obbligo legale</strong> per adempimenti normativi.
         </p>
       ),
     },
@@ -103,9 +103,9 @@ export default function PrivacyPage() {
       content: (
         <p className="text-gray-600">
           I dati personali sono conservati per il tempo strettamente necessario a conseguire le finalita per cui
-          sono stati raccolti. In particolare: i dati di contatto sono conservati per <strong className="text-[#1E3D30]">24 mesi</strong> dalla
-          richiesta; i dati contrattuali per <strong className="text-[#1E3D30]">10 anni</strong> come previsto dalla normativa fiscale;
-          i dati di navigazione per un massimo di <strong className="text-[#1E3D30]">13 mesi</strong>.
+          sono stati raccolti. In particolare: i dati di contatto sono conservati per <strong className="text-[#1D1D1F]">24 mesi</strong> dalla
+          richiesta; i dati contrattuali per <strong className="text-[#1D1D1F]">10 anni</strong> come previsto dalla normativa fiscale;
+          i dati di navigazione per un massimo di <strong className="text-[#1D1D1F]">13 mesi</strong>.
         </p>
       ),
     },
@@ -125,15 +125,15 @@ export default function PrivacyPage() {
               'Diritto di opposizione',
               'Diritto di limitazione',
             ].map((right, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 bg-[#1E3D30]/5 rounded-lg">
-                <Shield className="w-4 h-4 text-[#C4704B]" />
-                <span className="text-[#1E3D30] font-medium">{right}</span>
+              <div key={i} className="flex items-center gap-2 p-3 bg-[#1D1D1F]/5 rounded-lg">
+                <Shield className="w-4 h-4 text-[#A0845C]" />
+                <span className="text-[#1D1D1F] font-medium">{right}</span>
               </div>
             ))}
           </div>
           <p className="text-gray-600 mt-4">
             Per esercitare i tuoi diritti, contattaci all&apos;indirizzo{' '}
-            <a href="mailto:info@ecolive.srl" className="text-[#C4704B] hover:underline">
+            <a href="mailto:info@ecolive.srl" className="text-[#A0845C] hover:underline">
               info@ecolive.srl
             </a>
           </p>
@@ -146,7 +146,7 @@ export default function PrivacyPage() {
         <p className="text-gray-600">
           Questo sito utilizza cookie tecnici necessari al funzionamento e cookie di terze parti per finalita
           statistiche. Per maggiori informazioni, consulta la nostra{' '}
-          <Link href="/cookie" className="text-[#C4704B] hover:underline">
+          <Link href="/cookie" className="text-[#A0845C] hover:underline">
             Cookie Policy
           </Link>.
         </p>
@@ -165,9 +165,9 @@ export default function PrivacyPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2]">
+    <main className="min-h-screen bg-[#F5F5F7]">
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] overflow-hidden">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         {/* Pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
             backgroundSize: '32px 32px'
           }}
         />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           {/* Badge */}
@@ -185,7 +185,7 @@ export default function PrivacyPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
-            <Shield className="w-4 h-4 text-[#C4704B]" />
+            <Shield className="w-4 h-4 text-[#A0845C]" />
             <span className="text-white/90 text-sm font-medium">Protezione Dati</span>
           </motion.div>
 
@@ -195,7 +195,7 @@ export default function PrivacyPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Privacy <span className="text-[#C4704B]">Policy</span>
+            Privacy <span className="text-[#A0845C]">Policy</span>
           </motion.h1>
 
           <motion.p
@@ -229,7 +229,7 @@ export default function PrivacyPage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#C4704B] transition-colors"
+              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#A0845C] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Torna alla Home
@@ -246,8 +246,8 @@ export default function PrivacyPage() {
                 transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
-                <h2 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-4 flex items-center gap-3">
-                  <span className="w-8 h-8 bg-[#C4704B]/10 rounded-lg flex items-center justify-center text-[#C4704B] font-bold text-sm">
+                <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
+                  <span className="w-8 h-8 bg-[#A0845C]/10 rounded-lg flex items-center justify-center text-[#A0845C] font-bold text-sm">
                     {index + 1}
                   </span>
                   {section.title}
@@ -262,7 +262,7 @@ export default function PrivacyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mt-12 p-8 bg-[#1E3D30] rounded-2xl text-center"
+            className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl text-center"
           >
             <h3 className="text-xl font-bold text-white mb-2">Hai domande sulla privacy?</h3>
             <p className="text-white/70 mb-6">
@@ -270,7 +270,7 @@ export default function PrivacyPage() {
             </p>
             <Link
               href="/contatti"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold rounded-xl transition-colors"
             >
               <Mail className="w-5 h-5" />
               Contattaci
@@ -285,15 +285,15 @@ export default function PrivacyPage() {
             transition={{ delay: 0.6 }}
             className="mt-12 pt-8 border-t border-gray-200"
           >
-            <h2 className="text-xl font-bold text-[#1E3D30] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
+            <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
             <p className="text-gray-600">Questo sito web è stato realizzato e viene gestito da:</p>
             <p className="text-gray-600 mt-2">
-              <strong className="text-[#1E3D30]">FODI S.r.l. – Startup Innovativa</strong><br/>
+              <strong className="text-[#1D1D1F]">FODI S.r.l. – Startup Innovativa</strong><br/>
               Via Santicelli 18/A, 88068 Soverato (CZ)<br/>
               P.IVA: 03856160793<br/>
-              Email: <a href="mailto:info@fodisrl.it" className="text-[#C4704B] hover:underline">info@fodisrl.it</a><br/>
+              Email: <a href="mailto:info@fodisrl.it" className="text-[#A0845C] hover:underline">info@fodisrl.it</a><br/>
               Tel: +39 0963 576433<br/>
-              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#C4704B] hover:underline">www.fodisrl.it</a>
+              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#A0845C] hover:underline">www.fodisrl.it</a>
             </p>
           </motion.div>
         </section>

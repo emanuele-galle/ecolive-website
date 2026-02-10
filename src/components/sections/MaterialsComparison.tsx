@@ -153,7 +153,7 @@ function MaterialCard({
 }) {
   return (
     <motion.div
-      className="bg-white rounded-2xl border border-[#E5E0D8] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group"
+      className="bg-white rounded-2xl border border-[#D2D2D7] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
@@ -162,32 +162,32 @@ function MaterialCard({
       whileHover={{ y: -4 }}
     >
       {/* Header */}
-      <div className="p-5 sm:p-6 border-b border-[#E5E0D8]/50">
+      <div className="p-5 sm:p-6 border-b border-[#D2D2D7]/50">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] flex items-center justify-center text-white flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D1D1F] to-[#48484A] flex items-center justify-center text-white flex-shrink-0">
             {material.icon}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-[#1E3D30]">{material.component}</h3>
-            <p className="text-sm text-[#8A857F]">Clicca per dettagli</p>
+            <h3 className="text-lg font-bold text-[#1D1D1F]">{material.component}</h3>
+            <p className="text-sm text-[#AEAEB2]">Clicca per dettagli</p>
           </div>
           <motion.div
             animate={{ rotate: isExpanded ? 90 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ArrowRight className="w-5 h-5 text-[#C4704B]" />
+            <ArrowRight className="w-5 h-5 text-[#A0845C]" />
           </motion.div>
         </div>
       </div>
 
       {/* Comparison grid */}
-      <div className="grid grid-cols-2 divide-x divide-[#E5E0D8]/50">
+      <div className="grid grid-cols-2 divide-x divide-[#D2D2D7]/50">
         {/* Ecolive side */}
-        <div className="p-4 sm:p-5 bg-gradient-to-br from-[#1E3D30]/5 to-transparent">
+        <div className="p-4 sm:p-5 bg-gradient-to-br from-[#1D1D1F]/5 to-transparent">
           <div className="flex items-center gap-2 mb-3">
-            <span className="px-2 py-0.5 bg-[#1E3D30] text-white text-xs font-semibold rounded">ECOLIVE</span>
+            <span className="px-2 py-0.5 bg-[#1D1D1F] text-white text-xs font-semibold rounded">ECOLIVE</span>
           </div>
-          <p className="font-semibold text-[#1E3D30] text-sm sm:text-base">{material.ecolive.name}</p>
+          <p className="font-semibold text-[#1D1D1F] text-sm sm:text-base">{material.ecolive.name}</p>
 
           {/* Expanded features */}
           <motion.div
@@ -199,7 +199,7 @@ function MaterialCard({
             <ul className="mt-3 space-y-2">
               {material.ecolive.features.map((feature, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#4A4540]">
-                  <Check className="w-4 h-4 text-[#2D5A47] flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#48484A] flex-shrink-0 mt-0.5" />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -210,9 +210,9 @@ function MaterialCard({
         {/* Standard side */}
         <div className="p-4 sm:p-5 bg-[#F8F6F3]">
           <div className="flex items-center gap-2 mb-3">
-            <span className="px-2 py-0.5 bg-[#8A857F] text-white text-xs font-semibold rounded">STANDARD</span>
+            <span className="px-2 py-0.5 bg-[#AEAEB2] text-white text-xs font-semibold rounded">STANDARD</span>
           </div>
-          <p className="font-semibold text-[#6B6560] text-sm sm:text-base">{material.standard.name}</p>
+          <p className="font-semibold text-[#86868B] text-sm sm:text-base">{material.standard.name}</p>
 
           {/* Expanded issues */}
           <motion.div
@@ -223,8 +223,8 @@ function MaterialCard({
           >
             <ul className="mt-3 space-y-2">
               {material.standard.issues.map((issue, i) => (
-                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#8A857F]">
-                  <X className="w-4 h-4 text-[#C4704B]/70 flex-shrink-0 mt-0.5" />
+                <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-[#AEAEB2]">
+                  <X className="w-4 h-4 text-[#A0845C]/70 flex-shrink-0 mt-0.5" />
                   <span>{issue}</span>
                 </li>
               ))}
@@ -248,7 +248,7 @@ export default function MaterialsComparison() {
   return (
     <section
       ref={containerRef}
-      className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1E3D30] to-[#FAF7F2] overflow-hidden"
+      className="relative py-20 lg:py-28 px-4 bg-gradient-to-b from-[#152822] via-[#1D1D1F] to-[#F5F5F7] overflow-hidden"
     >
       {/* Background patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -259,7 +259,7 @@ export default function MaterialsComparison() {
             backgroundSize: '32px 32px',
           }}
         />
-        <div className="absolute top-20 right-10 w-80 h-80 bg-[#C4704B]/10 rounded-full blur-[120px]" />
+        <div className="absolute top-20 right-10 w-80 h-80 bg-[#A0845C]/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-40 left-10 w-96 h-96 bg-white/5 rounded-full blur-[100px]" />
       </div>
 
@@ -278,14 +278,14 @@ export default function MaterialsComparison() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            <Sparkles className="w-4 h-4 text-[#C4704B]" />
+            <Sparkles className="w-4 h-4 text-[#A0845C]" />
             <span className="text-white/90 text-xs sm:text-sm font-medium uppercase tracking-wider">
               La Differenza nei Dettagli
             </span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            Perche costa <span className="text-[#C4704B]">di piu</span>
+            Perche costa <span className="text-[#A0845C]">di piu</span>
           </h2>
 
           <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
@@ -314,13 +314,13 @@ export default function MaterialsComparison() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
         >
-          <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border border-[#E5E0D8]">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C4704B] to-[#A85A3A] flex items-center justify-center flex-shrink-0">
+          <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border border-[#D2D2D7]">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#A0845C] to-[#856B45] flex items-center justify-center flex-shrink-0">
               <Check className="w-5 h-5 text-white" />
             </div>
-            <p className="text-[#1E3D30] text-sm sm:text-base font-medium text-left">
+            <p className="text-[#1D1D1F] text-sm sm:text-base font-medium text-left">
               <span className="block font-bold">Materiali premium, risultati premium.</span>
-              <span className="text-[#6B6560]">Garanzia 30 anni sulla struttura.</span>
+              <span className="text-[#86868B]">Garanzia 30 anni sulla struttura.</span>
             </p>
           </div>
         </motion.div>

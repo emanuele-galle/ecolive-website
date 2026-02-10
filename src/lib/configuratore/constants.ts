@@ -23,9 +23,9 @@ export const COLORS = {
   // Base colors
   grid: '#E8E4E0',
   gridLines: '#D4CFC9',
-  pillar: '#6B6560',
+  pillar: '#86868B',
   floor: '#F5F3F0',
-  selected: '#C4704B', // terracotta
+  selected: '#A0845C', // terracotta
   hover: 'rgba(196, 112, 75, 0.3)',
 
   // Premium palette
@@ -36,7 +36,7 @@ export const COLORS = {
   stone300: '#E0DDD6',    // Bordi
 
   // Category colors
-  living: '#2D5A47', // forest green
+  living: '#48484A', // forest green
   private: '#8B7355', // warm brown
   service: '#5A9CAD', // blue-grey
 } as const
@@ -54,7 +54,7 @@ export const MODULE_PRESETS: ModulePreset[] = [
     description: 'Cucina + living + pranzo (~76 m²)',
     cellsX: 2,
     cellsZ: 2,
-    color: '#2D5A47',
+    color: '#48484A',
     category: 'living',
     basePrice: 55000,
     icon: '🏠',
@@ -78,7 +78,7 @@ export const MODULE_PRESETS: ModulePreset[] = [
     description: 'Cucina abitabile (~19 m²)',
     cellsX: 1,
     cellsZ: 1,
-    color: '#C4704B',
+    color: '#A0845C',
     category: 'living',
     basePrice: 25000,
     icon: '🍳',
@@ -116,7 +116,7 @@ export const MODULE_PRESETS: ModulePreset[] = [
     description: 'Home office (~19 m²)',
     cellsX: 1,
     cellsZ: 1,
-    color: '#6B6560',
+    color: '#86868B',
     category: 'private',
     basePrice: 20000,
     icon: '💼',

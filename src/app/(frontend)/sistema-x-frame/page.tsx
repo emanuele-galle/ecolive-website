@@ -237,7 +237,7 @@ export default function SistemaXFramePage() {
       </section>
 
       {/* Marquee */}
-      <div className="py-5 bg-[var(--color-surface)] border-y border-[#E8E0D5]">
+      <div className="py-5 bg-[var(--color-surface)] border-y border-[#EDE6DB]">
         <InfiniteMarquee
           items={marqueeItems}
           speed={25}
@@ -263,7 +263,7 @@ export default function SistemaXFramePage() {
           <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-20">
             {threePillars.map((pillar, i) => (
               <ScrollReveal key={pillar.title} delay={i * 0.12}>
-                <SpotlightCard className="bg-white border border-[#E8E0D5] h-full">
+                <SpotlightCard className="bg-white border border-[#EDE6DB] h-full">
                   <div className="p-8 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[var(--color-secondary-dark)]/5 text-[var(--color-secondary-dark)] mb-5">
                       {pillar.icon}
@@ -291,7 +291,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
 
       {/* ========== 3. STRATIGRAFIA ========== */}
       <section className="py-28 lg:py-36 bg-white">
@@ -353,7 +353,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ========== 4. PRESTAZIONI TECNICHE ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">
@@ -393,7 +393,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* ========== 5. CONFRONTO ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-surface)]">
@@ -410,7 +410,7 @@ export default function SistemaXFramePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <div className="overflow-x-auto bg-white rounded-2xl shadow-premium border border-[#E8E0D5] p-2">
+            <div className="overflow-x-auto bg-white rounded-2xl shadow-premium border border-[#EDE6DB] p-2">
               <table className="w-full min-w-[600px]">
                 <thead>
                   <tr className="border-b-2 border-[var(--color-secondary-dark)]">
@@ -446,7 +446,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
 
       {/* ========== 6. RENDER SHOWCASE ========== */}
       <section className="py-28 lg:py-36 bg-white">
@@ -491,7 +491,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ========== 7. CTA ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">

@@ -22,7 +22,7 @@ export default function TipologiaCard({ tipologia, index }: TipologiaCardProps) 
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
       <Link href={tipologia.href} className="block group">
-        <div className="relative bg-white rounded-3xl overflow-hidden border border-[#E8E0D5] shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+        <div className="relative bg-white rounded-3xl overflow-hidden border border-[#EDE6DB] shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
           {/* Image Container */}
           <div className="relative h-64 overflow-hidden">
             <Image
@@ -62,10 +62,10 @@ export default function TipologiaCard({ tipologia, index }: TipologiaCardProps) 
 
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-2xl font-bold text-[#1E3D30] mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+            <h3 className="text-2xl font-bold text-[#1D1D1F] mb-2 group-hover:text-[var(--color-primary)] transition-colors">
               {tipologia.title}
             </h3>
-            <p className="text-[#6B6560] text-sm leading-relaxed mb-4">
+            <p className="text-[#86868B] text-sm leading-relaxed mb-4">
               {tipologia.description}
             </p>
 
@@ -74,7 +74,7 @@ export default function TipologiaCard({ tipologia, index }: TipologiaCardProps) 
               {tipologia.features.slice(0, 3).map((feature, i) => (
                 <span
                   key={i}
-                  className="px-2.5 py-1 text-xs rounded-lg bg-[#FAF7F2] text-[#6B6560]"
+                  className="px-2.5 py-1 text-xs rounded-lg bg-[#F5F5F7] text-[#86868B]"
                 >
                   {feature}
                 </span>

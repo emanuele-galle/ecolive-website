@@ -16,7 +16,7 @@ export default function TrustBar() {
   ]
 
   return (
-    <section ref={ref} className="py-6 bg-[#F5F0E8] border-y border-[#DDD5C9]">
+    <section ref={ref} className="py-6 bg-[#F5F0E8] border-y border-[#D2D2D7]">
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           className="flex flex-wrap justify-center items-center gap-8 md:gap-16"
@@ -33,12 +33,12 @@ export default function TrustBar() {
               transition={{ duration: 0.9, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-10 h-10 rounded-lg bg-[#2D5A47]/10 flex items-center justify-center group-hover:bg-[#2D5A47]/20 transition-colors">
-                <cert.icon className="w-5 h-5 text-[#2D5A47]" />
+              <div className="w-10 h-10 rounded-lg bg-[#48484A]/10 flex items-center justify-center group-hover:bg-[#48484A]/20 transition-colors">
+                <cert.icon className="w-5 h-5 text-[#48484A]" />
               </div>
               <div>
                 <div className="text-sm font-semibold text-[#2C2825]">{cert.abbr}</div>
-                <div className="text-xs text-[#6B6560]">{cert.label}</div>
+                <div className="text-xs text-[#86868B]">{cert.label}</div>
               </div>
             </motion.div>
           ))}

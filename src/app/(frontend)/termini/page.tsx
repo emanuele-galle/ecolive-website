@@ -20,21 +20,21 @@ export default function TerminiPage() {
     {
       title: 'Titolare del Sito',
       content: (
-        <div className="bg-[#1E3D30]/5 rounded-xl p-6 space-y-3">
-          <p className="font-semibold text-[#1E3D30]">Ecolive S.r.l.</p>
+        <div className="bg-[#1D1D1F]/5 rounded-xl p-6 space-y-3">
+          <p className="font-semibold text-[#1D1D1F]">Ecolive S.r.l.</p>
           <p className="flex items-center gap-2 text-gray-600">
-            <MapPin className="w-4 h-4 text-[#C4704B]" />
+            <MapPin className="w-4 h-4 text-[#A0845C]" />
             Via Conte Ruggiero 128, 89822 Spadola (VV)
           </p>
           <p className="flex items-center gap-2 text-gray-600">
-            <Mail className="w-4 h-4 text-[#C4704B]" />
-            <a href="mailto:info@ecolive.srl" className="hover:text-[#C4704B] transition-colors">
+            <Mail className="w-4 h-4 text-[#A0845C]" />
+            <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors">
               info@ecolive.srl
             </a>
           </p>
           <p className="flex items-center gap-2 text-gray-600">
-            <Phone className="w-4 h-4 text-[#C4704B]" />
-            <a href="tel:+3909631951395" className="hover:text-[#C4704B] transition-colors">
+            <Phone className="w-4 h-4 text-[#A0845C]" />
+            <a href="tel:+3909631951395" className="hover:text-[#A0845C] transition-colors">
               +39 0963 1951395
             </a>
           </p>
@@ -59,7 +59,7 @@ export default function TerminiPage() {
               'Documentazione tecnica',
             ].map((service, i) => (
               <div key={i} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
-                <CheckCircle className="w-4 h-4 text-[#C4704B]" />
+                <CheckCircle className="w-4 h-4 text-[#A0845C]" />
                 <span className="text-gray-700">{service}</span>
               </div>
             ))}
@@ -76,20 +76,20 @@ export default function TerminiPage() {
           </p>
           <ul className="space-y-2 text-gray-600">
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Testi e contenuti:</strong> articoli, descrizioni, FAQ</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Testi e contenuti:</strong> articoli, descrizioni, FAQ</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Immagini e fotografie:</strong> render, foto progetti, team</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Immagini e fotografie:</strong> render, foto progetti, team</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Marchi e loghi:</strong> Ecolive, X-Frame</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Marchi e loghi:</strong> Ecolive, X-Frame</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B] mt-2 flex-shrink-0" />
-              <span><strong className="text-[#1E3D30]">Design e grafica:</strong> layout, elementi visivi</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C] mt-2 flex-shrink-0" />
+              <span><strong className="text-[#1D1D1F]">Design e grafica:</strong> layout, elementi visivi</span>
             </li>
           </ul>
           <p className="text-gray-600 mt-4">
@@ -132,9 +132,9 @@ export default function TerminiPage() {
           <p className="text-gray-600 mb-4">
             Le informazioni sui prezzi presenti sul sito hanno valore puramente indicativo:
           </p>
-          <div className="bg-[#C4704B]/10 rounded-xl p-5 border-l-4 border-[#C4704B]">
+          <div className="bg-[#A0845C]/10 rounded-xl p-5 border-l-4 border-[#A0845C]">
             <p className="text-gray-700">
-              <strong className="text-[#1E3D30]">Importante:</strong> I preventivi definitivi vengono elaborati
+              <strong className="text-[#1D1D1F]">Importante:</strong> I preventivi definitivi vengono elaborati
               su richiesta specifica e tengono conto delle caratteristiche del progetto, del terreno e delle
               personalizzazioni richieste. Solo il preventivo firmato costituisce proposta contrattuale vincolante.
             </p>
@@ -197,11 +197,11 @@ export default function TerminiPage() {
       content: (
         <p className="text-gray-600">
           Per qualsiasi domanda relativa ai presenti Termini di Servizio, puoi contattarci all&apos;indirizzo{' '}
-          <a href="mailto:info@ecolive.srl" className="text-[#C4704B] hover:underline">
+          <a href="mailto:info@ecolive.srl" className="text-[#A0845C] hover:underline">
             info@ecolive.srl
           </a>{' '}
           o tramite la nostra{' '}
-          <Link href="/contatti" className="text-[#C4704B] hover:underline">
+          <Link href="/contatti" className="text-[#A0845C] hover:underline">
             pagina contatti
           </Link>.
         </p>
@@ -210,9 +210,9 @@ export default function TerminiPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#FAF7F2]">
+    <main className="min-h-screen bg-[#F5F5F7]">
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] overflow-hidden">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -220,7 +220,7 @@ export default function TerminiPage() {
             backgroundSize: '32px 32px'
           }}
         />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -228,7 +228,7 @@ export default function TerminiPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
-            <FileText className="w-4 h-4 text-[#C4704B]" />
+            <FileText className="w-4 h-4 text-[#A0845C]" />
             <span className="text-white/90 text-sm font-medium">Condizioni d&apos;Uso</span>
           </motion.div>
 
@@ -238,7 +238,7 @@ export default function TerminiPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Termini di <span className="text-[#C4704B]">Servizio</span>
+            Termini di <span className="text-[#A0845C]">Servizio</span>
           </motion.h1>
 
           <motion.p
@@ -271,7 +271,7 @@ export default function TerminiPage() {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#C4704B] transition-colors"
+              className="inline-flex items-center gap-2 text-gray-500 hover:text-[#A0845C] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Torna alla Home
@@ -287,8 +287,8 @@ export default function TerminiPage() {
                 transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
-                <h2 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-4 flex items-center gap-3">
-                  <span className="w-8 h-8 bg-[#C4704B]/10 rounded-lg flex items-center justify-center text-[#C4704B] font-bold text-sm">
+                <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
+                  <span className="w-8 h-8 bg-[#A0845C]/10 rounded-lg flex items-center justify-center text-[#A0845C] font-bold text-sm">
                     {index + 1}
                   </span>
                   {section.title}
@@ -303,13 +303,13 @@ export default function TerminiPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mt-12 p-8 bg-[#1E3D30] rounded-2xl"
+            className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl"
           >
             <h3 className="text-xl font-bold text-white mb-4 text-center">Documenti Correlati</h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/privacy"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-medium rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#A0845C] hover:bg-[#856B45] text-white font-medium rounded-xl transition-colors"
               >
                 Privacy Policy
               </Link>
@@ -330,15 +330,15 @@ export default function TerminiPage() {
             transition={{ delay: 0.6 }}
             className="mt-12 pt-8 border-t border-gray-200"
           >
-            <h2 className="text-xl font-bold text-[#1E3D30] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
+            <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
             <p className="text-gray-600">Questo sito web è stato realizzato e viene gestito da:</p>
             <p className="text-gray-600 mt-2">
-              <strong className="text-[#1E3D30]">FODI S.r.l. – Startup Innovativa</strong><br/>
+              <strong className="text-[#1D1D1F]">FODI S.r.l. – Startup Innovativa</strong><br/>
               Via Santicelli 18/A, 88068 Soverato (CZ)<br/>
               P.IVA: 03856160793<br/>
-              Email: <a href="mailto:info@fodisrl.it" className="text-[#C4704B] hover:underline">info@fodisrl.it</a><br/>
+              Email: <a href="mailto:info@fodisrl.it" className="text-[#A0845C] hover:underline">info@fodisrl.it</a><br/>
               Tel: +39 0963 576433<br/>
-              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#C4704B] hover:underline">www.fodisrl.it</a>
+              Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#A0845C] hover:underline">www.fodisrl.it</a>
             </p>
           </motion.div>
         </section>

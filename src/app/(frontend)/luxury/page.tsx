@@ -87,7 +87,7 @@ export default function LuxuryPage() {
   return (
     <main className="overflow-hidden">
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#1E3D30]">
+      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#1D1D1F]">
         <Image
           src="/images/luxury/hero-1.jpg"
           alt="Villa luxury Ecolive"
@@ -96,16 +96,16 @@ export default function LuxuryPage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30]/60 via-transparent to-[#1E3D30]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F]/60 via-transparent to-[#1D1D1F]/80" />
 
         {/* Floating decorative orbs */}
         <motion.div
-          className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-[#C4704B]/15 blur-[100px] pointer-events-none"
+          className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-[#A0845C]/15 blur-[100px] pointer-events-none"
           animate={{ y: [0, 30, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-[#2D5A47]/20 blur-[120px] pointer-events-none"
+          className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-[#48484A]/20 blur-[120px] pointer-events-none"
           animate={{ y: [0, -25, 0], scale: [1, 1.05, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -124,7 +124,7 @@ export default function LuxuryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-[#C4704B]/20 text-[#C4704B] border border-[#C4704B]/30 mb-8">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-[#A0845C]/20 text-[#A0845C] border border-[#A0845C]/30 mb-8">
               Residenziale Premium
             </span>
 
@@ -142,15 +142,15 @@ export default function LuxuryPage() {
 
             <div className="flex flex-wrap justify-center gap-8 text-white/90 text-sm md:text-base">
               <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C]" />
                 150-400 m²
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C]" />
                 90-120 giorni
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C]" />
                 Garanzia 30 anni
               </span>
             </div>
@@ -158,16 +158,16 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1E3D30" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
 
       {/* ===== CARATTERISTICHE ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Qualita superiore
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
               Eccellenza in ogni dettaglio
             </h2>
           </ScrollReveal>
@@ -180,14 +180,14 @@ export default function LuxuryPage() {
                 delay={i * 0.1}
               >
                 <SpotlightCard
-                  className="p-7 bg-white border border-[#1E3D30]/10 hover:border-[#C4704B]/30 transition-colors h-full"
+                  className="p-7 bg-white border border-[#1D1D1F]/10 hover:border-[#A0845C]/30 transition-colors h-full"
                   spotlightColor="rgba(196, 112, 75, 0.15)"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#1E3D30]/5 flex items-center justify-center mb-5">
-                    <feature.icon className="w-6 h-6 text-[#C4704B]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#1D1D1F]/5 flex items-center justify-center mb-5">
+                    <feature.icon className="w-6 h-6 text-[#A0845C]" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{feature.title}</h3>
-                  <p className="text-[#1E3D30]/70 text-sm leading-relaxed">{feature.description}</p>
+                  <h3 className="text-lg font-bold text-[#1D1D1F] mb-2">{feature.title}</h3>
+                  <p className="text-[#1D1D1F]/70 text-sm leading-relaxed">{feature.description}</p>
                 </SpotlightCard>
               </ScrollReveal>
             ))}
@@ -196,26 +196,26 @@ export default function LuxuryPage() {
       </section>
 
       {/* Marquee */}
-      <div className="bg-[#FAF7F2] pb-1">
-        <div className="bg-[#C4704B]/10 border-y border-[#C4704B]/20 py-4">
+      <div className="bg-[#F5F5F7] pb-1">
+        <div className="bg-[#A0845C]/10 border-y border-[#A0845C]/20 py-4">
           <InfiniteMarquee
             items={luxuryMarqueeItems}
             speed={25}
-            className="text-[#1E3D30]/70"
+            className="text-[#1D1D1F]/70"
           />
         </div>
       </div>
 
-      <SectionTransition from="#FAF7F2" to="#ffffff" variant="gradient" height={60} />
+      <SectionTransition from="#F5F5F7" to="#ffffff" variant="gradient" height={60} />
 
       {/* ===== GALLERY ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Portfolio
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
               I nostri progetti
             </h2>
           </ScrollReveal>
@@ -226,23 +226,23 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#ffffff" to="#FAF7F2" variant="wave" height={80} />
+      <SectionTransition from="#ffffff" to="#F5F5F7" variant="wave" height={80} />
 
       {/* ===== PROCESSO ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-[#FAF7F2]">
+      <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <span className="text-[#C4704B] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
               Come lavoriamo
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3D30] mt-3">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
               Il tuo percorso verso la villa dei sogni
             </h2>
           </ScrollReveal>
 
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-[#1E3D30]/15 hidden md:block" />
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-[#1D1D1F]/15 hidden md:block" />
 
             <div className="space-y-10">
               {processSteps.map((step, i) => (
@@ -251,18 +251,18 @@ export default function LuxuryPage() {
                   direction="left"
                   delay={i * 0.1}
                 >
-                  <SpotlightCard className="flex gap-6 items-start p-5 bg-white border border-[#1E3D30]/8">
-                    <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-[#1E3D30] flex items-center justify-center">
+                  <SpotlightCard className="flex gap-6 items-start p-5 bg-white border border-[#1D1D1F]/8">
+                    <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-[#1D1D1F] flex items-center justify-center">
                       <step.icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="pt-1">
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="text-xs font-semibold text-[#C4704B] tracking-widest uppercase">
+                        <span className="text-xs font-semibold text-[#A0845C] tracking-widest uppercase">
                           Fase {i + 1}
                         </span>
                       </div>
-                      <h3 className="text-xl font-bold text-[#1E3D30] mb-1">{step.title}</h3>
-                      <p className="text-[#1E3D30]/70 text-sm leading-relaxed">{step.description}</p>
+                      <h3 className="text-xl font-bold text-[#1D1D1F] mb-1">{step.title}</h3>
+                      <p className="text-[#1D1D1F]/70 text-sm leading-relaxed">{step.description}</p>
                     </div>
                   </SpotlightCard>
                 </ScrollReveal>
@@ -272,18 +272,18 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FAF7F2" to="#1E3D30" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
 
       {/* ===== CTA ===== */}
-      <section className="relative py-28 lg:py-36 px-4 bg-[#1E3D30] overflow-hidden">
+      <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">
         {/* Animated gradient orbs */}
         <motion.div
-          className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#C4704B]/8 blur-[150px] pointer-events-none"
+          className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#A0845C]/8 blur-[150px] pointer-events-none"
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#2D5A47]/15 blur-[120px] pointer-events-none"
+          className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#48484A]/15 blur-[120px] pointer-events-none"
           animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
@@ -303,7 +303,7 @@ export default function LuxuryPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contatti"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#C4704B] text-white font-semibold rounded-full hover:bg-[#B5613E] transition-all duration-300 hover:shadow-lg hover:shadow-[#C4704B]/20"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#B5613E] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
               >
                 Richiedi Preventivo
               </Link>

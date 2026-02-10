@@ -50,11 +50,11 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             Fondazione
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
-            Nasce Ecolive a <strong className="text-[#C4704B]">Spadola</strong>, nel cuore della Calabria.
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
+            Nasce Ecolive a <strong className="text-[#A0845C]">Spadola</strong>, nel cuore della Calabria.
             Un sogno che prende forma tra le montagne delle Serre, dove la tradizione del legno
             incontra la visione di un&apos;edilizia sostenibile. Le prime costruzioni seguono
             le tecniche tradizionali della carpenteria locale.
@@ -69,12 +69,12 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             Prime Case Complete
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
             Consegniamo le prime abitazioni complete ai nostri clienti. Ogni casa e un progetto
-            unico, costruito con <strong className="text-[#C4704B]">cura artigianale</strong> e
+            unico, costruito con <strong className="text-[#A0845C]">cura artigianale</strong> e
             attenzione ai dettagli. La soddisfazione dei clienti diventa il nostro miglior biglietto da visita.
           </p>
         </div>
@@ -87,11 +87,11 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             Sistema Platform Frame
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
-            Adottiamo la tecnologia <strong className="text-[#C4704B]">Platform Frame</strong>,
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
+            Adottiamo la tecnologia <strong className="text-[#A0845C]">Platform Frame</strong>,
             il sistema costruttivo piu diffuso al mondo per le case in legno. Questo metodo ci
             permette di garantire tempi di costruzione piu rapidi e una maggiore precisione nelle finiture.
           </p>
@@ -105,11 +105,11 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             Tecnologia X-Lam (CLT)
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
-            Introduciamo i pannelli <strong className="text-[#C4704B]">X-Lam</strong> (Cross Laminated Timber),
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
+            Introduciamo i pannelli <strong className="text-[#A0845C]">X-Lam</strong> (Cross Laminated Timber),
             portando la nostra offerta a un nuovo livello di resistenza e prestazioni.
             Questa tecnologia ci permette di realizzare edifici pluripiano con caratteristiche antisismiche eccezionali.
           </p>
@@ -123,13 +123,13 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             Espansione Nazionale
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
             Ecolive si afferma sul mercato italiano. Dalla Calabria, i nostri progetti raggiungono
             tutto il territorio nazionale. Il team si amplia, lo stabilimento di Spadola si modernizza,
-            ma i <strong className="text-[#C4704B]">valori artigianali</strong> rimangono al centro di tutto.
+            ma i <strong className="text-[#A0845C]">valori artigianali</strong> rimangono al centro di tutto.
           </p>
         </div>
         <TimelineImageGrid images={placeholderImages.espansione} />
@@ -141,12 +141,12 @@ const timelineData = [
     content: (
       <TimelineContent>
         <div className="mb-8">
-          <h4 className="text-2xl md:text-3xl font-bold text-[#1E3D30] mb-4">
+          <h4 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
             X-Frame a KlimaHouse
           </h4>
-          <p className="text-[#6B6560] text-base md:text-lg leading-relaxed mb-6">
-            Presentiamo a <strong className="text-[#C4704B]">KlimaHouse 2024</strong> il nostro sistema
-            brevettato <strong className="text-[#C4704B]">X-Frame</strong>: un&apos;evoluzione ibrida
+          <p className="text-[#86868B] text-base md:text-lg leading-relaxed mb-6">
+            Presentiamo a <strong className="text-[#A0845C]">KlimaHouse 2024</strong> il nostro sistema
+            brevettato <strong className="text-[#A0845C]">X-Frame</strong>: un&apos;evoluzione ibrida
             che combina il meglio di Platform Frame e X-Lam. Resistenza sismica superiore,
             efficienza energetica classe A4, tempi di costruzione ridotti del 40%.
           </p>
@@ -159,7 +159,7 @@ const timelineData = [
 
 export default function OurStoryTimeline() {
   return (
-    <section className="py-20 lg:py-32 bg-[#FAF7F2]">
+    <section className="py-20 lg:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -169,14 +169,14 @@ export default function OurStoryTimeline() {
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-[#C4704B] text-sm tracking-[0.2em] uppercase font-medium">
+          <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
             La Nostra Storia
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30] mt-3">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] mt-3">
             25 anni di{' '}
-            <span className="text-[#C4704B]">Innovazione</span>
+            <span className="text-[#A0845C]">Innovazione</span>
           </h2>
-          <p className="text-[#6B6560] text-lg mt-4 max-w-2xl mx-auto">
+          <p className="text-[#86868B] text-lg mt-4 max-w-2xl mx-auto">
             Da Spadola, nel cuore della Calabria, abbiamo rivoluzionato
             il modo di costruire case in Italia.
           </p>
@@ -186,7 +186,7 @@ export default function OurStoryTimeline() {
         <Timeline
           data={timelineData}
           lineColor="rgba(221, 213, 201, 0.5)"
-          activeLineGradient="linear-gradient(to bottom, #C4704B 0%, #D4896A 50%, transparent 100%)"
+          activeLineGradient="linear-gradient(to bottom, #A0845C 0%, #B89B74 50%, transparent 100%)"
         />
       </div>
     </section>

@@ -66,7 +66,7 @@ export default function LifetimeCostCalculator() {
       <div className="absolute inset-0 opacity-[0.02]">
         <div
           style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, #1E3D30 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 2px 2px, #1D1D1F 1px, transparent 0)',
             backgroundSize: '32px 32px'
           }}
           className="w-full h-full"
@@ -81,23 +81,23 @@ export default function LifetimeCostCalculator() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 bg-[#C4704B]/10 rounded-full">
-            <Euro className="w-4 h-4 text-[#C4704B]" />
-            <span className="text-[#C4704B] text-sm font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 bg-[#A0845C]/10 rounded-full">
+            <Euro className="w-4 h-4 text-[#A0845C]" />
+            <span className="text-[#A0845C] text-sm font-semibold uppercase tracking-wider">
               Calcolatore Risparmio
             </span>
           </div>
-          <h3 className="text-3xl md:text-4xl font-bold text-[#1E3D30] mb-3">
-            Quanto <span className="text-[#C4704B]">Risparmi</span> Realmente?
+          <h3 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-3">
+            Quanto <span className="text-[#A0845C]">Risparmi</span> Realmente?
           </h3>
-          <p className="text-[#6B6560] text-lg max-w-2xl mx-auto">
+          <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
             Scopri il risparmio effettivo dei materiali premium Ecolive nel tempo
           </p>
         </motion.div>
 
         {/* Calculator Card */}
         <motion.div
-          className="bg-white rounded-2xl border border-[#E5E0D8] shadow-xl overflow-hidden"
+          className="bg-white rounded-2xl border border-[#D2D2D7] shadow-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -106,12 +106,12 @@ export default function LifetimeCostCalculator() {
             {/* Slider */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
-                <label className="text-sm font-medium text-[#1E3D30]">
+                <label className="text-sm font-medium text-[#1D1D1F]">
                   Periodo di valutazione
                 </label>
                 <div className="text-right">
-                  <span className="text-3xl font-bold text-[#C4704B]">{years}</span>
-                  <span className="text-[#6B6560] text-lg ml-2">anni</span>
+                  <span className="text-3xl font-bold text-[#A0845C]">{years}</span>
+                  <span className="text-[#86868B] text-lg ml-2">anni</span>
                 </div>
               </div>
 
@@ -124,9 +124,9 @@ export default function LifetimeCostCalculator() {
                   step={5}
                   value={years}
                   onChange={(e) => setYears(parseInt(e.target.value))}
-                  className="w-full h-3 bg-[#E5E0D8] rounded-full appearance-none cursor-pointer"
+                  className="w-full h-3 bg-[#D2D2D7] rounded-full appearance-none cursor-pointer"
                   style={{
-                    background: `linear-gradient(to right, #C4704B 0%, #C4704B ${((years - 5) / 45) * 100}%, #E5E0D8 ${((years - 5) / 45) * 100}%, #E5E0D8 100%)`
+                    background: `linear-gradient(to right, #A0845C 0%, #A0845C ${((years - 5) / 45) * 100}%, #D2D2D7 ${((years - 5) / 45) * 100}%, #D2D2D7 100%)`
                   }}
                 />
                 <style jsx>{`
@@ -136,7 +136,7 @@ export default function LifetimeCostCalculator() {
                     width: 24px;
                     height: 24px;
                     background: white;
-                    border: 3px solid #C4704B;
+                    border: 3px solid #A0845C;
                     border-radius: 50%;
                     cursor: pointer;
                     box-shadow: 0 2px 8px rgba(196, 112, 75, 0.3);
@@ -145,7 +145,7 @@ export default function LifetimeCostCalculator() {
                     width: 24px;
                     height: 24px;
                     background: white;
-                    border: 3px solid #C4704B;
+                    border: 3px solid #A0845C;
                     border-radius: 50%;
                     cursor: pointer;
                     box-shadow: 0 2px 8px rgba(196, 112, 75, 0.3);
@@ -153,7 +153,7 @@ export default function LifetimeCostCalculator() {
                 `}</style>
 
                 {/* Markers */}
-                <div className="flex justify-between mt-2 text-xs text-[#8A857F]">
+                <div className="flex justify-between mt-2 text-xs text-[#AEAEB2]">
                   <span>5 anni</span>
                   <span>25 anni</span>
                   <span>50 anni</span>
@@ -170,38 +170,38 @@ export default function LifetimeCostCalculator() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3 }}
               >
-                <div className="text-xs uppercase tracking-wide text-[#8A857F] mb-2">
+                <div className="text-xs uppercase tracking-wide text-[#AEAEB2] mb-2">
                   Costo Totale Standard
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-[#6B6560]">
+                <div className="text-2xl sm:text-3xl font-bold text-[#86868B]">
                   €{costs.standard.toLocaleString()}
                 </div>
-                <div className="text-xs text-[#8A857F] mt-2">
+                <div className="text-xs text-[#AEAEB2] mt-2">
                   Include manutenzione e sostituzioni
                 </div>
               </motion.div>
 
               {/* Premium Cost */}
               <motion.div
-                className="bg-gradient-to-br from-[#1E3D30]/10 to-[#2D5A47]/5 rounded-xl p-5 border border-[#1E3D30]/20"
+                className="bg-gradient-to-br from-[#1D1D1F]/10 to-[#48484A]/5 rounded-xl p-5 border border-[#1D1D1F]/20"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 }}
               >
-                <div className="text-xs uppercase tracking-wide text-[#1E3D30] mb-2">
+                <div className="text-xs uppercase tracking-wide text-[#1D1D1F] mb-2">
                   Costo Totale Ecolive
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-[#1E3D30]">
+                <div className="text-2xl sm:text-3xl font-bold text-[#1D1D1F]">
                   €{costs.premium.toLocaleString()}
                 </div>
-                <div className="text-xs text-[#2D5A47] mt-2">
+                <div className="text-xs text-[#48484A] mt-2">
                   Zero manutenzione, garanzia 30 anni
                 </div>
               </motion.div>
 
               {/* Savings */}
               <motion.div
-                className="bg-gradient-to-br from-[#C4704B] to-[#A85A3A] rounded-xl p-5 text-white relative overflow-hidden"
+                className="bg-gradient-to-br from-[#A0845C] to-[#856B45] rounded-xl p-5 text-white relative overflow-hidden"
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ delay: 0.5, type: "spring" }}
@@ -228,12 +228,12 @@ export default function LifetimeCostCalculator() {
 
             {/* Timeline visualization */}
             <motion.div
-              className="mt-8 pt-8 border-t border-[#E5E0D8]"
+              className="mt-8 pt-8 border-t border-[#D2D2D7]"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.6 }}
             >
-              <div className="text-sm font-medium text-[#1E3D30] mb-4">
+              <div className="text-sm font-medium text-[#1D1D1F] mb-4">
                 Evoluzione costi nel tempo
               </div>
 
@@ -244,7 +244,7 @@ export default function LifetimeCostCalculator() {
                     <motion.path
                       d={`M 0,80 Q 100,70 200,50 T 400,20`}
                       fill="none"
-                      stroke="#8A857F"
+                      stroke="#AEAEB2"
                       strokeWidth="3"
                       strokeDasharray="6 4"
                       initial={{ pathLength: 0 }}
@@ -252,7 +252,7 @@ export default function LifetimeCostCalculator() {
                       transition={{ delay: 0.7, duration: 1.5, ease: "easeOut" }}
                     />
                   </svg>
-                  <div className="absolute top-0 right-0 text-xs text-[#8A857F] bg-white px-2 py-1 rounded">
+                  <div className="absolute top-0 right-0 text-xs text-[#AEAEB2] bg-white px-2 py-1 rounded">
                     Standard
                   </div>
                 </div>
@@ -263,20 +263,20 @@ export default function LifetimeCostCalculator() {
                     <motion.path
                       d={`M 0,60 L 400,60`}
                       fill="none"
-                      stroke="#C4704B"
+                      stroke="#A0845C"
                       strokeWidth="4"
                       initial={{ pathLength: 0 }}
                       animate={isInView ? { pathLength: 1 } : {}}
                       transition={{ delay: 0.7, duration: 1.5, ease: "easeOut" }}
                     />
                   </svg>
-                  <div className="absolute bottom-0 right-0 text-xs text-[#C4704B] bg-white px-2 py-1 rounded font-semibold">
+                  <div className="absolute bottom-0 right-0 text-xs text-[#A0845C] bg-white px-2 py-1 rounded font-semibold">
                     Ecolive
                   </div>
                 </div>
               </div>
 
-              <div className="flex justify-between text-xs text-[#8A857F] mt-2">
+              <div className="flex justify-between text-xs text-[#AEAEB2] mt-2">
                 <span>Anno 0</span>
                 <span>Anno {Math.floor(years / 2)}</span>
                 <span>Anno {years}</span>

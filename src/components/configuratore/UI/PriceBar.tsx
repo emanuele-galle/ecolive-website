@@ -216,7 +216,7 @@ function QuoteRequestModal({
                   required
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#2D5A47] focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#48484A] focus:border-transparent outline-none transition-all"
                   placeholder="Mario Rossi"
                 />
               </div>
@@ -230,7 +230,7 @@ function QuoteRequestModal({
                   required
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#2D5A47] focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#48484A] focus:border-transparent outline-none transition-all"
                   placeholder="mario@esempio.it"
                 />
               </div>
@@ -243,7 +243,7 @@ function QuoteRequestModal({
                   type="tel"
                   value={formState.phone}
                   onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#2D5A47] focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#48484A] focus:border-transparent outline-none transition-all"
                   placeholder="+39 333 123 4567"
                 />
               </div>
@@ -256,7 +256,7 @@ function QuoteRequestModal({
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   rows={3}
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#2D5A47] focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#48484A] focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Hai esigenze particolari?"
                 />
               </div>
@@ -264,7 +264,7 @@ function QuoteRequestModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-[#2D5A47] hover:bg-[#1D3D2D] disabled:bg-gray-400 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-[#48484A] hover:bg-[#1D3D2D] disabled:bg-gray-400 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>

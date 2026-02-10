@@ -34,7 +34,7 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E3D30]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/80 to-transparent" />
 
         {/* Edit button */}
         <button
@@ -63,17 +63,17 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="flex items-center gap-3 p-3 bg-[#1E3D30]/5 rounded-xl">
-            <BedDouble className="w-5 h-5 text-[#1E3D30]" />
+          <div className="flex items-center gap-3 p-3 bg-[#1D1D1F]/5 rounded-xl">
+            <BedDouble className="w-5 h-5 text-[#1D1D1F]" />
             <div>
-              <p className="text-lg font-bold text-[#1E3D30]">{selectedRooms}</p>
+              <p className="text-lg font-bold text-[#1D1D1F]">{selectedRooms}</p>
               <p className="text-xs text-gray-500">Camere</p>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-3 bg-[#C4704B]/5 rounded-xl">
-            <Ruler className="w-5 h-5 text-[#C4704B]" />
+          <div className="flex items-center gap-3 p-3 bg-[#A0845C]/5 rounded-xl">
+            <Ruler className="w-5 h-5 text-[#A0845C]" />
             <div>
-              <p className="text-lg font-bold text-[#C4704B]">~{selectedConfig.sqm}</p>
+              <p className="text-lg font-bold text-[#A0845C]">~{selectedConfig.sqm}</p>
               <p className="text-xs text-gray-500">mq</p>
             </div>
           </div>
@@ -90,13 +90,13 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
         {selectedConfig.details && (
           <div className="space-y-2 pt-3 border-t border-gray-100">
             <div className="flex items-start gap-2">
-              <span className="text-xs font-medium text-[#1E3D30] bg-[#1E3D30]/10 px-2 py-0.5 rounded">
+              <span className="text-xs font-medium text-[#1D1D1F] bg-[#1D1D1F]/10 px-2 py-0.5 rounded">
                 PT
               </span>
               <span className="text-sm text-gray-600">{selectedConfig.details.pianoTerra}</span>
             </div>
             <div className="flex items-start gap-2">
-              <span className="text-xs font-medium text-[#1E3D30] bg-[#1E3D30]/10 px-2 py-0.5 rounded">
+              <span className="text-xs font-medium text-[#1D1D1F] bg-[#1D1D1F]/10 px-2 py-0.5 rounded">
                 P1
               </span>
               <span className="text-sm text-gray-600">{selectedConfig.details.piano1}</span>
@@ -113,7 +113,7 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
               'Garanzia 10 anni',
             ].map((benefit, i) => (
               <div key={i} className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-[#C4704B]" />
+                <Check className="w-4 h-4 text-[#A0845C]" />
                 <span className="text-sm text-gray-600">{benefit}</span>
               </div>
             ))}

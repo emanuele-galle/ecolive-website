@@ -18,7 +18,7 @@ interface GlampingProcessProps {
   color: string
 }
 
-const TERRACOTTA = '#C4704B'
+const TERRACOTTA = '#A0845C'
 
 const steps: ProcessStep[] = [
   {
@@ -79,7 +79,7 @@ function TimelineStep({
             transition={{ delay: 0.3 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="group md:text-right"
           >
-            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#E8E0D5]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
               {/* Hover glow */}
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -101,8 +101,8 @@ function TimelineStep({
                     Fase {step.number}
                   </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-2">{step.title}</h3>
-                <p className="text-[#6B6560] leading-relaxed text-sm md:text-base">{step.description}</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-2">{step.title}</h3>
+                <p className="text-[#86868B] leading-relaxed text-sm md:text-base">{step.description}</p>
               </div>
             </div>
           </motion.div>
@@ -197,7 +197,7 @@ function TimelineStep({
             transition={{ delay: 0.3 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="group"
           >
-            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#E8E0D5]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
@@ -217,8 +217,8 @@ function TimelineStep({
                     Fase {step.number}
                   </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#1E3D30] mb-2">{step.title}</h3>
-                <p className="text-[#6B6560] leading-relaxed text-sm md:text-base">{step.description}</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-2">{step.title}</h3>
+                <p className="text-[#86868B] leading-relaxed text-sm md:text-base">{step.description}</p>
               </div>
             </div>
           </motion.div>
@@ -258,7 +258,7 @@ export default function GlampingProcess({ color }: GlampingProcessProps) {
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, #1E3D30 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #1D1D1F 1px, transparent 0)',
           backgroundSize: '32px 32px'
         }}
       />
@@ -281,10 +281,10 @@ export default function GlampingProcess({ color }: GlampingProcessProps) {
               transition={{ delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             />
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E3D30] mb-3">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] mb-3">
                 Il nostro processo
               </h2>
-              <p className="text-[#6B6560] text-lg max-w-lg">
+              <p className="text-[#86868B] text-lg max-w-lg">
                 Da idea a realtà in 4 passaggi, con assistenza dedicata in ogni fase.
               </p>
             </div>
@@ -294,7 +294,7 @@ export default function GlampingProcess({ color }: GlampingProcessProps) {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line - desktop */}
-          <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-[#E8E0D5]/50">
+          <div className="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-[#EDE6DB]/50">
             <motion.div
               className="w-full origin-top rounded-full"
               style={{ backgroundColor: `${TERRACOTTA}40`, height: '100%' }}

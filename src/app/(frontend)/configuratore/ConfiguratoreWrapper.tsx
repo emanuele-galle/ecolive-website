@@ -11,9 +11,9 @@ interface ConfiguratoreWrapperProps {
 const ConfiguratoreClient = dynamic(() => import('./ConfiguratoreClient'), {
   ssr: false,
   loading: () => (
-    <div className="h-screen w-screen bg-[#FAF7F2] flex items-center justify-center">
+    <div className="h-screen w-screen bg-[#F5F5F7] flex items-center justify-center">
       <div className="text-center">
-        <div className="w-16 h-16 border-4 border-[#2D5A47] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <div className="w-16 h-16 border-4 border-[#48484A] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
         <p className="text-gray-500">Caricamento configuratore...</p>
       </div>
     </div>

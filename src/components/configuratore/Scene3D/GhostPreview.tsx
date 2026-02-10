@@ -55,7 +55,7 @@ export default function GhostPreview({
       <mesh position={position}>
         <boxGeometry args={dimensions} />
         <meshStandardMaterial
-          color={isValid ? '#2D5A47' : '#C4704B'}
+          color={isValid ? '#48484A' : '#A0845C'}
           transparent
           opacity={isValid ? 0.5 : 0.3}
           depthWrite={false}
@@ -66,7 +66,7 @@ export default function GhostPreview({
       <mesh position={position}>
         <boxGeometry args={dimensions} />
         <meshBasicMaterial
-          color={isValid ? '#2D5A47' : '#C4704B'}
+          color={isValid ? '#48484A' : '#A0845C'}
           wireframe
           transparent
           opacity={0.8}
@@ -80,7 +80,7 @@ export default function GhostPreview({
       >
         <ringGeometry args={[0.3, 0.5, 32]} />
         <meshBasicMaterial
-          color={isValid ? '#2D5A47' : '#C4704B'}
+          color={isValid ? '#48484A' : '#A0845C'}
           transparent
           opacity={0.6}
         />

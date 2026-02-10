@@ -27,14 +27,14 @@ export default function SectionDivider({
 
 // Preset variants for common transitions
 export const dividerPresets = {
-  lightToDark: { from: '#FAF7F2', to: '#1E3D30' },
-  darkToLight: { from: '#1E3D30', to: '#FAF7F2' },
-  darkToNavy: { from: '#1E3D30', to: '#0a1628' },
+  lightToDark: { from: '#F5F5F7', to: '#1D1D1F' },
+  darkToLight: { from: '#1D1D1F', to: '#F5F5F7' },
+  darkToNavy: { from: '#1D1D1F', to: '#0a1628' },
   navyToLight: { from: '#0a1628', to: '#FAFAFA' },
   lightToNavy: { from: '#F5F5F7', to: '#0a1628' },
-  terraToLight: { from: '#C4704B', to: '#FFFCF7' },
-  whiteToForest: { from: '#FFFFFF', to: '#1E3D30' },
-  forestToWhite: { from: '#1E3D30', to: '#FFFFFF' },
+  terraToLight: { from: '#A0845C', to: '#FFFFFF' },
+  whiteToForest: { from: '#FFFFFF', to: '#1D1D1F' },
+  forestToWhite: { from: '#1D1D1F', to: '#FFFFFF' },
   navyToWhite: { from: '#0a1628', to: '#FFFFFF' },
-  charcoalToLight: { from: '#2C2825', to: '#FAF7F2' },
+  charcoalToLight: { from: '#2C2825', to: '#F5F5F7' },
 }

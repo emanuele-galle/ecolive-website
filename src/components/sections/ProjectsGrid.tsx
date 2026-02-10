@@ -15,10 +15,10 @@ export default function ProjectsGrid({ projects }: Props) {
   const isInView = useInView(ref, { once: false, margin: "-100px" })
 
   return (
-    <section ref={ref} className="py-20 lg:py-28 px-4 bg-[#FAF7F2] relative overflow-hidden">
+    <section ref={ref} className="py-20 lg:py-28 px-4 bg-[#F5F5F7] relative overflow-hidden">
       {/* Decorative blurs - solo ultrawide */}
-      <div className="hidden 3xl:block absolute top-20 -left-40 w-[500px] h-[500px] bg-[#C4704B]/6 rounded-full blur-3xl" />
-      <div className="hidden 3xl:block absolute bottom-20 -right-40 w-[450px] h-[450px] bg-[#2D5A47]/6 rounded-full blur-3xl" />
+      <div className="hidden 3xl:block absolute top-20 -left-40 w-[500px] h-[500px] bg-[#A0845C]/6 rounded-full blur-3xl" />
+      <div className="hidden 3xl:block absolute bottom-20 -right-40 w-[450px] h-[450px] bg-[#48484A]/6 rounded-full blur-3xl" />
 
       <div className="max-w-6xl 3xl:max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -29,16 +29,16 @@ export default function ProjectsGrid({ projects }: Props) {
           transition={{ duration: 0.8 }}
         >
           <div>
-            <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-[#2D5A47] bg-[#2D5A47]/10 rounded-full">
+            <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-[#48484A] bg-[#48484A]/10 rounded-full">
               Portfolio
             </span>
             <h2 className="font-inter text-3xl sm:text-4xl font-bold text-[#2C2825]">
-              Le Nostre <span className="text-[#C4704B]">Realizzazioni</span>
+              Le Nostre <span className="text-[#A0845C]">Realizzazioni</span>
             </h2>
           </div>
           <Link
             href="/tipologie"
-            className="hidden md:inline-flex items-center gap-2 text-[#2C2825] font-semibold mt-4 md:mt-0 group hover:text-[#C4704B] transition-colors"
+            className="hidden md:inline-flex items-center gap-2 text-[#2C2825] font-semibold mt-4 md:mt-0 group hover:text-[#A0845C] transition-colors"
           >
             Tutte le Tipologie
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -65,7 +65,7 @@ export default function ProjectsGrid({ projects }: Props) {
               >
                 <Link
                   href={`/progetti/${project.slug}`}
-                  className="group block relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8E0D5]"
+                  className="group block relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#EDE6DB]"
                 >
                   {/* Image */}
                   {imageUrl ? (
@@ -91,10 +91,10 @@ export default function ProjectsGrid({ projects }: Props) {
                         {project.location}
                       </div>
                     )}
-                    <h3 className="text-xl lg:text-2xl font-bold text-white font-inter group-hover:text-[#D4896A] transition-colors">
+                    <h3 className="text-xl lg:text-2xl font-bold text-white font-inter group-hover:text-[#B89B74] transition-colors">
                       {project.title}
                     </h3>
-                    <div className="mt-3 flex items-center gap-2 text-[#C4704B] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="mt-3 flex items-center gap-2 text-[#A0845C] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-sm font-medium">Scopri il progetto</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -102,7 +102,7 @@ export default function ProjectsGrid({ projects }: Props) {
 
                   {/* Category badge */}
                   {project.category && (
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#C4704B] text-white text-xs font-semibold rounded-full">
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#A0845C] text-white text-xs font-semibold rounded-full">
                       {project.category}
                     </div>
                   )}

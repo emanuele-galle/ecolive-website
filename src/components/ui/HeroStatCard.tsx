@@ -45,7 +45,7 @@ export default function HeroStatCard({
       className={cn(
         'relative h-full rounded-2xl p-8',
         'backdrop-blur-xl bg-white/60',
-        'border border-[#C4704B]/20',
+        'border border-[#A0845C]/20',
         'shadow-xl shadow-black/5',
         'overflow-hidden',
         'group',
@@ -75,7 +75,7 @@ export default function HeroStatCard({
       <motion.div
         className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
         style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #C4704B 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, #A0845C 1px, transparent 0)`,
           backgroundSize: '32px 32px'
         }}
       />
@@ -93,11 +93,11 @@ export default function HeroStatCard({
         {/* Hero number with SlidingNumber */}
         <div className="mb-4">
           {isInView && (
-            <div className="text-8xl lg:text-9xl font-bold text-[#C4704B] leading-none">
+            <div className="text-8xl lg:text-9xl font-bold text-[#A0845C] leading-none">
               <SlidingNumber value={statValue} suffix={statSuffix} />
             </div>
           )}
-          <p className="text-lg lg:text-xl text-[#1E3D30] font-semibold mt-2">
+          <p className="text-lg lg:text-xl text-[#1D1D1F] font-semibold mt-2">
             {statLabel}
           </p>
         </div>
@@ -117,19 +117,19 @@ export default function HeroStatCard({
                   scale: 1.05,
                   boxShadow: '0 0 20px rgba(196, 112, 75, 0.2)'
                 }}
-                className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#C4704B]/10 shadow-sm cursor-pointer"
+                className="flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-[#A0845C]/10 shadow-sm cursor-pointer"
                 style={{
                   transform: `translateZ(${(index + 1) * 10}px)`,
                 }}
               >
                 <motion.div
-                  className="w-8 h-8 rounded-lg bg-[#C4704B]/10 flex items-center justify-center flex-shrink-0"
+                  className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0"
                   whileHover={{ rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Icon className="w-4 h-4 text-[#C4704B]" />
+                  <Icon className="w-4 h-4 text-[#A0845C]" />
                 </motion.div>
-                <span className="text-sm text-[#1E3D30] font-medium">
+                <span className="text-sm text-[#1D1D1F] font-medium">
                   {badge.text}
                 </span>
               </motion.div>

@@ -12,7 +12,7 @@ interface PulsarGridBackgroundProps {
 
 export default function PulsarGridBackground({
   children,
-  backgroundColor = '#FAF7F2',
+  backgroundColor = '#F5F5F7',
   dotColor = 'rgba(196, 112, 75, 0.8)',
   gridSpacing = 40,
   className = ''
