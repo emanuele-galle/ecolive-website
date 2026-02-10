@@ -47,20 +47,22 @@ async function getRelatedProjects(category: string, currentId: number) {
 }
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config })
-
-  const projects = await payload.find({
-    collection: 'projects',
-    where: {
-      _status: { equals: 'published' },
-    },
-    limit: 1000,
-    depth: 0,
-  })
-
-  return projects.docs.map((project) => ({
-    slug: project.slug,
-  }))
+  try {
+    const payload = await getPayload({ config })
+    const projects = await payload.find({
+      collection: 'projects',
+      where: {
+        _status: { equals: 'published' },
+      },
+      limit: 1000,
+      depth: 0,
+    })
+    return projects.docs.map((project) => ({
+      slug: project.slug,
+    }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

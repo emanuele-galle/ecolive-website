@@ -27,30 +27,36 @@ export default async function NewsPage({ searchParams }: PageProps) {
   const currentPage = parseInt(params.page || '1', 10)
   const articlesPerPage = 9
 
-  const payload = await getPayload({ config })
+  let allArticles: News[] = []
+  let totalPages = 0
 
-  const { docs: allArticles, totalDocs } = await payload.find({
-    collection: 'news',
-    where: {
-      status: {
-        equals: 'published',
-      },
-      ...(selectedTag && {
-        tags: {
-          contains: selectedTag,
+  try {
+    const payload = await getPayload({ config })
+    const result = await payload.find({
+      collection: 'news',
+      where: {
+        status: {
+          equals: 'published',
         },
-      }),
-    },
-    sort: '-publishedDate',
-    limit: articlesPerPage,
-    page: currentPage,
-  })
-
-  const totalPages = Math.ceil(totalDocs / articlesPerPage)
+        ...(selectedTag && {
+          tags: {
+            contains: selectedTag,
+          },
+        }),
+      },
+      sort: '-publishedDate',
+      limit: articlesPerPage,
+      page: currentPage,
+    })
+    allArticles = result.docs as News[]
+    totalPages = Math.ceil(result.totalDocs / articlesPerPage)
+  } catch {
+    // DB non disponibile o collection non esistente
+  }
 
   return (
     <NewsPageClient
-      articles={allArticles as News[]}
+      articles={allArticles}
       selectedTag={selectedTag}
       currentPage={currentPage}
       totalPages={totalPages}

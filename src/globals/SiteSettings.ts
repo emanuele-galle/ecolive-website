@@ -82,7 +82,7 @@ export const SiteSettings: GlobalConfig = {
               name: 'phone2',
               type: 'text',
               label: 'Telefono secondario',
-              defaultValue: '+39 327 6473099',
+              defaultValue: '+39 0963 1951395',
             },
             {
               name: 'email',

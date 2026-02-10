@@ -9,9 +9,6 @@ import {
   Award, HelpCircle, Phone, MessageCircle
 } from 'lucide-react'
 
-// ============================================
-// CATEGORIE
-// ============================================
 const categories = [
   { id: 'sistema', label: 'Sistema X-Frame', icon: Leaf },
   { id: 'costi', label: 'Costi e Tempi', icon: Euro },
@@ -19,9 +16,6 @@ const categories = [
   { id: 'permessi', label: 'Iter e Permessi', icon: FileCheck },
 ]
 
-// ============================================
-// FAQ PER CATEGORIA
-// ============================================
 type FAQItem = {
   question: string
   answer: React.ReactNode
@@ -106,21 +100,21 @@ const faqsByCategory: Record<string, FAQItem[]> = {
                 <h4 className="font-semibold text-[#1E3D30]">Grezzo Base</h4>
                 <p className="text-sm text-gray-600">Struttura completa</p>
               </div>
-              <span className="text-xl font-bold text-[#C4704B]">da €1.100/mq</span>
+              <span className="text-xl font-bold text-[#C4704B]">da &euro;1.100/mq</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-xl border-l-4 border-[#C4704B] gap-2">
               <div>
                 <h4 className="font-semibold text-[#1E3D30]">Grezzo Avanzato</h4>
                 <p className="text-sm text-gray-600">Pronto per finiture</p>
               </div>
-              <span className="text-xl font-bold text-[#C4704B]">da €1.200/mq</span>
+              <span className="text-xl font-bold text-[#C4704B]">da &euro;1.200/mq</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#1E3D30] rounded-xl gap-2">
               <div>
                 <h4 className="font-semibold text-white">Chiavi in Mano</h4>
                 <p className="text-sm text-white/70">Casa pronta da abitare</p>
               </div>
-              <span className="text-xl font-bold text-[#C4704B]">da €1.800/mq</span>
+              <span className="text-xl font-bold text-[#C4704B]">da &euro;1.800/mq</span>
             </div>
           </div>
           <p className="text-sm text-gray-500 italic">
@@ -195,9 +189,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             <strong className="text-[#1E3D30]">Assolutamente si.</strong> Con la giusta cura, una casa in legno
             puo durare secoli — come dimostrano le costruzioni storiche in Scandinavia e Giappone.
           </p>
-          <p className="mb-4 text-gray-600">
-            Le nostre case sono progettate per durare grazie a:
-          </p>
+          <p className="mb-4 text-gray-600">Le nostre case sono progettate per durare grazie a:</p>
           <ul className="space-y-3 mb-4">
             <li className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-[#C4704B] mt-0.5 flex-shrink-0" />
@@ -252,37 +244,23 @@ const faqsByCategory: Record<string, FAQItem[]> = {
       question: 'Come viene garantita la qualita?',
       answer: (
         <>
-          <p className="mb-4 text-gray-600">
-            La qualita e al centro di tutto quello che facciamo.
-          </p>
+          <p className="mb-4 text-gray-600">La qualita e al centro di tutto quello che facciamo.</p>
           <div className="space-y-4 mb-4">
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-[#C4704B] rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-sm">1</span>
+            {[
+              { num: '1', title: 'Produzione in stabilimento', desc: 'Componenti realizzati con precisione millimetrica' },
+              { num: '2', title: 'Materiali certificati', desc: 'Legno da foreste gestite responsabilmente' },
+              { num: '3', title: 'Collaudo finale', desc: 'Test e verifiche prima della consegna' },
+            ].map((step) => (
+              <div key={step.num} className="flex items-start gap-4">
+                <div className="w-8 h-8 bg-[#C4704B] rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-sm">{step.num}</span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-[#1E3D30]">{step.title}</h4>
+                  <p className="text-sm text-gray-600">{step.desc}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-[#1E3D30]">Produzione in stabilimento</h4>
-                <p className="text-sm text-gray-600">Componenti realizzati con precisione millimetrica</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-[#C4704B] rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-sm">2</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#1E3D30]">Materiali certificati</h4>
-                <p className="text-sm text-gray-600">Legno da foreste gestite responsabilmente</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-8 h-8 bg-[#C4704B] rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-sm">3</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-[#1E3D30]">Collaudo finale</h4>
-                <p className="text-sm text-gray-600">Test e verifiche prima della consegna</p>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="flex items-center gap-4 p-4 bg-[#1E3D30]/5 rounded-xl">
             <Award className="w-8 h-8 text-[#C4704B]" />
@@ -305,23 +283,19 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             gli stessi permessi dell&apos;edilizia tradizionale.
           </p>
           <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <FileCheck className="w-5 h-5 text-[#C4704B]" />
-              <span className="text-gray-700"><strong className="text-[#1E3D30]">Permesso di Costruire</strong> — per nuove costruzioni</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <FileCheck className="w-5 h-5 text-[#C4704B]" />
-              <span className="text-gray-700"><strong className="text-[#1E3D30]">SCIA</strong> — per alcune tipologie di intervento</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-              <FileCheck className="w-5 h-5 text-[#C4704B]" />
-              <span className="text-gray-700"><strong className="text-[#1E3D30]">Denuncia al Genio Civile</strong> — per la parte strutturale</span>
-            </div>
+            {[
+              { label: 'Permesso di Costruire', desc: 'per nuove costruzioni' },
+              { label: 'SCIA', desc: 'per alcune tipologie di intervento' },
+              { label: 'Denuncia al Genio Civile', desc: 'per la parte strutturale' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                <FileCheck className="w-5 h-5 text-[#C4704B]" />
+                <span className="text-gray-700"><strong className="text-[#1E3D30]">{item.label}</strong> — {item.desc}</span>
+              </div>
+            ))}
           </div>
           <div className="p-4 bg-[#1E3D30]/5 rounded-xl border-l-4 border-[#C4704B]">
-            <p className="font-medium text-[#1E3D30]">
-              Non preoccuparti della burocrazia — ci pensiamo noi!
-            </p>
+            <p className="font-medium text-[#1E3D30]">Non preoccuparti della burocrazia — ci pensiamo noi!</p>
             <p className="text-sm text-gray-600 mt-1">
               Gestiamo tutta la documentazione, le pratiche e i rapporti con gli enti.
             </p>
@@ -368,16 +342,9 @@ const faqsByCategory: Record<string, FAQItem[]> = {
   ],
 }
 
-// ============================================
-// COMPONENTE FAQ ITEM
-// ============================================
-function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onToggle: () => void }) {
+function FAQItemComponent({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
-    >
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
       <button
         onClick={onToggle}
         className="w-full flex items-center gap-4 p-6 text-left hover:bg-gray-50 transition-colors"
@@ -402,7 +369,7 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onT
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
             <div className="px-6 pb-6 pt-2 ml-14">
               {faq.answer}
@@ -410,13 +377,10 @@ function FAQItem({ faq, isOpen, onToggle }: { faq: FAQItem; isOpen: boolean; onT
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 }
 
-// ============================================
-// PAGINA PRINCIPALE
-// ============================================
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState('sistema')
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
@@ -425,34 +389,15 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen bg-[#FAF7F2]">
-      {/* Hero */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47] overflow-hidden">
-        {/* Pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
-        />
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
 
-        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
-          >
-            <HelpCircle className="w-4 h-4 text-[#C4704B]" />
-            <span className="text-white/90 text-sm font-medium">Centro Assistenza</span>
-          </motion.div>
-
+      {/* ===== HERO ===== */}
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1E3D30] to-[#2D5A47]">
+        <div className="max-w-6xl mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+            transition={{ duration: 0.6 }}
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             Domande <span className="text-[#C4704B]">Frequenti</span>
           </motion.h1>
@@ -460,34 +405,15 @@ export default function FAQPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xl text-white/70 max-w-2xl mx-auto"
           >
             Tutto quello che devi sapere sulle case prefabbricate in legno Ecolive.
           </motion.p>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-8 mt-10"
-          >
-            {[
-              { value: '10+', label: 'FAQ' },
-              { value: '4', label: 'Categorie' },
-              { value: '24h', label: 'Supporto' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-[#C4704B]">{stat.value}</div>
-                <div className="text-white/50 text-sm">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* Category Tabs */}
+      {/* ===== CATEGORY TABS ===== */}
       <section className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
@@ -516,7 +442,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* FAQ List */}
+      {/* ===== FAQ LIST ===== */}
       <section className="py-12 lg:py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <AnimatePresence mode="wait">
@@ -528,7 +454,7 @@ export default function FAQPage() {
               className="space-y-4"
             >
               {currentFAQs.map((faq, index) => (
-                <FAQItem
+                <FAQItemComponent
                   key={index}
                   faq={faq}
                   isOpen={openFAQ === index}
@@ -540,24 +466,15 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-4 bg-[#1E3D30] relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
-        />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#C4704B]/20 rounded-full blur-3xl" />
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      {/* ===== CTA ===== */}
+      <section className="py-20 px-4 bg-[#1E3D30]">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
               Non hai trovato la risposta?
             </h2>
             <p className="text-white/70 mb-10 text-lg max-w-xl mx-auto">
@@ -568,13 +485,13 @@ export default function FAQPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold rounded-xl transition-colors shadow-lg shadow-[#C4704B]/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold rounded-xl transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
                 Contattaci
               </Link>
               <a
-                href="tel:+393276473099"
+                href="tel:+3909631951395"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/30 transition-colors"
               >
                 <Phone className="w-5 h-5" />
@@ -585,15 +502,10 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Brochure Download */}
+      {/* ===== BROCHURE ===== */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 bg-gradient-to-r from-[#1E3D30] to-[#2D5A47] rounded-2xl"
-          >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 bg-gradient-to-r from-[#1E3D30] to-[#2D5A47] rounded-2xl">
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-bold text-white mb-2">
                 Scarica la Brochure 2025
@@ -613,7 +525,7 @@ export default function FAQPage() {
               </svg>
               Scarica PDF
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self' data:",
-              "frame-src 'self' https://sketchfab.com https://superspl.at",
+              "frame-src 'self' https://sketchfab.com https://superspl.at https://www.google.com https://maps.google.com https://www.google.com/maps",
               "connect-src 'self' https://api.fodivps2.cloud wss://fodivps2.cloud wss://api.fodivps2.cloud",
               "worker-src 'self' blob:",
               "frame-ancestors 'none'",

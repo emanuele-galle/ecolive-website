@@ -72,7 +72,7 @@ export default function FinalCTA() {
             </Link>
 
             <motion.a
-              href="tel:+390963195139"
+              href="tel:+3909631951395"
               className="inline-flex items-center justify-center gap-3 px-8 lg:px-10 py-4 lg:py-5 bg-white/10 backdrop-blur-sm text-white font-semibold text-base lg:text-lg rounded-2xl border border-white/20 w-full sm:w-auto"
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}

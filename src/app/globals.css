@@ -164,11 +164,6 @@
   font-family: var(--font-roboto);
 }
 
-/* Legacy alias for compatibility */
-.font-playfair {
-  font-family: var(--font-inter);
-}
-
 /* Base styles */
 body {
   color: var(--color-foreground);
@@ -352,21 +347,6 @@ html {
 
 .prose tbody tr:hover {
   background-color: #f9fafb;
-}
-
-/* Line clamp utilities */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* Border glow animation */
@@ -643,30 +623,6 @@ html {
 
 .tick-pulse {
   animation: tickPulse 0.4s ease-out;
-}
-
-/* ============================================
-   3D FLIP CARD UTILITIES
-   ============================================ */
-
-/* Perspective container for 3D transforms */
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.perspective-1500 {
-  perspective: 1500px;
-}
-
-/* Preserve 3D transformations for children */
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-/* Hide backface for flip cards */
-.backface-hidden {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 /* ============================================

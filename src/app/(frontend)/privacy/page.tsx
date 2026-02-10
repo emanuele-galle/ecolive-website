@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             </p>
             <p className="flex items-center gap-2 text-gray-600">
               <Phone className="w-4 h-4 text-[#C4704B]" />
-              <a href="tel:+390963195139" className="hover:text-[#C4704B] transition-colors">
+              <a href="tel:+3909631951395" className="hover:text-[#C4704B] transition-colors">
                 +39 0963 1951395
               </a>
             </p>

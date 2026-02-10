@@ -317,7 +317,7 @@ export default function HeroParallax({
             <span className="relative">Richiedi Preventivo</span>
           </motion.a>
           <motion.a
-            href="tel:+390963195139"
+            href="tel:+3909631951395"
             className="relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-white font-semibold rounded-2xl border-2 border-white/25 hover:border-white/50 transition-all backdrop-blur-sm group overflow-hidden"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}

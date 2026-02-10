@@ -12,21 +12,23 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config })
-
-  const articles = await payload.find({
-    collection: 'news',
-    where: {
-      status: {
-        equals: 'published',
+  try {
+    const payload = await getPayload({ config })
+    const articles = await payload.find({
+      collection: 'news',
+      where: {
+        status: {
+          equals: 'published',
+        },
       },
-    },
-    limit: 1000,
-  })
-
-  return articles.docs.map((article) => ({
-    slug: article.slug,
-  }))
+      limit: 1000,
+    })
+    return articles.docs.map((article) => ({
+      slug: article.slug,
+    }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

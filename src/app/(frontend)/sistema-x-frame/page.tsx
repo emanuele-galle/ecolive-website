@@ -1,962 +1,498 @@
 'use client'
 
-import { motion, useScroll, useTransform, useInView, useSpring, useMotionValue, AnimatePresence } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import SketchfabViewer from '@/components/SketchfabViewer'
-import AdaptiveGaussianViewer from '@/components/xframe/AdaptiveGaussianViewer'
-import Stratigraphy3D from '@/components/xframe/Stratigraphy3D'
-import RenderShowcase from '@/components/xframe/RenderShowcase'
-import WhyCostMoreSection from '@/components/sections/WhyCostMoreSection'
-import EvolutionTimelineSection from '@/components/xframe/EvolutionTimelineSection'
-import InvestmentExcellenceSection from '@/components/xframe/InvestmentExcellenceSection'
-import { Check, Phone, ChevronDown } from 'lucide-react'
-import SectionDivider from '@/components/ui/SectionDivider'
+import { ArrowRight, Phone } from 'lucide-react'
 
-// AnimatedCounter component
-function AnimatedCounter({
-  value,
-  suffix = '',
-  prefix = '',
-  duration = 2
-}: {
-  value: number
-  suffix?: string
-  prefix?: string
-  duration?: number
-}) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, { duration: duration * 1000 })
-  const isInView = useInView(ref, { once: false, margin: "0px" })
+// --- Static Data ---
 
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value)
-    }
-  }, [isInView, value, motionValue])
-
-  useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      if (ref.current) {
-        const formatted = value < 1 ? latest.toFixed(2) : Math.floor(latest).toString()
-        ref.current.textContent = prefix + formatted + suffix
-      }
-    })
-    return unsubscribe
-  }, [springValue, suffix, prefix, value])
-
-  return <span ref={ref}>{prefix}0{suffix}</span>
-}
-
-// Technical specs - DATI CORRETTI DA BROCHURE 2025
-const technicalSpecs = [
-  { label: 'Trasmittanza Parete', value: 0.169, suffix: ' W/m²K', description: 'Isolamento termico superiore' },
-  { label: 'Trasmittanza Tetto', value: 0.137, suffix: ' W/m²K', description: 'Massimo comfort abitativo' },
-  { label: 'Sfasamento Parete', value: 10.8, suffix: ' ore', description: 'Protezione dal caldo estivo' },
-  { label: 'Sfasamento Tetto', value: 14.5, suffix: ' ore', description: 'Inerzia termica ottimale' },
-  { label: 'Spessore Parete', value: 29, suffix: ' cm', description: 'Compatto e performante' },
-  { label: 'Spessore Tetto', value: 40, suffix: ' cm', description: 'Isolamento massimo' },
+const heroStats = [
+  { value: '29 cm', label: 'Spessore parete' },
+  { value: 'A4', label: 'Classe energetica' },
+  { value: '30 anni', label: 'Garanzia struttura' },
 ]
 
-// Render images for gallery
-const renderImages: {
-  src: string
-  srcFull: string
-  title: string
-  description: string
-  alt: string
-  featured: boolean
-  category: 'struttura' | 'tetto' | 'viste'
-}[] = [
+const threePillars = [
+  {
+    title: 'Struttura',
+    description: 'Telaio portante in legno lamellare di abete, con giunzioni ingegnerizzate per la massima resistenza sismica.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Isolamento',
+    description: 'Fibra di legno ad alta densita integrata nel pannello per un isolamento termoacustico senza ponti termici.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Finitura',
+    description: 'Pannello pronto per la posa di rivestimenti interni ed esterni, senza necessita di sottofondi aggiuntivi.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+      </svg>
+    ),
+  },
+]
+
+const wallLayers = [
+  { name: 'Intonaco esterno', thickness: '1.5 cm', color: '#A0937D' },
+  { name: 'Pannello in fibra di legno', thickness: '6 cm', color: '#8B7355' },
+  { name: 'OSB strutturale', thickness: '1.5 cm', color: '#C4A47B' },
+  { name: 'Montanti in abete + isolante', thickness: '12 cm', color: '#D4B896' },
+  { name: 'Freno vapore igrovariabile', thickness: '0.2 cm', color: '#B8C4D0' },
+  { name: 'Intercapedine impianti + isolante', thickness: '5 cm', color: '#E8D5B7' },
+  { name: 'Lastra in cartongesso', thickness: '2.5 cm', color: '#F0E8DC' },
+]
+
+const technicalSpecs = [
+  {
+    value: '0.169',
+    unit: 'W/m\u00b2K',
+    label: 'Trasmittanza parete',
+    context: 'Il limite di legge e 0.26: superiamo lo standard del 35%',
+  },
+  {
+    value: '10.8',
+    unit: 'ore',
+    label: 'Sfasamento termico',
+    context: 'Il calore estivo impiega quasi 11 ore per attraversare la parete',
+  },
+  {
+    value: '58',
+    unit: 'dB',
+    label: 'Abbattimento acustico',
+    context: 'Silenzio assoluto: supera ampiamente i 40 dB richiesti dalla norma',
+  },
+  {
+    value: 'Zona 1',
+    unit: '',
+    label: 'Resistenza sismica',
+    context: 'Certificata per le zone a massima sismicita del territorio italiano',
+  },
+]
+
+const comparison = [
+  {
+    feature: 'Tempo montaggio struttura',
+    xframe: '1 giorno',
+    traditional: '2-3 mesi',
+    xlam: '3-5 giorni',
+  },
+  {
+    feature: 'Classe energetica',
+    xframe: 'A4',
+    traditional: 'B / C',
+    xlam: 'A3 / A4',
+  },
+  {
+    feature: 'Ponti termici',
+    xframe: 'Eliminati',
+    traditional: 'Presenti',
+    xlam: 'Ridotti',
+  },
+  {
+    feature: 'Flessibilita progettuale',
+    xframe: 'Massima',
+    traditional: 'Alta',
+    xlam: 'Limitata',
+  },
+  {
+    feature: 'Garanzia struttura',
+    xframe: '30 anni',
+    traditional: '10 anni',
+    xlam: '20 anni',
+  },
+  {
+    feature: 'Costo al mq (grezzo)',
+    xframe: 'Competitivo',
+    traditional: 'Medio-alto',
+    xlam: 'Alto',
+  },
+]
+
+const renderImages = [
   {
     src: '/images/xframe-render/optimized/spaccato-copertina.webp',
-    srcFull: '/images/xframe-render/optimized/spaccato-copertina.webp',
-    title: 'Spaccato Sistema X-Frame',
-    description: 'Vista completa della stratigrafia costruttiva',
     alt: 'Spaccato costruttivo sistema X-Frame Ecolive',
-    featured: true,
-    category: 'struttura',
+    caption: 'Spaccato Sistema X-Frame',
   },
   {
-    src: '/images/xframe-render/optimized/render-avanzato-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/render-avanzato.webp',
-    title: 'Configurazione Avanzata',
-    description: 'Versione completa con finiture premium',
+    src: '/images/xframe-render/optimized/render-avanzato.webp',
     alt: 'Render configurazione avanzata X-Frame',
-    featured: false,
-    category: 'struttura',
+    caption: 'Configurazione Avanzata',
   },
   {
-    src: '/images/xframe-render/optimized/render-base-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/render-base.webp',
-    title: 'Configurazione Base',
-    description: 'Struttura essenziale del sistema',
+    src: '/images/xframe-render/optimized/render-base.webp',
     alt: 'Render configurazione base X-Frame',
-    featured: false,
-    category: 'struttura',
+    caption: 'Configurazione Base',
   },
   {
-    src: '/images/xframe-render/optimized/tetto-3-strati-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/tetto-3-strati.webp',
-    title: 'Tetto a 3 Strati',
-    description: 'Dettaglio stratigrafia copertura',
+    src: '/images/xframe-render/optimized/tetto-3-strati.webp',
     alt: 'Stratigrafia tetto 3 strati Ecolive',
-    featured: true,
-    category: 'tetto',
+    caption: 'Tetto a 3 Strati',
   },
   {
-    src: '/images/xframe-render/optimized/tetto-piano-osb-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/tetto-piano-osb.webp',
-    title: 'Tetto Piano con OSB',
-    description: 'Soluzione per coperture piane',
-    alt: 'Tetto piano con pannelli OSB',
-    featured: false,
-    category: 'tetto',
+    src: '/images/xframe-render/optimized/vista-sopra.webp',
+    alt: 'Vista dall\'alto struttura X-Frame',
+    caption: 'Vista dall\'Alto',
   },
   {
-    src: '/images/xframe-render/optimized/tetto-principale-thumb.webp',
-    srcFull: '/images/xframe-render/optimized/tetto-principale.webp',
-    title: 'Sistema Tetto Principale',
-    description: 'Copertura standard X-Frame',
+    src: '/images/xframe-render/optimized/tetto-principale.webp',
     alt: 'Sistema tetto principale X-Frame',
-    featured: false,
-    category: 'tetto',
+    caption: 'Sistema Tetto Principale',
   },
 ]
 
-// Premium materials data
-
-// Velocita Montaggio Section Component
-function VelocitaMontaggioSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: false, margin: "-100px" })
-
-  return (
-    <section ref={containerRef} className="relative py-24 lg:py-32 px-4 bg-gradient-to-b from-[#0a1628] via-[#0f2040] to-[#152822] overflow-hidden">
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="speed-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a3a5c" strokeWidth="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#speed-grid)"/>
-        </svg>
-      </div>
-
-      {/* Animated Glow */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C4704B]/15 rounded-full blur-[150px]"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2.5 px-6 py-3 mb-8 bg-white/[0.06] backdrop-blur-md rounded-full border border-white/15"
-          >
-            <motion.span
-              className="w-2.5 h-2.5 bg-[#C4704B] rounded-full"
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            />
-            <span className="text-white/90 text-sm font-semibold tracking-widest uppercase">
-              Velocita Record
-            </span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Il Montaggio Diventa uno{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] to-[#E8956B]">
-              Spettacolo
-            </span>
-          </h2>
-
-          <p className="text-[#7da0b2] text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-            Tutto e preparato in laboratorio e montato con autogru specializzate.
-            Il sogno diventa realta in pochi giorni.
-          </p>
-        </motion.div>
-
-        {/* Stats Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* 30 Minutes */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="relative bg-white/[0.04] backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center group hover:border-[#C4704B]/30 transition-all"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C4704B]/0 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 group-hover:from-[#C4704B]/10 transition-all duration-500" />
-            <div className="relative">
-              <div className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] to-[#E8956B] mb-4">
-                30
-              </div>
-              <div className="text-2xl font-bold text-white mb-2">minuti</div>
-              <p className="text-white/50">Struttura portante montata</p>
-            </div>
-          </motion.div>
-
-          {/* 1 Day */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-            className="relative bg-gradient-to-br from-[#C4704B]/20 to-[#a85a3a]/10 rounded-2xl p-8 border border-[#C4704B]/30 text-center"
-          >
-            <div className="text-6xl md:text-7xl font-black text-white mb-4">
-              1
-            </div>
-            <div className="text-2xl font-bold text-white mb-2">giorno</div>
-            <p className="text-white/70">Casa completa: pareti, solai, tetto</p>
-          </motion.div>
-
-          {/* 100x */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.4 }}
-            className="relative bg-white/[0.04] backdrop-blur-sm rounded-2xl p-8 border border-white/10 text-center group hover:border-[#C4704B]/30 transition-all"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C4704B]/0 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 group-hover:from-[#C4704B]/10 transition-all duration-500" />
-            <div className="relative">
-              <div className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] to-[#E8956B] mb-4">
-                100x
-              </div>
-              <div className="text-2xl font-bold text-white mb-2">piu veloce</div>
-              <p className="text-white/50">Rispetto alla muratura tradizionale</p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Comparison Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-          className="bg-white/[0.03] backdrop-blur-sm rounded-2xl p-8 lg:p-10 border border-white/10"
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* X-Frame */}
-            <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 rounded-full border border-green-500/30 mb-4">
-                <Check className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 font-semibold">X-Frame</span>
-              </div>
-              <p className="text-white/70 leading-relaxed">
-                In <span className="text-white font-bold">30 minuti</span> la struttura portante e montata.
-                In <span className="text-white font-bold">un solo giorno</span> l'intera casa prende forma:
-                non solo 4 pareti, ma <span className="text-[#C4704B] font-medium">tutta la struttura completa</span>.
-              </p>
-            </div>
-
-            {/* Divider */}
-            <div className="hidden md:block absolute left-1/2 top-1/2 -translate-y-1/2 w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-
-            {/* Traditional */}
-            <div className="text-center md:text-right">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 rounded-full border border-red-500/30 mb-4">
-                <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span className="text-red-400 font-semibold">Muratura Tradizionale</span>
-              </div>
-              <p className="text-white/70 leading-relaxed">
-                Solo per la struttura portante servono
-                <span className="text-white font-bold"> 1-2 mesi</span> nella migliore delle ipotesi.
-                Poi inizia tutto il resto.
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom note */}
-          <div className="mt-8 pt-6 border-t border-white/10 text-center">
-            <p className="text-white/50 text-sm">
-              Il rapporto e di <span className="text-[#C4704B] font-bold">centinaia di volte</span>, non 2 o 3 volte.
-              Non dipendiamo dalle condizioni meteo: una giornata senza pioggia si trova sempre.
-            </p>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 }
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-  }
-}
+// --- Page Component ---
 
 export default function SistemaXFramePage() {
-  const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  })
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
-  // Refs for sections
-  const whatIsRef = useRef<HTMLDivElement>(null)
-  const specsRef = useRef<HTMLDivElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-
-  // Parallax for What Is section
-  const { scrollYProgress: whatIsScrollProgress } = useScroll({
-    target: whatIsRef,
-    offset: ["start end", "end start"]
-  })
-
-  // Parallax for Specs section
-  const { scrollYProgress: specsScrollProgress } = useScroll({
-    target: specsRef,
-    offset: ["start end", "end start"]
-  })
-
-  const whatIsInView = useInView(whatIsRef, { once: false, margin: "-100px" })
-  const specsInView = useInView(specsRef, { once: false, margin: "-100px" })
-  const ctaInView = useInView(ctaRef, { once: false, margin: "-100px" })
-
-
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section - Full Screen with 3D Render Background */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Layer 1: 3D Render Background with Deep Parallax */}
-        <motion.div
-          className="absolute inset-0 scale-110"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
-        >
+    <main className="min-h-screen">
+
+      {/* ========== 1. HERO ========== */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1E3D30]">
+        {/* Background image */}
+        <div className="absolute inset-0">
           <Image
             src="/images/xframe-render/optimized/render-avanzato.webp"
-            alt="Sistema X-Frame render 3D"
+            alt="Sistema X-Frame render"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-center opacity-30"
             sizes="100vw"
           />
-        </motion.div>
-
-        {/* Layer 2: Dark gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30]/85 via-[#1E3D30]/70 to-[#1E3D30]/90" />
-
-        {/* Layer 3: Animated gradient overlay */}
-        <motion.div
-          className="absolute inset-0 mix-blend-overlay"
-          animate={{
-            background: [
-              'radial-gradient(ellipse at 30% 20%, rgba(196,112,75,0.3) 0%, transparent 50%)',
-              'radial-gradient(ellipse at 70% 80%, rgba(196,112,75,0.3) 0%, transparent 50%)',
-              'radial-gradient(ellipse at 30% 20%, rgba(196,112,75,0.3) 0%, transparent 50%)',
-            ],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Layer 4: Grid pattern with medium parallax */}
-        <motion.div
-          className="absolute inset-0 opacity-20"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
-              `,
-              backgroundSize: '60px 60px'
-            }}
-          />
-        </motion.div>
-
-        {/* Layer 5: Floating orbs with different parallax speeds */}
-        <motion.div
-          className="absolute top-[10%] right-[5%] w-96 h-96 bg-[#C4704B]/30 rounded-full blur-[100px]"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[20%] left-[10%] w-72 h-72 bg-[#4a9eff]/20 rounded-full blur-[80px]"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 120]) }}
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-[40%] left-[60%] w-48 h-48 bg-white/10 rounded-full blur-[60px]"
-          style={{ y: useTransform(scrollYProgress, [0, 1], [0, 150]) }}
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Layer 6: Geometric shapes with parallax */}
-        <motion.div
-          className="absolute top-[15%] left-[8%] w-32 h-32 border border-white/10 rotate-45"
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [0, 60]),
-            rotate: useTransform(scrollYProgress, [0, 1], [45, 90])
-          }}
-        />
-        <motion.div
-          className="absolute bottom-[25%] right-[12%] w-24 h-24 border border-[#C4704B]/20 rotate-12"
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [0, 90]),
-            rotate: useTransform(scrollYProgress, [0, 1], [12, -30])
-          }}
-        />
-
-        {/* Content with inverse parallax (moves slower = feels closer) */}
-        <motion.div
-          className="relative z-10 max-w-6xl mx-auto px-4"
-          style={{
-            y: useTransform(scrollYProgress, [0, 1], [0, -50]),
-            opacity: heroOpacity
-          }}
-        >
-          <div className="text-center">
-            {/* Badge with glow */}
-            <motion.span
-              className="inline-block px-5 py-2.5 mb-8 text-sm font-semibold text-[#C4704B] bg-white/10 backdrop-blur-md rounded-full border border-[#C4704B]/30 shadow-lg shadow-[#C4704B]/10"
-              initial={{ opacity: 0, y: -30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-            >
-              <span className="mr-2">◈</span>
-              Tecnologia Brevettata
-            </motion.span>
-
-            {/* Title with enhanced stagger animation */}
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 md:mb-8"
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-            >
-              <motion.span
-                className="block drop-shadow-2xl"
-                variants={fadeInUp}
-                transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              >
-                Sistema Costruttivo
-              </motion.span>
-              <motion.span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-[#C4704B] via-[#e08860] to-[#C4704B] drop-shadow-2xl"
-                variants={fadeInUp}
-                transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
-              >
-                X-Frame
-              </motion.span>
-            </motion.h1>
-
-            {/* Description with blur backdrop */}
-            <motion.p
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed px-2"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
-            >
-              L'innovazione che unisce il meglio di tre sistemi costruttivi: la versatilita del <strong className="text-white">Platform Frame</strong>,
-              la solidita dello <strong className="text-white">X-Lam</strong> e l'eleganza del <strong className="text-white">Post & Beam</strong>.
-            </motion.p>
-
-            {/* CTA Buttons with enhanced hover */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center px-4 sm:px-0"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.9, ease: "easeOut" }}
-            >
-              <Link href="/contatti">
-                <motion.span
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-[#C4704B] to-[#a85a3a] text-white font-semibold text-base sm:text-lg rounded-xl sm:rounded-2xl cursor-pointer shadow-xl shadow-[#C4704B]/30"
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 25px 50px -12px rgba(196, 112, 75, 0.6)"
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Richiedi Informazioni
-                </motion.span>
-              </Link>
-              <motion.a
-                href="#stratigrafia"
-                className="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white/5 backdrop-blur-sm text-white font-semibold text-base sm:text-lg rounded-xl sm:rounded-2xl border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Scopri i Dettagli
-                <ChevronDown className="w-5 h-5 ml-2" />
-              </motion.a>
-            </motion.div>
-
-            {/* Stats row */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-white/10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.2, delay: 1.2 }}
-            >
-              {[
-                { value: '3in1', label: 'Tecnologie Unite' },
-                { value: 'A4', label: 'Classe Energetica' },
-                { value: '25+', label: 'Anni Garanzia' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  className="text-center min-w-[80px]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.3 + i * 0.1 }}
-                >
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C4704B]">{stat.value}</div>
-                  <div className="text-xs sm:text-sm text-gray-400 mt-1">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Scroll Indicator - positioned at very bottom */}
-        <motion.div
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:block"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-        >
-          <motion.div
-            className="flex flex-col items-center gap-2 cursor-pointer"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            onClick={() => document.getElementById('stratigrafia')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <div className="w-5 h-8 rounded-full border border-white/40 flex justify-center pt-1.5">
-              <motion.div
-                className="w-1 h-1 bg-white/70 rounded-full"
-                animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Transition: Hero to What Is X-Frame */}
-      <SectionDivider from="#1E3D30" to="#1E3D30" height="80px" />
-
-      {/* Evolution Timeline Section (Redesigned) */}
-      <EvolutionTimelineSection />
-
-      {/* Stratigraphy Section - 3D Model */}
-      <section id="stratigrafia">
-        <Stratigraphy3D />
-      </section>
-
-      {/* Investment Excellence Section (Redesigned) */}
-      <InvestmentExcellenceSection />
-
-      {/* Why Cost More Section - Educational Material Breakdown */}
-      <WhyCostMoreSection />
-
-      {/* Velocita Montaggio Section */}
-      <VelocitaMontaggioSection />
-
-      {/* Transition: Velocita Montaggio to 3D Models */}
-      <SectionDivider from="#152822" to="#FFFFFF" height="200px" />
-
-      {/* 3D Model Section - Premium Immersive */}
-      <section id="modello-3d" className="relative py-28 lg:py-36 px-4 bg-gradient-to-b from-white via-[#FAFAFA] to-[#F5F5F7] overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Dot pattern - ultra subtle */}
-          <div
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, #1E3D30 1px, transparent 0)',
-              backgroundSize: '24px 24px'
-            }}
-          />
-          {/* Terracotta glow orb */}
-          <div className="absolute top-20 right-[15%] w-[400px] h-[400px] bg-[#C4704B]/10 rounded-full blur-[120px]" />
-          {/* Green glow orb */}
-          <div className="absolute bottom-40 left-[10%] w-[300px] h-[300px] bg-[#1E3D30]/8 rounded-full blur-[100px]" />
-          {/* Accent line */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-[#C4704B]/30 to-transparent" />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30]/60 via-[#1E3D30]/40 to-[#1E3D30]/80" />
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Header - Premium Typography */}
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 1.2 }}
-          >
-            {/* Badge with glow */}
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white rounded-full border border-gray-200 shadow-[0_2px_20px_-4px_rgba(196,112,75,0.15)]"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
-              transition={{ delay: 0.2 }}
-            >
-              <span className="w-2 h-2 rounded-full bg-[#C4704B] animate-pulse" />
-              <span className="text-[#1E3D30] text-xs font-semibold uppercase tracking-widest">
-                Modelli Interattivi
-              </span>
-            </motion.div>
-
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-[1.05]">
-              <span className="font-light text-gray-400">Esplora ogni</span>
-              <br />
-              <span className="font-bold text-[#1E3D30]">dettaglio costruttivo.</span>
-            </h2>
-
-            <p className="text-lg lg:text-xl text-gray-500 mt-8 max-w-2xl mx-auto leading-relaxed">
-              6 modelli 3D interattivi per scoprire ogni componente del sistema X-Frame.
-              <span className="text-[#C4704B] font-medium"> Ruota, zooma, esplora.</span>
-            </p>
-          </motion.div>
-
-          {/* Main 3D Model - Featured Hero */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-          >
-            <SketchfabViewer
-              modelId="e5d5772efd5d44e4a16d08a34d798f02"
-              title="Spaccato X-Frame 2.0 - Animato"
-              description="Esplora la sezione completa con animazione interattiva: fondazione, struttura portante, isolamento e finiture."
-              height="600px"
-              autoStart={true}
-              featured={true}
-            />
-          </motion.div>
-
-          {/* Gaussian Splatting 3D Scan */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-          >
-            <AdaptiveGaussianViewer
-              fullModelUrl="/models/xframe-scan-raw.ply"
-              lightModelUrl="/models/xframe-light.ply"
-              fallbackImageUrl="/images/xframe-render/optimized/spaccato-copertina.webp"
-              title="Scansione 3D Fotorealistica"
-              description="Visualizzazione Gaussian Splatting: la tecnologia piu avanzata per esplorare i dettagli costruttivi con realismo fotografico."
-              height="600px"
-              featured={true}
-            />
-          </motion.div>
-
-          {/* Section Divider with Title */}
-          <motion.div
-            className="flex items-center gap-6 mb-16"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.3 }}
-          >
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300" />
-            <div className="flex items-center gap-3 px-5 py-2 bg-white rounded-full border border-gray-200 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C4704B]" />
-              <span className="text-sm text-[#1E3D30] font-semibold tracking-wide">Dettagli Costruttivi Completi</span>
-            </div>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300" />
-          </motion.div>
-
-          {/* Secondary Models - Full Screen Vertical */}
-          {/* Parete Esterna */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, delay: 0.4 }}
-          >
-            <SketchfabViewer
-              modelId="eef538fbecae4ce6ad2efdfeffd1799c"
-              title="Parete Esterna X-Frame"
-              description="Dettaglio stratigrafia parete: telaio, isolamento termo-acustico e rivestimento esterno."
-              height="600px"
-              autoStart={true}
-            />
-          </motion.div>
-
-          {/* Tetto con Cartongesso */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-          >
-            <SketchfabViewer
-              modelId="fa9d29118a944d41becddf0b9a1a1dee"
-              title="Tetto con Cartongesso"
-              description="Sistema tetto con finitura cartongesso: isolamento, ventilazione e controllo vapore."
-              height="600px"
-              autoStart={true}
-            />
-          </motion.div>
-
-          {/* Tetto a Vista */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-          >
-            <SketchfabViewer
-              modelId="3794569f38a4405abb7c5ef55cac2ccc"
-              title="Tetto a Vista"
-              description="Copertura con travi strutturali a vista: design e prestazioni termiche."
-              height="600px"
-              autoStart={true}
-            />
-          </motion.div>
-
-          {/* Spaccato Tetto Piano */}
-          <motion.div
-            className="mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.9, delay: 0.7 }}
-          >
-            <SketchfabViewer
-              modelId="1a4b908a94a24964a950866852a5a4f5"
-              title="Spaccato Tetto Piano"
-              description="Stratigrafia tetto piano: impermeabilizzazione, isolamento e pendenze."
-              height="600px"
-              autoStart={true}
-            />
-          </motion.div>
-
-          {/* CTA Link to Sketchfab - Premium */}
-          <motion.div
-            className="mt-20 text-center"
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <motion.span
+            className="inline-block px-4 py-2 mb-8 text-sm font-semibold text-[#C4704B] bg-white/10 backdrop-blur-sm rounded-full border border-[#C4704B]/30"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <a
-              href="https://sketchfab.com/skeypian"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-6 py-3 bg-[#1E3D30] hover:bg-[#2D5A47] text-white rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#1E3D30]/20"
-            >
-              <span>Esplora tutti i modelli su Sketchfab</span>
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            Tecnologia Brevettata
+          </motion.span>
+
+          <motion.h1
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            Sistema <span className="text-[#C4704B]">X-Frame</span> 2.0
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            La tecnologia costruttiva che ridefinisce il concetto di casa in legno.
+            Struttura, isolamento e finitura in un unico pannello.
+          </motion.p>
+
+          {/* 3 hero stats */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-8 md:gap-16 pt-8 border-t border-white/10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {heroStats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-[#C4704B]">{stat.value}</div>
+                <div className="text-sm text-white/50 mt-1">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Transition: 3D Models (light) to Render Gallery (navy) */}
-      <SectionDivider from="#F5F5F7" to="#0a1628" height="200px" />
-
-      {/* Render Gallery Section - Premium Showcase */}
-      <section id="render-gallery">
-        <RenderShowcase images={renderImages} />
-      </section>
-
-      {/* Technical Specs - Premium Dark Immersive */}
-      <section ref={specsRef} className="relative min-h-screen flex items-center py-20 lg:py-28 px-4 bg-gradient-to-b from-[#0a1628] via-[#0f2040] to-[#152822] overflow-hidden">
-        {/* Grid Pattern Background */}
-        <div className="absolute inset-0 opacity-25">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="specs-grid-small" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a3a5c" strokeWidth="0.5"/>
-              </pattern>
-              <pattern id="specs-grid-large" width="100" height="100" patternUnits="userSpaceOnUse">
-                <rect width="100" height="100" fill="url(#specs-grid-small)"/>
-                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#1a3a5c" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#specs-grid-large)"/>
-          </svg>
-        </div>
-
-        {/* Enhanced Animated Glow Orbs */}
-        <motion.div
-          className="absolute top-[8%] right-[5%] w-[400px] h-[400px] bg-gradient-to-br from-[#C4704B]/20 to-[#C4704B]/5 rounded-full blur-[120px]"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2],
-            x: [0, 25, 0],
-            y: [0, -15, 0]
-          }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[12%] left-[3%] w-[350px] h-[350px] bg-gradient-to-tr from-[#4a9eff]/15 to-[#4a9eff]/5 rounded-full blur-[100px]"
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.15, 0.25, 0.15],
-            x: [0, -20, 0],
-            y: [0, 20, 0]
-          }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-[#2D5A47]/20 to-transparent rounded-full blur-[140px]"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Accent particles */}
-        <motion.div
-          className="absolute top-[20%] left-[15%] w-2 h-2 bg-[#C4704B]/50 rounded-full"
-          animate={{ y: [0, -25, 0], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-[25%] right-[20%] w-1.5 h-1.5 bg-[#4a9eff]/40 rounded-full"
-          animate={{ y: [0, 20, 0], opacity: [0.4, 0.8, 0.4] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        />
-
-        <div className="max-w-6xl mx-auto relative z-10 w-full">
-          {/* Header */}
+      {/* ========== 2. CHE COS'E X-FRAME ========== */}
+      <section className="py-24 lg:py-32 bg-[#FAF7F2]">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            className="text-center mb-16 lg:mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={specsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9 }}
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            {/* Badge with glass effect */}
-            <motion.div
-              className="inline-flex items-center gap-2.5 px-6 py-3 mb-8 bg-white/[0.06] backdrop-blur-md rounded-full border border-white/15 shadow-[0_0_30px_-5px_rgba(196,112,75,0.15)]"
-              whileHover={{ scale: 1.02, borderColor: "rgba(196, 112, 75, 0.3)" }}
-              transition={{ duration: 0.5 }}
-            >
-              <motion.span
-                className="w-2.5 h-2.5 bg-[#C4704B] rounded-full"
-                animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <span className="text-white/90 text-sm font-semibold tracking-widest uppercase">
-                Prestazioni Certificate
-              </span>
-            </motion.div>
-
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 drop-shadow-[0_4px_20px_rgba(196,112,75,0.2)]">
-              Specifiche{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4896A] via-[#E8956B] to-[#D4896A]">
-                Tecniche
-              </span>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
+              Tre Sistemi, <span className="text-[#C4704B]">Un Pannello</span>
             </h2>
-
-            <p className="text-[#7da0b2] text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
-              Valori che superano gli standard di mercato e le normative piu stringenti.
+            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
+              X-Frame unisce il meglio del Platform Frame, dell'X-Lam e del Post &amp; Beam
+              in un unico sistema costruttivo brevettato.
             </p>
+          </motion.div>
 
-            {/* Divisore animato */}
-            <motion.div
-              className="mt-10 h-px bg-gradient-to-r from-transparent via-[#C4704B]/40 to-transparent max-w-md mx-auto"
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={specsInView ? { scaleX: 1, opacity: 1 } : {}}
-              transition={{ duration: 1.2, delay: 0.3 }}
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-16">
+            {threePillars.map((pillar, i) => (
+              <motion.div
+                key={pillar.title}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#1E3D30]/5 text-[#1E3D30] mb-5">
+                  {pillar.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-[#1E3D30] mb-3">{pillar.title}</h3>
+                <p className="text-[#6B6560] leading-relaxed">{pillar.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Large image */}
+          <motion.div
+            className="relative aspect-[16/9] rounded-2xl overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/images/xframe-render/optimized/spaccato-copertina.webp"
+              alt="Spaccato costruttivo del pannello X-Frame"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1200px"
             />
           </motion.div>
+        </div>
+      </section>
 
-          {/* Specs Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {technicalSpecs.map((spec, index) => (
+      {/* ========== 3. STRATIGRAFIA ========== */}
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
+              Stratigrafia della <span className="text-[#C4704B]">Parete</span>
+            </h2>
+            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
+              7 strati ingegnerizzati per 29 cm di parete ad altissime prestazioni
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <motion.div
+              className="relative aspect-[4/5] rounded-2xl overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/images/xframe-render/optimized/render-base.webp"
+                alt="Stratigrafia parete X-Frame"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 600px"
+              />
+            </motion.div>
+
+            {/* Layers list */}
+            <div className="space-y-0">
+              {wallLayers.map((layer, i) => (
+                <motion.div
+                  key={layer.name}
+                  className="flex items-center gap-4 py-4 border-b border-[#1E3D30]/10 last:border-b-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                >
+                  <div
+                    className="w-4 h-4 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: layer.color }}
+                  />
+                  <div className="flex-1">
+                    <span className="text-[#1E3D30] font-medium">{layer.name}</span>
+                  </div>
+                  <span className="text-[#C4704B] font-semibold tabular-nums">{layer.thickness}</span>
+                </motion.div>
+              ))}
+
+              {/* Total */}
+              <div className="flex items-center gap-4 pt-6 mt-2 border-t-2 border-[#1E3D30]">
+                <div className="w-4 h-4 flex-shrink-0" />
+                <div className="flex-1">
+                  <span className="text-[#1E3D30] font-bold text-lg">Spessore totale</span>
+                </div>
+                <span className="text-[#C4704B] font-bold text-xl">28.7 cm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 4. PRESTAZIONI TECNICHE ========== */}
+      <section className="py-24 lg:py-32 bg-[#1E3D30]">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">
+              Prestazioni <span className="text-[#C4704B]">Certificate</span>
+            </h2>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mt-4">
+              Valori che superano ampiamente gli standard normativi italiani
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {technicalSpecs.map((spec, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                animate={specsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 12,
-                  delay: 0.1 + index * 0.08
-                }}
-                whileHover={{
-                  y: -12,
-                  transition: { duration: 0.5, ease: "easeOut" }
-                }}
-                className="group relative"
+                key={spec.label}
+                className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                {/* Glow effect background */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-[#C4704B]/0 via-[#C4704B]/0 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 group-hover:from-[#C4704B]/25 group-hover:via-[#C4704B]/15 transition-all duration-500 -z-10" />
+                <div className="text-4xl md:text-5xl font-bold text-[#C4704B] mb-1">
+                  {spec.value}
+                </div>
+                {spec.unit && (
+                  <div className="text-white/40 text-sm mb-4">{spec.unit}</div>
+                )}
+                {!spec.unit && <div className="mb-4" />}
+                <div className="text-white font-semibold text-lg mb-3">{spec.label}</div>
+                <p className="text-white/50 text-sm leading-relaxed">{spec.context}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                {/* Card */}
-                <div className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-md rounded-2xl p-8 lg:p-9 border border-white/15 group-hover:border-[#C4704B]/40 transition-all duration-300 overflow-hidden h-full">
-                  {/* Subtle inner glow */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#C4704B]/0 group-hover:bg-[#C4704B]/10 rounded-full blur-2xl transition-all duration-500" />
+      {/* ========== 5. CONFRONTO ========== */}
+      <section className="py-24 lg:py-32 bg-[#FAF7F2]">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
+              Perche <span className="text-[#C4704B]">X-Frame</span>
+            </h2>
+            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
+              Un confronto diretto con i sistemi costruttivi tradizionali
+            </p>
+          </motion.div>
 
-                  {/* Value with glow */}
-                  <div className="relative mb-4">
-                    <motion.div
-                      className="absolute -inset-4 bg-[#C4704B]/0 group-hover:bg-[#C4704B]/10 rounded-full blur-xl transition-all duration-500"
-                    />
-                    <div className="relative text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E8956B] to-[#C4704B] group-hover:from-[#f0a070] group-hover:to-[#D4896A] transition-all">
-                      <AnimatedCounter
-                        value={spec.value}
-                        suffix={spec.suffix}
-                      />
-                    </div>
-                  </div>
+          <motion.div
+            className="overflow-x-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <table className="w-full min-w-[600px]">
+              <thead>
+                <tr className="border-b-2 border-[#1E3D30]">
+                  <th className="text-left py-4 pr-4 text-[#6B6560] font-medium text-sm uppercase tracking-wider">
+                    Caratteristica
+                  </th>
+                  <th className="py-4 px-4 text-center">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#1E3D30] text-white rounded-full text-sm font-semibold">
+                      X-Frame
+                    </span>
+                  </th>
+                  <th className="py-4 px-4 text-center text-[#6B6560] font-medium text-sm">
+                    Tradizionale
+                  </th>
+                  <th className="py-4 pl-4 text-center text-[#6B6560] font-medium text-sm">
+                    X-Lam
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparison.map((row, i) => (
+                  <tr key={row.feature} className="border-b border-[#1E3D30]/10">
+                    <td className="py-4 pr-4 text-[#1E3D30] font-medium">{row.feature}</td>
+                    <td className="py-4 px-4 text-center text-[#C4704B] font-semibold">{row.xframe}</td>
+                    <td className="py-4 px-4 text-center text-[#6B6560]">{row.traditional}</td>
+                    <td className="py-4 pl-4 text-center text-[#6B6560]">{row.xlam}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+        </div>
+      </section>
 
-                  {/* Label */}
-                  <div className="text-white font-semibold text-lg mb-2 group-hover:text-white/95 transition-colors">
-                    {spec.label}
-                  </div>
+      {/* ========== 6. RENDER SHOWCASE ========== */}
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#1E3D30]">
+              Dettagli <span className="text-[#C4704B]">Costruttivi</span>
+            </h2>
+            <p className="text-[#6B6560] text-lg max-w-2xl mx-auto mt-4">
+              Render tecnici della struttura e della copertura X-Frame
+            </p>
+          </motion.div>
 
-                  {/* Description */}
-                  <div className="text-[#6b8e9f] text-sm leading-relaxed group-hover:text-[#7da0b2] transition-colors">
-                    {spec.description}
-                  </div>
-
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C4704B]/0 to-transparent group-hover:via-[#C4704B]/50 transition-all duration-500" />
+          <div className="grid md:grid-cols-2 gap-6">
+            {renderImages.map((img, i) => (
+              <motion.div
+                key={img.src}
+                className={`group relative overflow-hidden rounded-2xl ${
+                  i === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
+                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes={i === 0 ? '(max-width: 768px) 100vw, 1200px' : '(max-width: 768px) 100vw, 600px'}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="text-white font-semibold text-lg">{img.caption}</span>
                 </div>
               </motion.div>
             ))}
@@ -964,77 +500,45 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      {/* Transition: Technical Specs dark to CTA terracotta */}
-      <SectionDivider from="#152822" to="#C4704B" height="180px" />
-
-      {/* CTA Section - Half Screen */}
-      <section ref={ctaRef} className="min-h-[60vh] flex items-center py-16 lg:py-20 px-4 relative overflow-hidden">
-        {/* Animated gradient background */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'linear-gradient(135deg, #C4704B 0%, #A85A3A 100%)',
-              'linear-gradient(135deg, #A85A3A 0%, #C4704B 100%)',
-              'linear-gradient(135deg, #C4704B 0%, #A85A3A 100%)',
-            ]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Floating circles */}
-        <motion.div
-          className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-48 h-48 bg-white/10 rounded-full blur-xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.15, 0.1, 0.15] }}
-          transition={{ duration: 5, repeat: Infinity }}
-        />
-
-        <motion.div
-          className="max-w-4xl mx-auto text-center relative z-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Vuoi vedere X-Frame da vicino?
-          </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Prenota una visita al nostro stabilimento a Spadola (VV) per toccare con mano
-            la qualita dei materiali e vedere il processo produttivo.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contatti">
-              <motion.span
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#C4704B] font-semibold text-lg rounded-xl cursor-pointer"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px -12px rgba(255, 255, 255, 0.4)"
-                }}
-                whileTap={{ scale: 0.98 }}
+      {/* ========== 7. CTA ========== */}
+      <section className="py-24 lg:py-32 bg-[#1E3D30]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
+              Scopri come X-Frame puo trasformare il tuo <span className="text-[#C4704B]">progetto</span>
+            </h2>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
+              Prenota una consulenza gratuita con i nostri tecnici per scoprire
+              la soluzione costruttiva ideale per la tua casa.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contatti"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#C4704B] hover:bg-[#A85A3A] text-white font-semibold text-lg rounded-xl transition-colors duration-300"
               >
-                Prenota una Visita
-              </motion.span>
-            </Link>
-            <motion.a
-              href="tel:+393276473099"
-              className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold text-lg rounded-xl border-2 border-white"
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(255,255,255,0.1)"
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Chiama Ora
-            </motion.a>
-          </div>
-        </motion.div>
+                Richiedi Consulenza Gratuita
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <a
+                href="tel:+3909631951395"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-transparent text-white font-semibold text-lg rounded-xl border border-white/20 hover:bg-white/5 transition-colors duration-300"
+              >
+                <Phone className="w-5 h-5" />
+                Chiama Ora
+              </a>
+            </div>
+            <p className="text-white/30 text-sm mt-6">
+              Consulenza gratuita &middot; Risposta entro 24 ore
+            </p>
+          </motion.div>
+        </div>
       </section>
+
     </main>
   )
 }
