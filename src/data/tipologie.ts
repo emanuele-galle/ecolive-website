@@ -29,7 +29,7 @@ export const tipologie: Tipologia[] = [
     imageUrl: '/images/glamping/glamping-triple-path.webp',
     heroImage: '/images/glamping/glamping-triple-path.webp',
     href: '/glamping',
-    color: '#40916c',
+    color: '#6B8F71',
     surfaceRange: '25-50 m²',
     features: [
       'Pronte in 60 giorni',
@@ -55,7 +55,7 @@ export const tipologie: Tipologia[] = [
     imageUrl: '/images/tipologie/smartsuite-new.png',
     heroImage: '/images/tipologie/smartsuite-new.png',
     href: '/smartsuite',
-    color: '#1E3D30',
+    color: '#1D1D1F',
     surfaceRange: '15-40 m²',
     features: [
       'Layout flessibile',
@@ -81,7 +81,7 @@ export const tipologie: Tipologia[] = [
     imageUrl: '/images/tipologie/residenziali.webp',
     heroImage: '/images/tipologie/residenziali.webp',
     href: '/residenziali',
-    color: '#2D5A47',
+    color: '#48484A',
     surfaceRange: '60-250 m²',
     features: [
       'Personalizzazione completa',
@@ -107,7 +107,7 @@ export const tipologie: Tipologia[] = [
     imageUrl: '/images/tipologie/luxury.webp',
     heroImage: '/images/tipologie/luxury-hero.webp',
     href: '/luxury',
-    color: '#C4704B',
+    color: '#A0845C',
     surfaceRange: '150-400 m²',
     features: [
       'Finiture premium personalizzate',

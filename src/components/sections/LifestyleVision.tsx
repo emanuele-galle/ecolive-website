@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import SectionTransition from '@/components/ui/SectionTransition'
 
 const galleryImages = [
   { src: '/images/luxury/gallery-3.jpg', label: 'Villa Moderna', detail: '180 mq' },
@@ -22,11 +21,15 @@ export default function LifestyleVision() {
 
   const close = useCallback(() => setActiveIndex(null), [])
   const prev = useCallback(
-    () => setActiveIndex((i) => (i !== null ? (i - 1 + galleryImages.length) % galleryImages.length : null)),
+    () =>
+      setActiveIndex((i) =>
+        i !== null ? (i - 1 + galleryImages.length) % galleryImages.length : null
+      ),
     []
   )
   const next = useCallback(
-    () => setActiveIndex((i) => (i !== null ? (i + 1) % galleryImages.length : null)),
+    () =>
+      setActiveIndex((i) => (i !== null ? (i + 1) % galleryImages.length : null)),
     []
   )
 
@@ -47,16 +50,15 @@ export default function LifestyleVision() {
 
   return (
     <>
-      <SectionTransition from="#FAF7F2" to="#FFFCF7" variant="wave" height={80} />
-      <section className="py-28 lg:py-36 bg-[#FFFCF7]">
+      <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#1E3D30]">
-                Le Nostre <span className="text-[#C4704B]">Realizzazioni</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] tracking-tight">
+                Le Nostre <span className="text-[#A0845C]">Realizzazioni</span>
               </h2>
-              <p className="text-[#6B6560] text-lg max-w-xl mx-auto mt-5 leading-relaxed">
-                Ogni progetto e unico, pensato per il tuo stile di vita
+              <p className="text-[#86868B] text-lg max-w-xl mx-auto mt-5 leading-relaxed font-normal">
+                Ogni progetto nasce da un dialogo con il cliente e il territorio
               </p>
             </div>
           </ScrollReveal>
@@ -87,7 +89,7 @@ export default function LifestyleVision() {
                     }
                   />
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <div>
                       <p className="text-white font-semibold text-lg">{img.label}</p>
                       <p className="text-white/70 text-sm">{img.detail}</p>
@@ -95,8 +97,18 @@ export default function LifestyleVision() {
                   </div>
                   {/* Subtle corner indicator */}
                   <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
                     </svg>
                   </div>
                 </button>
@@ -109,7 +121,7 @@ export default function LifestyleVision() {
             <div className="text-center mt-12">
               <Link
                 href="/tipologie"
-                className="inline-flex items-center gap-2 text-[#C4704B] hover:text-[#A85A3A] font-semibold text-lg transition-colors duration-300 group"
+                className="inline-flex items-center gap-2 text-[#A0845C] hover:text-[#856B45] font-semibold text-lg transition-colors duration-300 group"
               >
                 Vedi Tutti i Progetti
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -140,7 +152,10 @@ export default function LifestyleVision() {
 
             {galleryImages.length > 1 && (
               <button
-                onClick={(e) => { e.stopPropagation(); prev() }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  prev()
+                }}
                 className="absolute left-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Precedente"
               >
@@ -169,7 +184,10 @@ export default function LifestyleVision() {
 
             {galleryImages.length > 1 && (
               <button
-                onClick={(e) => { e.stopPropagation(); next() }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  next()
+                }}
                 className="absolute right-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Successiva"
               >
@@ -181,7 +199,8 @@ export default function LifestyleVision() {
               {activeIndex + 1} / {galleryImages.length}
             </span>
             <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-base font-medium">
-              {galleryImages[activeIndex].label} &middot; {galleryImages[activeIndex].detail}
+              {galleryImages[activeIndex].label} &middot;{' '}
+              {galleryImages[activeIndex].detail}
             </span>
           </motion.div>
         )}

@@ -30,7 +30,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-[var(--color-secondary-darker)] text-white/60">
+    <footer className="bg-[#F5F5F7]">
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
@@ -43,17 +43,17 @@ export default function Footer() {
                 alt="Ecolive - Case Prefabbricate in Legno"
                 width={160}
                 height={56}
-                className="h-12 w-auto object-contain brightness-0 invert"
+                className="h-12 w-auto object-contain"
               />
             </Link>
 
-            <p className="font-serif text-lg text-white/80 leading-relaxed mb-6 italic">
+            <p className="text-lg text-[#48484A] leading-relaxed mb-6 italic">
               &ldquo;Dal 1999 contribuiamo alla salvaguardia del pianeta attraverso un modo di vivere ecosostenibile.&rdquo;
             </p>
 
             <div className="flex items-center gap-2 mb-8">
-              <span className="w-2 h-2 rounded-full bg-[var(--color-eco-green)] animate-pulse" />
-              <span className="text-xs uppercase tracking-widest text-[var(--color-eco-green)] font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#6B8F71] animate-pulse" />
+              <span className="text-xs uppercase tracking-widest text-[#6B8F71] font-medium">
                 100% Ecosostenibile
               </span>
             </div>
@@ -63,7 +63,7 @@ export default function Footer() {
               href="https://storage.fodivps2.cloud/ecolive-media/documenti/Brochure-2025.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-[var(--color-primary)]/40 text-[var(--color-primary-light)] hover:bg-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/60 transition-all duration-300 text-sm font-medium group"
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-[#A0845C]/40 text-[#A0845C] hover:bg-[#A0845C]/10 hover:border-[#A0845C]/60 transition-all duration-300 text-sm font-medium group"
             >
               <Download className="w-4 h-4" />
               Scarica Brochure 2025
@@ -73,7 +73,7 @@ export default function Footer() {
 
           {/* Link Rapidi */}
           <div className="lg:col-span-2 lg:col-start-6">
-            <h3 className="font-serif text-base text-white mb-6 tracking-wide">
+            <h3 className="text-sm font-semibold text-[#1D1D1F] uppercase tracking-wider mb-6">
               Link Rapidi
             </h3>
             <ul className="space-y-3">
@@ -81,7 +81,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-200"
+                    className="text-sm text-[#86868B] hover:text-[#1D1D1F] hover:translate-x-1 inline-block transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -92,7 +92,7 @@ export default function Footer() {
 
           {/* Servizi */}
           <div className="lg:col-span-3">
-            <h3 className="font-serif text-base text-white mb-6 tracking-wide">
+            <h3 className="text-sm font-semibold text-[#1D1D1F] uppercase tracking-wider mb-6">
               Servizi
             </h3>
             <ul className="space-y-3">
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-white hover:translate-x-1 inline-block transition-all duration-200"
+                    className="text-sm text-[#86868B] hover:text-[#1D1D1F] hover:translate-x-1 inline-block transition-all duration-200"
                   >
                     {link.label}
                   </Link>
@@ -111,7 +111,7 @@ export default function Footer() {
 
           {/* Contatti + Social */}
           <div className="lg:col-span-3">
-            <h3 className="font-serif text-base text-white mb-6 tracking-wide">
+            <h3 className="text-sm font-semibold text-[#1D1D1F] uppercase tracking-wider mb-6">
               Contatti
             </h3>
             <ul className="space-y-4 text-sm">
@@ -120,27 +120,27 @@ export default function Footer() {
                   href="https://maps.google.com/?q=Via+Conte+Ruggiero+128+Spadola"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 hover:text-white transition-colors duration-200 group"
+                  className="flex items-start gap-3 text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200 group"
                 >
-                  <MapPin className="w-4 h-4 text-[var(--color-primary-light)] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                  <MapPin className="w-4 h-4 text-[#A0845C] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
                   <span>Via Conte Ruggiero, 128<br />89822 Spadola (VV)</span>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+3909631951395"
-                  className="flex items-center gap-3 hover:text-white transition-colors duration-200 group"
+                  className="flex items-center gap-3 text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200 group"
                 >
-                  <Phone className="w-4 h-4 text-[var(--color-primary-light)] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                  <Phone className="w-4 h-4 text-[#A0845C] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
                   +39 0963 1951395
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:info@ecolive.srl"
-                  className="flex items-center gap-3 hover:text-white transition-colors duration-200 group"
+                  className="flex items-center gap-3 text-[#86868B] hover:text-[#1D1D1F] transition-colors duration-200 group"
                 >
-                  <Mail className="w-4 h-4 text-[var(--color-primary-light)] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
+                  <Mail className="w-4 h-4 text-[#A0845C] flex-shrink-0 group-hover:scale-110 transition-transform duration-200" />
                   info@ecolive.srl
                 </a>
               </li>
@@ -154,10 +154,10 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-10 h-10 rounded-full bg-white/8 ${social.hoverColor} flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg`}
+                  className={`w-10 h-10 rounded-full bg-[#1D1D1F]/5 ${social.hoverColor} flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg`}
                   aria-label={social.name}
                 >
-                  <social.icon className="w-4.5 h-4.5 text-white/70 hover:text-white" />
+                  <social.icon className="w-4.5 h-4.5 text-[#48484A] hover:text-white" />
                 </a>
               ))}
             </div>
@@ -165,25 +165,25 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Elegant Separator */}
+      {/* Separator */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="h-px bg-[#D2D2D7]" />
       </div>
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/35">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#AEAEB2]">
           <p>&copy; {currentYear} Ecolive S.r.l. &mdash; P.IVA 03012345678 &mdash; Tutti i diritti riservati</p>
           <div className="flex items-center gap-5">
-            <Link href="/privacy" className="hover:text-white/60 transition-colors duration-200">
+            <Link href="/privacy" className="hover:text-[#86868B] transition-colors duration-200">
               Privacy Policy
             </Link>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <Link href="/cookie" className="hover:text-white/60 transition-colors duration-200">
+            <span className="w-1 h-1 rounded-full bg-[#D2D2D7]" />
+            <Link href="/cookie" className="hover:text-[#86868B] transition-colors duration-200">
               Cookie Policy
             </Link>
-            <span className="w-1 h-1 rounded-full bg-white/20" />
-            <Link href="/termini" className="hover:text-white/60 transition-colors duration-200">
+            <span className="w-1 h-1 rounded-full bg-[#D2D2D7]" />
+            <Link href="/termini" className="hover:text-[#86868B] transition-colors duration-200">
               Termini
             </Link>
           </div>
@@ -193,7 +193,7 @@ export default function Footer() {
               href="https://www.fodisrl.it"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white/60 transition-colors duration-200"
+              className="hover:text-[#86868B] transition-colors duration-200"
             >
               Fodi S.r.l.
             </a>

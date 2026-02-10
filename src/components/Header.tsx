@@ -95,7 +95,7 @@ export default function Header() {
                     href={item.href}
                     className={`relative px-3 py-2 text-[13px] uppercase tracking-[0.08em] font-medium transition-colors duration-300 inline-flex items-center gap-1 group ${
                       scrolled
-                        ? 'text-[var(--color-muted)] hover:text-[var(--color-secondary-dark)]'
+                        ? 'text-[#86868B] hover:text-[#1D1D1F]'
                         : 'text-white/80 hover:text-white'
                     }`}
                   >
@@ -105,7 +105,7 @@ export default function Header() {
                     )}
                     {/* Animated underline */}
                     <span className={`absolute bottom-0 left-3 right-3 h-[2px] rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
-                      scrolled ? 'bg-[var(--color-primary)]' : 'bg-white'
+                      scrolled ? 'bg-[#A0845C]' : 'bg-white'
                     }`} />
                   </Link>
 
@@ -118,12 +118,12 @@ export default function Header() {
                           : 'opacity-0 -translate-y-2 pointer-events-none'
                       }`}
                     >
-                      <div className="w-52 bg-white/95 backdrop-blur-xl rounded-xl shadow-premium-xl border border-[var(--color-border)]/50 py-2 overflow-hidden">
+                      <div className="w-52 bg-white/95 backdrop-blur-xl rounded-xl shadow-premium-xl border border-[#D2D2D7]/50 py-2 overflow-hidden">
                         {item.submenu.map((sub) => (
                           <Link
                             key={sub.href}
                             href={sub.href}
-                            className="block px-5 py-2.5 text-sm text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-all duration-200 hover:pl-6"
+                            className="block px-5 py-2.5 text-sm text-[#86868B] hover:text-[#A0845C] hover:bg-[#F5F5F7] transition-all duration-200 hover:pl-6"
                           >
                             {sub.label}
                           </Link>
@@ -140,7 +140,7 @@ export default function Header() {
               href="/contatti"
               className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 group ${
                 scrolled
-                  ? 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] shadow-md hover:shadow-lg'
+                  ? 'bg-[#A0845C] text-white hover:bg-[#856B45] shadow-md hover:shadow-lg'
                   : 'border border-white/40 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-sm'
               }`}
             >
@@ -153,7 +153,7 @@ export default function Header() {
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${
                 scrolled
-                  ? 'text-[var(--color-secondary-dark)] hover:bg-[var(--color-surface)]'
+                  ? 'text-[#1D1D1F] hover:bg-[#F5F5F7]'
                   : 'text-white hover:bg-white/10'
               }`}
               aria-label="Menu"
@@ -179,7 +179,7 @@ export default function Header() {
         }`}
       >
         {/* Mobile menu header */}
-        <div className="flex items-center justify-between px-5 h-16 border-b border-[var(--color-border)]/50">
+        <div className="flex items-center justify-between px-5 h-16 border-b border-[#D2D2D7]/50">
           <Image
             src="/images/logo-ecolive.png"
             alt="Ecolive"
@@ -189,7 +189,7 @@ export default function Header() {
           />
           <button
             onClick={closeMobile}
-            className="p-2 rounded-xl text-[var(--color-muted)] hover:bg-[var(--color-surface)] transition-colors duration-200"
+            className="p-2 rounded-xl text-[#86868B] hover:bg-[#F5F5F7] transition-colors duration-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -203,10 +203,10 @@ export default function Header() {
                 <>
                   <button
                     onClick={() => setMobileSubmenuOpen(!mobileSubmenuOpen)}
-                    className="flex items-center justify-between w-full px-4 py-3.5 text-[var(--color-foreground)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-xl transition-all duration-200 font-medium"
+                    className="flex items-center justify-between w-full px-4 py-3.5 text-[#1D1D1F] hover:text-[#A0845C] hover:bg-[#F5F5F7] rounded-xl transition-all duration-200 font-medium"
                   >
                     {item.label}
-                    <ChevronDown className={`w-4 h-4 text-[var(--color-muted)] transition-transform duration-300 ${
+                    <ChevronDown className={`w-4 h-4 text-[#86868B] transition-transform duration-300 ${
                       mobileSubmenuOpen ? 'rotate-180' : ''
                     }`} />
                   </button>
@@ -219,7 +219,7 @@ export default function Header() {
                           key={sub.href}
                           href={sub.href}
                           onClick={closeMobile}
-                          className="block px-4 py-2.5 text-sm text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-lg transition-all duration-200"
+                          className="block px-4 py-2.5 text-sm text-[#86868B] hover:text-[#A0845C] hover:bg-[#F5F5F7] rounded-lg transition-all duration-200"
                         >
                           {sub.label}
                         </Link>
@@ -231,7 +231,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onClick={closeMobile}
-                  className="block px-4 py-3.5 text-[var(--color-foreground)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-xl transition-all duration-200 font-medium"
+                  className="block px-4 py-3.5 text-[#1D1D1F] hover:text-[#A0845C] hover:bg-[#F5F5F7] rounded-xl transition-all duration-200 font-medium"
                 >
                   {item.label}
                 </Link>
@@ -241,11 +241,11 @@ export default function Header() {
         </nav>
 
         {/* Mobile CTA */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[var(--color-border)]/50 bg-white">
+        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#D2D2D7]/50 bg-white">
           <Link
             href="/contatti"
             onClick={closeMobile}
-            className="flex items-center justify-center gap-2 w-full py-3.5 bg-[var(--color-primary)] text-white rounded-xl font-medium hover:bg-[var(--color-primary-dark)] transition-colors duration-200 shadow-md"
+            className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#A0845C] text-white rounded-xl font-medium hover:bg-[#856B45] transition-colors duration-200 shadow-md"
           >
             Richiedi Preventivo
             <ArrowRight className="w-4 h-4" />
