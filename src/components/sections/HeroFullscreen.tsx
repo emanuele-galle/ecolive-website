@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
+import BlurText from '@/components/ui/BlurText'
 
 interface HeroMedia {
   url?: string
@@ -72,14 +73,13 @@ export default function HeroFullscreen({
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <motion.h1
+        <BlurText
+          text={heroTitle}
           className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          {heroTitle}
-        </motion.h1>
+          delay={100}
+          animateBy="words"
+          direction="bottom"
+        />
 
         <motion.p
           className="text-lg sm:text-xl text-white/85 mb-10 max-w-2xl mx-auto leading-relaxed"

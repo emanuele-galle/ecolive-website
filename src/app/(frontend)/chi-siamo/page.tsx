@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Leaf, Hammer, Lightbulb, Handshake, ArrowRight, MapPin, Phone } from 'lucide-react'
+import BlurText from '@/components/ui/BlurText'
+import SpotlightCard from '@/components/ui/SpotlightCard'
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -72,14 +74,13 @@ export default function ChiSiamoPage() {
       <section className="relative bg-[#1E3D30] py-32 md:py-40 lg:py-48">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1E3D30] via-[#1E3D30] to-[#152922]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <motion.h1
+          <BlurText
+            text="Dal 1999, costruiamo il futuro dell'abitare"
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            Dal 1999, costruiamo il futuro dell&apos;abitare
-          </motion.h1>
+            delay={100}
+            animateBy="words"
+            direction="bottom"
+          />
           <motion.p
             className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -207,17 +208,18 @@ export default function ChiSiamoPage() {
               return (
                 <motion.div
                   key={value.title}
-                  className="bg-white rounded-2xl p-6 border border-[#DDD5C9]"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#1E3D30]/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-[#1E3D30]" />
-                  </div>
-                  <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{value.title}</h3>
-                  <p className="text-[#6B6560] text-sm leading-relaxed">{value.description}</p>
+                  <SpotlightCard className="bg-white p-6 border border-[#DDD5C9] h-full">
+                    <div className="w-12 h-12 rounded-xl bg-[#1E3D30]/10 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-[#1E3D30]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{value.title}</h3>
+                    <p className="text-[#6B6560] text-sm leading-relaxed">{value.description}</p>
+                  </SpotlightCard>
                 </motion.div>
               )
             })}

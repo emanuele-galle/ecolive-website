@@ -9,6 +9,8 @@ import {
   Phone, ArrowLeft, type LucideIcon,
 } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
+import BlurText from '@/components/ui/BlurText'
+import SpotlightCard from '@/components/ui/SpotlightCard'
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -105,9 +107,13 @@ export default function LuxuryPage() {
               Residenziale Premium
             </span>
 
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6">
-              Luxury
-            </h1>
+            <BlurText
+              text="Luxury"
+              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6"
+              delay={150}
+              animateBy="letters"
+              direction="bottom"
+            />
 
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
               {tipologia?.extendedDescription || 'Ville esclusive in bioedilizia con finiture premium e design contemporaneo.'}
@@ -151,13 +157,14 @@ export default function LuxuryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 bg-white rounded-2xl border border-[#1E3D30]/10 hover:border-[#C4704B]/30 transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#1E3D30]/5 flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-[#C4704B]" />
-                </div>
-                <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{feature.title}</h3>
-                <p className="text-[#1E3D30]/70 text-sm leading-relaxed">{feature.description}</p>
+                <SpotlightCard className="p-6 bg-white border border-[#1E3D30]/10 hover:border-[#C4704B]/30 transition-colors h-full">
+                  <div className="w-12 h-12 rounded-xl bg-[#1E3D30]/5 flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-[#C4704B]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#1E3D30] mb-2">{feature.title}</h3>
+                  <p className="text-[#1E3D30]/70 text-sm leading-relaxed">{feature.description}</p>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>

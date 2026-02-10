@@ -281,11 +281,6 @@ export default function HeroParallax({
             direction="bottom"
             stepDuration={0.5}
             className="justify-center"
-            animationFrom={{ filter: 'blur(12px)', opacity: 0, y: 30 }}
-            animationTo={[
-              { filter: 'blur(6px)', opacity: 0.4, y: -5 },
-              { filter: 'blur(0px)', opacity: 1, y: 0 }
-            ]}
           />
         </h1>
 

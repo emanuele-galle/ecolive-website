@@ -40,8 +40,8 @@
   --color-eco-green: #40916c;
 
   /* Font families */
-  --font-inter: 'Inter', system-ui, sans-serif;
-  --font-roboto: 'Roboto', system-ui, sans-serif;
+  --font-cormorant: 'Cormorant Garamond', 'Georgia', serif;
+  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
 }
 
 /* Premium Animations */
@@ -156,12 +156,12 @@
 }
 
 /* Font utilities */
-.font-inter {
-  font-family: var(--font-inter);
+.font-serif {
+  font-family: var(--font-cormorant);
 }
 
-.font-roboto {
-  font-family: var(--font-roboto);
+.font-sans {
+  font-family: var(--font-dm-sans);
 }
 
 /* Base styles */

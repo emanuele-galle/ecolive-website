@@ -14,6 +14,7 @@ import {
   Send,
 } from 'lucide-react'
 import ContactForm from './ContactForm'
+import BlurText from '@/components/ui/BlurText'
 
 interface ContactPageClientProps {
   onSubmit: (formData: FormData) => Promise<{ success: boolean; message: string }>
@@ -65,14 +66,13 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
       {/* HERO COMPATTO */}
       <section className="bg-[#1E3D30] py-24 lg:py-32">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <BlurText
+            text="Inizia il tuo Progetto"
             className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white mb-6"
-          >
-            Inizia il tuo Progetto
-          </motion.h1>
+            delay={100}
+            animateBy="words"
+            direction="bottom"
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

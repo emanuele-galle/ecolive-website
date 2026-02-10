@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
-import { Inter, Roboto } from 'next/font/google'
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-cormorant',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
 })
 
-const roboto = Roboto({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-roboto',
+  variable: '--font-dm-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -47,8 +47,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it" className={`${inter.variable} ${roboto.variable}`}>
-      <body className="font-roboto antialiased">{children}</body>
+    <html lang="it" className={`${cormorant.variable} ${dmSans.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }

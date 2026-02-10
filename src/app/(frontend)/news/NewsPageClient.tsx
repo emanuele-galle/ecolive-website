@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { NewsCardPremium } from '@/components/NewsCardPremium'
 import type { News } from '@/payload-types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import BlurText from '@/components/ui/BlurText'
 
 interface NewsPageClientProps {
   articles: News[]
@@ -44,15 +45,13 @@ export default function NewsPageClient({
             Blog & Approfondimenti
           </motion.span>
 
-          <motion.h1
+          <BlurText
+            text="News & Novita"
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            News & <span className="text-[#C4704B]">Novita</span>
-          </motion.h1>
+            delay={100}
+            animateBy="words"
+            direction="bottom"
+          />
 
           <motion.p
             className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto"
