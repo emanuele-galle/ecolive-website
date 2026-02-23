@@ -27,8 +27,8 @@
     "@payloadcms/storage-s3": "^3.75.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
-    "framer-motion": "^12.34.0",
-    "lucide-react": "^0.562.0",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
     "next": "^16.1.6",
     "payload": "^3.75.0",
     "react": "^19.2.4",
@@ -36,16 +36,16 @@
     "react-medium-image-zoom": "^5.4.0",
     "three": "^0.182.0",
     "uuid": "^13.0.0",
-    "zustand": "^5.0.10"
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^25.0.9",
-    "@types/react": "^19.2.8",
+    "@types/react": "^19.2.14",
     "@types/three": "^0.182.0",
     "@types/uuid": "^10.0.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   }
 }
