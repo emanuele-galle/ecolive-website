@@ -1,6 +1,6 @@
 import { Tent, Home, Building2, Briefcase, LucideIcon } from 'lucide-react'
 
-export interface Tipologia {
+interface Tipologia {
   id: string
   title: string
   category: string
