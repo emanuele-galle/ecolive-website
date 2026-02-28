@@ -52,6 +52,7 @@ export default function ParticleField({
   const particlesRef = useRef<Particle[]>([])
   const mouseRef = useRef({ x: 0, y: 0, active: false })
   const animationRef = useRef<number | undefined>(undefined)
+  const animateFnRef = useRef<((ctx: CanvasRenderingContext2D, width: number, height: number) => void) | null>(null)
   const [isEnabled, setIsEnabled] = useState(false)
 
   // Check for capability
@@ -159,8 +160,13 @@ export default function ParticleField({
       }
     })
 
-    animationRef.current = requestAnimationFrame(() => animate(ctx, width, height))
+    animationRef.current = requestAnimationFrame(() => animateFnRef.current?.(ctx, width, height))
   }, [color, mouseRadius, connectionDistance, lineOpacity])
+
+  // Keep animateFnRef in sync
+  useEffect(() => {
+    animateFnRef.current = animate
+  }, [animate])
 
   // Set up canvas and animation
   useEffect(() => {

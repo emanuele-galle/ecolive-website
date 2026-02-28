@@ -86,7 +86,7 @@ export default function EvolutionTimelineSection() {
           >
             <span className="w-2 h-2 bg-[#A0845C] rounded-full animate-pulse" />
             <span className="text-white/80 text-sm font-medium tracking-wide">
-              L'Evoluzione dei Sistemi in Legno
+              L&apos;Evoluzione dei Sistemi in Legno
             </span>
           </motion.div>
 

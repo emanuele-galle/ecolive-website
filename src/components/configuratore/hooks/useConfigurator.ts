@@ -95,10 +95,10 @@ export const useConfigurator = create<ConfiguratorState>()(
 
       moveModule: (instanceId: string, newGridX: number, newGridZ: number) => {
         const state = get()
-        const module = state.placedModules.find((m) => m.instanceId === instanceId)
-        if (!module) return
+        const targetModule = state.placedModules.find((m) => m.instanceId === instanceId)
+        if (!targetModule) return
 
-        if (!state.canPlaceModule(module.presetId, newGridX, newGridZ, instanceId)) return
+        if (!state.canPlaceModule(targetModule.presetId, newGridX, newGridZ, instanceId)) return
 
         set((state) => ({
           placedModules: state.placedModules.map((m) =>

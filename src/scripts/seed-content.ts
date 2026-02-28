@@ -368,7 +368,7 @@ async function seed() {
 
       await payload.create({
         collection: 'projects',
-        data: project as any,
+        data: project as Record<string, unknown>,
       })
       console.log(`  ✅ Created project: ${project.title}`)
     } catch (error) {
@@ -393,7 +393,7 @@ async function seed() {
 
       await payload.create({
         collection: 'news',
-        data: article as any,
+        data: article as Record<string, unknown>,
       })
       console.log(`  ✅ Created article: ${article.title}`)
     } catch (error) {

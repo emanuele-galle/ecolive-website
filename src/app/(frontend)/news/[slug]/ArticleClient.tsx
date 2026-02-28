@@ -104,8 +104,8 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   }, [])
 
   const featuredImage = typeof article.featuredImage !== 'number' ? article.featuredImage : null
-  const readingTime = calculateReadingTime(article.content as any)
-  const headings = extractHeadings(article.content as any)
+  const readingTime = calculateReadingTime(article.content as Record<string, unknown>)
+  const headings = extractHeadings(article.content as Record<string, unknown>)
   const articleUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   // Share handlers

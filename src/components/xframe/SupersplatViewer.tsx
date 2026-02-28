@@ -127,10 +127,8 @@ export default function SupersplatViewer({
 
   const handleFullscreen = () => {
     const container = document.getElementById(`supersplat-container-${splatId}`)
-    if (container) {
-      if (container.requestFullscreen) {
-        container.requestFullscreen()
-      }
+    if (container?.requestFullscreen) {
+      container.requestFullscreen()
     }
   }
 

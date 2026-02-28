@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { GRID_CELL_SIZE, PILLAR_RADIUS, PILLAR_HEIGHT, COLORS, FLOOR_THICKNESS } from '@/lib/configuratore/constants'
@@ -37,7 +37,7 @@ export default function PillarMarkers({
   }, [cellsX, cellsZ, offsetX, offsetZ])
 
   // Set up instanced mesh matrices
-  useMemo(() => {
+  useEffect(() => {
     if (!meshRef.current) return
 
     const tempMatrix = new THREE.Matrix4()

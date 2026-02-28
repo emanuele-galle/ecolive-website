@@ -56,7 +56,7 @@ export function calculateReadingTime(
  * @param minutes - Minuti di lettura
  * @returns Stringa formattata (es: "3 min di lettura")
  */
-export function formatReadingTime(minutes: number): string {
+function formatReadingTime(minutes: number): string {
   return `${minutes} min di lettura`
 }
 

@@ -8,7 +8,7 @@
  * - Breakdown costi e risparmio
  */
 
-import { Layers, Grid3x3, Snowflake, Home } from 'lucide-react'
+import { Layers, Grid3x3, Snowflake, Home, type LucideIcon } from 'lucide-react'
 
 export interface MaterialSpec {
   metrica: string
@@ -51,7 +51,7 @@ export interface MaterialEducationData {
   id: string
   nome: string
   sottotitolo: string
-  icon: any // Lucide icon component
+  icon: LucideIcon // Lucide icon component
   color: string // Colore principale per grafici e sparklines
 
   // NUOVO: Campi semplificati per flusso lineare (NO prezzi)

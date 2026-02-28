@@ -41,7 +41,7 @@ function formatDate(dateString: string): string {
 export function NewsCardPremium({ article, featured = false }: NewsCardPremiumProps) {
   const image = article.featuredImage as Media | null | undefined
   const imageUrl = image?.sizes?.card?.url || image?.url || '/placeholder-news.jpg'
-  const readingTime = calculateReadingTime(article.content as any)
+  const readingTime = calculateReadingTime(article.content as Record<string, unknown>)
 
   if (featured) {
     return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useRef, useCallback, useEffect, useState } from 'react'
+import { Suspense, useRef, useCallback, useEffect, useState, startTransition } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
@@ -14,6 +14,7 @@ import { GRID_CELL_SIZE } from '@/lib/configuratore/constants'
 
 // Determina qualità shadow basata sul dispositivo
 function useShadowQuality() {
+  const qualityRef = useRef<'high' | 'medium' | 'low'>('high')
   const [quality, setQuality] = useState<'high' | 'medium' | 'low'>('high')
 
   useEffect(() => {
@@ -21,12 +22,16 @@ function useShadowQuality() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     const isLowEnd = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false
 
+    let detected: 'high' | 'medium' | 'low' = 'high'
     if (isMobile || isLowEnd) {
-      setQuality('low')
+      detected = 'low'
     } else if (window.innerWidth < 1200) {
-      setQuality('medium')
-    } else {
-      setQuality('high')
+      detected = 'medium'
+    }
+
+    if (detected !== qualityRef.current) {
+      qualityRef.current = detected
+      startTransition(() => setQuality(detected))
     }
   }, [])
 

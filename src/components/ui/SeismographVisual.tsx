@@ -1,6 +1,12 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
+
+// Pre-computed pseudo-random offsets for deterministic rendering
+const WAVE_OFFSETS = Array.from({ length: 50 }, (_, i) =>
+  Math.sin(i * 2.7 + 0.3) * 0.5
+)
 
 interface SeismographVisualProps {
   className?: string
@@ -13,8 +19,8 @@ export default function SeismographVisual({
   amplitude = 20,
   color = '#A0845C'
 }: SeismographVisualProps) {
-  // Generate seismograph wave path
-  const generateWavePath = () => {
+  // Generate seismograph wave path deterministically
+  const wavePath = useMemo(() => {
     const points = 50
     const width = 200
     const baseY = 30
@@ -22,13 +28,13 @@ export default function SeismographVisual({
 
     for (let i = 0; i < points; i++) {
       const x = (i / points) * width
-      const variation = Math.sin(i * 0.5) * amplitude + (Math.random() - 0.5) * 5
+      const variation = Math.sin(i * 0.5) * amplitude + WAVE_OFFSETS[i] * 5
       const y = baseY + variation
       path += ` L ${x} ${y}`
     }
 
     return path
-  }
+  }, [amplitude])
 
   return (
     <svg
@@ -67,7 +73,7 @@ export default function SeismographVisual({
 
       {/* Animated seismic wave */}
       <motion.path
-        d={generateWavePath()}
+        d={wavePath}
         fill="none"
         stroke={color}
         strokeWidth="2"

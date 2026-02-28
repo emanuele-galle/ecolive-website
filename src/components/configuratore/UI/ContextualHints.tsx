@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, startTransition } from 'react'
 import { useConfigurator } from '../hooks/useConfigurator'
 
 interface Hint {
@@ -22,7 +22,8 @@ export default function ContextualHints() {
   useEffect(() => {
     const saved = localStorage.getItem('ecolive-dismissed-hints')
     if (saved) {
-      setDismissedHints(new Set(JSON.parse(saved)))
+      const parsed = new Set<string>(JSON.parse(saved))
+      startTransition(() => setDismissedHints(parsed))
     }
   }, [])
 
@@ -41,13 +42,13 @@ export default function ContextualHints() {
     // Non mostrare hints se c'è l'onboarding attivo
     const hasSeenOnboarding = localStorage.getItem('ecolive-onboarding-seen')
     if (!hasSeenOnboarding) {
-      setCurrentHint(null)
+      startTransition(() => setCurrentHint(null))
       return
     }
 
     // Non mostrare durante il drag o quando c'è un preset selezionato
     if (interaction.draggingInstanceId || interaction.selectedPresetId) {
-      setIsVisible(false)
+      startTransition(() => setIsVisible(false))
       return
     }
 
@@ -78,14 +79,14 @@ export default function ContextualHints() {
       }
     }
 
-    setCurrentHint(hint)
+    startTransition(() => setCurrentHint(hint))
 
     // Mostra con animazione
     if (hint) {
       const timer = setTimeout(() => setIsVisible(true), 300)
       return () => clearTimeout(timer)
     } else {
-      setIsVisible(false)
+      startTransition(() => setIsVisible(false))
     }
   }, [moduleCount, selectedModuleId, dismissedHints, interaction.draggingInstanceId, interaction.selectedPresetId])
 

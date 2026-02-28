@@ -14,6 +14,12 @@ interface HouseCardProps {
   onSelect: () => void
 }
 
+function getCardWidth(isHovered: boolean, otherHovered: boolean): string {
+  if (isHovered) return '55%'
+  if (otherHovered) return '45%'
+  return '50%'
+}
+
 export default function HouseCard({
   type,
   isHovered,
@@ -28,7 +34,7 @@ export default function HouseCard({
     <motion.div
       className="relative h-full cursor-pointer overflow-hidden"
       animate={{
-        width: isHovered ? '55%' : otherHovered ? '45%' : '50%',
+        width: getCardWidth(isHovered, otherHovered),
       }}
       transition={{
         duration: 0.5,

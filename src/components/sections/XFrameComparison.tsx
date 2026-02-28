@@ -86,38 +86,24 @@ const comparisonData: ComparisonItem[] = [
   },
 ]
 
+// Status config lookup tables
+const STATUS_CONFIGS = {
+  dark: {
+    full: { bg: 'bg-emerald-500/20', border: 'border-emerald-500/40', glow: 'group-hover:bg-emerald-500/30', iconColor: 'text-emerald-400', Icon: Check },
+    partial: { bg: 'bg-amber-500/20', border: 'border-amber-500/40', glow: 'group-hover:bg-amber-500/30', iconColor: 'text-amber-400', Icon: Minus },
+    none: { bg: 'bg-red-500/20', border: 'border-red-500/40', glow: 'group-hover:bg-red-500/30', iconColor: 'text-red-400', Icon: X },
+  },
+  light: {
+    full: { bg: 'bg-green-100', border: 'border-green-300', glow: 'group-hover:bg-emerald-500/30', iconColor: 'text-green-600', Icon: Check },
+    partial: { bg: 'bg-amber-100', border: 'border-amber-300', glow: 'group-hover:bg-amber-500/30', iconColor: 'text-amber-600', Icon: Minus },
+    none: { bg: 'bg-red-100', border: 'border-red-300', glow: 'group-hover:bg-red-500/30', iconColor: 'text-red-500', Icon: X },
+  },
+} as const
+
 // Animated Status Icon Component
 const StatusIcon = ({ status, darkTheme = false, isXFrame = false }: { status: 'full' | 'partial' | 'none', darkTheme?: boolean, isXFrame?: boolean }) => {
-  const getStatusConfig = () => {
-    switch (status) {
-      case 'full':
-        return {
-          bg: darkTheme ? 'bg-emerald-500/20' : 'bg-green-100',
-          border: darkTheme ? 'border-emerald-500/40' : 'border-green-300',
-          glow: 'group-hover:bg-emerald-500/30',
-          iconColor: darkTheme ? 'text-emerald-400' : 'text-green-600',
-          Icon: Check,
-        }
-      case 'partial':
-        return {
-          bg: darkTheme ? 'bg-amber-500/20' : 'bg-amber-100',
-          border: darkTheme ? 'border-amber-500/40' : 'border-amber-300',
-          glow: 'group-hover:bg-amber-500/30',
-          iconColor: darkTheme ? 'text-amber-400' : 'text-amber-600',
-          Icon: Minus,
-        }
-      case 'none':
-        return {
-          bg: darkTheme ? 'bg-red-500/20' : 'bg-red-100',
-          border: darkTheme ? 'border-red-500/40' : 'border-red-300',
-          glow: 'group-hover:bg-red-500/30',
-          iconColor: darkTheme ? 'text-red-400' : 'text-red-500',
-          Icon: X,
-        }
-    }
-  }
-
-  const config = getStatusConfig()
+  const theme = darkTheme ? 'dark' : 'light'
+  const config = STATUS_CONFIGS[theme][status]
   const Icon = config.Icon
 
   if (darkTheme) {
@@ -127,10 +113,7 @@ const StatusIcon = ({ status, darkTheme = false, isXFrame = false }: { status: '
         whileHover={{ scale: 1.2, rotate: status === 'full' ? 5 : -5 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
-        {/* Glow ring */}
         <div className={`absolute -inset-1.5 ${config.bg} rounded-full blur-md opacity-0 group-hover/icon:opacity-100 transition-opacity duration-300`} />
-
-        {/* Icon container */}
         <div className={`relative w-8 h-8 rounded-full flex items-center justify-center ${config.bg} border ${config.border} transition-all duration-300 ${isXFrame ? 'group-hover/icon:shadow-[0_0_12px_rgba(196,112,75,0.4)]' : ''}`}>
           <Icon className={`w-4 h-4 ${config.iconColor}`} />
         </div>
@@ -138,7 +121,6 @@ const StatusIcon = ({ status, darkTheme = false, isXFrame = false }: { status: '
     )
   }
 
-  // Light theme
   return (
     <div className={`w-7 h-7 rounded-full flex items-center justify-center ${config.bg}`}>
       <Icon className={`w-4 h-4 ${config.iconColor}`} />
@@ -368,7 +350,7 @@ export default function XFrameComparison({ embedded = false, darkTheme = false }
             X-Frame vs Altri Sistemi
           </h2>
           <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
-            Scopri perche X-Frame rappresenta l'evoluzione dei sistemi costruttivi in legno.
+            Scopri perche X-Frame rappresenta l&apos;evoluzione dei sistemi costruttivi in legno.
           </p>
         </div>
         {content}

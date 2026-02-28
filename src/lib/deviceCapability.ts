@@ -14,6 +14,51 @@ export interface DeviceInfo {
   memoryEstimate: 'high' | 'medium' | 'low'
 }
 
+// High-end dedicated GPUs
+const HIGH_END_PATTERNS = [
+  /NVIDIA.*GeForce.*(RTX|GTX\s*(1[6-9]|[2-9]\d)|3\d{3}|4\d{3})/i,
+  /AMD.*Radeon.*(RX\s*[5-7]\d{3}|VII)/i,
+  /Apple\s*M[1-4]/i,
+  /Apple\s*A1[5-9]/i,
+]
+
+// Low-end integrated GPUs
+const LOW_END_PATTERNS = [
+  /Intel.*HD\s*(Graphics\s*[2-5]|4\d{2}|5\d{2}|6\d{2})/i,
+  /Intel.*UHD\s*(Graphics\s*[2-5]|6\d{2})/i,
+  /Mali-G[0-5]/i,
+  /Mali-[4-6]/i,
+  /Adreno.*[2-4]\d{2}/i,
+  /PowerVR/i,
+  /VideoCore/i,
+]
+
+function matchesAny(value: string, patterns: RegExp[]): boolean {
+  return patterns.some(p => p.test(value))
+}
+
+function classifyGPU(renderer: string, isMobile: boolean, memoryEstimate: 'high' | 'medium' | 'low'): DeviceCapability {
+  let capability: DeviceCapability = 'medium'
+
+  if (matchesAny(renderer, HIGH_END_PATTERNS)) {
+    capability = 'high'
+  } else if (matchesAny(renderer, LOW_END_PATTERNS)) {
+    capability = 'low'
+  }
+
+  // Downgrade on mobile regardless of GPU
+  if (isMobile && capability === 'high') {
+    capability = 'medium'
+  }
+
+  // Downgrade if memory is low
+  if (memoryEstimate === 'low') {
+    capability = capability === 'high' ? 'medium' : 'low'
+  }
+
+  return capability
+}
+
 /**
  * Detects WebGL2 support and GPU capability
  */
@@ -43,54 +88,8 @@ export function detectDeviceCapability(): DeviceInfo {
   const isMobile = isMobileDevice()
   const memoryEstimate = estimateMemory()
 
-  // Determine capability based on GPU
-  let capability: DeviceCapability = 'medium'
-
-  // High-end dedicated GPUs
-  const highEndPatterns = [
-    /NVIDIA.*GeForce.*(RTX|GTX\s*(1[6-9]|[2-9]\d)|3\d{3}|4\d{3})/i,
-    /AMD.*Radeon.*(RX\s*[5-7]\d{3}|VII)/i,
-    /Apple\s*M[1-4]/i,
-    /Apple\s*A1[5-9]/i,
-  ]
-
-  // Low-end integrated GPUs
-  const lowEndPatterns = [
-    /Intel.*HD\s*(Graphics\s*[2-5]|4\d{2}|5\d{2}|6\d{2})/i,
-    /Intel.*UHD\s*(Graphics\s*[2-5]|6\d{2})/i,
-    /Mali-G[0-5]/i,
-    /Mali-[4-6]/i,
-    /Adreno.*[2-4]\d{2}/i,
-    /PowerVR/i,
-    /VideoCore/i,
-  ]
-
-  // Check GPU capability
-  for (const pattern of highEndPatterns) {
-    if (pattern.test(renderer)) {
-      capability = 'high'
-      break
-    }
-  }
-
-  if (capability !== 'high') {
-    for (const pattern of lowEndPatterns) {
-      if (pattern.test(renderer)) {
-        capability = 'low'
-        break
-      }
-    }
-  }
-
-  // Downgrade on mobile regardless of GPU
-  if (isMobile && capability === 'high') {
-    capability = 'medium'
-  }
-
-  // Downgrade if memory is low
-  if (memoryEstimate === 'low') {
-    capability = capability === 'high' ? 'medium' : 'low'
-  }
+  // Determine capability based on GPU, mobile, and memory
+  const capability = classifyGPU(renderer, isMobile, memoryEstimate)
 
   // Cleanup
   const loseContext = gl.getExtension('WEBGL_lose_context')

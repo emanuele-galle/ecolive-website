@@ -36,6 +36,11 @@ export default function DraggableModule({
   const { gl, camera, scene } = useThree()
   const raycaster = useMemo(() => new THREE.Raycaster(), [])
 
+  // Helper to set cursor style on canvas element
+  const setCursor = useCallback((cursor: string) => {
+    gl.domElement.style.setProperty('cursor', cursor)
+  }, [gl])
+
   const selectedModuleId = useConfigurator((state) => state.selectedModuleId)
   const selectModule = useConfigurator((state) => state.selectModule)
   const removeModule = useConfigurator((state) => state.removeModule)
@@ -100,6 +105,7 @@ export default function DraggableModule({
   }, [gl, camera, raycaster, offsetX, offsetZ, gridCellsX, gridCellsZ, effectiveCellsX, effectiveCellsZ])
 
   // Handle pointer down - start dragging
+  /* eslint-disable react-hooks/preserve-manual-memoization -- Three.js event handler requires manual memoization */
   const handlePointerDown = useCallback(
     (e: ThreeEvent<PointerEvent>) => {
       e.stopPropagation()
@@ -117,10 +123,11 @@ export default function DraggableModule({
       startDraggingModule(module.instanceId)
 
       // Change cursor
-      gl.domElement.style.cursor = 'grabbing'
+      setCursor('grabbing')
     },
     [selectModule, module.instanceId, module.gridX, module.gridZ, startDraggingModule, gl]
   )
+  /* eslint-enable react-hooks/preserve-manual-memoization */
 
   // Handle pointer move during drag
   useEffect(() => {
@@ -139,13 +146,12 @@ export default function DraggableModule({
     const handlePointerUp = () => {
       setIsDragging(false)
       stopDraggingModule()
-      gl.domElement.style.cursor = 'auto'
+      setCursor('auto')
 
-      if (dragPosition && isValidDragPosition) {
+      if (dragPosition && isValidDragPosition &&
+          (dragPosition.x !== originalPosition.current.x || dragPosition.z !== originalPosition.current.z)) {
         // Move module to new position
-        if (dragPosition.x !== originalPosition.current.x || dragPosition.z !== originalPosition.current.z) {
-          moveModule(module.instanceId, dragPosition.x, dragPosition.z)
-        }
+        moveModule(module.instanceId, dragPosition.x, dragPosition.z)
       }
       // Reset drag position
       setDragPosition(null)
@@ -210,13 +216,13 @@ export default function DraggableModule({
         if (!isDragging) {
           e.stopPropagation()
           setHovered(true)
-          gl.domElement.style.cursor = 'grab'
+          setCursor('grab')
         }
       }}
       onPointerOut={() => {
         if (!isDragging) {
           setHovered(false)
-          gl.domElement.style.cursor = 'auto'
+          setCursor('auto')
         }
       }}
     >

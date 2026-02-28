@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, useMotionValue, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, X, MapPin } from 'lucide-react'
@@ -29,7 +29,7 @@ export default function LuxuryGallery() {
               La Nostra <span className="text-[#A0845C]">Galleria</span>
             </h2>
             <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-4">
-              Una selezione esclusiva di 22 residenze d'eccellenza
+              Una selezione esclusiva di 22 residenze d&apos;eccellenza
             </p>
           </motion.div>
 
@@ -123,6 +123,18 @@ function FullscreenGallery({ imgIndex, setImgIndex, onClose }: FullscreenGallery
   const dragX = useMotionValue(0)
   const images = luxuryGalleryImages
 
+  const goNext = useCallback(() => {
+    if (imgIndex < images.length - 1) {
+      setImgIndex((prev: number) => prev + 1)
+    }
+  }, [imgIndex, images.length, setImgIndex])
+
+  const goPrev = useCallback(() => {
+    if (imgIndex > 0) {
+      setImgIndex((prev: number) => prev - 1)
+    }
+  }, [imgIndex, setImgIndex])
+
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -132,7 +144,7 @@ function FullscreenGallery({ imgIndex, setImgIndex, onClose }: FullscreenGallery
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [imgIndex])
+  }, [imgIndex, goPrev, goNext, onClose])
 
   // Preload adjacent images
   useEffect(() => {
@@ -146,27 +158,15 @@ function FullscreenGallery({ imgIndex, setImgIndex, onClose }: FullscreenGallery
       link.href = src
       document.head.appendChild(link)
     })
-  }, [imgIndex])
+  }, [imgIndex, images])
 
   // Drag gesture
   const onDragEnd = () => {
     const x = dragX.get()
     if (x <= -50 && imgIndex < images.length - 1) {
-      setImgIndex(prev => prev + 1)
+      setImgIndex((prev: number) => prev + 1)
     } else if (x >= 50 && imgIndex > 0) {
-      setImgIndex(prev => prev - 1)
-    }
-  }
-
-  const goNext = () => {
-    if (imgIndex < images.length - 1) {
-      setImgIndex(prev => prev + 1)
-    }
-  }
-
-  const goPrev = () => {
-    if (imgIndex > 0) {
-      setImgIndex(prev => prev - 1)
+      setImgIndex((prev: number) => prev - 1)
     }
   }
 

@@ -125,38 +125,43 @@ export default function GridFloor({
     mesh.instanceMatrix.needsUpdate = true
   }, [cellsX, cellsZ, totalCells, offsetX, offsetZ])
 
+  // Determine color for a cell based on its state
+  const getCellColor = useCallback((
+    isOccupied: boolean,
+    isPreviewCell: boolean,
+    isHovered: boolean,
+    hasSelectedPreset: boolean,
+    isValidPosition: boolean,
+  ): THREE.Color => {
+    if (isOccupied && !isPreviewCell) return CELL_COLORS.occupied
+    if (isPreviewCell && isValidPosition) return CELL_COLORS.validPreview
+    if (isPreviewCell) return CELL_COLORS.invalidPreview
+    if (isHovered && hasSelectedPreset) return isValidPosition ? CELL_COLORS.validHover : CELL_COLORS.invalidHover
+    if (isHovered) return CELL_COLORS.hovered
+    return CELL_COLORS.default
+  }, [])
+
   // Aggiorna i colori delle celle ad ogni frame
   useFrame(() => {
     if (!instancedMeshRef.current) return
 
     const mesh = instancedMeshRef.current
     const color = new THREE.Color()
+    const hasSelectedPreset = !!interaction.selectedPresetId
 
     for (let i = 0; i < totalCells; i++) {
       const x = i % cellsX
       const z = Math.floor(i / cellsX)
       const cellKey = `${x},${z}`
 
-      const isOccupied = occupiedCellsSet.has(cellKey)
-      const isPreviewCell = previewCells.has(cellKey)
-      const isHovered = hoveredCell?.x === x && hoveredCell?.z === z
-      const hasSelectedPreset = !!interaction.selectedPresetId
-
-      // Determina colore
-      if (isOccupied && !isPreviewCell) {
-        color.copy(CELL_COLORS.occupied)
-      } else if (isPreviewCell && interaction.isValidPosition) {
-        color.copy(CELL_COLORS.validPreview)
-      } else if (isPreviewCell && !interaction.isValidPosition) {
-        color.copy(CELL_COLORS.invalidPreview)
-      } else if (isHovered && hasSelectedPreset) {
-        color.copy(interaction.isValidPosition ? CELL_COLORS.validHover : CELL_COLORS.invalidHover)
-      } else if (isHovered) {
-        color.copy(CELL_COLORS.hovered)
-      } else {
-        color.copy(CELL_COLORS.default)
-      }
-
+      const cellColor = getCellColor(
+        occupiedCellsSet.has(cellKey),
+        previewCells.has(cellKey),
+        hoveredCell?.x === x && hoveredCell?.z === z,
+        hasSelectedPreset,
+        interaction.isValidPosition,
+      )
+      color.copy(cellColor)
       mesh.setColorAt(i, color)
     }
 

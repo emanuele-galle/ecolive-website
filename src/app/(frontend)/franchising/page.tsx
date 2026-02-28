@@ -65,7 +65,7 @@ export default function FranchisingPage() {
             <span className="block text-[#A0845C]">Ecolive</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Unisciti alla rivoluzione della bioedilizia. Entra nel network Ecolive e costruisci il futuro dell'abitare sostenibile.
+            Unisciti alla rivoluzione della bioedilizia. Entra nel network Ecolive e costruisci il futuro dell&apos;abitare sostenibile.
           </p>
         </div>
       </section>

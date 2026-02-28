@@ -50,24 +50,24 @@ export default function OnboardingTour() {
     }
   }, [moduleCount])
 
+  const handleClose = useCallback(() => {
+    setShowOnboarding(false)
+    localStorage.setItem('ecolive-onboarding-v2', 'true')
+  }, [])
+
   const handleNext = useCallback(() => {
     if (currentStep < ONBOARDING_STEPS.length - 1) {
       setCurrentStep((prev) => prev + 1)
     } else {
       handleClose()
     }
-  }, [currentStep])
+  }, [currentStep, handleClose])
 
   const handlePrev = useCallback(() => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1)
     }
   }, [currentStep])
-
-  const handleClose = useCallback(() => {
-    setShowOnboarding(false)
-    localStorage.setItem('ecolive-onboarding-v2', 'true')
-  }, [])
 
   // Chiudi con ESC
   useEffect(() => {

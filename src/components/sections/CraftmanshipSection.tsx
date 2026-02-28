@@ -1,5 +1,7 @@
 'use client'
 
+/* eslint-disable react-hooks/refs -- framer-motion MotionValues have .current but are not React refs */
+
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import Link from 'next/link'

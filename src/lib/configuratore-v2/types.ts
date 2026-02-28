@@ -45,7 +45,7 @@ export interface ConfiguratorState {
   goBack: () => void
 }
 
-export interface QuoteFormData {
+interface QuoteFormData {
   nome: string
   email: string
   telefono?: string

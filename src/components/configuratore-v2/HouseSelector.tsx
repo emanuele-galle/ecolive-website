@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ArrowRight, Home, Layers } from 'lucide-react'
 import HouseCard from './HouseCard'
 import { useConfiguratorV2 } from './hooks/useConfiguratorV2'
+import { houseConfigurations } from '@/lib/configuratore-v2/configurations'
 import type { HouseType } from '@/lib/configuratore-v2/types'
 
 export default function HouseSelector() {
@@ -57,10 +59,8 @@ function MobileHouseCard({
   type: HouseType
   onSelect: () => void
 }) {
-  const { houseConfigurations } = require('@/lib/configuratore-v2/configurations')
   const config = houseConfigurations[type]
-  const Icon = type === '1-piano' ? require('lucide-react').Home : require('lucide-react').Layers
-  const ArrowRight = require('lucide-react').ArrowRight
+  const Icon = type === '1-piano' ? Home : Layers
 
   return (
     <motion.button

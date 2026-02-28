@@ -130,6 +130,6 @@ export function getTipologiaById(id: string): Tipologia | undefined {
   return tipologie.find(t => t.id === id)
 }
 
-export function getTipologiaByHref(href: string): Tipologia | undefined {
+function getTipologiaByHref(href: string): Tipologia | undefined {
   return tipologie.find(t => t.href === href)
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback, useState } from 'react'
+import { useEffect, useRef, useCallback, useState, startTransition } from 'react'
 import { useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion'
 
 // Types
@@ -53,9 +53,9 @@ function useIsHoverDevice(): boolean {
   useEffect(() => {
     // Check for hover capability
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)')
-    setIsHover(mediaQuery.matches)
+    startTransition(() => setIsHover(mediaQuery.matches))
 
-    const handler = (e: MediaQueryListEvent) => setIsHover(e.matches)
+    const handler = (e: MediaQueryListEvent) => startTransition(() => setIsHover(e.matches))
     mediaQuery.addEventListener('change', handler)
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
@@ -69,9 +69,9 @@ function useReducedMotion(): boolean {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReduced(mediaQuery.matches)
+    startTransition(() => setPrefersReduced(mediaQuery.matches))
 
-    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches)
+    const handler = (e: MediaQueryListEvent) => startTransition(() => setPrefersReduced(e.matches))
     mediaQuery.addEventListener('change', handler)
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
@@ -118,28 +118,7 @@ export function useMouseParallax(options: MouseParallaxOptions = {}): MouseParal
   const rotateX = useTransform(springY, (v) => v * -0.01 * intensity)
   const rotateY = useTransform(springX, (v) => v * 0.01 * intensity)
 
-  useEffect(() => {
-    if (!shouldAnimate) return
-
-    const handler = (e: MouseEvent) => {
-      // Calculate position relative to viewport center
-      const centerX = window.innerWidth / 2
-      const centerY = window.innerHeight / 2
-      mouseX.set(e.clientX - centerX)
-      mouseY.set(e.clientY - centerY)
-    }
-
-    window.addEventListener('mousemove', handler, { passive: true })
-    return () => window.removeEventListener('mousemove', handler)
-  }, [shouldAnimate, mouseX, mouseY])
-
-  // Reset to center when disabled
-  useEffect(() => {
-    if (!shouldAnimate) {
-      mouseX.set(0)
-      mouseY.set(0)
-    }
-  }, [shouldAnimate, mouseX, mouseY])
+  useMouseTracking(shouldAnimate, mouseX, mouseY)
 
   return { x, y, rotateX, rotateY }
 }
@@ -252,6 +231,17 @@ export function useMouseFollow(options: MouseFollowOptions = {}): MouseFollowRet
   const x = useTransform(springX, (v) => v * intensity)
   const y = useTransform(springY, (v) => v * intensity)
 
+  useMouseTracking(shouldAnimate, mouseX, mouseY)
+
+  return { x, y }
+}
+
+// Shared hook: track mouse position relative to viewport center
+function useMouseTracking(
+  shouldAnimate: boolean,
+  mouseX: MotionValue<number>,
+  mouseY: MotionValue<number>
+) {
   useEffect(() => {
     if (!shouldAnimate) return
 
@@ -266,15 +256,13 @@ export function useMouseFollow(options: MouseFollowOptions = {}): MouseFollowRet
     return () => window.removeEventListener('mousemove', handler)
   }, [shouldAnimate, mouseX, mouseY])
 
-  // Reset when disabled
+  // Reset to center when disabled
   useEffect(() => {
     if (!shouldAnimate) {
       mouseX.set(0)
       mouseY.set(0)
     }
   }, [shouldAnimate, mouseX, mouseY])
-
-  return { x, y }
 }
 
 // Re-export utility hooks for external use

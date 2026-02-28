@@ -1,10 +1,14 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { ZoomIn, X, ChevronLeft, ChevronRight, Layers, Camera, Eye, Download } from 'lucide-react'
 import { ImageZoom } from '@/components/ui/ZoomableImage'
+
+function setBodyOverflow(value: string) {
+  document.body.style.overflow = value
+}
 
 interface RenderImage {
   src: string
@@ -44,12 +48,12 @@ export default function RenderShowcase({ images }: RenderShowcaseProps) {
     const globalIndex = images.findIndex(img => img.src === clickedImage.src)
     setLightboxIndex(globalIndex)
     setLightboxOpen(true)
-    document.body.style.overflow = 'hidden'
+    setBodyOverflow('hidden')
   }
 
   const closeLightbox = () => {
     setLightboxOpen(false)
-    document.body.style.overflow = 'unset'
+    setBodyOverflow('unset')
   }
 
   const nextLightboxImage = () => {

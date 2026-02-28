@@ -94,7 +94,7 @@ export function getRoomImage(type: HouseType, rooms: RoomCount): string {
 }
 
 // Available room options per house type
-export const roomOptions: Record<HouseType, RoomCount[]> = {
+const roomOptions: Record<HouseType, RoomCount[]> = {
   '1-piano': [2, 3, 4, 5],
   '2-piani': [2, 3, 4, 5],
 }

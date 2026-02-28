@@ -124,14 +124,14 @@ export default function InvestmentExcellenceSection() {
           </h2>
 
           <p className="text-[#7da0b2] text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
-            Costano un po' di più, ma durano molto di più
+            Costano un po&apos; di più, ma durano molto di più
           </p>
 
           <p className="text-white/60 text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
             Le grandi aziende usano materiali economici per abbassare i prezzi.
             Noi usiamo{" "}
             <span className="text-[#A0845C] font-medium">materiali migliori</span>.
-            Costano di più all'inizio, ma{" "}
+            Costano di più all&apos;inizio, ma{" "}
             <span className="text-[#A0845C] font-medium">ti fanno risparmiare</span> negli anni.
           </p>
         </motion.div>

@@ -257,6 +257,7 @@ function RoomSelector({
   )
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity -- Large calculator component with many UI states; refactoring into sub-components planned
 export default function PriceCalculatorWarm() {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: false, margin: "-100px" })

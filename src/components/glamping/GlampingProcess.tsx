@@ -55,6 +55,66 @@ const steps: ProcessStep[] = [
   },
 ]
 
+function StepCard({ step, index, isInView, isEven }: { step: ProcessStep; index: number; isInView: boolean; isEven: boolean }) {
+  const Icon = step.icon
+  const xDir = isEven ? -40 : 40
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: xDir }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: 0.3 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className={`group ${isEven ? 'md:text-right' : ''}`}
+    >
+      <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(circle at ${isEven ? '100%' : '0%'} 50%, ${TERRACOTTA}08 0%, transparent 60%)`
+          }}
+        />
+        <div className="relative z-10">
+          <div className={`flex items-center gap-3 mb-3 ${isEven ? 'md:justify-end' : ''}`}>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center md:hidden"
+              style={{ backgroundColor: `${TERRACOTTA}15` }}
+            >
+              <Icon className="w-5 h-5" style={{ color: TERRACOTTA }} />
+            </div>
+            <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: TERRACOTTA }}>
+              Fase {step.number}
+            </span>
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-2">{step.title}</h3>
+          <p className="text-[#86868B] leading-relaxed text-sm md:text-base">{step.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+function StepImage({ step, index, isInView, xDir }: { step: ProcessStep; index: number; isInView: boolean; xDir: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: xDir }}
+      animate={isInView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: 0.4 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="hidden md:block"
+    >
+      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden group">
+        <Image
+          src={step.image}
+          alt={step.imageAlt}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 40vw"
+          quality={75}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+      </div>
+    </motion.div>
+  )
+}
+
 function TimelineStep({
   step,
   index,
@@ -71,62 +131,10 @@ function TimelineStep({
     <div className="relative grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-0">
       {/* Left side */}
       <div className={`${isEven ? 'md:pr-12' : 'md:pr-12 md:order-1'}`}>
-        {isEven ? (
-          /* Card on left */
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="group md:text-right"
-          >
-            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
-              {/* Hover glow */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle at ${isEven ? '100%' : '0%'} 50%, ${TERRACOTTA}08 0%, transparent 60%)`
-                }}
-              />
-
-              <div className="relative z-10">
-                {/* Mobile: show icon inline */}
-                <div className="flex items-center gap-3 mb-3 md:justify-end">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center md:hidden"
-                    style={{ backgroundColor: `${TERRACOTTA}15` }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: TERRACOTTA }} />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: TERRACOTTA }}>
-                    Fase {step.number}
-                  </span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-2">{step.title}</h3>
-                <p className="text-[#86868B] leading-relaxed text-sm md:text-base">{step.description}</p>
-              </div>
-            </div>
-          </motion.div>
-        ) : (
-          /* Image on left */
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:block"
-          >
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden group">
-              <Image
-                src={step.image}
-                alt={step.imageAlt}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 40vw"
-                quality={75}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </div>
-          </motion.div>
-        )}
+        {isEven
+          ? <StepCard step={step} index={index} isInView={isInView} isEven={true} />
+          : <StepImage step={step} index={index} isInView={isInView} xDir={-40} />
+        }
       </div>
 
       {/* Center timeline */}
@@ -169,60 +177,10 @@ function TimelineStep({
 
       {/* Right side */}
       <div className={`${isEven ? 'md:pl-12' : 'md:pl-12 md:order-[-1]'}`}>
-        {isEven ? (
-          /* Image on right */
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:block"
-          >
-            <div className="relative aspect-[16/10] rounded-2xl overflow-hidden group">
-              <Image
-                src={step.image}
-                alt={step.imageAlt}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 40vw"
-                quality={75}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </div>
-          </motion.div>
-        ) : (
-          /* Card on right */
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3 + index * 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="group"
-          >
-            <div className="p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden">
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle at 0% 50%, ${TERRACOTTA}08 0%, transparent 60%)`
-                }}
-              />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center md:hidden"
-                    style={{ backgroundColor: `${TERRACOTTA}15` }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: TERRACOTTA }} />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: TERRACOTTA }}>
-                    Fase {step.number}
-                  </span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-2">{step.title}</h3>
-                <p className="text-[#86868B] leading-relaxed text-sm md:text-base">{step.description}</p>
-              </div>
-            </div>
-          </motion.div>
-        )}
+        {isEven
+          ? <StepImage step={step} index={index} isInView={isInView} xDir={40} />
+          : <StepCard step={step} index={index} isInView={isInView} isEven={false} />
+        }
       </div>
 
       {/* Mobile image - shown below card */}

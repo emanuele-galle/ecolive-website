@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, startTransition } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import HouseSelector from '@/components/configuratore-v2/HouseSelector'
 import RoomSelector from '@/components/configuratore-v2/RoomSelector'
@@ -26,7 +26,7 @@ export default function ConfiguratoreClient({ onSubmit }: ConfiguratoreClientPro
   }, [step, goBack])
 
   useEffect(() => {
-    setIsLoaded(true)
+    startTransition(() => setIsLoaded(true))
   }, [])
 
   // Browser history management

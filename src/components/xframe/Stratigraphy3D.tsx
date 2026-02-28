@@ -324,7 +324,7 @@ export default function Stratigraphy3D() {
                   {/* Nota finale */}
                   <p className="text-[#6b8e9f] text-xs text-center pt-2 px-4">
                     Dati certificati secondo normative UNI EN. Valori riferiti alla configurazione
-                    completa "Chiavi in Mano".
+                    completa &quot;Chiavi in Mano&quot;.
                   </p>
                 </div>
               </motion.div>

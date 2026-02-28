@@ -254,7 +254,7 @@ export default function SistemaXFramePage() {
                 Tre Sistemi, <span className="text-[var(--color-primary)]">Un Pannello</span>
               </h2>
               <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
-                X-Frame unisce il meglio del Platform Frame, dell'X-Lam e del Post &amp; Beam
+                X-Frame unisce il meglio del Platform Frame, dell&apos;X-Lam e del Post &amp; Beam
                 in un unico sistema costruttivo brevettato.
               </p>
             </div>

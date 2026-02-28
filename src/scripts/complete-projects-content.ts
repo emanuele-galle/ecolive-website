@@ -147,6 +147,61 @@ function createRichTextDescription(text: string) {
   }
 }
 
+async function downloadAndUploadImages(
+  payload: Awaited<ReturnType<typeof getPayload>>,
+  projectTitle: string,
+  slug: string,
+  galleryUrls: string[],
+): Promise<number[]> {
+  const galleryIds: number[] = []
+
+  for (let i = 0; i < galleryUrls.length; i++) {
+    const url = galleryUrls[i]
+    const filename = `${slug}-gallery-${i + 1}${path.extname(url).split('?')[0] || '.jpg'}`
+    const localPath = path.join(TEMP_DIR, filename)
+
+    console.log(`  📥 Downloading: ${filename}`)
+    const success = await downloadFile(url, localPath)
+
+    if (!success) {
+      console.log(`    ⚠️ Failed to download, skipping`)
+      continue
+    }
+
+    const stats = fs.statSync(localPath)
+    if (stats.size < 1000) {
+      console.log(`    ⚠️ File too small (${stats.size} bytes), skipping`)
+      fs.unlinkSync(localPath)
+      continue
+    }
+
+    try {
+      const fileBuffer = fs.readFileSync(localPath)
+      const mimeType = filename.endsWith('.png') ? 'image/png' : 'image/jpeg'
+
+      const media = await payload.create({
+        collection: 'media',
+        data: { alt: `${projectTitle} - Immagine ${i + 1}` },
+        file: {
+          data: fileBuffer,
+          mimetype: mimeType,
+          name: filename,
+          size: fileBuffer.length,
+        },
+      })
+
+      console.log(`    ✅ Uploaded as Media ID: ${media.id}`)
+      galleryIds.push(media.id)
+    } catch (error: unknown) {
+      console.log(`    ❌ Upload failed: ${error instanceof Error ? error.message : String(error)}`)
+    }
+
+    if (fs.existsSync(localPath)) fs.unlinkSync(localPath)
+  }
+
+  return galleryIds
+}
+
 async function main() {
   console.log('🚀 Starting complete projects content import...\n')
 
@@ -176,61 +231,17 @@ async function main() {
     console.log(`  ✅ Found project: ${project.title}`)
 
     // Download and import gallery images
-    const galleryIds: number[] = []
-
-    for (let i = 0; i < projectData.galleryUrls.length; i++) {
-      const url = projectData.galleryUrls[i]
-      const filename = `${projectData.slug}-gallery-${i + 1}${path.extname(url).split('?')[0] || '.jpg'}`
-      const localPath = path.join(TEMP_DIR, filename)
-
-      console.log(`  📥 Downloading: ${filename}`)
-      const success = await downloadFile(url, localPath)
-
-      if (!success) {
-        console.log(`    ⚠️ Failed to download, skipping`)
-        continue
-      }
-
-      // Check file size
-      const stats = fs.statSync(localPath)
-      if (stats.size < 1000) {
-        console.log(`    ⚠️ File too small (${stats.size} bytes), skipping`)
-        fs.unlinkSync(localPath)
-        continue
-      }
-
-      try {
-        // Upload to Payload Media
-        const fileBuffer = fs.readFileSync(localPath)
-        const mimeType = filename.endsWith('.png') ? 'image/png' : 'image/jpeg'
-
-        const media = await payload.create({
-          collection: 'media',
-          data: {
-            alt: `${project.title} - Immagine ${i + 1}`,
-          },
-          file: {
-            data: fileBuffer,
-            mimetype: mimeType,
-            name: filename,
-            size: fileBuffer.length,
-          },
-        })
-
-        console.log(`    ✅ Uploaded as Media ID: ${media.id}`)
-        galleryIds.push(media.id)
-      } catch (error: any) {
-        console.log(`    ❌ Upload failed: ${error.message}`)
-      }
-
-      // Cleanup temp file
-      if (fs.existsSync(localPath)) fs.unlinkSync(localPath)
-    }
+    const galleryIds = await downloadAndUploadImages(
+      payload,
+      project.title,
+      projectData.slug,
+      projectData.galleryUrls,
+    )
 
     // Update project with new description and gallery
     console.log(`  📝 Updating project with description and ${galleryIds.length} gallery images`)
 
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       description: createRichTextDescription(projectData.description),
     }
 

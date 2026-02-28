@@ -29,10 +29,8 @@ export default function SketchfabViewer({
 
   const handleFullscreen = () => {
     const iframe = document.getElementById(`sketchfab-${modelId}`) as HTMLIFrameElement
-    if (iframe) {
-      if (iframe.requestFullscreen) {
-        iframe.requestFullscreen()
-      }
+    if (iframe?.requestFullscreen) {
+      iframe.requestFullscreen()
     }
   }
 
