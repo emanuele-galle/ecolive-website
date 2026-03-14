@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | Ecolive',
   },
   description: 'Leader nella progettazione e realizzazione di case prefabbricate in legno. Sistema costruttivo X-Frame, bioedilizia e sostenibilità dal 1999.',
-  keywords: ['case prefabbricate', 'case in legno', 'bioedilizia', 'X-Frame', 'sostenibilita', 'passive house'],
+  keywords: ['case prefabbricate', 'case in legno', 'bioedilizia', 'X-Frame', 'sostenibilità', 'passive house'],
   authors: [{ name: 'Ecolive S.r.l.' }],
   openGraph: {
     type: 'website',

@@ -17,7 +17,7 @@ import JsonLd from '@/components/JsonLd'
 const categories = [
   { id: 'sistema', label: 'Sistema X-Frame', icon: Leaf },
   { id: 'costi', label: 'Costi e Tempi', icon: Euro },
-  { id: 'qualita', label: 'Qualita e Sicurezza', icon: Shield },
+  { id: 'qualita', label: 'Qualità e Sicurezza', icon: Shield },
   { id: 'permessi', label: 'Iter e Permessi', icon: FileCheck },
 ]
 
@@ -41,7 +41,7 @@ const permitItems = [
 const faqsByCategory: Record<string, FAQItem[]> = {
   sistema: [
     {
-      question: 'Perche scegliere il sistema X-Frame?',
+      question: 'Perché scegliere il sistema X-Frame?',
       answer: (
         <>
           <p className="mb-4 text-[var(--color-muted)]">
@@ -84,11 +84,11 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 bg-[var(--color-secondary-dark)]/5 rounded-xl">
               <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-2">Tempi ridotti</h4>
-              <p className="text-sm text-[var(--color-muted)]">Costruzione 70% piu veloce: 4-8 settimane invece di mesi</p>
+              <p className="text-sm text-[var(--color-muted)]">Costruzione 70% più veloce: 4-8 settimane invece di mesi</p>
             </div>
             <div className="p-4 bg-[var(--color-secondary-dark)]/5 rounded-xl">
               <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-2">Risparmio economico</h4>
-              <p className="text-sm text-[var(--color-muted)]">Costi inferiori del 20-40% a parita di qualita</p>
+              <p className="text-sm text-[var(--color-muted)]">Costi inferiori del 20-40% a parità di qualità</p>
             </div>
             <div className="p-4 bg-[var(--color-secondary-dark)]/5 rounded-xl">
               <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-2">Efficienza energetica</h4>
@@ -145,7 +145,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
       answer: (
         <>
           <p className="mb-4 text-[var(--color-muted)]">
-            Una delle cose che stupisce di piu i nostri clienti e la velocita di realizzazione.
+            Una delle cose che stupisce di più i nostri clienti è la velocità di realizzazione.
           </p>
           <div className="flex flex-wrap items-center gap-4 mb-4">
             <div className="text-center p-4 bg-[var(--color-primary)]/10 rounded-xl flex-1 min-w-[120px]">
@@ -203,18 +203,18 @@ const faqsByCategory: Record<string, FAQItem[]> = {
       answer: (
         <>
           <p className="mb-4 text-[var(--color-muted)]">
-            <strong className="text-[var(--color-secondary-dark)]">Assolutamente si.</strong> Con la giusta cura, una casa in legno
-            puo durare secoli — come dimostrano le costruzioni storiche in Scandinavia e Giappone.
+            <strong className="text-[var(--color-secondary-dark)]">Assolutamente sì.</strong> Con la giusta cura, una casa in legno
+            può durare secoli — come dimostrano le costruzioni storiche in Scandinavia e Giappone.
           </p>
           <p className="mb-4 text-[var(--color-muted)]">Le nostre case sono progettate per durare grazie a:</p>
           <ul className="space-y-3 mb-4">
             <li className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
-              <span className="text-[var(--color-muted)]">Legno essiccato industrialmente con umidita controllata al 12%</span>
+              <span className="text-[var(--color-muted)]">Legno essiccato industrialmente con umidità controllata al 12%</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
-              <span className="text-[var(--color-muted)]">Trattamenti protettivi contro funghi, insetti e umidita</span>
+              <span className="text-[var(--color-muted)]">Trattamenti protettivi contro funghi, insetti e umidità</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
@@ -226,7 +226,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             </li>
           </ul>
           <p className="text-[var(--color-muted)] text-sm">
-            La manutenzione richiesta e simile a quella di una casa tradizionale.
+            La manutenzione richiesta è simile a quella di una casa tradizionale.
           </p>
         </>
       )
@@ -236,9 +236,9 @@ const faqsByCategory: Record<string, FAQItem[]> = {
       answer: (
         <>
           <p className="mb-4 text-[var(--color-muted)]">
-            <strong className="text-[var(--color-secondary-dark)]">Si, sono molto sicure.</strong> Contrariamente a quanto si pensa,
+            <strong className="text-[var(--color-secondary-dark)]">Sì, sono molto sicure.</strong> Contrariamente a quanto si pensa,
             il legno ha un comportamento prevedibile in caso di incendio — a differenza
-            dell&apos;acciaio che puo collassare improvvisamente.
+            dell&apos;acciaio che può collassare improvvisamente.
           </p>
           <div className="p-4 bg-red-50 rounded-xl border border-red-100 mb-4">
             <div className="flex items-center gap-2 mb-2">
@@ -252,16 +252,16 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           </div>
           <p className="text-[var(--color-muted)] text-sm">
             Utilizziamo inoltre materiali ignifughi, compartimentazione degli ambienti
-            e impianti conformi alle normative piu recenti.
+            e impianti conformi alle normative più recenti.
           </p>
         </>
       )
     },
     {
-      question: 'Come viene garantita la qualita?',
+      question: 'Come viene garantita la qualità?',
       answer: (
         <>
-          <p className="mb-4 text-[var(--color-muted)]">La qualita e al centro di tutto quello che facciamo.</p>
+          <p className="mb-4 text-[var(--color-muted)]">La qualità è al centro di tutto quello che facciamo.</p>
           <div className="space-y-4 mb-4">
             {qualitySteps.map((step) => (
               <div key={step.num} className="flex items-start gap-4">
@@ -338,7 +338,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             <div className="p-4 bg-orange-50 rounded-xl">
               <Droplets className="w-6 h-6 text-orange-500 mb-2" />
               <h4 className="font-semibold text-[var(--color-foreground)] text-sm">Deumidificazione</h4>
-              <p className="text-xs text-[var(--color-muted)] mt-1">Controllo umidita ottimale</p>
+              <p className="text-xs text-[var(--color-muted)] mt-1">Controllo umidità ottimale</p>
             </div>
           </div>
           <p className="text-sm text-[var(--color-muted)]">
@@ -420,7 +420,7 @@ const faqJsonLdData = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Perche scegliere il sistema X-Frame?',
+      name: 'Perché scegliere il sistema X-Frame?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Il sistema X-Frame rappresenta l\'evoluzione dell\'edilizia in legno, combinando tre tecnologie collaudate in un unico sistema ibrido. Offre rispetto per l\'ambiente con materiali naturali e rinnovabili, innovazione tecnologica con precisione industriale millimetrica, comfort superiore con isolamento termico e acustico eccellente, Classe A4 garantita per massima efficienza energetica, e casa pronta in 60 giorni con tempi di costruzione ridotti.',
@@ -431,7 +431,7 @@ const faqJsonLdData = {
       name: 'Quali sono i vantaggi rispetto alle case tradizionali?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Rispetto all\'edilizia in muratura, le nostre case offrono vantaggi concreti sia economici che prestazionali: tempi ridotti (costruzione 70% piu veloce, 4-8 settimane invece di mesi), risparmio economico (costi inferiori del 20-40% a parita di qualita), efficienza energetica (consumi ridotti fino all\'80% rispetto alle case tradizionali), e resistenza sismica (strutture certificate per zona sismica 1).',
+        text: 'Rispetto all\'edilizia in muratura, le nostre case offrono vantaggi concreti sia economici che prestazionali: tempi ridotti (costruzione 70% più veloce, 4-8 settimane invece di mesi), risparmio economico (costi inferiori del 20-40% a parità di qualità), efficienza energetica (consumi ridotti fino all\'80% rispetto alle case tradizionali), e resistenza sismica (strutture certificate per zona sismica 1).',
       },
     },
     {
@@ -447,7 +447,7 @@ const faqJsonLdData = {
       name: 'Quanto tempo ci vuole per costruire una casa?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Una delle cose che stupisce di piu i nostri clienti e la velocita di realizzazione: 5-7 giorni per il montaggio, 30 giorni per chiavi in mano. Questi tempi non includono la preparazione del terreno, le fondazioni e gli allacci alle utenze.',
+        text: 'Una delle cose che stupisce di più i nostri clienti è la velocità di realizzazione: 5-7 giorni per il montaggio, 30 giorni per chiavi in mano. Questi tempi non includono la preparazione del terreno, le fondazioni e gli allacci alle utenze.',
       },
     },
     {
@@ -463,7 +463,7 @@ const faqJsonLdData = {
       name: 'Le case in legno durano nel tempo?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Assolutamente si. Con la giusta cura, una casa in legno puo durare secoli, come dimostrano le costruzioni storiche in Scandinavia e Giappone. Le nostre case sono progettate per durare grazie a: legno essiccato industrialmente con umidita controllata al 12%, trattamenti protettivi contro funghi, insetti e umidita, membrane traspiranti e barriere al vapore, sistema di ventilazione che previene condense e muffe. La manutenzione richiesta e simile a quella di una casa tradizionale.',
+        text: 'Assolutamente sì. Con la giusta cura, una casa in legno può durare secoli, come dimostrano le costruzioni storiche in Scandinavia e Giappone. Le nostre case sono progettate per durare grazie a: legno essiccato industrialmente con umidità controllata al 12%, trattamenti protettivi contro funghi, insetti e umidità, membrane traspiranti e barriere al vapore, sistema di ventilazione che previene condense e muffe. La manutenzione richiesta è simile a quella di una casa tradizionale.',
       },
     },
     {
@@ -471,15 +471,15 @@ const faqJsonLdData = {
       name: 'Sono sicure in caso di incendio?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Si, sono molto sicure. Contrariamente a quanto si pensa, il legno ha un comportamento prevedibile in caso di incendio, a differenza dell\'acciaio che puo collassare improvvisamente. Resistenza al fuoco REI 60: 60 minuti di resistenza strutturale certificata, tempo sufficiente per evacuare e per l\'intervento dei vigili del fuoco. Utilizziamo inoltre materiali ignifughi, compartimentazione degli ambienti e impianti conformi alle normative piu recenti.',
+        text: 'Sì, sono molto sicure. Contrariamente a quanto si pensa, il legno ha un comportamento prevedibile in caso di incendio, a differenza dell\'acciaio che può collassare improvvisamente. Resistenza al fuoco REI 60: 60 minuti di resistenza strutturale certificata, tempo sufficiente per evacuare e per l\'intervento dei vigili del fuoco. Utilizziamo inoltre materiali ignifughi, compartimentazione degli ambienti e impianti conformi alle normative più recenti.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Come viene garantita la qualita?',
+      name: 'Come viene garantita la qualità?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La qualita e al centro di tutto quello che facciamo. Il processo prevede: 1) Produzione in stabilimento con componenti realizzati con precisione millimetrica, 2) Materiali certificati da legno da foreste gestite responsabilmente, 3) Collaudo finale con test e verifiche prima della consegna. Garanzia 30 anni sulla struttura portante.',
+        text: 'La qualità è al centro di tutto quello che facciamo. Il processo prevede: 1) Produzione in stabilimento con componenti realizzati con precisione millimetrica, 2) Materiali certificati da legno da foreste gestite responsabilmente, 3) Collaudo finale con test e verifiche prima della consegna. Garanzia 30 anni sulla struttura portante.',
       },
     },
     {
@@ -495,7 +495,7 @@ const faqJsonLdData = {
       name: 'Come funziona il riscaldamento e raffrescamento?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Le nostre case sono progettate per il massimo comfort con consumi minimi. Includono: riscaldamento a pavimento per calore uniforme in ogni ambiente, pompa di calore che riscalda e raffresca, VMC con recupero calore al 95%, deumidificazione per controllo umidita ottimale. Grazie all\'eccellente isolamento, i consumi sono ridotti fino all\'80% rispetto a una casa tradizionale.',
+        text: 'Le nostre case sono progettate per il massimo comfort con consumi minimi. Includono: riscaldamento a pavimento per calore uniforme in ogni ambiente, pompa di calore che riscalda e raffresca, VMC con recupero calore al 95%, deumidificazione per controllo umidità ottimale. Grazie all\'eccellente isolamento, i consumi sono ridotti fino all\'80% rispetto a una casa tradizionale.',
       },
     },
   ],
@@ -555,7 +555,7 @@ export default function FAQPage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[var(--color-surface)]">
+    <div className="min-h-screen bg-[var(--color-surface)]">
       <JsonLd data={faqJsonLdData} />
 
       {/* ===== HERO ===== */}
@@ -639,7 +639,7 @@ export default function FAQPage() {
               Non hai trovato la risposta?
             </h2>
             <p className="text-white/70 mb-12 text-lg max-w-xl mx-auto">
-              Il nostro team e a disposizione per rispondere a tutte le tue domande
+              Il nostro team è a disposizione per rispondere a tutte le tue domande
               e fornirti una consulenza personalizzata.
             </p>
 
@@ -715,6 +715,6 @@ export default function FAQPage() {
           </ScrollReveal>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

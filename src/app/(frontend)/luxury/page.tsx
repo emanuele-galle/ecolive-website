@@ -65,7 +65,7 @@ const galleryImages = [
 const processSteps: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: MessageCircle, title: 'Consulenza', description: 'Incontro esclusivo per definire la tua visione e le esigenze del progetto.' },
   { icon: ClipboardCheck, title: 'Progetto', description: 'Architettura su misura con render 3D e selezione materiali premium.' },
-  { icon: Factory, title: 'Produzione', description: 'Realizzazione in stabilimento con controllo qualita certificato.' },
+  { icon: Factory, title: 'Produzione', description: 'Realizzazione in stabilimento con controllo qualità certificato.' },
   { icon: Wrench, title: 'Montaggio', description: 'Installazione in cantiere con tempi rapidi e impatto minimo.' },
   { icon: KeyRound, title: 'Consegna', description: 'La tua villa pronta da vivere, chiavi in mano.' },
 ]
@@ -97,7 +97,7 @@ const luxuryJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Luxury - Ville esclusive in bioedilizia',
-  description: 'Ville esclusive che combinano l\'eccellenza costruttiva del sistema X-Frame con finiture di alto livello. Ampi spazi, design contemporaneo e prestazioni energetiche superiori per chi cerca il massimo della qualita abitativa in armonia con l\'ambiente.',
+  description: 'Ville esclusive che combinano l\'eccellenza costruttiva del sistema X-Frame con finiture di alto livello. Ampi spazi, design contemporaneo e prestazioni energetiche superiori per chi cerca il massimo della qualità abitativa in armonia con l\'ambiente.',
   brand: {
     '@type': 'Brand',
     name: 'Ecolive',
@@ -122,7 +122,7 @@ export default function LuxuryPage() {
   const tipologia = getTipologiaById('luxury')
 
   return (
-    <main className="overflow-hidden">
+    <div className="overflow-hidden">
       <JsonLd data={luxuryJsonLd} />
       {/* ===== HERO ===== */}
       <section className="relative min-h-[90vh] flex items-center justify-center bg-[#1D1D1F]">
@@ -203,7 +203,7 @@ export default function LuxuryPage() {
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" className="text-center mb-20">
             <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
-              Qualita superiore
+              Qualità superiore
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
               Eccellenza in ogni dettaglio
@@ -334,7 +334,7 @@ export default function LuxuryPage() {
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.1}>
             <p className="text-white/70 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
-              Raccontaci la tua visione. Il nostro team di esperti ti guidera nella realizzazione della villa dei tuoi sogni.
+              Raccontaci la tua visione. Il nostro team di esperti ti guiderà nella realizzazione della villa dei tuoi sogni.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
@@ -356,6 +356,6 @@ export default function LuxuryPage() {
           </ScrollReveal>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

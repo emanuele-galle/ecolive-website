@@ -25,7 +25,7 @@ export default function ContactCTA() {
         <ScrollReveal delay={0.1}>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
             Raccontaci la tua idea. Ti guideremo dalla prima consulenza alla
-            consegna delle chiavi, con trasparenza e professionalita in ogni fase.
+            consegna delle chiavi, con trasparenza e professionalità in ogni fase.
           </p>
         </ScrollReveal>
 

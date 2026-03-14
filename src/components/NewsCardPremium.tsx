@@ -14,7 +14,7 @@ interface NewsCardPremiumProps {
 
 const tagLabels: Record<string, string> = {
   bioedilizia: 'Bioedilizia',
-  sostenibilita: 'Sostenibilita',
+  sostenibilita: 'Sostenibilità',
   innovazione: 'Innovazione',
   progetti: 'Progetti',
   eventi: 'Eventi',

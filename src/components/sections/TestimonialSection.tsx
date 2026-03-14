@@ -12,12 +12,12 @@ const testimonials = [
     location: 'Catanzaro',
     rating: 5,
     quote:
-      'Abbiamo scelto Ecolive dopo mesi di ricerca. La professionalita del team e la trasparenza sui costi ci hanno convinto. La casa e stata montata in un giorno, e dopo un anno il comfort e eccezionale: temperatura costante e bollette ridotte del 70%.',
+      'Abbiamo scelto Ecolive dopo mesi di ricerca. La professionalità del team e la trasparenza sui costi ci hanno convinto. La casa è stata montata in un giorno, e dopo un anno il comfort è eccezionale: temperatura costante e bollette ridotte del 70%.',
   },
   {
     id: 2,
     name: 'Arch. Paolo Mancini',
-    project: 'Progetto Glamping, 8 unita',
+    project: 'Progetto Glamping, 8 unità',
     location: 'Sila, Cosenza',
     rating: 5,
     quote:

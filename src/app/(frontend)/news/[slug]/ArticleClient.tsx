@@ -55,7 +55,7 @@ function TOCLink({ heading }: { heading: { id: string; text: string; level: numb
 
 const tagLabels: Record<string, string> = {
   bioedilizia: 'Bioedilizia',
-  sostenibilita: 'Sostenibilita',
+  sostenibilita: 'Sostenibilità',
   innovazione: 'Innovazione',
   progetti: 'Progetti',
   eventi: 'Eventi',
@@ -174,10 +174,10 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   }, [])
 
   return (
-    <main className="min-h-screen bg-[#FFFFFF]">
-      {/* Progress Bar */}
+    <div className="min-h-screen bg-[#FFFFFF]">
+      {/* Reading Progress Bar - thin 1px line above header */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#A0845C] to-[#E8956B] z-50 origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#A0845C] to-[#E8956B] z-[60] origin-left"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -385,7 +385,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
                   <p className="text-white/70 text-sm leading-relaxed">
                     Team di esperti in bioedilizia e case prefabbricate in legno.
                     Condividiamo notizie, progetti e innovazioni nel settore della
-                    sostenibilita edilizia.
+                    sostenibilità edilizia.
                   </p>
                 </div>
               </div>
@@ -499,6 +499,6 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
       >
         <ChevronUp className="w-6 h-6" />
       </motion.button>
-    </main>
+    </div>
   )
 }

@@ -64,7 +64,7 @@ export default function ConfiguratoreClient({ onSubmit }: ConfiguratoreClientPro
   return (
     <div className="min-h-[calc(100vh-80px)] bg-[#F5F5F7] flex flex-col">
       {/* Main content - Header del sito è già visibile */}
-      <main className="flex-1">
+      <div className="flex-1">
         <AnimatePresence mode="wait">
           {step === 'select-house' && (
             <motion.div
@@ -105,7 +105,7 @@ export default function ConfiguratoreClient({ onSubmit }: ConfiguratoreClientPro
             </motion.div>
           )}
         </AnimatePresence>
-      </main>
+      </div>
     </div>
   )
 }

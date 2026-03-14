@@ -75,7 +75,7 @@ const benefitsList = [
 
 export default function ContactPageClient({ onSubmit }: ContactPageClientProps) {
   return (
-    <main className="min-h-screen bg-[#F5F5F7]">
+    <div className="min-h-screen bg-[#F5F5F7]">
       {/* HERO COMPATTO */}
       <section className="relative bg-[#1D1D1F] py-28 lg:py-36">
         {/* Subtle decorative dots */}
@@ -164,7 +164,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
               <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-5">
-                Scegli il canale di comunicazione piu comodo per te.
+                Scegli il canale di comunicazione più comodo per te.
               </p>
             </div>
           </ScrollReveal>
@@ -231,7 +231,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
                 </div>
 
                 <div className="p-7 bg-[#1D1D1F] rounded-2xl shadow-premium-lg">
-                  <h4 className="font-serif text-white text-xl mb-5">Perche contattarci?</h4>
+                  <h4 className="font-serif text-white text-xl mb-5">Perché contattarci?</h4>
                   <div className="space-y-4">
                     {benefitsList.map((text) => (
                       <div key={text} className="flex items-center gap-3">
@@ -311,6 +311,6 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

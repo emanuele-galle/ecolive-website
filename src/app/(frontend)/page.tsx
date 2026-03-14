@@ -40,7 +40,7 @@ const organizationJsonLd = {
     'https://www.facebook.com/ecolivesrl',
     'https://www.instagram.com/ecolive.srl',
     'https://www.linkedin.com/company/ecolivesrl',
-    'https://www.youtube.com/channel/UCg6jKyIT6s7ABhfrn1nT_fQ',
+    'https://www.youtube.com/@Ecolive-xframe',
   ],
 }
 
@@ -63,7 +63,7 @@ export default async function HomePage() {
   const heroVideoPosterProp = heroVideoPoster ? { url: heroVideoPoster.url || undefined, alt: heroVideoPoster.alt } : null
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <JsonLd data={organizationJsonLd} />
       <HeroFullscreen
         heroType={siteSettings?.heroType as 'image' | 'video' | undefined}
@@ -79,6 +79,6 @@ export default async function HomePage() {
       <AssemblyShowcase />
       <TestimonialSection />
       <ContactCTA />
-    </main>
+    </div>
   )
 }

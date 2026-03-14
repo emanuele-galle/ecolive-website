@@ -40,7 +40,7 @@ const threePillars = [
   },
   {
     title: 'Finitura',
-    description: 'Pannello pronto per la posa di rivestimenti interni ed esterni, senza necessita di sottofondi aggiuntivi.',
+    description: 'Pannello pronto per la posa di rivestimenti interni ed esterni, senza necessità di sottofondi aggiuntivi.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -178,7 +178,7 @@ const marqueeItems = [
 
 export default function SistemaXFramePage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
 
       {/* ========== 1. HERO ========== */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-secondary-dark)]">
@@ -401,7 +401,7 @@ export default function SistemaXFramePage() {
           <ScrollReveal>
             <div className="text-center mb-20">
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
-                Perche <span className="text-[var(--color-primary)]">X-Frame</span>
+                Perché <span className="text-[var(--color-primary)]">X-Frame</span>
               </h2>
               <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
                 Un confronto diretto con i sistemi costruttivi tradizionali
@@ -447,6 +447,34 @@ export default function SistemaXFramePage() {
       </section>
 
       <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+
+      {/* VIDEO X-FRAME */}
+      <section className="py-24 lg:py-32 bg-white px-6">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
+                X-Frame in Azione
+              </h2>
+              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+                Guarda come il sistema costruttivo X-Frame rivoluziona la realizzazione di case prefabbricate in legno
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-premium-xl">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/R98zK3zp75g"
+                title="Scopri X-Frame 2.0 — Ecolive"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                loading="lazy"
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ========== 6. RENDER SHOWCASE ========== */}
       <section className="py-28 lg:py-36 bg-white">
@@ -498,7 +526,7 @@ export default function SistemaXFramePage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-              Scopri come X-Frame puo trasformare il tuo <span className="text-[var(--color-primary)]">progetto</span>
+              Scopri come X-Frame può trasformare il tuo <span className="text-[var(--color-primary)]">progetto</span>
             </h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto mb-12">
               Prenota una consulenza gratuita con i nostri tecnici per scoprire
@@ -527,6 +555,6 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

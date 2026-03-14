@@ -1,36 +1,24 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Cookie, ArrowLeft, Settings, BarChart3, Share2, CheckCircle } from 'lucide-react'
 
-const fadeInUpInitial = { opacity: 0, y: 20 }
-const fadeInUpAnimate = { opacity: 1, y: 0 }
-const fadeInDownInitial = { opacity: 0, y: -20 }
-const fadeInDownAnimate = { opacity: 1, y: 0 }
-const fadeInLeftInitial = { opacity: 0, x: -20 }
-const fadeInLeftAnimate = { opacity: 1, x: 0 }
-const titleTransition = { delay: 0.1 }
-const subtitleTransition = { delay: 0.2 }
-const dateTransition = { delay: 0.3 }
-const relatedLinksTransition = { delay: 0.5 }
-const fodiSectionTransition = { delay: 0.6 }
-const sectionTransitions = Array.from({ length: 10 }, (_, i) => ({ delay: i * 0.05 }))
 const dotPatternStyle = {
   backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
   backgroundSize: '32px 32px',
 }
+
 const thirdPartyServices = [
   { name: 'Google Analytics', purpose: 'Statistiche di traffico', link: 'https://policies.google.com/privacy' },
   { name: 'Google Maps', purpose: 'Mappe interattive', link: 'https://policies.google.com/privacy' },
   { name: 'YouTube', purpose: 'Video incorporati', link: 'https://policies.google.com/privacy' },
   { name: 'Facebook', purpose: 'Widget social', link: 'https://www.facebook.com/privacy/policy' },
 ]
+
 const cookieManagementItems = [
   { title: 'Banner Cookie', desc: 'Usa il banner che appare alla prima visita per accettare o rifiutare i cookie non essenziali' },
   { title: 'Impostazioni Browser', desc: 'Configura il tuo browser per bloccare o eliminare i cookie' },
   { title: 'Opt-out Analytics', desc: 'Installa il componente aggiuntivo per disattivare Google Analytics' },
 ]
+
 const browserLinks = [
   { browser: 'Chrome', link: 'https://support.google.com/chrome/answer/95647' },
   { browser: 'Firefox', link: 'https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop' },
@@ -65,142 +53,142 @@ const cookieTypes = [
   },
 ]
 
-export default function CookiePage() {
-  const sections = [
-    {
-      title: 'Cosa sono i Cookie',
-      content: (
-        <p className="text-gray-600">
-          I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo durante la navigazione.
-          Servono a migliorare l&apos;esperienza utente, ricordare le preferenze e raccogliere informazioni
-          statistiche anonime. Non contengono virus e non accedono ai dati personali sul tuo dispositivo.
+const sections = [
+  {
+    title: 'Cosa sono i Cookie',
+    content: (
+      <p className="text-gray-600">
+        I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo durante la navigazione.
+        Servono a migliorare l&apos;esperienza utente, ricordare le preferenze e raccogliere informazioni
+        statistiche anonime. Non contengono virus e non accedono ai dati personali sul tuo dispositivo.
+      </p>
+    ),
+  },
+  {
+    title: 'Cookie Utilizzati',
+    content: (
+      <div className="space-y-4">
+        {cookieTypes.map((cookie, i) => (
+          <div key={i} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+            <div className="flex items-start gap-4">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                cookie.required ? 'bg-[#1D1D1F]' : 'bg-[#A0845C]/10'
+              }`}>
+                <cookie.icon className={`w-6 h-6 ${cookie.required ? 'text-white' : 'text-[#A0845C]'}`} />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-semibold text-[#1D1D1F]">{cookie.title}</h4>
+                  {cookie.required && (
+                    <span className="text-xs px-2 py-0.5 bg-[#1D1D1F]/10 text-[#1D1D1F] rounded-full font-medium">
+                      Necessari
+                    </span>
+                  )}
+                </div>
+                <p className="text-gray-600 text-sm mb-3">{cookie.description}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {cookie.examples.map((ex, j) => (
+                    <span key={j} className="text-xs px-2 py-1 bg-white rounded-lg text-gray-500 border border-gray-200">
+                      {ex}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400">Durata: {cookie.duration}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: 'Cookie di Terze Parti',
+    content: (
+      <>
+        <p className="text-gray-600 mb-4">
+          Questo sito può utilizzare servizi di terze parti che installano cookie propri:
         </p>
-      ),
-    },
-    {
-      title: 'Cookie Utilizzati',
-      content: (
-        <div className="space-y-4">
-          {cookieTypes.map((cookie, i) => (
-            <div key={i} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
-              <div className="flex items-start gap-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                  cookie.required ? 'bg-[#1D1D1F]' : 'bg-[#A0845C]/10'
-                }`}>
-                  <cookie.icon className={`w-6 h-6 ${cookie.required ? 'text-white' : 'text-[#A0845C]'}`} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-semibold text-[#1D1D1F]">{cookie.title}</h4>
-                    {cookie.required && (
-                      <span className="text-xs px-2 py-0.5 bg-[#1D1D1F]/10 text-[#1D1D1F] rounded-full font-medium">
-                        Necessari
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-600 text-sm mb-3">{cookie.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-2">
-                    {cookie.examples.map((ex, j) => (
-                      <span key={j} className="text-xs px-2 py-1 bg-white rounded-lg text-gray-500 border border-gray-200">
-                        {ex}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-xs text-gray-400">Durata: {cookie.duration}</p>
-                </div>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {thirdPartyServices.map((service, i) => (
+            <div key={i} className="p-4 bg-[#1D1D1F]/5 rounded-xl">
+              <h4 className="font-semibold text-[#1D1D1F]">{service.name}</h4>
+              <p className="text-sm text-gray-600">{service.purpose}</p>
+              <a
+                href={service.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[#A0845C] hover:underline"
+              >
+                Privacy Policy →
+              </a>
+            </div>
+          ))}
+        </div>
+      </>
+    ),
+  },
+  {
+    title: 'Come Gestire i Cookie',
+    content: (
+      <>
+        <p className="text-gray-600 mb-4">
+          Puoi gestire le preferenze sui cookie in diversi modi:
+        </p>
+        <div className="space-y-3">
+          {cookieManagementItems.map((item, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-[#A0845C] mt-0.5 flex-shrink-0" />
+              <div>
+                <h4 className="font-semibold text-[#1D1D1F]">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.desc}</p>
               </div>
             </div>
           ))}
         </div>
-      ),
-    },
-    {
-      title: 'Cookie di Terze Parti',
-      content: (
-        <>
-          <p className="text-gray-600 mb-4">
-            Questo sito puo utilizzare servizi di terze parti che installano cookie propri:
-          </p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {thirdPartyServices.map((service, i) => (
-              <div key={i} className="p-4 bg-[#1D1D1F]/5 rounded-xl">
-                <h4 className="font-semibold text-[#1D1D1F]">{service.name}</h4>
-                <p className="text-sm text-gray-600">{service.purpose}</p>
-                <a
-                  href={service.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#A0845C] hover:underline"
-                >
-                  Privacy Policy →
-                </a>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-    },
-    {
-      title: 'Come Gestire i Cookie',
-      content: (
-        <>
-          <p className="text-gray-600 mb-4">
-            Puoi gestire le preferenze sui cookie in diversi modi:
-          </p>
-          <div className="space-y-3">
-            {cookieManagementItems.map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#A0845C] mt-0.5 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-[#1D1D1F]">{item.title}</h4>
-                  <p className="text-sm text-gray-600">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-    },
-    {
-      title: 'Disabilitazione Cookie per Browser',
-      content: (
-        <>
-          <p className="text-gray-600 mb-4">
-            Ecco come disabilitare i cookie nei principali browser:
-          </p>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {browserLinks.map((item, i) => (
-              <a
-                key={i}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group"
-              >
-                <div className="w-10 h-10 bg-[#A0845C]/10 rounded-lg flex items-center justify-center group-hover:bg-[#A0845C]/20 transition-colors">
-                  <Settings className="w-5 h-5 text-[#A0845C]" />
-                </div>
-                <span className="font-medium text-[#1D1D1F]">{item.browser}</span>
-              </a>
-            ))}
-          </div>
-        </>
-      ),
-    },
-    {
-      title: 'Aggiornamenti',
-      content: (
-        <p className="text-gray-600">
-          Questa Cookie Policy puo essere aggiornata periodicamente. Ti invitiamo a consultare
-          questa pagina regolarmente per essere informato su eventuali modifiche. La data dell&apos;ultimo
-          aggiornamento e indicata in cima alla pagina.
+      </>
+    ),
+  },
+  {
+    title: 'Disabilitazione Cookie per Browser',
+    content: (
+      <>
+        <p className="text-gray-600 mb-4">
+          Ecco come disabilitare i cookie nei principali browser:
         </p>
-      ),
-    },
-  ]
+        <div className="grid sm:grid-cols-2 gap-3">
+          {browserLinks.map((item, i) => (
+            <a
+              key={i}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group"
+            >
+              <div className="w-10 h-10 bg-[#A0845C]/10 rounded-lg flex items-center justify-center group-hover:bg-[#A0845C]/20 transition-colors">
+                <Settings className="w-5 h-5 text-[#A0845C]" />
+              </div>
+              <span className="font-medium text-[#1D1D1F]">{item.browser}</span>
+            </a>
+          ))}
+        </div>
+      </>
+    ),
+  },
+  {
+    title: 'Aggiornamenti',
+    content: (
+      <p className="text-gray-600">
+        Questa Cookie Policy può essere aggiornata periodicamente. Ti invitiamo a consultare
+        questa pagina regolarmente per essere informato su eventuali modifiche. La data dell&apos;ultimo
+        aggiornamento è indicata in cima alla pagina.
+      </p>
+    ),
+  },
+]
 
+export default function CookiePage() {
   return (
-    <main className="min-h-screen bg-[#F5F5F7]">
+    <div className="min-h-screen bg-[#F5F5F7]">
       {/* Hero */}
       <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         <div
@@ -210,52 +198,29 @@ export default function CookiePage() {
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={fadeInDownInitial}
-            animate={fadeInDownAnimate}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
             <Cookie className="w-4 h-4 text-[#A0845C]" />
             <span className="text-white/90 text-sm font-medium">Informativa Cookie</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={titleTransition}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-          >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Cookie <span className="text-[#A0845C]">Policy</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={subtitleTransition}
-            className="text-xl text-white/70 max-w-2xl mx-auto"
-          >
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             Informativa sull&apos;utilizzo dei cookie su questo sito web
-          </motion.p>
+          </p>
 
-          <motion.p
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={dateTransition}
-            className="text-white/50 mt-6 text-sm"
-          >
+          <p className="text-white/50 mt-6 text-sm">
             Ultimo aggiornamento: Gennaio 2025
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* Content */}
       <section className="py-12 lg:py-20 px-4">
         <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={fadeInLeftInitial}
-            animate={fadeInLeftAnimate}
-            className="mb-8"
-          >
+          <div className="mb-8">
             <Link
               href="/"
               className="inline-flex items-center gap-2 text-gray-500 hover:text-[#A0845C] transition-colors"
@@ -263,15 +228,12 @@ export default function CookiePage() {
               <ArrowLeft className="w-4 h-4" />
               Torna alla Home
             </Link>
-          </motion.div>
+          </div>
 
           <div className="space-y-8">
             {sections.map((section, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={fadeInUpInitial}
-                animate={fadeInUpAnimate}
-                transition={sectionTransitions[index]}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
                 <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
@@ -281,17 +243,12 @@ export default function CookiePage() {
                   {section.title}
                 </h2>
                 {section.content}
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Related Links */}
-          <motion.div
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={relatedLinksTransition}
-            className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl"
-          >
+          <div className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl">
             <h3 className="text-xl font-bold text-white mb-4 text-center">Documenti Correlati</h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -307,16 +264,11 @@ export default function CookiePage() {
                 Termini di Servizio
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
-      
+
           {/* Sviluppo e Gestione Tecnica */}
-          <motion.div
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={fodiSectionTransition}
-            className="mt-12 pt-8 border-t border-gray-200"
-          >
+          <div className="mt-12 pt-8 border-t border-gray-200">
             <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>
             <p className="text-gray-600">Questo sito web è stato realizzato e viene gestito da:</p>
             <p className="text-gray-600 mt-2">
@@ -327,8 +279,8 @@ export default function CookiePage() {
               Tel: +39 0963 576433<br/>
               Web: <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-[#A0845C] hover:underline">www.fodisrl.it</a>
             </p>
-          </motion.div>
+          </div>
         </section>
-    </main>
+    </div>
   )
 }

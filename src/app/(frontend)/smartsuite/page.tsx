@@ -56,7 +56,7 @@ const smartsuiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'SmartSuite - Uffici e showroom modulari in legno',
-  description: 'Spazi professionali progettati per il business moderno. Uffici, showroom, sale meeting e strutture commerciali con design contemporaneo, massima flessibilita degli spazi interni e costi di gestione ridotti grazie all\'efficienza energetica.',
+  description: 'Spazi professionali progettati per il business moderno. Uffici, showroom, sale meeting e strutture commerciali con design contemporaneo, massima flessibilità degli spazi interni e costi di gestione ridotti grazie all\'efficienza energetica.',
   brand: {
     '@type': 'Brand',
     name: 'Ecolive',
@@ -83,7 +83,7 @@ export default function SmartSuitePage() {
   const featureIconColorStyle = useMemo(() => ({ color: tipologia.color }), [tipologia.color])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <JsonLd data={smartsuiteJsonLd} />
 
       {/* HERO */}
@@ -297,6 +297,6 @@ export default function SmartSuitePage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

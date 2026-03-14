@@ -92,7 +92,7 @@ export default function GlampingPage() {
   const featureIconColorStyle = useMemo(() => ({ color: tipologia.color }), [tipologia.color])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <JsonLd data={glampingJsonLd} />
 
       {/* HERO */}
@@ -283,7 +283,37 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#A0845C" height={80} />
+      <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
+
+      {/* VIDEO GLAMPING */}
+      <section className="py-24 lg:py-32 bg-white px-6">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
+                Villaggio A-Frame Ecolive
+              </h2>
+              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+                Scopri il nostro progetto esclusivo di bungalow in legno A-Frame per un&apos;esperienza unica e sostenibile
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-premium-xl">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/EpCLtvhFcds"
+                title="Villaggio Bungalow A-Frame — Ecolive"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                loading="lazy"
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionTransition from="#FFFFFF" to="#A0845C" height={80} />
 
       {/* CTA */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#A0845C] overflow-hidden">
@@ -324,6 +354,6 @@ export default function GlampingPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

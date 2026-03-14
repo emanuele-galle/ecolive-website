@@ -28,15 +28,15 @@ const certifications = [
     icon: Leaf,
     value: 'Gold',
     unit: '',
-    tagline: 'Sostenibilita certificata',
-    features: ['Materiali eco', 'Qualita garantita', 'Valore +30%', 'Benessere abitativo'],
+    tagline: 'Sostenibilità certificata',
+    features: ['Materiali eco', 'Qualità garantita', 'Valore +30%', 'Benessere abitativo'],
   },
   {
     name: 'ARCA',
     icon: Shield,
     value: '100%',
     unit: '',
-    tagline: 'Tracciabilita totale',
+    tagline: 'Tracciabilità totale',
     features: ['Legno certificato', 'Filiera controllata', 'Made in Italy', 'Garanzia 30 anni'],
   },
   {
@@ -86,7 +86,7 @@ const marqueeItems = [
 
 export default function AreaTecnicaPage() {
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen bg-[var(--color-background)]">
 
       {/* ===== HERO ===== */}
       <section className="relative bg-gradient-to-br from-[var(--color-secondary-dark)] via-[var(--color-secondary)] to-[var(--color-secondary-dark)] py-28 lg:py-40">
@@ -144,7 +144,7 @@ export default function AreaTecnicaPage() {
                 Certificazioni
               </h2>
               <p className="text-[var(--color-muted)] text-lg max-w-xl mx-auto">
-                I nostri standard di qualita riconosciuti a livello internazionale
+                I nostri standard di qualità riconosciuti a livello internazionale
               </p>
             </div>
           </ScrollReveal>
@@ -329,7 +329,35 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
+      {/* ===== VIDEO COMPARAZIONE ===== */}
+      <section className="py-24 lg:py-32 bg-white px-6">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
+                Comparazione Sistemi Costruttivi
+              </h2>
+              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+                Un confronto visivo tra il sistema X-Frame e le tecniche costruttive tradizionali
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <div className="relative rounded-2xl overflow-hidden aspect-video shadow-premium-xl">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/FWhNUIVIBFM"
+                title="Comparazione Sistemi Costruttivi — Ecolive"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                loading="lazy"
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -358,6 +386,6 @@ export default function AreaTecnicaPage() {
           </ScrollReveal>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

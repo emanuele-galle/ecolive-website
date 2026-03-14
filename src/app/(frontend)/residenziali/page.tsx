@@ -55,7 +55,7 @@ const residenzialiJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Residenziali - Case prefabbricate in legno',
-  description: 'La soluzione perfetta per chi desidera una casa moderna, efficiente e sostenibile. Dal monolocale alla villa, progettiamo abitazioni su misura per ogni esigenza familiare, con un rapporto qualita-prezzo imbattibile e tempi di consegna certi.',
+  description: 'La soluzione perfetta per chi desidera una casa moderna, efficiente e sostenibile. Dal monolocale alla villa, progettiamo abitazioni su misura per ogni esigenza familiare, con un rapporto qualità-prezzo imbattibile e tempi di consegna certi.',
   brand: {
     '@type': 'Brand',
     name: 'Ecolive',
@@ -83,7 +83,7 @@ export default function ResidenzialiPage() {
   const featureIconColorStyle = useMemo(() => ({ color: tipologia.color }), [tipologia.color])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <JsonLd data={residenzialiJsonLd} />
 
       {/* HERO */}
@@ -299,6 +299,6 @@ export default function ResidenzialiPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

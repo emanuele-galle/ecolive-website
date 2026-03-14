@@ -43,13 +43,13 @@ const milestones = [
 const values = [
   {
     icon: Leaf,
-    title: 'Sostenibilita',
+    title: 'Sostenibilità',
     description: 'Legno certificato PEFC da foreste gestite responsabilmente. Impatto ambientale ridotto del 70%.',
   },
   {
     icon: Hammer,
-    title: 'Qualita Artigianale',
-    description: 'Ogni casa e costruita con cura sartoriale. Garanzia 30 anni sulla struttura portante.',
+    title: 'Qualità Artigianale',
+    description: 'Ogni casa è costruita con cura sartoriale. Garanzia 30 anni sulla struttura portante.',
   },
   {
     icon: Lightbulb,
@@ -69,11 +69,11 @@ const heroSubtitleTransition = { duration: 0.8, delay: 0.2 }
 const fadeInTransition = { duration: 0.8, delay: 0.4 }
 const fadeInInitial = { opacity: 0 }
 const fadeInAnimate = { opacity: 1 }
-const marqueeValues = ['Bioedilizia', 'Innovazione', 'Sostenibilita', 'Qualita', 'Tradizione', 'Made in Italy']
+const marqueeValues = ['Bioedilizia', 'Innovazione', 'Sostenibilità', 'Qualità', 'Tradizione', 'Made in Italy']
 
 export default function ChiSiamoPage() {
   return (
-    <main className="overflow-hidden">
+    <div className="overflow-hidden">
 
       {/* HERO */}
       <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
@@ -281,6 +281,57 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
+      {/* I NOSTRI VIDEO */}
+      <section className="py-24 lg:py-32 bg-[var(--color-surface)] px-6">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
+                La Nostra Storia in Video
+              </h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-2 gap-8">
+            <ScrollReveal delay={0.1}>
+              <div className="rounded-2xl overflow-hidden shadow-premium-lg">
+                <div className="relative aspect-video">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/Q29WmCQuqa8"
+                    title="La Nostra Storia — Ecolive"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4 bg-white">
+                  <h3 className="font-semibold text-[#1D1D1F]">La Nostra Storia</h3>
+                  <p className="text-sm text-[#86868B] mt-1">La passione e la dedizione per l&apos;innovazione e la sostenibilit&agrave;</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <div className="rounded-2xl overflow-hidden shadow-premium-lg">
+                <div className="relative aspect-video">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/swQRUOTvxJ8"
+                    title="Made in Calabria — TGR RAI Calabria"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4 bg-white">
+                  <h3 className="font-semibold text-[#1D1D1F]">Made in Calabria — TGR RAI</h3>
+                  <p className="text-sm text-[#86868B] mt-1">Il servizio di RAI Calabria sulla nostra tecnologia innovativa</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* CTA */}
@@ -319,6 +370,6 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

@@ -30,7 +30,7 @@ export default function NewsPageClient({
   const categoryNames = Object.values(tagLabels)
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-[#1D1D1F] py-28 lg:py-36 px-4">
         {/* Subtle decorative elements */}
@@ -44,7 +44,7 @@ export default function NewsPageClient({
           </ScrollReveal>
 
           <BlurText
-            text="News & Novita"
+            text="News & Novità"
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8"
             delay={100}
             animateBy="words"
@@ -193,6 +193,6 @@ export default function NewsPageClient({
           )}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

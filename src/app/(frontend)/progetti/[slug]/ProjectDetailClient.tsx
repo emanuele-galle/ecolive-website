@@ -84,7 +84,7 @@ export default function ProjectDetailClient({
   const heroOpacityStyle = useMemo(() => ({ opacity: heroOpacity }), [heroOpacity])
 
   return (
-    <main className="min-h-screen bg-[#F5F5F7]">
+    <div className="min-h-screen bg-[#F5F5F7]">
       {/* HERO IMMERSIVO CON PARALLAX */}
       <section ref={heroRef} className="relative h-[70vh] md:h-[85vh] overflow-hidden">
         {/* Background Image with Parallax */}
@@ -503,6 +503,6 @@ export default function ProjectDetailClient({
           </div>
         </section>
       )}
-    </main>
+    </div>
   )
 }

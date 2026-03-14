@@ -25,7 +25,7 @@ const certifications = [
     logo: '/api/media/file/passive-house.png',
     mainStat: '15 kWh/m\u00b2',
     statLabel: 'Consumo max annuo',
-    description: 'Lo standard internazionale piu rigoroso per edifici ad altissima efficienza energetica.',
+    description: 'Lo standard internazionale più rigoroso per edifici ad altissima efficienza energetica.',
     details: [
       'Consumo energetico max 15 kWh/m\u00b2/anno',
       'Trasmittanza termica U < 0.15 W/m\u00b2K',
@@ -51,7 +51,7 @@ const certifications = [
       'Valutazione dell\'intero ciclo di vita',
       'Comfort abitativo certificato',
       'Riduzione emissioni CO2',
-      'Qualita dell\'aria interna garantita',
+      'Qualità dell\'aria interna garantita',
     ],
     link: 'https://www.agenziacasaclima.it/',
     accent: '#6B8F71',
@@ -64,14 +64,14 @@ const certifications = [
     name: 'ARCA',
     logo: '/api/media/file/arca.png',
     mainStat: '100%',
-    statLabel: 'Tracciabilita materiali',
+    statLabel: 'Tracciabilità materiali',
     description: 'Architettura Comfort Ambiente - Lo standard italiano specifico per le costruzioni in legno.',
     details: [
-      'Controllo qualita in produzione',
-      'Tracciabilita dei materiali',
+      'Controllo qualità in produzione',
+      'Tracciabilità dei materiali',
       'Prestazioni strutturali certificate',
-      'Durabilita garantita',
-      'Sostenibilita ambientale verificata',
+      'Durabilità garantita',
+      'Sostenibilità ambientale verificata',
     ],
     link: 'https://www.arcacert.com/',
     accent: '#48484A',
@@ -267,7 +267,7 @@ export default function CertificazioniPage() {
   const activeNormData = normativeCategories.find(n => n.id === activeNorm)!
 
   return (
-    <main className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen bg-[var(--color-background)]">
 
       {/* ===== HERO ===== */}
       <section className="relative bg-gradient-to-br from-[var(--color-secondary-dark)] via-[var(--color-secondary)] to-[var(--color-secondary-dark)] py-28 lg:py-40">
@@ -292,7 +292,7 @@ export default function CertificazioniPage() {
 
           <ScrollReveal delay={0.2}>
             <p className="text-xl text-white/70 max-w-2xl mb-14">
-              Standard internazionali che garantiscono qualita, efficienza e sostenibilita delle nostre costruzioni.
+              Standard internazionali che garantiscono qualità, efficienza e sostenibilità delle nostre costruzioni.
             </p>
           </ScrollReveal>
 
@@ -465,7 +465,7 @@ export default function CertificazioniPage() {
               </div>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Sicurezza Sismica - Zona 1</h2>
               <p className="text-white/70 text-lg max-w-2xl mx-auto">
-                Le strutture X-Frame sono certificate per la zona sismica piu restrittiva d&apos;Italia.
+                Le strutture X-Frame sono certificate per la zona sismica più restrittiva d&apos;Italia.
               </p>
             </div>
           </ScrollReveal>
@@ -609,10 +609,10 @@ export default function CertificazioniPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-                  Vuoi saperne di piu?
+                  Vuoi saperne di più?
                 </h2>
                 <p className="text-white/80 text-lg mb-10">
-                  Il nostro team tecnico e a disposizione per fornirti tutte le informazioni
+                  Il nostro team tecnico è a disposizione per fornirti tutte le informazioni
                   sulle certificazioni e le normative.
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -646,6 +646,6 @@ export default function CertificazioniPage() {
           </ScrollReveal>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

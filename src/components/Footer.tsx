@@ -23,7 +23,7 @@ const socialLinks = [
   { name: 'Facebook', href: 'https://www.facebook.com/ecolivesrl', icon: Facebook, hoverColor: 'hover:bg-[#1877F2]' },
   { name: 'Instagram', href: 'https://www.instagram.com/ecolive.srl', icon: Instagram, hoverColor: 'hover:bg-gradient-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888]' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/company/ecolivesrl', icon: Linkedin, hoverColor: 'hover:bg-[#0A66C2]' },
-  { name: 'YouTube', href: 'https://www.youtube.com/channel/UCg6jKyIT6s7ABhfrn1nT_fQ', icon: Youtube, hoverColor: 'hover:bg-[#FF0000]' },
+  { name: 'YouTube', href: 'https://www.youtube.com/@Ecolive-xframe', icon: Youtube, hoverColor: 'hover:bg-[#FF0000]' },
 ]
 
 export default function Footer() {

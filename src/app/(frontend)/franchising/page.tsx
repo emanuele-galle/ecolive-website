@@ -53,7 +53,7 @@ const partnershipTypes = [
 
 export default function FranchisingPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="relative py-24 bg-gradient-to-br from-[#1D1D1F] to-[#48484A]">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -145,6 +145,6 @@ export default function FranchisingPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

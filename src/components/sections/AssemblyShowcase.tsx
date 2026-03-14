@@ -76,7 +76,7 @@ const advantages = [
 
 const stats = [
   { value: 1, suffix: '', label: 'Montaggio struttura completa', display: '1 Giorno' },
-  { value: 90, suffix: 'x', label: 'Piu veloce del tradizionale', display: '90x' },
+  { value: 90, suffix: 'x', label: 'Più veloce del tradizionale', display: '90x' },
   { value: 100, suffix: '%', label: 'Materiali certificati PEFC', display: '100%' },
 ]
 
@@ -92,7 +92,7 @@ export default function AssemblyShowcase() {
             </h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
               Il nostro sistema costruttivo brevettato che rivoluziona i tempi e la
-              qualita dell&apos;edilizia in legno
+              qualità dell&apos;edilizia in legno
             </p>
           </div>
         </ScrollReveal>
@@ -101,21 +101,15 @@ export default function AssemblyShowcase() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20">
           {/* Left: Video placeholder */}
           <ScrollReveal direction="left">
-            <div className="relative rounded-2xl overflow-hidden aspect-video bg-[#48484A] flex items-center justify-center">
-              <div className="text-center px-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white/60"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <p className="text-white/40 text-sm font-medium">
-                  Video montaggio - Coming soon
-                </p>
-              </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/nptTzlZwGOg"
+                title="Costruzione di una Casa in Legno Ecolive"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                loading="lazy"
+              />
             </div>
           </ScrollReveal>
 
