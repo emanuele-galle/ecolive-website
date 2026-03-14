@@ -113,7 +113,7 @@ export default function HeroFullscreen({
             animate={visible}
             transition={heroTrustTransition}
           >
-            {['Classe A4', 'Garanzia 30 Anni', 'Made in Italy', 'Montaggio in 1 Giorno'].map(
+            {['Classe A4', 'Garanzia 50 Anni', 'Made in Italy', 'Montaggio in 1 Giorno'].map(
               (item, i, arr) => (
                 <span key={item} className="flex items-center gap-2 text-white/60 text-sm font-medium">
                   <span>{item}</span>

@@ -42,7 +42,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '25-50 m²' },
       { label: 'Tempi realizzazione', value: '30-45 giorni' },
-      { label: 'Garanzia struttura', value: '30 anni' },
+      { label: 'Garanzia struttura', value: '50 anni' },
     ],
     icon: Tent
   },
@@ -68,7 +68,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '15-40 m²' },
       { label: 'Tempi realizzazione', value: '30-60 giorni' },
-      { label: 'Garanzia struttura', value: '30 anni' },
+      { label: 'Garanzia struttura', value: '50 anni' },
     ],
     icon: Briefcase
   },
@@ -94,7 +94,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '60-250 m²' },
       { label: 'Tempi realizzazione', value: '45-90 giorni' },
-      { label: 'Garanzia struttura', value: '30 anni' },
+      { label: 'Garanzia struttura', value: '50 anni' },
     ],
     icon: Building2
   },
@@ -120,7 +120,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '150-400 m²' },
       { label: 'Tempi realizzazione', value: '90-120 giorni' },
-      { label: 'Garanzia struttura', value: '30 anni' },
+      { label: 'Garanzia struttura', value: '50 anni' },
     ],
     icon: Home
   },

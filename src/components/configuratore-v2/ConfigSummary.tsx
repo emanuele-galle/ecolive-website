@@ -114,7 +114,7 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
             {[
               'Struttura in legno X-Frame',
               'Classe energetica A4',
-              'Garanzia 30 anni',
+              'Garanzia 50 anni',
             ].map((benefit, i) => (
               <div key={i} className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#A0845C]" />

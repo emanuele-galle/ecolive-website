@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  Building2, Phone, ArrowLeft, Palette, Key, Wallet, Zap, Sofa, TrendingUp
+  Building2, Phone, ArrowLeft, Palette, Key, Wallet, Zap, Sofa, TrendingUp,
+  CheckCircle, Package, Home, Sun, Wrench, Sparkles, Shield
 } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
 import JsonLd from '@/components/JsonLd'
@@ -37,7 +38,7 @@ const processSteps = [
   { step: '02', title: 'Progetto', desc: 'Design personalizzato con rendering 3D e scelta materiali' },
   { step: '03', title: 'Produzione', desc: 'Prefabbricazione in stabilimento con controllo qualità certificato' },
   { step: '04', title: 'Montaggio', desc: 'Costruzione rapida in cantiere con minimo impatto ambientale' },
-  { step: '05', title: 'Consegna', desc: 'Casa pronta da vivere, chiavi in mano con garanzia 30 anni' },
+  { step: '05', title: 'Consegna', desc: 'Casa pronta da vivere, chiavi in mano con garanzia 50 anni' },
 ]
 
 const residenzialiMarqueeItems = [
@@ -45,10 +46,41 @@ const residenzialiMarqueeItems = [
   'Classe A4',
   'Personalizzabile',
   'Mutuo Agevolato',
-  'Garanzia 30 Anni',
+  'Garanzia 50 Anni',
   'Comfort Premium',
   'Efficienza Energetica',
   'Bioedilizia Certificata',
+]
+
+const grezzoAvanzatoItems = [
+  { icon: Home, text: 'Infissi PVC 76mm (Libra Horizon SPI), 3 guarnizioni, vetri 48mm, Ug=0.7' },
+  { icon: Shield, text: 'Portone blindato RC3 antieffrazione (UNI-EN 1627)' },
+  { icon: Sun, text: 'Frangisole orientabili motorizzate in alluminio estruso' },
+  { icon: Zap, text: 'VMC puntuale con recupero entalpico' },
+  { icon: Sparkles, text: 'Climatizzatori HVAC multisplit LG dual inverter ionizzatori (A+++)' },
+  { icon: Sun, text: 'Pannelli solari termici 300 lt con accumulo' },
+  { icon: Wrench, text: 'Domotica integrata Alexa / Apple HomeKit' },
+]
+
+const chiaviInManoItems = [
+  'Rasatura e tinteggiatura interni',
+  'Rivestimenti servizi',
+  'Pavimentazione parquet SPC / Gres',
+  'Porte interne',
+  'Finitura esterna acril-silossanica',
+]
+
+const classeA4Options = [
+  {
+    label: 'Piccole / Medie',
+    price: '+\u20AC10.000',
+    specs: '8kW pompa di calore + 6kW fotovoltaico',
+  },
+  {
+    label: 'Medie / Grandi',
+    price: '+\u20AC18.000',
+    specs: '16kW pompa di calore + 12kW fotovoltaico',
+  },
 ]
 
 const residenzialiJsonLd = {
@@ -66,14 +98,14 @@ const residenzialiJsonLd = {
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
     lowPrice: '1100',
-    highPrice: '1800',
+    highPrice: '1680',
     priceValidUntil: '2026-12-31',
     url: 'https://www.ecolive.srl/residenziali',
   },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Superficie', value: '60-250 m\u00B2' },
     { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '45-90 giorni' },
-    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '50 anni' },
   ],
 }
 
@@ -217,7 +249,107 @@ export default function ResidenzialiPage() {
         </div>
       </div>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+
+      {/* COSA INCLUDE - CHIAVI IN MANO */}
+      <section className="py-28 lg:py-36 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal direction="up" className="text-center mb-20">
+            <span className="text-[#A0845C] text-sm font-semibold tracking-widest uppercase">
+              Chiavi in Mano
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1D1D1F] mt-3 mb-4">
+              Cosa Include
+            </h2>
+            <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+              Dalla struttura alle finiture, ogni dettaglio pensato per consegnarti una casa pronta da vivere
+            </p>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Grezzo Avanzato */}
+            <ScrollReveal direction="left" delay={0.1}>
+              <SpotlightCard className="bg-[#F5F5F7] border border-[#EDE6DB] h-full">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-[#A0845C]/10 flex items-center justify-center">
+                      <Package className="w-6 h-6 text-[#A0845C]" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-[#1D1D1F]">Grezzo Avanzato</h3>
+                      <p className="text-[#86868B] text-sm">Dotazioni di serie</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-4">
+                    {grezzoAvanzatoItems.map((item, i) => {
+                      const Icon = item.icon
+                      return (
+                        <ScrollReveal key={i} delay={0.15 + i * 0.05} direction="left">
+                          <li className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/80 transition-colors">
+                            <div className="w-8 h-8 rounded-lg bg-[#A0845C]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <Icon className="w-4 h-4 text-[#A0845C]" />
+                            </div>
+                            <span className="text-[#4A4540] text-sm leading-relaxed">{item.text}</span>
+                          </li>
+                        </ScrollReveal>
+                      )
+                    })}
+                  </ul>
+                </div>
+              </SpotlightCard>
+            </ScrollReveal>
+
+            {/* Chiavi in Mano */}
+            <ScrollReveal direction="right" delay={0.15}>
+              <SpotlightCard className="bg-[#1D1D1F] border border-[#333] h-full">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-[#A0845C]/20 flex items-center justify-center">
+                      <Key className="w-6 h-6 text-[#A0845C]" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white">Chiavi in Mano</h3>
+                      <p className="text-white/50 text-sm">Tutto il Grezzo Avanzato + finiture complete</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-4 mb-8">
+                    {chiaviInManoItems.map((item, i) => (
+                      <ScrollReveal key={i} delay={0.2 + i * 0.05} direction="right">
+                        <li className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors">
+                          <CheckCircle className="w-5 h-5 text-[#A0845C] flex-shrink-0" />
+                          <span className="text-white/80 text-sm">{item}</span>
+                        </li>
+                      </ScrollReveal>
+                    ))}
+                  </ul>
+
+                  {/* Upgrade A4 */}
+                  <div className="border-t border-white/10 pt-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Zap className="w-5 h-5 text-[#A0845C]" />
+                      <h4 className="text-white font-semibold">Opzionale: Classe A4</h4>
+                    </div>
+                    <p className="text-white/50 text-sm mb-4">
+                      Pompa di calore LG Therma V R290 (A+++) + Pannelli fotovoltaici bi-facciali 700W
+                    </p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {classeA4Options.map((opt, i) => (
+                        <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/10">
+                          <div className="text-[#A0845C] font-bold text-lg">{opt.price}</div>
+                          <div className="text-white font-medium text-sm mt-1">{opt.label}</div>
+                          <div className="text-white/40 text-xs mt-1">{opt.specs}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* PROCESSO */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">

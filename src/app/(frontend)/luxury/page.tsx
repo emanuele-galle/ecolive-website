@@ -78,7 +78,7 @@ const luxuryMarqueeItems = [
   'Classe A4',
   'Architettura Dedicata',
   'Materiali Certificati',
-  'Garanzia 30 Anni',
+  'Garanzia 50 Anni',
 ]
 
 const heroOrbLeftAnimate = { y: [0, 30, 0], scale: [1, 1.1, 1] }
@@ -107,14 +107,14 @@ const luxuryJsonLd = {
     '@type': 'AggregateOffer',
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
-    lowPrice: '1800',
+    lowPrice: '1680',
     priceValidUntil: '2026-12-31',
     url: 'https://www.ecolive.srl/luxury',
   },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Superficie', value: '150-400 m\u00B2' },
     { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '90-120 giorni' },
-    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '50 anni' },
   ],
 }
 
@@ -189,7 +189,7 @@ export default function LuxuryPage() {
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#A0845C]" />
-                Garanzia 30 anni
+                Garanzia 50 anni
               </span>
             </div>
           </motion.div>

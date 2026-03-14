@@ -175,7 +175,7 @@ export default function ProcessJourney() {
         {/* Bottom note */}
         <ScrollReveal delay={0.6}>
           <p className="text-center text-[#AEAEB2] text-sm mt-16">
-            Processo certificato ISO 9001 &middot; Garanzia 30 anni &middot; 100% Made in Italy
+            Processo certificato ISO 9001 &middot; Garanzia 50 anni &middot; 100% Made in Italy
           </p>
         </ScrollReveal>
       </div>

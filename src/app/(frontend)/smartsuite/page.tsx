@@ -38,7 +38,7 @@ const processSteps = [
   { step: '02', title: 'Progetto', desc: 'Layout personalizzato con rendering 3D e specifiche tecniche' },
   { step: '03', title: 'Produzione', desc: 'Prefabbricazione in stabilimento con controllo qualità' },
   { step: '04', title: 'Montaggio', desc: 'Installazione rapida con minimo impatto sulle attività' },
-  { step: '05', title: 'Consegna', desc: 'Spazio pronto all\'uso, chiavi in mano con garanzia 30 anni' },
+  { step: '05', title: 'Consegna', desc: 'Spazio pronto all\'uso, chiavi in mano con garanzia 50 anni' },
 ]
 
 const smartsuiteMarqueeItems = [
@@ -73,7 +73,7 @@ const smartsuiteJsonLd = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Superficie', value: '15-40 m\u00B2' },
     { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '30-60 giorni' },
-    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '50 anni' },
   ],
 }
 

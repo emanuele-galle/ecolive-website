@@ -37,7 +37,7 @@ const certifications = [
     value: '100%',
     unit: '',
     tagline: 'Tracciabilità totale',
-    features: ['Legno certificato', 'Filiera controllata', 'Made in Italy', 'Garanzia 30 anni'],
+    features: ['Legno certificato', 'Filiera controllata', 'Made in Italy', 'Garanzia 50 anni'],
   },
   {
     name: 'Classe A4',
@@ -68,7 +68,7 @@ const summaryStats = [
   { value: 30, unit: 'giorni', label: 'Costruzione', suffix: '' },
   { value: 90, unit: '', label: 'Risparmio energia', suffix: '%' },
   { value: null, unit: '', label: 'Resistenza fuoco', displayValue: 'REI 60' },
-  { value: 30, unit: 'anni', label: 'Garanzia struttura', suffix: '' },
+  { value: 50, unit: 'anni', label: 'Garanzia struttura', suffix: '' },
   { value: 25, unit: 'anni', label: 'Esperienza', suffix: '+' },
   { value: null, unit: '', label: 'Classe energetica', displayValue: 'A4' },
 ]
@@ -79,7 +79,7 @@ const marqueeItems = [
   'PEFC Certified',
   'X-Frame System',
   'Made in Italy',
-  '30 Anni Garanzia',
+  '50 Anni Garanzia',
   'Passive House',
   'Casa Clima Gold',
 ]
@@ -108,7 +108,7 @@ export default function AreaTecnicaPage() {
               {[
                 { value: 4, label: 'Certificazioni' },
                 { value: null, label: 'Classe Energia', displayValue: 'A4' },
-                { value: 30, label: 'Anni Garanzia' },
+                { value: 50, label: 'Anni Garanzia' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">

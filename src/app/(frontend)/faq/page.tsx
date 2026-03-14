@@ -124,14 +124,14 @@ const faqsByCategory: Record<string, FAQItem[]> = {
                 <h4 className="font-semibold text-[var(--color-secondary-dark)]">Grezzo Avanzato</h4>
                 <p className="text-sm text-[var(--color-muted)]">Pronto per finiture</p>
               </div>
-              <span className="text-xl font-bold text-[var(--color-primary)]">da &euro;1.200/mq</span>
+              <span className="text-xl font-bold text-[var(--color-primary)]">da &euro;1.250/mq</span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[var(--color-secondary-dark)] rounded-xl gap-2">
               <div>
                 <h4 className="font-semibold text-white">Chiavi in Mano</h4>
                 <p className="text-sm text-white/70">Casa pronta da abitare</p>
               </div>
-              <span className="text-xl font-bold text-[var(--color-primary)]">da &euro;1.800/mq</span>
+              <span className="text-xl font-bold text-[var(--color-primary)]">da &euro;1.680/mq</span>
             </div>
           </div>
           <p className="text-sm text-[var(--color-muted)] italic">
@@ -147,15 +147,23 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           <p className="mb-4 text-[var(--color-muted)]">
             Una delle cose che stupisce di più i nostri clienti è la velocità di realizzazione.
           </p>
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            <div className="text-center p-4 bg-[var(--color-primary)]/10 rounded-xl flex-1 min-w-[120px]">
-              <div className="text-3xl font-bold text-[var(--color-primary)]">5-7</div>
-              <div className="text-sm text-[var(--color-muted)]">giorni montaggio</div>
-            </div>
-            <ArrowRight className="w-6 h-6 text-[#EDE6DB] hidden sm:block" />
-            <div className="text-center p-4 bg-[var(--color-secondary-dark)]/10 rounded-xl flex-1 min-w-[120px]">
-              <div className="text-3xl font-bold text-[var(--color-secondary-dark)]">30</div>
-              <div className="text-sm text-[var(--color-muted)]">giorni chiavi in mano</div>
+          <div className="space-y-3 mb-4">
+            <p className="text-sm font-medium text-[var(--color-secondary-dark)] mb-2">Tempi per una struttura di 100 mq:</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="text-center p-4 bg-[var(--color-primary)]/10 rounded-xl flex-1 min-w-[100px]">
+                <div className="text-3xl font-bold text-[var(--color-primary)]">3</div>
+                <div className="text-sm text-[var(--color-muted)]">giorni grezzo base</div>
+              </div>
+              <ArrowRight className="w-5 h-5 text-[#EDE6DB] hidden sm:block" />
+              <div className="text-center p-4 bg-[var(--color-secondary-dark)]/10 rounded-xl flex-1 min-w-[100px]">
+                <div className="text-3xl font-bold text-[var(--color-secondary-dark)]">7</div>
+                <div className="text-sm text-[var(--color-muted)]">giorni grezzo avanzato</div>
+              </div>
+              <ArrowRight className="w-5 h-5 text-[#EDE6DB] hidden sm:block" />
+              <div className="text-center p-4 bg-[var(--color-secondary-dark)] rounded-xl flex-1 min-w-[100px]">
+                <div className="text-3xl font-bold text-[var(--color-primary)]">30</div>
+                <div className="text-sm text-white/70">giorni chiavi in mano</div>
+              </div>
             </div>
           </div>
           <p className="text-[var(--color-muted)] text-sm">
@@ -193,6 +201,88 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           <p className="text-[var(--color-muted)] text-sm">
             I nostri consulenti ti guideranno nella scelta migliore, con piani da 5 a 30 anni.
           </p>
+        </>
+      )
+    },
+    {
+      question: 'Come funzionano i pagamenti?',
+      answer: (
+        <>
+          <p className="mb-4 text-[var(--color-muted)]">
+            I pagamenti sono suddivisi in tranche legate all&apos;avanzamento dei lavori (SAL),
+            per la massima trasparenza e sicurezza.
+          </p>
+          <div className="space-y-4 mb-4">
+            <div className="p-4 bg-[var(--color-surface)] rounded-xl border-l-4 border-[var(--color-primary)]">
+              <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-3">Grezzo Avanzato</h4>
+              <ul className="space-y-2 text-sm text-[var(--color-muted)]">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>10%</strong> alla sottoscrizione dell&apos;impegno contrattuale</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>30%</strong> sessanta giorni prima della data inizio lavori</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>30%</strong> al completamento del grezzo di base (Primo SAL)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>30%</strong> al grezzo avanzato (Secondo SAL), di cui 50% in acconto e saldo a fine lavori</span>
+                </li>
+              </ul>
+            </div>
+            <div className="p-4 bg-[var(--color-secondary-dark)] rounded-xl">
+              <h4 className="font-semibold text-white mb-3">Chiavi in Mano</h4>
+              <ul className="space-y-2 text-sm text-white/80">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>30%</strong> al completamento canalizzazione impianti e massetti</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>40%</strong> alla posa degli infissi</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>20%</strong> alla posa pavimentazione, rasatura, porte interne (Terzo SAL)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[var(--color-primary)] mt-0.5 flex-shrink-0" />
+                  <span><strong>10%</strong> al verbale di consegna dell&apos;immobile</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      )
+    },
+    {
+      question: 'Ci sono incentivi o sconti disponibili?',
+      answer: (
+        <>
+          <p className="mb-4 text-[var(--color-muted)]">
+            S&igrave;, offriamo un incentivo speciale per chi sceglie la formula &ldquo;casa campione&rdquo;.
+          </p>
+          <div className="p-4 bg-[var(--color-primary)]/10 rounded-xl border-l-4 border-[var(--color-primary)] mb-4">
+            <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-2">Incentivo Casa Campione / Esposizione</h4>
+            <p className="text-sm text-[var(--color-muted)]">
+              <strong className="text-[var(--color-secondary-dark)]">Sconto del 5%</strong> per chi accetta di rendere
+              la propria casa visitabile come &ldquo;casa campione&rdquo; in una zona determinata,
+              per un periodo di 2 anni. Un&apos;occasione unica per risparmiare contribuendo
+              a far conoscere la qualit&agrave; delle nostre costruzioni.
+            </p>
+          </div>
+          <div className="p-4 bg-[var(--color-surface)] rounded-xl">
+            <h4 className="font-semibold text-[var(--color-secondary-dark)] mb-2">Nota per Centro e Nord Italia</h4>
+            <p className="text-sm text-[var(--color-muted)]">
+              Per le costruzioni nel Centro e Nord Italia &egrave; prevista una maggiorazione del
+              3-5% sui prezzi indicati, dovuta ai costi di trasporto dalla nostra sede
+              produttiva in Calabria.
+            </p>
+          </div>
         </>
       )
     },
@@ -278,7 +368,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           <div className="flex items-center gap-4 p-4 bg-[var(--color-secondary-dark)]/5 rounded-xl">
             <Award className="w-8 h-8 text-[var(--color-primary)]" />
             <div>
-              <p className="font-semibold text-[var(--color-secondary-dark)]">Garanzia 30 anni</p>
+              <p className="font-semibold text-[var(--color-secondary-dark)]">Garanzia 50 anni</p>
               <p className="text-sm text-[var(--color-muted)]">Sulla struttura portante</p>
             </div>
           </div>
@@ -439,7 +529,7 @@ const faqJsonLdData = {
       name: 'Quanto costa una casa Ecolive?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Offriamo diverse soluzioni: Grezzo Base (struttura completa) da 1.100 euro/mq, Grezzo Avanzato (pronto per finiture) da 1.200 euro/mq, Chiavi in Mano (casa pronta da abitare) da 1.800 euro/mq. Preventivo dettagliato e bloccato, nessuna sorpresa. Prezzo garantito fino alla consegna.',
+        text: 'Offriamo diverse soluzioni: Grezzo Base (struttura completa) da 1.100 euro/mq, Grezzo Avanzato (pronto per finiture) da 1.250 euro/mq, Chiavi in Mano (casa pronta da abitare) da 1.680 euro/mq. Preventivo dettagliato e bloccato, nessuna sorpresa. Prezzo garantito fino alla consegna.',
       },
     },
     {
@@ -447,7 +537,7 @@ const faqJsonLdData = {
       name: 'Quanto tempo ci vuole per costruire una casa?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Una delle cose che stupisce di più i nostri clienti è la velocità di realizzazione: 5-7 giorni per il montaggio, 30 giorni per chiavi in mano. Questi tempi non includono la preparazione del terreno, le fondazioni e gli allacci alle utenze.',
+        text: 'Una delle cose che stupisce di più i nostri clienti è la velocità di realizzazione. Per una struttura di 100 mq: 3 giorni per il grezzo di base, 7 giorni per il grezzo avanzato, 30 giorni per chiavi in mano. Questi tempi non includono la preparazione del terreno, le fondazioni e gli allacci alle utenze.',
       },
     },
     {
@@ -456,6 +546,22 @@ const faqJsonLdData = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Le banche finanziano le case in legno esattamente come quelle tradizionali. Opzioni disponibili: mutuo ipotecario, finanziamenti convenzionati con istituti partner, contributi regionali per efficienza energetica, Conto Termico con contributi statali per rinnovabili. I nostri consulenti ti guideranno nella scelta migliore, con piani da 5 a 30 anni.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Come funzionano i pagamenti?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'I pagamenti sono suddivisi in tranche legate all\'avanzamento dei lavori (SAL). Grezzo Avanzato: 10% alla sottoscrizione, 30% sessanta giorni prima dell\'inizio lavori, 30% al grezzo di base (Primo SAL), 30% al grezzo avanzato (Secondo SAL) di cui 50% in acconto e saldo a fine lavori. Chiavi in Mano: 30% al completamento canalizzazione impianti e massetti, 40% alla posa degli infissi, 20% alla posa pavimentazione, rasatura e porte interne (Terzo SAL), 10% al verbale di consegna dell\'immobile.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ci sono incentivi o sconti disponibili?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sì, offriamo un incentivo Casa Campione / Esposizione: sconto del 5% per chi accetta di rendere la propria casa visitabile come casa campione in una zona determinata, per un periodo di 2 anni. Nota: per le costruzioni nel Centro e Nord Italia è prevista una maggiorazione del 3-5% sui prezzi indicati, dovuta ai costi di trasporto dalla sede produttiva in Calabria.',
       },
     },
     {
@@ -479,7 +585,7 @@ const faqJsonLdData = {
       name: 'Come viene garantita la qualità?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La qualità è al centro di tutto quello che facciamo. Il processo prevede: 1) Produzione in stabilimento con componenti realizzati con precisione millimetrica, 2) Materiali certificati da legno da foreste gestite responsabilmente, 3) Collaudo finale con test e verifiche prima della consegna. Garanzia 30 anni sulla struttura portante.',
+        text: 'La qualità è al centro di tutto quello che facciamo. Il processo prevede: 1) Produzione in stabilimento con componenti realizzati con precisione millimetrica, 2) Materiali certificati da legno da foreste gestite responsabilmente, 3) Collaudo finale con test e verifiche prima della consegna. Garanzia 50 anni sulla struttura portante.',
       },
     },
     {

@@ -70,7 +70,7 @@ const benefitsList = [
   'Consulenza gratuita e senza impegno',
   'Preventivo personalizzato in 48h',
   'Team dedicato per ogni progetto',
-  'Garanzia 30 anni sulla struttura',
+  'Garanzia 50 anni sulla struttura',
 ]
 
 export default function ContactPageClient({ onSubmit }: ContactPageClientProps) {

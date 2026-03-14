@@ -15,7 +15,7 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   name: 'Ecolive S.r.l.',
-  description: 'Case prefabbricate in legno con sistema costruttivo X-Frame. Bioedilizia certificata, Classe A4, garanzia 30 anni. Dal 1999 in Calabria.',
+  description: 'Case prefabbricate in legno con sistema costruttivo X-Frame. Bioedilizia certificata, Classe A4, garanzia 50 anni. Dal 1999 in Calabria.',
   url: 'https://www.ecolive.srl',
   logo: 'https://www.ecolive.srl/images/logo-ecolive.png',
   image: 'https://www.ecolive.srl/images/logo-ecolive.png',

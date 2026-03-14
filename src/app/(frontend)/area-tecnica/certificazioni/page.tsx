@@ -7,7 +7,7 @@ import Image from 'next/image'
 import {
   CheckCircle, Shield, FileText, Download, ExternalLink, ArrowLeft,
   Scale, Zap, Flame, Volume2, BadgeCheck, Building2, Home, Leaf,
-  Phone, Mail
+  Phone, Mail, Award, Globe
 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import BlurText from '@/components/ui/BlurText'
@@ -99,6 +99,46 @@ const certifications = [
     accentColorStyle: { color: '#C9A86C' } as const,
     accentBgStyle: { backgroundColor: '#C9A86C15' } as const,
   },
+  {
+    id: 'leed',
+    name: 'LEED for Homes',
+    logo: null,
+    mainStat: 'Platinum',
+    statLabel: 'Livello certificazione',
+    description: 'Il sistema di certificazione internazionale per la sostenibilit\u00E0 degli edifici residenziali, sviluppato dal U.S. Green Building Council.',
+    details: [
+      'Efficienza energetica certificata',
+      'Qualit\u00E0 ambientale interna',
+      'Materiali sostenibili e riciclabili',
+      'Gestione idrica avanzata',
+      'Innovazione nel design',
+    ],
+    link: 'https://www.usgbc.org/leed',
+    accent: '#4CAF50',
+    icon: Award,
+    accentColorStyle: { color: '#4CAF50' } as const,
+    accentBgStyle: { backgroundColor: '#4CAF5015' } as const,
+  },
+  {
+    id: 'phius',
+    name: 'PHIUS',
+    logo: null,
+    mainStat: 'Passive',
+    statLabel: 'Building Standard',
+    description: 'Standard americano per edifici passivi ad altissima efficienza energetica, basato sui principi del Passive House Institute tedesco.',
+    details: [
+      'Performance-based certification',
+      'Comfort metrics garantiti',
+      'Cost-effective energy targets',
+      'Tenuta all\'aria superiore',
+      'Recupero energetico avanzato',
+    ],
+    link: 'https://www.phius.org/',
+    accent: '#1565C0',
+    icon: Globe,
+    accentColorStyle: { color: '#1565C0' } as const,
+    accentBgStyle: { backgroundColor: '#1565C015' } as const,
+  },
 ]
 
 const seismicFeatures = [
@@ -186,6 +226,8 @@ const marqueeItems = [
   'Casa Clima Gold',
   'ARCA',
   'Classe A4 NZEB',
+  'LEED for Homes',
+  'PHIUS Certified',
   'Zona Sismica 1',
   'REI 60',
   'NTC 2018',
@@ -201,7 +243,7 @@ const heroStatWhiteStyle = { color: 'white' }
 const heroStatAccentStyle = { color: '#A0845C' }
 
 const heroStats = [
-  { value: 4, label: 'Certificazioni', numValue: true, style: heroStatWhiteStyle },
+  { value: 6, label: 'Certificazioni', numValue: true, style: heroStatWhiteStyle },
   { value: 15, label: 'kWh/m\u00b2/anno', numValue: true, style: heroStatAccentStyle },
   { value: 1, label: 'Zona Sismica', numValue: true, style: heroStatWhiteStyle },
   { value: null, label: 'Classe NZEB', numValue: false, display: 'A4', style: heroStatWhiteStyle },
@@ -333,7 +375,7 @@ export default function CertificazioniPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             {certifications.map((cert, i) => {
               const Icon = cert.icon
               return (

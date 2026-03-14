@@ -16,7 +16,7 @@ import SectionTransition from '@/components/ui/SectionTransition'
 const heroStats = [
   { value: 29, label: 'Spessore parete', suffix: ' cm', display: null },
   { value: null, label: 'Classe energetica', suffix: '', display: 'A4' },
-  { value: 30, label: 'Garanzia struttura', suffix: ' anni', display: null },
+  { value: 50, label: 'Garanzia struttura', suffix: ' anni', display: null },
 ]
 
 const threePillars = [
@@ -50,28 +50,47 @@ const threePillars = [
 ]
 
 const wallLayers = [
-  { name: 'Intonaco esterno', thickness: '1.5 cm', color: '#A0937D' },
-  { name: 'Pannello in fibra di legno', thickness: '6 cm', color: '#8B7355' },
-  { name: 'OSB strutturale', thickness: '1.5 cm', color: '#C4A47B' },
-  { name: 'Montanti in abete + isolante', thickness: '12 cm', color: '#D4B896' },
-  { name: 'Freno vapore igrovariabile', thickness: '0.2 cm', color: '#B8C4D0' },
-  { name: 'Intercapedine impianti + isolante', thickness: '5 cm', color: '#E8D5B7' },
-  { name: 'Lastra in cartongesso', thickness: '2.5 cm', color: '#F0E8DC' },
+  { letter: 'A', name: 'Struttura portante lamellare (16x32)', color: '#8B7355' },
+  { letter: 'B', name: 'Telaio strutturale bilam 6x24 \u2013 6x16', color: '#A0937D' },
+  { letter: 'C', name: 'Lamellare 3 strati \u03BCXlam', color: '#C4A47B' },
+  { letter: 'D', name: 'Lana minerale doppia densit\u00E0', color: '#D4B896' },
+  { letter: 'E', name: '\u03BCSughero (alta densit\u00E0)', color: '#B8956E' },
+  { letter: 'F', name: 'Telo freno vapore / traspirante diffusore', color: '#B8C4D0' },
+  { letter: 'H', name: 'Pannelli tecno-gesso HD s=25 mm', color: '#F0E8DC' },
+  { letter: 'I', name: 'Pannelli OSB3', color: '#C4A47B' },
+  { letter: 'L', name: '4\u00B0 lato in Purenit HD', color: '#9B8B7A' },
+  { letter: 'M', name: 'Intercapedine d\'aria per canalizzazioni', color: '#E8D5B7' },
+  { letter: 'N', name: 'Portapilastri zincati e barre filettate f16', color: '#A8A8A8' },
+  { letter: 'O', name: 'Rasante mapetherm + acril silossanico', color: '#D4C8B0' },
+  { letter: 'P', name: 'Cordolo perimetrale in C.A. armato', color: '#888888' },
+  { letter: 'Q', name: 'Manto finale di copertura', color: '#6B5B4E' },
 ]
+
+const wallSpecs = {
+  spessore: '29 cm',
+  trasmittanza: '0.159 W/m\u00B2K',
+  sfasamento: '16.8 ore',
+}
+
+const roofSpecs = {
+  spessore: '40 cm',
+  trasmittanza: '0.137 W/m\u00B2K',
+  sfasamento: '14.5 ore',
+}
 
 const technicalSpecs = [
   {
-    value: 0.169,
-    unit: 'W/m\u00b2K',
+    value: 0.159,
+    unit: 'W/m\u00B2K',
     label: 'Trasmittanza parete',
-    context: 'Il limite di legge e 0.26: superiamo lo standard del 35%',
+    context: 'Il limite di legge \u00E8 0.26: superiamo lo standard del 39%',
     isDecimal: true,
   },
   {
-    value: 10.8,
+    value: 16.8,
     unit: 'ore',
     label: 'Sfasamento termico',
-    context: 'Il calore estivo impiega quasi 11 ore per attraversare la parete',
+    context: 'Il calore estivo impiega quasi 17 ore per attraversare la parete',
     isDecimal: true,
   },
   {
@@ -85,7 +104,7 @@ const technicalSpecs = [
     value: null,
     unit: '',
     label: 'Resistenza sismica',
-    context: 'Certificata per le zone a massima sismicita del territorio italiano',
+    context: 'Certificata per le zone a massima sismicit\u00E0 del territorio italiano',
     displayValue: 'Zona 1',
     isDecimal: false,
   },
@@ -118,7 +137,7 @@ const comparison = [
   },
   {
     feature: 'Garanzia struttura',
-    xframe: '30 anni',
+    xframe: '50 anni',
     traditional: '10 anni',
     xlam: '20 anni',
   },
@@ -169,7 +188,7 @@ const marqueeItems = [
   'Antisismica Zona 1',
   '29 cm di Parete',
   'Zero Ponti Termici',
-  '30 Anni Garanzia',
+  '50 Anni Garanzia',
   'Made in Italy',
   'PEFC Certified',
 ]
@@ -299,15 +318,59 @@ export default function SistemaXFramePage() {
           <ScrollReveal>
             <div className="text-center mb-20">
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
-                Stratigrafia della <span className="text-[var(--color-primary)]">Parete</span>
+                Stratigrafia del <span className="text-[var(--color-primary)]">Sistema</span>
               </h2>
               <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
-                7 strati ingegnerizzati per 29 cm di parete ad altissime prestazioni
+                14 componenti ingegnerizzati per prestazioni ai massimi livelli
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Wall & Roof specs comparison */}
+          <ScrollReveal delay={0.1}>
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              <SpotlightCard className="bg-[var(--color-surface)] border border-[#EDE6DB]">
+                <div className="p-8 text-center">
+                  <h3 className="text-xl font-bold text-[var(--color-secondary-dark)] mb-6">Parete</h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{wallSpecs.spessore}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">Spessore</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{wallSpecs.trasmittanza.replace(' W/m\u00B2K', '')}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">W/m&sup2;K</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{wallSpecs.sfasamento}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">Sfasamento</div>
+                    </div>
+                  </div>
+                </div>
+              </SpotlightCard>
+              <SpotlightCard className="bg-[var(--color-surface)] border border-[#EDE6DB]">
+                <div className="p-8 text-center">
+                  <h3 className="text-xl font-bold text-[var(--color-secondary-dark)] mb-6">Copertura</h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{roofSpecs.spessore}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">Spessore</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{roofSpecs.trasmittanza.replace(' W/m\u00B2K', '')}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">W/m&sup2;K</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--color-primary)]">{roofSpecs.sfasamento}</div>
+                      <div className="text-[var(--color-muted)] text-xs mt-1">Sfasamento</div>
+                    </div>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Image */}
             <ScrollReveal direction="left">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-premium-lg">
@@ -324,28 +387,29 @@ export default function SistemaXFramePage() {
             {/* Layers list */}
             <div className="space-y-0">
               {wallLayers.map((layer, i) => (
-                <ScrollReveal key={layer.name} delay={i * 0.06} direction="right">
-                  <div className="flex items-center gap-4 py-4 border-b border-[var(--color-secondary-dark)]/10 last:border-b-0">
+                <ScrollReveal key={layer.letter} delay={i * 0.04} direction="right">
+                  <div className="flex items-center gap-4 py-3 border-b border-[var(--color-secondary-dark)]/10 last:border-b-0">
                     <div
-                      className="w-4 h-4 rounded-full flex-shrink-0 shadow-sm"
+                      className="w-8 h-8 rounded-lg flex-shrink-0 shadow-sm flex items-center justify-center text-white text-xs font-bold"
                       style={{ backgroundColor: layer.color }}
-                    />
-                    <div className="flex-1">
-                      <span className="text-[var(--color-secondary-dark)] font-medium">{layer.name}</span>
+                    >
+                      {layer.letter}
                     </div>
-                    <span className="text-[var(--color-primary)] font-semibold tabular-nums">{layer.thickness}</span>
+                    <div className="flex-1">
+                      <span className="text-[var(--color-secondary-dark)] font-medium text-sm">{layer.name}</span>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
 
-              {/* Total */}
-              <ScrollReveal delay={0.5} direction="right">
+              {/* Summary */}
+              <ScrollReveal delay={0.6} direction="right">
                 <div className="flex items-center gap-4 pt-6 mt-2 border-t-2 border-[var(--color-secondary-dark)]">
-                  <div className="w-4 h-4 flex-shrink-0" />
+                  <div className="w-8 h-8 flex-shrink-0" />
                   <div className="flex-1">
-                    <span className="text-[var(--color-secondary-dark)] font-bold text-lg">Spessore totale</span>
+                    <span className="text-[var(--color-secondary-dark)] font-bold text-lg">Spessore parete totale</span>
                   </div>
-                  <span className="text-[var(--color-primary)] font-bold text-xl">28.7 cm</span>
+                  <span className="text-[var(--color-primary)] font-bold text-xl">{wallSpecs.spessore}</span>
                 </div>
               </ScrollReveal>
             </div>

@@ -82,7 +82,7 @@ const glampingJsonLd = {
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Superficie', value: '25-50 m\u00B2' },
     { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '30-45 giorni' },
-    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '50 anni' },
   ],
 }
 

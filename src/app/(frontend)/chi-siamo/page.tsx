@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Leaf, Hammer, Lightbulb, Handshake, ArrowRight, MapPin, Phone } from 'lucide-react'
+import { Leaf, Hammer, Lightbulb, Handshake, ArrowRight, MapPin, Phone, User } from 'lucide-react'
 import BlurText from '@/components/ui/BlurText'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -13,22 +13,32 @@ import SectionTransition from '@/components/ui/SectionTransition'
 
 const teamMembers = [
   {
-    name: 'Dominik Galle',
-    role: 'Founder & CEO',
+    name: 'Dominik Gallè',
+    role: 'Amministratore',
+    phone: '366.2037106',
     image: '/api/media/file/dominik-galle.jpeg',
     bio: 'Visionario della bioedilizia calabrese, guida Ecolive dal 1999 con passione per l\'innovazione sostenibile.',
   },
   {
-    name: 'Pasquale Zaffino',
+    name: 'Arch. Pasquale Zaffino',
     role: 'Direttore Tecnico',
+    phone: '340.9013774',
     image: '/api/media/file/pasquale-zaffino.jpg',
-    bio: 'Ingegnere strutturista specializzato in costruzioni in legno e sistemi antisismici avanzati.',
+    bio: 'Architetto specializzato in costruzioni in legno e sistemi antisismici avanzati.',
   },
   {
-    name: 'Luisa Baffa Trasci',
-    role: 'Direttore Commerciale',
+    name: 'Ing. Luisa Baffa',
+    role: 'Resp. Commerciale',
+    phone: '328.7107639',
     image: '/api/media/file/luisa-baffa-trasci.jpg',
     bio: 'Accompagna ogni cliente dalla prima idea alla consegna delle chiavi, con cura e trasparenza.',
+  },
+  {
+    name: 'Dott.ssa Sara Santaguida',
+    role: 'Area Legale / Affiliazioni',
+    phone: '338.7774250',
+    image: null,
+    bio: 'Gestisce gli aspetti legali e le affiliazioni aziendali, garantendo conformità e sviluppo strategico.',
   },
 ]
 
@@ -49,7 +59,7 @@ const values = [
   {
     icon: Hammer,
     title: 'Qualità Artigianale',
-    description: 'Ogni casa è costruita con cura sartoriale. Garanzia 30 anni sulla struttura portante.',
+    description: 'Ogni casa è costruita con cura sartoriale. Garanzia 50 anni sulla struttura portante.',
   },
   {
     icon: Lightbulb,
@@ -208,7 +218,7 @@ export default function ChiSiamoPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((member, i) => (
               <ScrollReveal
                 key={member.name}
@@ -217,17 +227,31 @@ export default function ChiSiamoPage() {
               >
                 <div className="group">
                   <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F5F7] shadow-premium">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#A0845C]/10 to-[#A0845C]/5">
+                        <div className="w-24 h-24 rounded-full bg-[#A0845C]/15 flex items-center justify-center">
+                          <User className="w-12 h-12 text-[#A0845C]/60" />
+                        </div>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/60 via-transparent to-transparent" />
                   </div>
                   <div className="mt-5">
                     <h3 className="text-xl font-bold text-[#1D1D1F]">{member.name}</h3>
                     <p className="text-[#A0845C] font-medium text-sm mt-0.5">{member.role}</p>
+                    {member.phone && (
+                      <a href={`tel:+39${member.phone.replace(/\./g, '')}`} className="text-[#86868B] text-sm mt-1 block hover:text-[#A0845C] transition-colors">
+                        <Phone className="w-3.5 h-3.5 inline mr-1" />
+                        {member.phone}
+                      </a>
+                    )}
                     <p className="text-[#86868B] text-sm mt-2 leading-relaxed">{member.bio}</p>
                   </div>
                 </div>
