@@ -1,9 +1,16 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
+
+const fadeInAnimation = { opacity: 1 }
+const fadeOutAnimation = { opacity: 0 }
+const fadeTransition = { duration: 0.25 }
+const lightboxImageInitial = { scale: 0.9, opacity: 0 }
+const lightboxImageAnimate = { scale: 1, opacity: 1 }
+const lightboxImageExit = { scale: 0.9, opacity: 0 }
 
 interface LightboxImage {
   src: string
@@ -31,6 +38,10 @@ export default function ImageLightbox({
   const next = useCallback(() => {
     setActiveIndex((i) => (i !== null ? (i + 1) % images.length : null))
   }, [images.length])
+
+  const handlePrevClick = useCallback((e: React.MouseEvent) => { e.stopPropagation(); prev() }, [prev])
+  const handleNextClick = useCallback((e: React.MouseEvent) => { e.stopPropagation(); next() }, [next])
+  const stopPropagation = useCallback((e: React.MouseEvent) => e.stopPropagation(), [])
 
   useEffect(() => {
     if (activeIndex === null) return
@@ -85,10 +96,10 @@ export default function ImageLightbox({
         {activeIndex !== null && (
           <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={fadeOutAnimation}
+            animate={fadeInAnimation}
+            exit={fadeOutAnimation}
+            transition={fadeTransition}
             onClick={close}
           >
             {/* Close button */}
@@ -103,7 +114,7 @@ export default function ImageLightbox({
             {/* Navigation - prev */}
             {images.length > 1 && (
               <button
-                onClick={(e) => { e.stopPropagation(); prev() }}
+                onClick={handlePrevClick}
                 className="absolute left-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Precedente"
               >
@@ -115,11 +126,11 @@ export default function ImageLightbox({
             <motion.div
               key={activeIndex}
               className="relative max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
+              initial={lightboxImageInitial}
+              animate={lightboxImageAnimate}
+              exit={lightboxImageExit}
+              transition={fadeTransition}
+              onClick={stopPropagation}
             >
               <Image
                 src={images[activeIndex].src}
@@ -134,7 +145,7 @@ export default function ImageLightbox({
             {/* Navigation - next */}
             {images.length > 1 && (
               <button
-                onClick={(e) => { e.stopPropagation(); next() }}
+                onClick={handleNextClick}
                 className="absolute right-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Successiva"
               >

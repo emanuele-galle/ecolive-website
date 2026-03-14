@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import {
-  Award, Shield, Home, Leaf, Zap, ArrowRight,
-  Clock, Thermometer, Timer, Volume2,
-  Phone, Mail, Building2
+  Shield, Home, Leaf, Zap, ArrowRight,
+  Thermometer, Timer, Volume2,
+  Phone, Mail,
 } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import BlurText from '@/components/ui/BlurText'
@@ -12,7 +12,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import CountUp from '@/components/ui/CountUp'
 import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
-import SectionTransition, { transitionPresets } from '@/components/ui/SectionTransition'
+import SectionTransition from '@/components/ui/SectionTransition'
 
 const certifications = [
   {
@@ -197,7 +197,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ===== PRESTAZIONI ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -248,7 +248,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ===== CONFRONTO ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -292,7 +292,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* ===== NUMERI IN SINTESI ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-surface)]">
@@ -329,7 +329,7 @@ export default function AreaTecnicaPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">

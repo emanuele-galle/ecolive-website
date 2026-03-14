@@ -291,7 +291,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ========== 3. STRATIGRAFIA ========== */}
       <section className="py-28 lg:py-36 bg-white">
@@ -353,7 +353,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ========== 4. PRESTAZIONI TECNICHE ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">
@@ -393,7 +393,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* ========== 5. CONFRONTO ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-surface)]">
@@ -446,7 +446,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ========== 6. RENDER SHOWCASE ========== */}
       <section className="py-28 lg:py-36 bg-white">
@@ -491,7 +491,7 @@ export default function SistemaXFramePage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ========== 7. CTA ========== */}
       <section className="py-28 lg:py-36 bg-[var(--color-secondary-dark)]">

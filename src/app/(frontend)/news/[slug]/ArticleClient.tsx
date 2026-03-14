@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
@@ -18,13 +18,39 @@ import {
   ChevronUp,
   MessageCircle
 } from 'lucide-react'
-import type { News, Media } from '@/payload-types'
-import { calculateReadingTime, extractHeadings, type ExtractedHeading } from '@/lib/reading-time'
+import type { News } from '@/payload-types'
+import { calculateReadingTime, extractHeadings } from '@/lib/reading-time'
 import { NewsCardPremium } from '@/components/NewsCardPremium'
+
+const smoothScrollOptions = { behavior: 'smooth' as const, block: 'start' as const }
+const scrollToTopOptions = { top: 0, behavior: 'smooth' as const }
 
 interface ArticleClientProps {
   article: News
   relatedArticles: News[]
+}
+
+function TOCLink({ heading }: { heading: { id: string; text: string; level: number } }) {
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    const element = document.getElementById(heading.id)
+    if (element) {
+      element.scrollIntoView(smoothScrollOptions)
+    }
+  }, [heading.id])
+
+  return (
+    <a
+      href={`#${heading.id}`}
+      className={`
+        block text-sm transition-colors hover:text-[#A0845C]
+        ${heading.level === 3 ? 'pl-4 text-gray-500' : 'text-gray-700 font-medium'}
+      `}
+      onClick={handleClick}
+    >
+      {heading.text}
+    </a>
+  )
 }
 
 const tagLabels: Record<string, string> = {
@@ -45,7 +71,6 @@ function formatDateItalian(dateString: string): string {
   })
 }
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -57,18 +82,27 @@ const containerVariants = {
   }
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring' as const,
-      stiffness: 100,
-      damping: 15
-    }
-  }
-}
+const fadeInLeft = { opacity: 0, x: -20 }
+const fadeInLeftVisible = { opacity: 1, x: 0 }
+const transitionDelay02 = { delay: 0.2 }
+const transitionDelay03 = { delay: 0.3 }
+const transitionDelay04 = { delay: 0.4 }
+const transitionDelay05 = { delay: 0.5 }
+const fadeInUp20 = { opacity: 0, y: 20 }
+const fadeInUp30 = { opacity: 0, y: 30 }
+const fadeInUpVisible = { opacity: 1, y: 0 }
+const fadeInInitial = { opacity: 0 }
+const fadeInVisible = { opacity: 1 }
+const fadeInRight = { opacity: 0, x: 20 }
+const fadeInRightVisible = { opacity: 1, x: 0 }
+const backToTopInitial = { opacity: 0, scale: 0.8 }
+const backToTopVisible = { opacity: 1, scale: 1 }
+const hoverScale = { scale: 1.1 }
+const tapScale = { scale: 0.9 }
+const emptyAnimation = {}
+const useInViewOptions = { once: false, margin: "-100px" } as const
+const heroScrollOffset: ["start start", "end start"] = ["start start", "end start"]
+const articleScrollOffset: ["start start", "end end"] = ["start start", "end end"]
 
 export default function ArticleClient({ article, relatedArticles }: ArticleClientProps) {
   const [copied, setCopied] = useState(false)
@@ -78,12 +112,12 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   const articleRef = useRef<HTMLElement>(null)
   const relatedRef = useRef<HTMLDivElement>(null)
 
-  const relatedInView = useInView(relatedRef, { once: false, margin: "-100px" })
+  const relatedInView = useInView(relatedRef, useInViewOptions)
 
   // Parallax for hero
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: heroScrollOffset
   })
   const heroY = useTransform(heroScrollProgress, [0, 1], [0, 150])
   const heroOpacity = useTransform(heroScrollProgress, [0, 0.5], [1, 0.3])
@@ -91,7 +125,7 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   // Progress bar for article reading
   const { scrollYProgress } = useScroll({
     target: articleRef,
-    offset: ["start start", "end end"]
+    offset: articleScrollOffset
   })
 
   // Show back to top button
@@ -109,23 +143,23 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
   const articleUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   // Share handlers
-  const shareOnFacebook = () => {
+  const shareOnFacebook = useCallback(() => {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`, '_blank')
-  }
+  }, [articleUrl])
 
-  const shareOnTwitter = () => {
+  const shareOnTwitter = useCallback(() => {
     window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(article.title)}`, '_blank')
-  }
+  }, [articleUrl, article.title])
 
-  const shareOnLinkedIn = () => {
+  const shareOnLinkedIn = useCallback(() => {
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`, '_blank')
-  }
+  }, [articleUrl])
 
-  const shareOnWhatsApp = () => {
+  const shareOnWhatsApp = useCallback(() => {
     window.open(`https://wa.me/?text=${encodeURIComponent(article.title + ' ' + articleUrl)}`, '_blank')
-  }
+  }, [articleUrl, article.title])
 
-  const copyLink = async () => {
+  const copyLink = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(articleUrl)
       setCopied(true)
@@ -133,11 +167,11 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
     } catch (err) {
       console.error('Failed to copy:', err)
     }
-  }
+  }, [articleUrl])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const scrollToTop = useCallback(() => {
+    window.scrollTo(scrollToTopOptions)
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#FFFFFF]">
@@ -175,9 +209,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
             <div className="max-w-4xl mx-auto">
               {/* Back link */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
+                initial={fadeInLeft}
+                animate={fadeInLeftVisible}
+                transition={transitionDelay02}
               >
                 <Link
                   href="/news"
@@ -192,9 +226,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
               {article.tags && article.tags.length > 0 && (
                 <motion.div
                   className="flex flex-wrap gap-2 mb-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  initial={fadeInUp20}
+                  animate={fadeInUpVisible}
+                  transition={transitionDelay03}
                 >
                   {article.tags.map((tag) => (
                     <span
@@ -210,9 +244,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
               {/* Title */}
               <motion.h1
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                initial={fadeInUp30}
+                animate={fadeInUpVisible}
+                transition={transitionDelay04}
               >
                 {article.title}
               </motion.h1>
@@ -220,9 +254,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
               {/* Meta */}
               <motion.div
                 className="flex flex-wrap items-center gap-4 text-white/70"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                initial={fadeInUp20}
+                animate={fadeInUpVisible}
+                transition={transitionDelay05}
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
@@ -249,9 +283,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
             {article.excerpt && (
               <motion.div
                 className="text-xl text-gray-700 mb-8 pb-8 border-b border-gray-200 leading-relaxed font-medium"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                initial={fadeInUp20}
+                animate={fadeInUpVisible}
+                transition={transitionDelay02}
               >
                 {article.excerpt}
               </motion.div>
@@ -260,9 +294,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
             {/* Rich Text Content */}
             <motion.div
               className="prose prose-lg max-w-none prose-headings:text-[#1D1D1F] prose-a:text-[#A0845C] prose-strong:text-[#2C2825]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
+              initial={fadeInInitial}
+              animate={fadeInVisible}
+              transition={transitionDelay03}
             >
               <RichText data={article.content} />
             </motion.div>
@@ -270,9 +304,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
             {/* Share Section */}
             <motion.div
               className="mt-12 pt-8 border-t border-gray-200"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={fadeInUp20}
+              animate={fadeInUpVisible}
+              transition={transitionDelay04}
             >
               <div className="flex items-center gap-3 mb-4">
                 <Share2 className="w-5 h-5 text-gray-500" />
@@ -324,9 +358,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
             {/* Author Bio Premium */}
             <motion.div
               className="mt-12 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] rounded-2xl p-6 md:p-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              initial={fadeInUp20}
+              animate={fadeInUpVisible}
+              transition={transitionDelay05}
             >
               <div className="flex items-start gap-4">
                 <div className="w-16 h-16 bg-[#A0845C] rounded-full flex items-center justify-center flex-shrink-0 ring-4 ring-[#A0845C]/30">
@@ -364,32 +398,16 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
               {headings.length > 0 && (
                 <motion.div
                   className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
+                  initial={fadeInRight}
+                  animate={fadeInRightVisible}
+                  transition={transitionDelay03}
                 >
                   <h4 className="font-bold text-[#1D1D1F] mb-4 text-sm uppercase tracking-wider">
                     In questo articolo
                   </h4>
                   <nav className="space-y-2">
                     {headings.map((heading, index) => (
-                      <a
-                        key={index}
-                        href={`#${heading.id}`}
-                        className={`
-                          block text-sm transition-colors hover:text-[#A0845C]
-                          ${heading.level === 3 ? 'pl-4 text-gray-500' : 'text-gray-700 font-medium'}
-                        `}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          const element = document.getElementById(heading.id)
-                          if (element) {
-                            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                          }
-                        }}
-                      >
-                        {heading.text}
-                      </a>
+                      <TOCLink key={index} heading={heading} />
                     ))}
                   </nav>
                 </motion.div>
@@ -398,9 +416,9 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
               {/* Quick share */}
               <motion.div
                 className="mt-6 bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
+                initial={fadeInRight}
+                animate={fadeInRightVisible}
+                transition={transitionDelay04}
               >
                 <h4 className="font-bold text-[#1D1D1F] mb-4 text-sm uppercase tracking-wider">
                   Condividi
@@ -445,8 +463,8 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
           <div className="max-w-6xl mx-auto px-4">
             <motion.h2
               className="text-3xl font-bold text-[#1D1D1F] mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={relatedInView ? { opacity: 1, y: 0 } : {}}
+              initial={fadeInUp20}
+              animate={relatedInView ? fadeInUpVisible : emptyAnimation}
             >
               Articoli correlati
             </motion.h2>
@@ -474,13 +492,10 @@ export default function ArticleClient({ article, relatedArticles }: ArticleClien
         className={`fixed bottom-8 right-8 w-12 h-12 bg-[#A0845C] text-white rounded-full shadow-lg flex items-center justify-center z-40 ${
           showBackToTop ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-          opacity: showBackToTop ? 1 : 0,
-          scale: showBackToTop ? 1 : 0.8
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        initial={backToTopInitial}
+        animate={showBackToTop ? backToTopVisible : backToTopInitial}
+        whileHover={hoverScale}
+        whileTap={tapScale}
       >
         <ChevronUp className="w-6 h-6" />
       </motion.button>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, type Variants } from 'framer-motion'
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 type Direction = 'up' | 'down' | 'left' | 'right'
 
@@ -37,7 +37,9 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const offset = getInitialOffset(direction, distance)
 
-  const variants: Variants = {
+  const viewportConfig = useMemo(() => ({ once, amount: threshold }), [once, threshold])
+
+  const variants: Variants = useMemo(() => ({
     hidden: {
       opacity: 0,
       x: offset.x,
@@ -50,10 +52,10 @@ export default function ScrollReveal({
       transition: {
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.25, 0.1, 0.25, 1] as const,
       },
     },
-  }
+  }), [offset.x, offset.y, duration, delay])
 
   return (
     <motion.div
@@ -61,7 +63,7 @@ export default function ScrollReveal({
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: threshold }}
+      viewport={viewportConfig}
     >
       {children}
     </motion.div>

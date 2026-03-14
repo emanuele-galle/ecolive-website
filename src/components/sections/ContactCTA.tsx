@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Phone, ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -41,7 +40,7 @@ export default function ContactCTA() {
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <a
-              href="tel:+390963951395"
+              href="tel:+3909631951395"
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/50 text-white font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:bg-white/5"
             >
               <Phone className="w-5 h-5" />

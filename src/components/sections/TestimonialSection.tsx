@@ -1,9 +1,8 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { useInView, useSpring, useMotionValue } from 'framer-motion'
 import { Quote, Star, CheckCircle } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import CountUp from '@/components/ui/CountUp'
 
 const testimonials = [
   {
@@ -36,50 +35,10 @@ const testimonials = [
 ]
 
 const stats = [
-  { value: 98, suffix: '%', label: 'Clienti Soddisfatti' },
-  { value: 40, suffix: '+', label: 'Case Realizzate' },
-  { value: 4.9, suffix: '/5', label: 'Rating Medio', isDecimal: true },
+  { value: 98, suffix: '%', label: 'Clienti Soddisfatti', decimals: 0 },
+  { value: 40, suffix: '+', label: 'Case Realizzate', decimals: 0 },
+  { value: 4.9, suffix: '/5', label: 'Rating Medio', decimals: 1 },
 ]
-
-function StatCounter({
-  value,
-  suffix,
-  isDecimal,
-}: {
-  value: number
-  suffix: string
-  isDecimal?: boolean
-}) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const motionValue = useMotionValue(value)
-  const springValue = useSpring(motionValue, { duration: 2000 })
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
-  const hasAnimated = useRef(false)
-
-  useEffect(() => {
-    if (isInView && !hasAnimated.current) {
-      hasAnimated.current = true
-      motionValue.set(0)
-      requestAnimationFrame(() => motionValue.set(value))
-    }
-  }, [isInView, value, motionValue])
-
-  useEffect(() => {
-    const unsubscribe = springValue.on('change', (latest) => {
-      if (ref.current) {
-        ref.current.textContent = isDecimal
-          ? latest.toFixed(1) + suffix
-          : Math.floor(latest).toString() + suffix
-      }
-    })
-    return unsubscribe
-  }, [springValue, suffix, isDecimal])
-
-  const display = isDecimal
-    ? value.toFixed(1) + suffix
-    : value.toString() + suffix
-  return <span ref={ref}>{display}</span>
-}
 
 export default function TestimonialSection() {
   return (
@@ -165,10 +124,11 @@ export default function TestimonialSection() {
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-[#A0845C]">
-                  <StatCounter
-                    value={stat.value}
+                  <CountUp
+                    to={stat.value}
                     suffix={stat.suffix}
-                    isDecimal={stat.isDecimal}
+                    duration={2}
+                    decimals={stat.decimals}
                   />
                 </div>
                 <div className="text-[#86868B] text-sm mt-1">{stat.label}</div>

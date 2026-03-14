@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 interface GlassCardProps {
   children: ReactNode
@@ -35,15 +35,17 @@ export default function GlassCard({
 }: GlassCardProps) {
   const styles = intensityStyles[intensity]
 
+  const tagStyle = useMemo(() => ({
+    background: styles.bg,
+    backdropFilter: styles.blur,
+    WebkitBackdropFilter: styles.blur,
+    border: `1px solid ${styles.border}`,
+  }), [styles])
+
   return (
     <Tag
       className={`rounded-2xl p-6 ${className}`}
-      style={{
-        background: styles.bg,
-        backdropFilter: styles.blur,
-        WebkitBackdropFilter: styles.blur,
-        border: `1px solid ${styles.border}`,
-      }}
+      style={tagStyle}
     >
       {children}
     </Tag>

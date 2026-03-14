@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { ConfiguratorState, HouseType, RoomCount, RoomConfiguration } from '@/lib/configuratore-v2/types'
+import type { ConfiguratorState, HouseType, RoomCount } from '@/lib/configuratore-v2/types'
 import { getConfiguration } from '@/lib/configuratore-v2/configurations'
 
 export const useConfiguratorV2 = create<ConfiguratorState>((set, get) => ({

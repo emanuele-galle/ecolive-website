@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -36,6 +36,8 @@ const certifications = [
     link: 'https://passivehouse.com/',
     accent: '#A0845C',
     icon: Home,
+    accentColorStyle: { color: '#A0845C' } as const,
+    accentBgStyle: { backgroundColor: '#A0845C15' } as const,
   },
   {
     id: 'casaclima',
@@ -54,6 +56,8 @@ const certifications = [
     link: 'https://www.agenziacasaclima.it/',
     accent: '#6B8F71',
     icon: Leaf,
+    accentColorStyle: { color: '#6B8F71' } as const,
+    accentBgStyle: { backgroundColor: '#6B8F7115' } as const,
   },
   {
     id: 'arca',
@@ -72,6 +76,8 @@ const certifications = [
     link: 'https://www.arcacert.com/',
     accent: '#48484A',
     icon: Shield,
+    accentColorStyle: { color: '#48484A' } as const,
+    accentBgStyle: { backgroundColor: '#48484A15' } as const,
   },
   {
     id: 'a4',
@@ -90,6 +96,8 @@ const certifications = [
     link: null,
     accent: '#C9A86C',
     icon: Zap,
+    accentColorStyle: { color: '#C9A86C' } as const,
+    accentBgStyle: { backgroundColor: '#C9A86C15' } as const,
   },
 ]
 
@@ -120,7 +128,7 @@ const documents = [
   {
     title: 'Brochure Ecolive 2025',
     description: 'Catalogo completo prodotti e servizi',
-    url: 'http://127.0.0.1:9000/ecolive-media/documenti/Brochure-2025.pdf',
+    url: 'https://storage.fodivps2.cloud/ecolive-media/documenti/Brochure-2025.pdf',
     size: '8.4 MB',
     type: 'PDF',
   },
@@ -184,6 +192,73 @@ const marqueeItems = [
   'PEFC Certified',
 ]
 
+const tabFadeInitial = { opacity: 0, y: 10 }
+const tabFadeAnimate = { opacity: 1, y: 0 }
+const tabFadeExit = { opacity: 0, y: -10 }
+const tabFadeTransition = { duration: 0.3 }
+
+const heroStatWhiteStyle = { color: 'white' }
+const heroStatAccentStyle = { color: '#A0845C' }
+
+const heroStats = [
+  { value: 4, label: 'Certificazioni', numValue: true, style: heroStatWhiteStyle },
+  { value: 15, label: 'kWh/m\u00b2/anno', numValue: true, style: heroStatAccentStyle },
+  { value: 1, label: 'Zona Sismica', numValue: true, style: heroStatWhiteStyle },
+  { value: null, label: 'Classe NZEB', numValue: false, display: 'A4', style: heroStatWhiteStyle },
+]
+
+const seismicStats = [
+  { value: 1, label: 'Zona Sismica' },
+  { value: 2018, label: 'NTC Standard' },
+  { value: 25, label: 'Anni Garanzia', suffix: '+' },
+]
+
+function CertTabButton({ cert, isActive, onClick }: {
+  cert: typeof certifications[number]
+  isActive: boolean
+  onClick: (id: string) => void
+}) {
+  const Icon = cert.icon
+  const handleClick = useCallback(() => onClick(cert.id), [onClick, cert.id])
+  return (
+    <button
+      key={cert.id}
+      onClick={handleClick}
+      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 ${
+        isActive
+          ? 'bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/25'
+          : 'text-[var(--color-muted)] hover:text-[var(--color-secondary-dark)] hover:bg-white'
+      }`}
+    >
+      <Icon className="w-4 h-4" />
+      <span className="hidden sm:inline">{cert.name}</span>
+    </button>
+  )
+}
+
+function NormTabButton({ cat, isActive, onClick }: {
+  cat: typeof normativeCategories[number]
+  isActive: boolean
+  onClick: (id: string) => void
+}) {
+  const Icon = cat.icon
+  const handleClick = useCallback(() => onClick(cat.id), [onClick, cat.id])
+  return (
+    <button
+      key={cat.id}
+      onClick={handleClick}
+      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 ${
+        isActive
+          ? 'bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/25'
+          : 'text-white/60 hover:text-white hover:bg-white/10'
+      }`}
+    >
+      <Icon className="w-4 h-4" />
+      <span className="hidden sm:inline">{cat.title.replace('Normativa ', '')}</span>
+    </button>
+  )
+}
+
 export default function CertificazioniPage() {
   const [activeCert, setActiveCert] = useState<string>('passive')
   const [activeNorm, setActiveNorm] = useState<string>('strutturale')
@@ -223,14 +298,9 @@ export default function CertificazioniPage() {
 
           <ScrollReveal delay={0.3}>
             <div className="flex flex-wrap gap-8 md:gap-12">
-              {[
-                { value: 4, label: 'Certificazioni', numValue: true },
-                { value: 15, label: 'kWh/m\u00b2/anno', numValue: true, color: '#A0845C' },
-                { value: 1, label: 'Zona Sismica', numValue: true },
-                { value: null, label: 'Classe NZEB', numValue: false, display: 'A4' },
-              ].map((stat, i) => (
+              {heroStats.map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold" style={stat.color ? { color: stat.color } : { color: 'white' }}>
+                  <div className="text-4xl md:text-5xl font-bold" style={stat.style}>
                     {stat.numValue && stat.value !== null ? (
                       <CountUp to={stat.value} duration={2} delay={0.3 + i * 0.15} />
                     ) : (
@@ -275,12 +345,12 @@ export default function CertificazioniPage() {
                           <Image src={cert.logo} alt={cert.name} width={48} height={48} className="object-contain" />
                         </div>
                       ) : (
-                        <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: `${cert.accent}15` }}>
-                          <Icon className="w-8 h-8" style={{ color: cert.accent }} />
+                        <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style={cert.accentBgStyle}>
+                          <Icon className="w-8 h-8" style={cert.accentColorStyle} />
                         </div>
                       )}
                       <h3 className="font-bold text-[var(--color-secondary-dark)] mb-1">{cert.name}</h3>
-                      <div className="text-2xl font-bold mt-3" style={{ color: cert.accent }}>{cert.mainStat}</div>
+                      <div className="text-2xl font-bold mt-3" style={cert.accentColorStyle}>{cert.mainStat}</div>
                       <div className="text-[var(--color-muted)] text-xs mt-1">{cert.statLabel}</div>
                     </div>
                   </SpotlightCard>
@@ -291,7 +361,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ===== DETTAGLIO CERTIFICAZIONI (Tabs) ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -306,23 +376,14 @@ export default function CertificazioniPage() {
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               <div className="inline-flex bg-[var(--color-surface)] rounded-2xl p-2 gap-2 border border-[#EDE6DB]">
-                {certifications.map((cert) => {
-                  const Icon = cert.icon
-                  return (
-                    <button
-                      key={cert.id}
-                      onClick={() => setActiveCert(cert.id)}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 ${
-                        activeCert === cert.id
-                          ? 'bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/25'
-                          : 'text-[var(--color-muted)] hover:text-[var(--color-secondary-dark)] hover:bg-white'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span className="hidden sm:inline">{cert.name}</span>
-                    </button>
-                  )
-                })}
+                {certifications.map((cert) => (
+                  <CertTabButton
+                    key={cert.id}
+                    cert={cert}
+                    isActive={activeCert === cert.id}
+                    onClick={setActiveCert}
+                  />
+                ))}
               </div>
             </div>
           </ScrollReveal>
@@ -331,10 +392,10 @@ export default function CertificazioniPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCert}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
+              initial={tabFadeInitial}
+              animate={tabFadeAnimate}
+              exit={tabFadeExit}
+              transition={tabFadeTransition}
               className="grid md:grid-cols-2 gap-8 items-start"
             >
               {/* Left - Info Card */}
@@ -346,8 +407,8 @@ export default function CertificazioniPage() {
                         <Image src={activeCertData.logo} alt={activeCertData.name} width={56} height={56} className="object-contain" />
                       </div>
                     ) : (
-                      <div className="w-20 h-20 rounded-2xl flex items-center justify-center" style={{ backgroundColor: `${activeCertData.accent}15` }}>
-                        <activeCertData.icon className="w-10 h-10" style={{ color: activeCertData.accent }} />
+                      <div className="w-20 h-20 rounded-2xl flex items-center justify-center" style={activeCertData.accentBgStyle}>
+                        <activeCertData.icon className="w-10 h-10" style={activeCertData.accentColorStyle} />
                       </div>
                     )}
                     <div>
@@ -362,7 +423,7 @@ export default function CertificazioniPage() {
                   </div>
 
                   <div className="bg-white rounded-2xl p-6 border border-[#EDE6DB] mb-6">
-                    <span className="text-4xl font-bold" style={{ color: activeCertData.accent }}>{activeCertData.mainStat}</span>
+                    <span className="text-4xl font-bold" style={activeCertData.accentColorStyle}>{activeCertData.mainStat}</span>
                     <p className="text-[var(--color-muted)] mt-1">{activeCertData.statLabel}</p>
                   </div>
 
@@ -380,7 +441,7 @@ export default function CertificazioniPage() {
                   <ul className="space-y-4">
                     {activeCertData.details.map((detail, i) => (
                       <li key={i} className="flex items-start gap-3 p-3 rounded-xl hover:bg-[var(--color-surface)] transition-colors">
-                        <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: activeCertData.accent }} />
+                        <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={activeCertData.accentColorStyle} />
                         <span className="text-[#4A4540]">{detail}</span>
                       </li>
                     ))}
@@ -392,7 +453,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ===== SICUREZZA SISMICA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -411,11 +472,7 @@ export default function CertificazioniPage() {
 
           <ScrollReveal delay={0.15}>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 mb-16">
-              {[
-                { value: 1, label: 'Zona Sismica' },
-                { value: 2018, label: 'NTC Standard' },
-                { value: 25, label: 'Anni Garanzia', suffix: '+' },
-              ].map((stat, i) => (
+              {seismicStats.map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-4xl md:text-5xl font-bold text-[var(--color-primary)]">
                     <CountUp to={stat.value} duration={2} delay={0.2 + i * 0.15} suffix={stat.suffix || ''} />
@@ -445,7 +502,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* ===== DOCUMENTAZIONE ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-surface)]">
@@ -487,7 +544,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* ===== NORMATIVE ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -501,23 +558,14 @@ export default function CertificazioniPage() {
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               <div className="inline-flex bg-white/5 rounded-2xl p-2 gap-2 border border-white/10">
-                {normativeCategories.map((cat) => {
-                  const Icon = cat.icon
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveNorm(cat.id)}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 ${
-                        activeNorm === cat.id
-                          ? 'bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/25'
-                          : 'text-white/60 hover:text-white hover:bg-white/10'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span className="hidden sm:inline">{cat.title.replace('Normativa ', '')}</span>
-                    </button>
-                  )
-                })}
+                {normativeCategories.map((cat) => (
+                  <NormTabButton
+                    key={cat.id}
+                    cat={cat}
+                    isActive={activeNorm === cat.id}
+                    onClick={setActiveNorm}
+                  />
+                ))}
               </div>
             </div>
           </ScrollReveal>
@@ -525,10 +573,10 @@ export default function CertificazioniPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeNorm}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
+              initial={tabFadeInitial}
+              animate={tabFadeAnimate}
+              exit={tabFadeExit}
+              transition={tabFadeTransition}
               className="max-w-2xl mx-auto"
             >
               <GlassCard intensity="medium" className="p-8">
@@ -552,7 +600,7 @@ export default function CertificazioniPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#A0845C" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#A0845C" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-primary)]">
@@ -580,11 +628,11 @@ export default function CertificazioniPage() {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <h3 className="text-xl font-bold text-white mb-6">Contatti Rapidi</h3>
                 <div className="space-y-4">
-                  <a href="tel:+390968441431" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
+                  <a href="tel:+3909631951395" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
                     <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-white/20 transition-colors">
                       <Phone className="w-5 h-5" />
                     </div>
-                    <span>+39 0968 441431</span>
+                    <span>+39 0963 1951395</span>
                   </a>
                   <a href="mailto:info@ecolive.srl" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
                     <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center group-hover:bg-white/20 transition-colors">

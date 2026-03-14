@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Home, Layers } from 'lucide-react'
 import HouseCard from './HouseCard'
@@ -7,16 +8,33 @@ import { useConfiguratorV2 } from './hooks/useConfiguratorV2'
 import { houseConfigurations } from '@/lib/configuratore-v2/configurations'
 import type { HouseType } from '@/lib/configuratore-v2/types'
 
+const fadeIn = { opacity: 0 }
+const fadeVisible = { opacity: 1 }
+const fadeOut = { opacity: 0 }
+const fadeTransition = { duration: 0.5 }
+const tapScale = { scale: 0.98 }
+
 export default function HouseSelector() {
   const { hoveredHouse, setHoveredHouse, selectHouse } = useConfiguratorV2()
+
+  const handleHover2Piani = useCallback(
+    (hovered: boolean) => setHoveredHouse(hovered ? '2-piani' : null),
+    [setHoveredHouse]
+  )
+  const handleHover1Piano = useCallback(
+    (hovered: boolean) => setHoveredHouse(hovered ? '1-piano' : null),
+    [setHoveredHouse]
+  )
+  const selectHouse2Piani = useCallback(() => selectHouse('2-piani'), [selectHouse])
+  const selectHouse1Piano = useCallback(() => selectHouse('1-piano'), [selectHouse])
 
   return (
     <motion.div
       className="min-h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={fadeIn}
+      animate={fadeVisible}
+      exit={fadeOut}
+      transition={fadeTransition}
     >
       {/* Desktop: Split screen horizontal */}
       <div className="hidden lg:flex w-full min-h-[calc(100vh-80px)]">
@@ -24,8 +42,8 @@ export default function HouseSelector() {
           type="2-piani"
           isHovered={hoveredHouse === '2-piani'}
           otherHovered={hoveredHouse === '1-piano'}
-          onHover={(hovered) => setHoveredHouse(hovered ? '2-piani' : null)}
-          onSelect={() => selectHouse('2-piani')}
+          onHover={handleHover2Piani}
+          onSelect={selectHouse2Piani}
         />
         {/* Divider */}
         <div className="w-px bg-white/20 relative z-10">
@@ -37,15 +55,15 @@ export default function HouseSelector() {
           type="1-piano"
           isHovered={hoveredHouse === '1-piano'}
           otherHovered={hoveredHouse === '2-piani'}
-          onHover={(hovered) => setHoveredHouse(hovered ? '1-piano' : null)}
-          onSelect={() => selectHouse('1-piano')}
+          onHover={handleHover1Piano}
+          onSelect={selectHouse1Piano}
         />
       </div>
 
       {/* Mobile: Stacked cards */}
       <div className="lg:hidden flex flex-col min-h-[calc(100vh-80px)]">
-        <MobileHouseCard type="2-piani" onSelect={() => selectHouse('2-piani')} />
-        <MobileHouseCard type="1-piano" onSelect={() => selectHouse('1-piano')} />
+        <MobileHouseCard type="2-piani" onSelect={selectHouse2Piani} />
+        <MobileHouseCard type="1-piano" onSelect={selectHouse1Piano} />
       </div>
     </motion.div>
   )
@@ -66,7 +84,7 @@ function MobileHouseCard({
     <motion.button
       onClick={onSelect}
       className="flex-1 relative overflow-hidden"
-      whileTap={{ scale: 0.98 }}
+      whileTap={tapScale}
     >
       {/* Background */}
       <div className="absolute inset-0">

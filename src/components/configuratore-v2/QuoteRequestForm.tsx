@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,6 +21,27 @@ import ConfigSummary from './ConfigSummary'
 import { houseConfigurations, getRoomImage } from '@/lib/configuratore-v2/configurations'
 import type { SubmitQuoteResult } from '@/lib/configuratore-v2/types'
 
+const scaleZeroInitial = { scale: 0 }
+const scaleOneAnimate = { scale: 1 }
+const springTransition = { type: 'spring' as const, stiffness: 200, damping: 15 }
+const fadeInitial = { opacity: 0 }
+const fadeAnimate = { opacity: 1 }
+const fadeOutObj = { opacity: 0 }
+const fadeTransition = { duration: 0.5 }
+const backButtonInitial = { opacity: 0, x: -20 }
+const backButtonAnimate = { opacity: 1, x: 0 }
+const backButtonTransition = { delay: 0.3 }
+const formPanelInitial = { x: 100, opacity: 0 }
+const formPanelAnimate = { x: 0, opacity: 1 }
+const formPanelTransition = { duration: 0.5, delay: 0.2 }
+const errorInitial = { opacity: 0, y: -10 }
+const errorAnimate = { opacity: 1, y: 0 }
+const errorExit = { opacity: 0, y: -10 }
+const submitHoverActive = { scale: 1.02 }
+const submitHoverDisabled = { scale: 1 }
+const submitTapActive = { scale: 0.98 }
+const submitTapDisabled = { scale: 1 }
+
 interface QuoteRequestFormProps {
   onSubmit: (formData: FormData) => Promise<SubmitQuoteResult>
 }
@@ -31,6 +52,12 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
   const [isPending, startTransition] = useTransition()
   const [result, setResult] = useState<SubmitQuoteResult | null>(null)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+
+  const focusNome = useCallback(() => setFocusedField('nome'), [])
+  const focusEmail = useCallback(() => setFocusedField('email'), [])
+  const focusTelefono = useCallback(() => setFocusedField('telefono'), [])
+  const focusMessaggio = useCallback(() => setFocusedField('messaggio'), [])
+  const blurField = useCallback(() => setFocusedField(null), [])
 
   if (!selectedHouse || !selectedRooms || !selectedConfig) return null
 
@@ -94,14 +121,14 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
     return (
       <motion.div
         className="h-full w-full flex items-center justify-center p-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={fadeInitial}
+        animate={fadeAnimate}
       >
         <div className="max-w-md text-center">
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            initial={scaleZeroInitial}
+            animate={scaleOneAnimate}
+            transition={springTransition}
             className="w-20 h-20 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center"
           >
             <CheckCircle2 className="w-10 h-10 text-green-600" />
@@ -133,10 +160,10 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
   return (
     <motion.div
       className="min-h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={fadeInitial}
+      animate={fadeAnimate}
+      exit={fadeOutObj}
+      transition={fadeTransition}
     >
       {/* Background Image (desktop) */}
       <div className="hidden lg:block absolute inset-0 lg:relative lg:flex-1">
@@ -153,9 +180,9 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
         <motion.button
           onClick={goBack}
           className="absolute top-28 left-8 flex items-center gap-2 px-5 py-2.5 bg-white text-[#1D1D1F] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
+          initial={backButtonInitial}
+          animate={backButtonAnimate}
+          transition={backButtonTransition}
         >
           <ArrowLeft className="w-5 h-5" />
           <span className="text-sm font-semibold">Modifica</span>
@@ -170,9 +197,9 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
       {/* Form Panel */}
       <motion.div
         className="relative z-10 flex-1 lg:flex-none lg:w-[500px] xl:w-[550px] bg-white lg:rounded-l-[32px] shadow-2xl overflow-hidden flex flex-col"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        initial={formPanelInitial}
+        animate={formPanelAnimate}
+        transition={formPanelTransition}
       >
         {/* Header */}
         <div className="p-6 lg:p-8 border-b border-gray-100">
@@ -204,9 +231,9 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
           <AnimatePresence>
             {result && !result.success && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                initial={errorInitial}
+                animate={errorAnimate}
+                exit={errorExit}
                 className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3"
               >
                 <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
@@ -232,8 +259,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                   name="nome"
                   required
                   disabled={isPending}
-                  onFocus={() => setFocusedField('nome')}
-                  onBlur={() => setFocusedField(null)}
+                  onFocus={focusNome}
+                  onBlur={blurField}
                   className={inputClasses('nome')}
                   placeholder="Mario Rossi"
                 />
@@ -253,8 +280,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                   name="email"
                   required
                   disabled={isPending}
-                  onFocus={() => setFocusedField('email')}
-                  onBlur={() => setFocusedField(null)}
+                  onFocus={focusEmail}
+                  onBlur={blurField}
                   className={inputClasses('email')}
                   placeholder="mario.rossi@example.com"
                 />
@@ -273,8 +300,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                   id="telefono"
                   name="telefono"
                   disabled={isPending}
-                  onFocus={() => setFocusedField('telefono')}
-                  onBlur={() => setFocusedField(null)}
+                  onFocus={focusTelefono}
+                  onBlur={blurField}
                   className={inputClasses('telefono')}
                   placeholder="+39 123 456 7890"
                 />
@@ -297,8 +324,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
                   name="messaggio"
                   rows={3}
                   disabled={isPending}
-                  onFocus={() => setFocusedField('messaggio')}
-                  onBlur={() => setFocusedField(null)}
+                  onFocus={focusMessaggio}
+                  onBlur={blurField}
                   className={`
                     w-full pl-12 pr-4 py-4
                     bg-gray-50
@@ -341,8 +368,8 @@ export default function QuoteRequestForm({ onSubmit }: QuoteRequestFormProps) {
             <motion.button
               type="submit"
               disabled={isPending}
-              whileHover={{ scale: isPending ? 1 : 1.02 }}
-              whileTap={{ scale: isPending ? 1 : 0.98 }}
+              whileHover={isPending ? submitHoverDisabled : submitHoverActive}
+              whileTap={isPending ? submitTapDisabled : submitTapActive}
               className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-xl shadow-lg shadow-[#A0845C]/25 hover:bg-[#B35F3A] disabled:opacity-70 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-300"
             >
               {isPending ? (

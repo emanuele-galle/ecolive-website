@@ -52,8 +52,8 @@ export const tipologie: Tipologia[] = [
     category: 'BUSINESS',
     description: 'Uffici e showroom modulari per il business moderno',
     extendedDescription: 'Spazi professionali progettati per il business moderno. Uffici, showroom, sale meeting e strutture commerciali con design contemporaneo, massima flessibilità degli spazi interni e costi di gestione ridotti grazie all\'efficienza energetica.',
-    imageUrl: '/images/tipologie/smartsuite-new.png',
-    heroImage: '/images/tipologie/smartsuite-new.png',
+    imageUrl: '/images/tipologie/smartsuite-new.webp',
+    heroImage: '/images/tipologie/smartsuite-new.webp',
     href: '/smartsuite',
     color: '#1D1D1F',
     surfaceRange: '15-40 m²',
@@ -130,6 +130,3 @@ export function getTipologiaById(id: string): Tipologia | undefined {
   return tipologie.find(t => t.id === id)
 }
 
-function getTipologiaByHref(href: string): Tipologia | undefined {
-  return tipologie.find(t => t.href === href)
-}

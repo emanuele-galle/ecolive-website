@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,12 +9,18 @@ import {
   Thermometer, Puzzle, Award
 } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
+import JsonLd from '@/components/JsonLd'
 import BlurText from '@/components/ui/BlurText'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import SectionTransition from '@/components/ui/SectionTransition'
 import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
 import GlassCard from '@/components/ui/GlassCard'
+
+const floatingOrbAnimate = { y: [0, -25, 0] }
+const floatingOrbTransition = { duration: 9, repeat: Infinity, ease: 'easeInOut' as const }
+const ctaOrbAnimate = { scale: [1, 1.2, 1] }
+const ctaOrbTransition = { duration: 8, repeat: Infinity, ease: 'easeInOut' as const }
 
 const featureIcons = [LayoutGrid, Cable, Volume2, Thermometer, Puzzle, Award]
 
@@ -45,11 +52,39 @@ const smartsuiteMarqueeItems = [
   'Layout Flessibile',
 ]
 
+const smartsuiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'SmartSuite - Uffici e showroom modulari in legno',
+  description: 'Spazi professionali progettati per il business moderno. Uffici, showroom, sale meeting e strutture commerciali con design contemporaneo, massima flessibilita degli spazi interni e costi di gestione ridotti grazie all\'efficienza energetica.',
+  brand: {
+    '@type': 'Brand',
+    name: 'Ecolive',
+  },
+  category: 'Uffici modulari prefabbricati in legno',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    lowPrice: '1100',
+    priceValidUntil: '2026-12-31',
+    url: 'https://www.ecolive.srl/smartsuite',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Superficie', value: '15-40 m\u00B2' },
+    { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '30-60 giorni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+  ],
+}
+
 export default function SmartSuitePage() {
   const tipologia = getTipologiaById('smartsuite')!
+  const featureIconBgStyle = useMemo(() => ({ backgroundColor: `${tipologia.color}15` }), [tipologia.color])
+  const featureIconColorStyle = useMemo(() => ({ color: tipologia.color }), [tipologia.color])
 
   return (
     <main className="min-h-screen">
+      <JsonLd data={smartsuiteJsonLd} />
 
       {/* HERO */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
@@ -67,8 +102,8 @@ export default function SmartSuitePage() {
         {/* Floating orbs */}
         <motion.div
           className="absolute bottom-1/3 -right-20 w-80 h-80 rounded-full bg-[#A0845C]/15 blur-[100px] pointer-events-none"
-          animate={{ y: [0, -25, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatingOrbAnimate}
+          transition={floatingOrbTransition}
         />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-32">
@@ -123,7 +158,7 @@ export default function SmartSuitePage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* CARATTERISTICHE */}
       <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
@@ -155,9 +190,9 @@ export default function SmartSuitePage() {
                   >
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                      style={{ backgroundColor: `${tipologia.color}15` }}
+                      style={featureIconBgStyle}
                     >
-                      <Icon className="w-6 h-6" style={{ color: tipologia.color }} />
+                      <Icon className="w-6 h-6" style={featureIconColorStyle} />
                     </div>
                     <h3 className="text-lg font-semibold text-[#1D1D1F] mb-2">{feature}</h3>
                     <p className="text-[#86868B] text-sm leading-relaxed">
@@ -182,7 +217,7 @@ export default function SmartSuitePage() {
         </div>
       </div>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* PROCESSO */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">
@@ -221,14 +256,14 @@ export default function SmartSuitePage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#A0845C" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#A0845C" height={80} />
 
       {/* CTA */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#A0845C] overflow-hidden">
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-[150px] pointer-events-none"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          animate={ctaOrbAnimate}
+          transition={ctaOrbTransition}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center">

@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import ContactPageClient from './ContactPageClient'
 
 export const metadata = {
-  title: 'Contatti | Ecolive - Case Prefabbricate in Legno',
+  title: 'Contatti',
   description: 'Contattaci per informazioni sulle nostre case prefabbricate in legno. Richiedi un preventivo gratuito o prenota una visita allo stabilimento.',
 }
 

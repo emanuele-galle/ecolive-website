@@ -4,6 +4,9 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
+const buttonHoverAnimation = { scale: 1.03 }
+const buttonTapAnimation = { scale: 0.98 }
+
 interface ButtonProps {
   children: React.ReactNode
   href?: string
@@ -41,8 +44,8 @@ export default function Button({
   const buttonContent = (
     <motion.span
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={buttonHoverAnimation}
+      whileTap={buttonTapAnimation}
     >
       {/* Shine effect on hover */}
       <span className="absolute inset-0 w-full h-full">

@@ -1,8 +1,16 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { BedDouble, Check } from 'lucide-react'
-import type { RoomCount, RoomConfiguration } from '@/lib/configuratore-v2/types'
+import type { RoomConfiguration } from '@/lib/configuratore-v2/types'
+
+const fadeInUp = { opacity: 0, y: 20 }
+const visible = { opacity: 1, y: 0 }
+const hoverScale = { scale: 1.02 }
+const tapScale = { scale: 0.98 }
+const checkInitial = { scale: 0 }
+const checkAnimate = { scale: 1 }
 
 interface RoomOptionProps {
   config: RoomConfiguration
@@ -17,6 +25,8 @@ export default function RoomOption({
   index,
   onSelect,
 }: RoomOptionProps) {
+  const itemTransition = useMemo(() => ({ duration: 0.4, delay: index * 0.1 }), [index])
+
   return (
     <motion.button
       onClick={onSelect}
@@ -28,17 +38,17 @@ export default function RoomOption({
             : 'border-gray-200 bg-white hover:border-[#A0845C]/50 hover:bg-[#A0845C]/5'
         }
       `}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      initial={fadeInUp}
+      animate={visible}
+      transition={itemTransition}
+      whileHover={hoverScale}
+      whileTap={tapScale}
     >
       {/* Selected check */}
       {isSelected && (
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          initial={checkInitial}
+          animate={checkAnimate}
           className="absolute top-3 right-3 w-6 h-6 rounded-full bg-[#A0845C] flex items-center justify-center"
         >
           <Check className="w-4 h-4 text-white" />

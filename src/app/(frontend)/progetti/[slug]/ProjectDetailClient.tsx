@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -17,8 +17,28 @@ import {
   CheckCircle2,
   Award,
   ArrowRight,
-  Play,
 } from 'lucide-react'
+
+const fadeInUpInitial = { opacity: 0, y: 30 }
+const fadeInUpSmall = { opacity: 0, y: 20 }
+const fadeInDownInitial = { opacity: 0, y: -20 }
+const fadeInRightInitial = { opacity: 0, x: 30 }
+const visible = { opacity: 1, y: 0 }
+const visibleX = { opacity: 1, x: 0 }
+const viewportConfig = { once: false }
+const dotPatternStyle = {
+  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+  backgroundSize: '32px 32px',
+} as const
+const dotPatternSmallStyle = {
+  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+  backgroundSize: '20px 20px',
+} as const
+const transitionHero1 = { duration: 0.9, delay: 0.2 }
+const transitionHero2 = { duration: 0.9, delay: 0.3 }
+const transitionHero3 = { duration: 0.9, delay: 0.4 }
+const transitionDelay01 = { delay: 0.1 }
+const transitionDelay02 = { delay: 0.2 }
 
 interface ProjectDetailClientProps {
   project: Project
@@ -60,6 +80,8 @@ export default function ProjectDetailClient({
   })
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3])
+  const heroParallaxStyle = useMemo(() => ({ y: heroY }), [heroY])
+  const heroOpacityStyle = useMemo(() => ({ opacity: heroOpacity }), [heroOpacity])
 
   return (
     <main className="min-h-screen bg-[#F5F5F7]">
@@ -68,7 +90,7 @@ export default function ProjectDetailClient({
         {/* Background Image with Parallax */}
         {featuredImage?.url && (
           <motion.div
-            style={{ y: heroY }}
+            style={heroParallaxStyle}
             className="absolute inset-0 w-full h-[120%]"
           >
             <Image
@@ -87,19 +109,16 @@ export default function ProjectDetailClient({
 
         {/* Dot pattern overlay */}
         <motion.div
-          style={{ opacity: heroOpacity }}
+          style={heroOpacityStyle}
           className="absolute inset-0 opacity-5"
-          style-={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
+          style-={dotPatternStyle}
         />
 
         {/* Category Badge - Top */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2 }}
+          initial={fadeInDownInitial}
+          animate={visible}
+          transition={transitionHero1}
           className="absolute top-8 left-8 z-10"
         >
           <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm rounded-full text-[#1D1D1F] font-semibold shadow-lg">
@@ -113,9 +132,9 @@ export default function ProjectDetailClient({
           <div className="max-w-7xl mx-auto">
             {/* Title */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3 }}
+              initial={fadeInUpInitial}
+              animate={visible}
+              transition={transitionHero2}
               className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 max-w-4xl"
             >
               {project.title}
@@ -123,9 +142,9 @@ export default function ProjectDetailClient({
 
             {/* Info Bar */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4 }}
+              initial={fadeInUpInitial}
+              animate={visible}
+              transition={transitionHero3}
               className="flex flex-wrap gap-4"
             >
               {project.location && (
@@ -187,9 +206,9 @@ export default function ProjectDetailClient({
           <div className="lg:col-span-2 space-y-12">
             {/* INFO BOX PREMIUM */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              initial={fadeInUpInitial}
+              whileInView={visible}
+              viewport={viewportConfig}
               className="grid grid-cols-2 md:grid-cols-4 gap-4"
             >
               {project.location && (
@@ -225,9 +244,9 @@ export default function ProjectDetailClient({
             {/* DESCRIPTION */}
             {project.description && (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                initial={fadeInUpInitial}
+                whileInView={visible}
+                viewport={viewportConfig}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
@@ -244,9 +263,9 @@ export default function ProjectDetailClient({
             {/* GALLERY */}
             {project.gallery && project.gallery.length > 0 && (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                initial={fadeInUpInitial}
+                whileInView={visible}
+                viewport={viewportConfig}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
@@ -269,9 +288,9 @@ export default function ProjectDetailClient({
             {/* VIDEO */}
             {youtubeId && (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                initial={fadeInUpInitial}
+                whileInView={visible}
+                viewport={viewportConfig}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1 h-8 bg-gradient-to-b from-[#A0845C] to-[#1D1D1F] rounded-full" />
@@ -298,9 +317,9 @@ export default function ProjectDetailClient({
               {/* Features */}
               {project.features && project.features.length > 0 && (
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false }}
+                  initial={fadeInRightInitial}
+                  whileInView={visibleX}
+                  viewport={viewportConfig}
                   className="p-6 bg-white rounded-2xl shadow-lg border border-[#1D1D1F]/10"
                 >
                   <h3 className="text-xl font-bold text-[#1D1D1F] mb-5 flex items-center gap-2">
@@ -323,10 +342,10 @@ export default function ProjectDetailClient({
               {/* Certifications */}
               {project.certifications && project.certifications.length > 0 && (
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ delay: 0.1 }}
+                  initial={fadeInRightInitial}
+                  whileInView={visibleX}
+                  viewport={viewportConfig}
+                  transition={transitionDelay01}
                   className="p-6 bg-white rounded-2xl shadow-lg border border-[#1D1D1F]/10"
                 >
                   <h3 className="text-xl font-bold text-[#1D1D1F] mb-5 flex items-center gap-2">
@@ -348,10 +367,10 @@ export default function ProjectDetailClient({
 
               {/* CTA Premium */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: 0.2 }}
+                initial={fadeInRightInitial}
+                whileInView={visibleX}
+                viewport={viewportConfig}
+                transition={transitionDelay02}
                 className="relative p-6 rounded-2xl overflow-hidden"
               >
                 {/* Background */}
@@ -360,10 +379,7 @@ export default function ProjectDetailClient({
                 {/* Dot pattern */}
                 <div
                   className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                    backgroundSize: '20px 20px'
-                  }}
+                  style={dotPatternSmallStyle}
                 />
 
                 {/* Glow */}
@@ -399,10 +415,7 @@ export default function ProjectDetailClient({
           {/* Dot pattern */}
           <div
             className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '32px 32px'
-            }}
+            style={dotPatternStyle}
           />
 
           {/* Glow effects */}
@@ -411,9 +424,9 @@ export default function ProjectDetailClient({
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              initial={fadeInUpInitial}
+              whileInView={visible}
+              viewport={viewportConfig}
               className="text-center mb-12"
             >
               <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/80 text-sm font-medium mb-4">
@@ -430,9 +443,9 @@ export default function ProjectDetailClient({
                 return (
                   <motion.div
                     key={related.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
+                    initial={fadeInUpInitial}
+                    whileInView={visible}
+                    viewport={viewportConfig}
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
@@ -474,9 +487,9 @@ export default function ProjectDetailClient({
 
             {/* View all link */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              initial={fadeInUpSmall}
+              whileInView={visible}
+              viewport={viewportConfig}
               className="text-center mt-12"
             >
               <Link

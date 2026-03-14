@@ -4,6 +4,21 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FileText, ArrowLeft, Mail, MapPin, Phone, AlertTriangle, CheckCircle } from 'lucide-react'
 
+const dotPatternStyle = {
+  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+  backgroundSize: '32px 32px',
+} as const
+const fadeInDown = { opacity: 0, y: -20 }
+const fadeInUp = { opacity: 0, y: 20 }
+const visible = { opacity: 1, y: 0 }
+const fadeInLeft = { opacity: 0, x: -20 }
+const visibleX = { opacity: 1, x: 0 }
+const transitionDelay01 = { delay: 0.1 }
+const transitionDelay02 = { delay: 0.2 }
+const transitionDelay03 = { delay: 0.3 }
+const transitionDelay05 = { delay: 0.5 }
+const transitionDelay06 = { delay: 0.6 }
+
 export default function TerminiPage() {
   const sections = [
     {
@@ -215,17 +230,14 @@ export default function TerminiPage() {
       <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         <div
           className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
+          style={dotPatternStyle}
         />
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={fadeInDown}
+            animate={visible}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
             <FileText className="w-4 h-4 text-[#A0845C]" />
@@ -233,27 +245,27 @@ export default function TerminiPage() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={transitionDelay01}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             Termini di <span className="text-[#A0845C]">Servizio</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={transitionDelay02}
             className="text-xl text-white/70 max-w-2xl mx-auto"
           >
             Condizioni generali di utilizzo del sito web Ecolive
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={transitionDelay03}
             className="text-white/50 mt-6 text-sm"
           >
             Ultimo aggiornamento: Gennaio 2025
@@ -265,8 +277,8 @@ export default function TerminiPage() {
       <section className="py-12 lg:py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={fadeInLeft}
+            animate={visibleX}
             className="mb-8"
           >
             <Link
@@ -282,8 +294,8 @@ export default function TerminiPage() {
             {sections.map((section, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={fadeInUp}
+                animate={visible}
                 transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
@@ -300,9 +312,9 @@ export default function TerminiPage() {
 
           {/* Related Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={transitionDelay05}
             className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl"
           >
             <h3 className="text-xl font-bold text-white mb-4 text-center">Documenti Correlati</h3>
@@ -325,9 +337,9 @@ export default function TerminiPage() {
       
           {/* Sviluppo e Gestione Tecnica */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={transitionDelay06}
             className="mt-12 pt-8 border-t border-gray-200"
           >
             <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>

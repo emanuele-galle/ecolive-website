@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const featuredImage = project.featuredImage as Media | undefined
-  const seoTitle = project.seo?.metaTitle || `${project.title} | Progetti Ecolive`
+  const seoTitle = project.seo?.metaTitle || `${project.title} · Progetti`
   const seoDescription = project.seo?.metaDescription || `Progetto ${project.title} - Casa prefabbricata in legno ${project.category}`
 
   return {

@@ -22,14 +22,11 @@ export const metadata: Metadata = {
     locale: 'it_IT',
     url: 'https://www.ecolive.srl',
     siteName: 'Ecolive',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Ecolive - Case Prefabbricate in Legno',
-      },
-    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ecolive - Case Prefabbricate in Legno',
+    description: 'Leader nella progettazione e realizzazione di case prefabbricate in legno. Sistema costruttivo X-Frame, bioedilizia e sostenibilità dal 1999.',
   },
 }
 

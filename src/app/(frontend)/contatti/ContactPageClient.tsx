@@ -57,6 +57,22 @@ const contactMethods = [
   },
 ]
 
+const fadeInUpInitial = { opacity: 0, y: 20 }
+const fadeInUpAnimate = { opacity: 1, y: 0 }
+const heroSubtitleTransition = { duration: 0.6, delay: 0.1 }
+const heroButtonsTransition = { duration: 0.6, delay: 0.2 }
+const heroStatsTransition = { duration: 0.6, delay: 0.3 }
+const fadeInInitial = { opacity: 0 }
+const fadeInAnimate = { opacity: 1 }
+const marqueeItems = ['Consulenza Gratuita', 'Risposta in 24h', 'Preventivo Personalizzato', 'Team Dedicato']
+const mapIframeStyle = { border: 0 }
+const benefitsList = [
+  'Consulenza gratuita e senza impegno',
+  'Preventivo personalizzato in 48h',
+  'Team dedicato per ogni progetto',
+  'Garanzia 30 anni sulla struttura',
+]
+
 export default function ContactPageClient({ onSubmit }: ContactPageClientProps) {
   return (
     <main className="min-h-screen bg-[#F5F5F7]">
@@ -75,9 +91,9 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
           />
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={heroSubtitleTransition}
             className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             Ogni grande casa inizia con una conversazione.
@@ -86,9 +102,9 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={heroButtonsTransition}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14"
           >
             <a
@@ -108,9 +124,9 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={fadeInInitial}
+            animate={fadeInAnimate}
+            transition={heroStatsTransition}
             className="flex flex-wrap justify-center gap-8 text-white/60 text-sm"
           >
             <span>25+ anni di esperienza</span>
@@ -125,7 +141,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
       {/* MARQUEE */}
       <div className="bg-white py-5 border-b border-[#D2D2D7]/50">
         <InfiniteMarquee
-          items={['Consulenza Gratuita', 'Risposta in 24h', 'Preventivo Personalizzato', 'Team Dedicato']}
+          items={marqueeItems}
           speed={25}
           className="text-[#A0845C]/70"
         />
@@ -181,7 +197,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
       {/* FORM SECTION */}
       <section id="form" className="py-28 lg:py-36 bg-[#F5F5F7]">
@@ -217,12 +233,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
                 <div className="p-7 bg-[#1D1D1F] rounded-2xl shadow-premium-lg">
                   <h4 className="font-serif text-white text-xl mb-5">Perche contattarci?</h4>
                   <div className="space-y-4">
-                    {[
-                      'Consulenza gratuita e senza impegno',
-                      'Preventivo personalizzato in 48h',
-                      'Team dedicato per ogni progetto',
-                      'Garanzia 10 anni sulla struttura',
-                    ].map((text) => (
+                    {benefitsList.map((text) => (
                       <div key={text} className="flex items-center gap-3">
                         <CheckCircle2 className="w-5 h-5 text-[#A0845C] flex-shrink-0" />
                         <span className="text-white/90 text-sm">{text}</span>
@@ -258,7 +269,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3107.5!2d16.4175!3d38.6325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x131531e5a5a5a5a5%3A0x1234567890abcdef!2sVia%20Conte%20Ruggiero%2C%20128%2C%2089822%20Spadola%20VV!5e0!3m2!1sit!2sit!4v1704067200000!5m2!1sit!2sit"
             width="100%"
             height="100%"
-            style={{ border: 0 }}
+            style={mapIframeStyle}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

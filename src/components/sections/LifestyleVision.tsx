@@ -1,25 +1,33 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
+const fadeInAnimation = { opacity: 1 }
+const fadeOutAnimation = { opacity: 0 }
+const fadeTransition = { duration: 0.25 }
+const lightboxImageInitial = { scale: 0.9, opacity: 0 }
+const lightboxImageAnimate = { scale: 1, opacity: 1 }
+const lightboxImageExit = { scale: 0.9, opacity: 0 }
+
 const galleryImages = [
-  { src: '/images/luxury/gallery-3.jpg', label: 'Villa Moderna', detail: '180 mq' },
-  { src: '/images/luxury/gallery-7.jpg', label: 'Casa Bifamiliare', detail: '220 mq' },
-  { src: '/images/luxury/gallery-12.jpg', label: 'Residenza Premium', detail: '250 mq' },
-  { src: '/images/luxury/gallery-18.jpg', label: 'Villa Luxury', detail: '300 mq' },
-  { src: '/images/luxury/gallery-24.jpg', label: 'Casa Passiva', detail: '160 mq' },
-  { src: '/images/luxury/gallery-30.jpg', label: 'Design Contemporaneo', detail: '200 mq' },
+  { src: '/images/luxury/gallery-3.webp', label: 'Villa Moderna', detail: '180 mq' },
+  { src: '/images/luxury/gallery-7.webp', label: 'Casa Bifamiliare', detail: '220 mq' },
+  { src: '/images/luxury/gallery-12.webp', label: 'Residenza Premium', detail: '250 mq' },
+  { src: '/images/luxury/gallery-18.webp', label: 'Villa Luxury', detail: '300 mq' },
+  { src: '/images/luxury/gallery-24.webp', label: 'Casa Passiva', detail: '160 mq' },
+  { src: '/images/luxury/gallery-30.webp', label: 'Design Contemporaneo', detail: '200 mq' },
 ]
 
 export default function LifestyleVision() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const close = useCallback(() => setActiveIndex(null), [])
+  const stopPropagation = useCallback((e: React.MouseEvent) => e.stopPropagation(), [])
   const prev = useCallback(
     () =>
       setActiveIndex((i) =>
@@ -32,6 +40,8 @@ export default function LifestyleVision() {
       setActiveIndex((i) => (i !== null ? (i + 1) % galleryImages.length : null)),
     []
   )
+  const handlePrevClick = useCallback((e: React.MouseEvent) => { e.stopPropagation(); prev() }, [prev])
+  const handleNextClick = useCallback((e: React.MouseEvent) => { e.stopPropagation(); next() }, [next])
 
   useEffect(() => {
     if (activeIndex === null) return
@@ -136,10 +146,10 @@ export default function LifestyleVision() {
         {activeIndex !== null && (
           <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial={fadeOutAnimation}
+            animate={fadeInAnimation}
+            exit={fadeOutAnimation}
+            transition={fadeTransition}
             onClick={close}
           >
             <button
@@ -152,10 +162,7 @@ export default function LifestyleVision() {
 
             {galleryImages.length > 1 && (
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  prev()
-                }}
+                onClick={handlePrevClick}
                 className="absolute left-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Precedente"
               >
@@ -166,11 +173,11 @@ export default function LifestyleVision() {
             <motion.div
               key={activeIndex}
               className="relative max-w-[90vw] max-h-[85vh] w-full h-full flex items-center justify-center"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
+              initial={lightboxImageInitial}
+              animate={lightboxImageAnimate}
+              exit={lightboxImageExit}
+              transition={fadeTransition}
+              onClick={stopPropagation}
             >
               <Image
                 src={galleryImages[activeIndex].src}
@@ -184,10 +191,7 @@ export default function LifestyleVision() {
 
             {galleryImages.length > 1 && (
               <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  next()
-                }}
+                onClick={handleNextClick}
                 className="absolute right-4 z-10 p-2 text-white/70 hover:text-white transition-colors"
                 aria-label="Successiva"
               >

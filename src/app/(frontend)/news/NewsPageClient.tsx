@@ -101,7 +101,7 @@ export default function NewsPageClient({
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" variant="wave" height={60} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={60} />
 
       {/* Articles Section */}
       <section className="py-20 lg:py-28 px-4 bg-[#F5F5F7]">

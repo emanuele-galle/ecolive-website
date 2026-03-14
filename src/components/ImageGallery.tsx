@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Image from 'next/image'
 
 interface ImageGalleryProps {
@@ -13,25 +13,37 @@ interface ImageGalleryProps {
 export default function ImageGallery({ images }: ImageGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setSelectedIndex(null)
-  }
+  }, [])
 
-  const handlePrevious = () => {
-    if (selectedIndex === null) return
-    setSelectedIndex((selectedIndex - 1 + images.length) % images.length)
-  }
+  const handlePrevious = useCallback(() => {
+    setSelectedIndex((prev) => prev === null ? null : (prev - 1 + images.length) % images.length)
+  }, [images.length])
 
-  const handleNext = () => {
-    if (selectedIndex === null) return
-    setSelectedIndex((selectedIndex + 1) % images.length)
-  }
+  const handleNext = useCallback(() => {
+    setSelectedIndex((prev) => prev === null ? null : (prev + 1) % images.length)
+  }, [images.length])
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') handleClose()
     if (e.key === 'ArrowLeft') handlePrevious()
     if (e.key === 'ArrowRight') handleNext()
-  }
+  }, [handleClose, handlePrevious, handleNext])
+
+  const handlePreviousClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    handlePrevious()
+  }, [handlePrevious])
+
+  const handleNextClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    handleNext()
+  }, [handleNext])
+
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+  }, [])
 
   return (
     <>
@@ -98,10 +110,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           {/* Previous Button */}
           {images.length > 1 && (
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                handlePrevious()
-              }}
+              onClick={handlePreviousClick}
               className="absolute left-4 z-10 p-2 text-white hover:text-gray-300 transition-colors"
               aria-label="Immagine precedente"
             >
@@ -119,7 +128,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           {/* Image */}
           <div
             className="relative w-full h-full max-w-6xl max-h-[90vh] mx-auto px-16"
-            onClick={(e) => e.stopPropagation()}
+            onClick={stopPropagation}
           >
             <Image
               src={images[selectedIndex].url}
@@ -134,10 +143,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           {/* Next Button */}
           {images.length > 1 && (
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                handleNext()
-              }}
+              onClick={handleNextClick}
               className="absolute right-4 z-10 p-2 text-white hover:text-gray-300 transition-colors"
               aria-label="Immagine successiva"
             >

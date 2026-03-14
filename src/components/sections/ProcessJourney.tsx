@@ -1,10 +1,19 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { MessageCircle, PenTool, Hammer, Key } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+
+const lineScaleInitial = { scaleX: 0 }
+const lineScaleAnimate = { scaleX: 1 }
+const lineViewport = { once: true }
+const transformOriginLeft = { transformOrigin: 'left' } as const
+const verticalLineInitial = { height: '0%' }
+const verticalLineAnimate = { height: '100%' }
+const verticalLineTransition = { duration: 1.5, ease: 'easeOut' as const }
 
 interface Step {
   number: string
@@ -50,15 +59,20 @@ const steps: Step[] = [
 ]
 
 function AnimatedConnectorLine({ index }: { index: number }) {
+  const connectorTransition = useMemo(
+    () => ({ duration: 0.8, delay: 0.3 + index * 0.2 }),
+    [index]
+  )
+
   return (
     <div className="absolute top-10 left-full w-full h-px z-0 overflow-hidden hidden lg:block">
       <motion.div
         className="h-full bg-gradient-to-r from-[#A0845C]/50 to-[#A0845C]/10"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-        style={{ transformOrigin: 'left' }}
+        initial={lineScaleInitial}
+        whileInView={lineScaleAnimate}
+        viewport={lineViewport}
+        transition={connectorTransition}
+        style={transformOriginLeft}
       />
     </div>
   )
@@ -125,10 +139,10 @@ export default function ProcessJourney() {
           <div className="absolute left-5 top-0 bottom-0 w-px overflow-hidden">
             <motion.div
               className="w-full bg-gradient-to-b from-[#A0845C] via-[#A0845C]/50 to-[#D2D2D7]"
-              initial={{ height: '0%' }}
-              whileInView={{ height: '100%' }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
+              initial={verticalLineInitial}
+              whileInView={verticalLineAnimate}
+              viewport={lineViewport}
+              transition={verticalLineTransition}
             />
           </div>
 

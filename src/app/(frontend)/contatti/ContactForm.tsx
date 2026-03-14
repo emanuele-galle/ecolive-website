@@ -15,6 +15,11 @@ const inputClasses =
 const iconClasses =
   'absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-muted-light)] transition-colors duration-300 group-focus-within:text-[var(--color-primary)]'
 
+const alertInitial = { opacity: 0, y: -10, height: 0 }
+const alertAnimate = { opacity: 1, y: 0, height: 'auto' as const }
+const alertExit = { opacity: 0, y: -10, height: 0 }
+const alertTransition = { duration: 0.4 }
+
 export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [isPending, startTransition] = useTransition()
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
@@ -35,12 +40,15 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   return (
     <>
       <AnimatePresence>
+        <div aria-live="polite" aria-atomic="true" className="sr-only">
+          {result?.message}
+        </div>
         {result && (
           <motion.div
-            initial={{ opacity: 0, y: -10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: 'auto' }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
-            transition={{ duration: 0.4 }}
+            initial={alertInitial}
+            animate={alertAnimate}
+            exit={alertExit}
+            transition={alertTransition}
             className={`mb-6 p-4 rounded-xl flex items-start gap-3 ${
               result.success
                 ? 'bg-green-50 border border-green-200'
@@ -152,7 +160,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           />
           <label htmlFor="privacy" className="text-sm text-[var(--color-muted)] leading-relaxed cursor-pointer">
             Accetto la{' '}
-            <Link href="/privacy-policy" className="text-[var(--color-primary)] hover:underline font-medium">
+            <Link href="/privacy" className="text-[var(--color-primary)] hover:underline font-medium">
               privacy policy
             </Link>{' '}
             e autorizzo il trattamento dei miei dati personali{' '}

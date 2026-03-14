@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 export const metadata = {
-  title: 'News & Blog | Ecolive',
+  title: 'News & Blog',
   description: 'Ultime notizie, approfondimenti e aggiornamenti dal mondo della bioedilizia e delle case prefabbricate in legno.',
 }
 

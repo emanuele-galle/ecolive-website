@@ -1,10 +1,12 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Tent, Clock, Leaf, Zap, Shield, Phone, ArrowLeft, Wrench, Sparkles } from 'lucide-react'
+import { Tent, Clock, Leaf, Zap, Phone, ArrowLeft, Wrench, Sparkles } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
+import JsonLd from '@/components/JsonLd'
 import BlurText from '@/components/ui/BlurText'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import SpotlightCard from '@/components/ui/SpotlightCard'
@@ -52,11 +54,46 @@ const glampingMarqueeItems = [
   'Pronte in 60 Giorni',
 ]
 
+const floatDown = { y: [0, 30, 0] }
+const floatDownTransition = { duration: 9, repeat: Infinity, ease: 'easeInOut' as const }
+const floatUp = { y: [0, -20, 0] }
+const floatUpTransition = { duration: 7, repeat: Infinity, ease: 'easeInOut' as const }
+const ctaPulse = { scale: [1, 1.2, 1] }
+const ctaPulseTransition = { duration: 8, repeat: Infinity, ease: 'easeInOut' as const }
+
+const glampingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Glamping - Strutture per turismo eco-sostenibile',
+  description: 'Soluzioni ideali per agriturismi, camping di lusso, resort e strutture ricettive che desiderano offrire un\'esperienza unica a contatto con la natura senza rinunciare al comfort. Design moderno, materiali naturali e integrazione perfetta con l\'ambiente circostante.',
+  brand: {
+    '@type': 'Brand',
+    name: 'Ecolive',
+  },
+  category: 'Strutture ricettive prefabbricate in legno',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    lowPrice: '1100',
+    priceValidUntil: '2026-12-31',
+    url: 'https://www.ecolive.srl/glamping',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Superficie', value: '25-50 m\u00B2' },
+    { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '30-45 giorni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+  ],
+}
+
 export default function GlampingPage() {
   const tipologia = getTipologiaById('glamping')!
+  const featureIconBgStyle = useMemo(() => ({ backgroundColor: `${tipologia.color}15` }), [tipologia.color])
+  const featureIconColorStyle = useMemo(() => ({ color: tipologia.color }), [tipologia.color])
 
   return (
     <main className="min-h-screen">
+      <JsonLd data={glampingJsonLd} />
 
       {/* HERO */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
@@ -74,13 +111,13 @@ export default function GlampingPage() {
         {/* Floating orbs */}
         <motion.div
           className="absolute top-1/4 -left-16 w-72 h-72 rounded-full bg-[#48484A]/25 blur-[100px] pointer-events-none"
-          animate={{ y: [0, 30, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatDown}
+          transition={floatDownTransition}
         />
         <motion.div
           className="absolute bottom-1/4 -right-16 w-64 h-64 rounded-full bg-[#A0845C]/10 blur-[80px] pointer-events-none"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+          animate={floatUp}
+          transition={floatUpTransition}
         />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center py-32">
@@ -146,7 +183,7 @@ export default function GlampingPage() {
         </div>
       </div>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* CARATTERISTICHE */}
       <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
@@ -174,9 +211,9 @@ export default function GlampingPage() {
                   >
                     <div
                       className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
-                      style={{ backgroundColor: `${tipologia.color}15` }}
+                      style={featureIconBgStyle}
                     >
-                      <Icon className="w-7 h-7" style={{ color: tipologia.color }} />
+                      <Icon className="w-7 h-7" style={featureIconColorStyle} />
                     </div>
                     <h3 className="text-lg font-semibold text-[#1D1D1F] mb-2">{feature}</h3>
                     <p className="text-[#86868B] text-sm leading-relaxed">
@@ -190,7 +227,7 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#ffffff" variant="gradient" height={60} />
+      <SectionTransition from="#F5F5F7" to="#ffffff" height={60} />
 
       {/* GALLERY */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -211,7 +248,7 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#ffffff" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#ffffff" to="#1D1D1F" height={80} />
 
       {/* PROCESSO */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">
@@ -246,14 +283,14 @@ export default function GlampingPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#A0845C" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#A0845C" height={80} />
 
       {/* CTA */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#A0845C] overflow-hidden">
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-[150px] pointer-events-none"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          animate={ctaPulse}
+          transition={ctaPulseTransition}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center">

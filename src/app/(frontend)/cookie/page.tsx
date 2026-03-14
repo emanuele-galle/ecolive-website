@@ -4,34 +4,68 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Cookie, ArrowLeft, Settings, BarChart3, Share2, CheckCircle } from 'lucide-react'
 
-export default function CookiePage() {
-  const cookieTypes = [
-    {
-      icon: Settings,
-      title: 'Cookie Tecnici',
-      description: 'Essenziali per il funzionamento del sito',
-      required: true,
-      examples: ['Sessione utente', 'Preferenze di navigazione', 'Sicurezza'],
-      duration: 'Sessione o 12 mesi',
-    },
-    {
-      icon: BarChart3,
-      title: 'Cookie Analitici',
-      description: 'Per analisi statistiche anonime',
-      required: false,
-      examples: ['Google Analytics', 'Statistiche visite', 'Pagine visualizzate'],
-      duration: '24 mesi',
-    },
-    {
-      icon: Share2,
-      title: 'Cookie di Marketing',
-      description: 'Per pubblicita personalizzata',
-      required: false,
-      examples: ['Facebook Pixel', 'Google Ads', 'Remarketing'],
-      duration: '12 mesi',
-    },
-  ]
+const fadeInUpInitial = { opacity: 0, y: 20 }
+const fadeInUpAnimate = { opacity: 1, y: 0 }
+const fadeInDownInitial = { opacity: 0, y: -20 }
+const fadeInDownAnimate = { opacity: 1, y: 0 }
+const fadeInLeftInitial = { opacity: 0, x: -20 }
+const fadeInLeftAnimate = { opacity: 1, x: 0 }
+const titleTransition = { delay: 0.1 }
+const subtitleTransition = { delay: 0.2 }
+const dateTransition = { delay: 0.3 }
+const relatedLinksTransition = { delay: 0.5 }
+const fodiSectionTransition = { delay: 0.6 }
+const sectionTransitions = Array.from({ length: 10 }, (_, i) => ({ delay: i * 0.05 }))
+const dotPatternStyle = {
+  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+  backgroundSize: '32px 32px',
+}
+const thirdPartyServices = [
+  { name: 'Google Analytics', purpose: 'Statistiche di traffico', link: 'https://policies.google.com/privacy' },
+  { name: 'Google Maps', purpose: 'Mappe interattive', link: 'https://policies.google.com/privacy' },
+  { name: 'YouTube', purpose: 'Video incorporati', link: 'https://policies.google.com/privacy' },
+  { name: 'Facebook', purpose: 'Widget social', link: 'https://www.facebook.com/privacy/policy' },
+]
+const cookieManagementItems = [
+  { title: 'Banner Cookie', desc: 'Usa il banner che appare alla prima visita per accettare o rifiutare i cookie non essenziali' },
+  { title: 'Impostazioni Browser', desc: 'Configura il tuo browser per bloccare o eliminare i cookie' },
+  { title: 'Opt-out Analytics', desc: 'Installa il componente aggiuntivo per disattivare Google Analytics' },
+]
+const browserLinks = [
+  { browser: 'Chrome', link: 'https://support.google.com/chrome/answer/95647' },
+  { browser: 'Firefox', link: 'https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop' },
+  { browser: 'Safari', link: 'https://support.apple.com/it-it/guide/safari/sfri11471/mac' },
+  { browser: 'Edge', link: 'https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge' },
+]
 
+const cookieTypes = [
+  {
+    icon: Settings,
+    title: 'Cookie Tecnici',
+    description: 'Essenziali per il funzionamento del sito',
+    required: true,
+    examples: ['Sessione utente', 'Preferenze di navigazione', 'Sicurezza'] as const,
+    duration: 'Sessione o 12 mesi',
+  },
+  {
+    icon: BarChart3,
+    title: 'Cookie Analitici',
+    description: 'Per analisi statistiche anonime',
+    required: false,
+    examples: ['Google Analytics', 'Statistiche visite', 'Pagine visualizzate'] as const,
+    duration: '24 mesi',
+  },
+  {
+    icon: Share2,
+    title: 'Cookie di Marketing',
+    description: 'Per pubblicita personalizzata',
+    required: false,
+    examples: ['Facebook Pixel', 'Google Ads', 'Remarketing'] as const,
+    duration: '12 mesi',
+  },
+]
+
+export default function CookiePage() {
   const sections = [
     {
       title: 'Cosa sono i Cookie',
@@ -88,12 +122,7 @@ export default function CookiePage() {
             Questo sito puo utilizzare servizi di terze parti che installano cookie propri:
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { name: 'Google Analytics', purpose: 'Statistiche di traffico', link: 'https://policies.google.com/privacy' },
-              { name: 'Google Maps', purpose: 'Mappe interattive', link: 'https://policies.google.com/privacy' },
-              { name: 'YouTube', purpose: 'Video incorporati', link: 'https://policies.google.com/privacy' },
-              { name: 'Facebook', purpose: 'Widget social', link: 'https://www.facebook.com/privacy/policy' },
-            ].map((service, i) => (
+            {thirdPartyServices.map((service, i) => (
               <div key={i} className="p-4 bg-[#1D1D1F]/5 rounded-xl">
                 <h4 className="font-semibold text-[#1D1D1F]">{service.name}</h4>
                 <p className="text-sm text-gray-600">{service.purpose}</p>
@@ -119,11 +148,7 @@ export default function CookiePage() {
             Puoi gestire le preferenze sui cookie in diversi modi:
           </p>
           <div className="space-y-3">
-            {[
-              { title: 'Banner Cookie', desc: 'Usa il banner che appare alla prima visita per accettare o rifiutare i cookie non essenziali' },
-              { title: 'Impostazioni Browser', desc: 'Configura il tuo browser per bloccare o eliminare i cookie' },
-              { title: 'Opt-out Analytics', desc: 'Installa il componente aggiuntivo per disattivare Google Analytics' },
-            ].map((item, i) => (
+            {cookieManagementItems.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
                 <CheckCircle className="w-5 h-5 text-[#A0845C] mt-0.5 flex-shrink-0" />
                 <div>
@@ -144,12 +169,7 @@ export default function CookiePage() {
             Ecco come disabilitare i cookie nei principali browser:
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { browser: 'Chrome', link: 'https://support.google.com/chrome/answer/95647' },
-              { browser: 'Firefox', link: 'https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop' },
-              { browser: 'Safari', link: 'https://support.apple.com/it-it/guide/safari/sfri11471/mac' },
-              { browser: 'Edge', link: 'https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge' },
-            ].map((item, i) => (
+            {browserLinks.map((item, i) => (
               <a
                 key={i}
                 href={item.link}
@@ -185,17 +205,14 @@ export default function CookiePage() {
       <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#1D1D1F] to-[#48484A] overflow-hidden">
         <div
           className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
+          style={dotPatternStyle}
         />
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={fadeInDownInitial}
+            animate={fadeInDownAnimate}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
             <Cookie className="w-4 h-4 text-[#A0845C]" />
@@ -203,27 +220,27 @@ export default function CookiePage() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={titleTransition}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             Cookie <span className="text-[#A0845C]">Policy</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={subtitleTransition}
             className="text-xl text-white/70 max-w-2xl mx-auto"
           >
             Informativa sull&apos;utilizzo dei cookie su questo sito web
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={dateTransition}
             className="text-white/50 mt-6 text-sm"
           >
             Ultimo aggiornamento: Gennaio 2025
@@ -235,8 +252,8 @@ export default function CookiePage() {
       <section className="py-12 lg:py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={fadeInLeftInitial}
+            animate={fadeInLeftAnimate}
             className="mb-8"
           >
             <Link
@@ -252,9 +269,9 @@ export default function CookiePage() {
             {sections.map((section, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
+                initial={fadeInUpInitial}
+                animate={fadeInUpAnimate}
+                transition={sectionTransitions[index]}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
                 <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
@@ -270,9 +287,9 @@ export default function CookiePage() {
 
           {/* Related Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={relatedLinksTransition}
             className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl"
           >
             <h3 className="text-xl font-bold text-white mb-4 text-center">Documenti Correlati</h3>
@@ -295,9 +312,9 @@ export default function CookiePage() {
       
           {/* Sviluppo e Gestione Tecnica */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={fodiSectionTransition}
             className="mt-12 pt-8 border-t border-gray-200"
           >
             <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>

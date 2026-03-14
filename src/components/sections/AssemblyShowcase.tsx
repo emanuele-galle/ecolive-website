@@ -5,6 +5,11 @@ import { useRef, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
+const progressBarInitial = { width: '0%' }
+const progressBarAnimate = { width: '100%' }
+const progressBarViewport = { once: true }
+const progressBarTransition = { delay: 0.4, duration: 1.2, ease: 'easeOut' as const }
+
 function AnimatedNumber({
   value,
   suffix = '',
@@ -135,10 +140,10 @@ export default function AssemblyShowcase() {
                       <div className="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
                         <motion.div
                           className="h-full bg-[#A0845C] rounded-full"
-                          initial={{ width: '0%' }}
-                          whileInView={{ width: '100%' }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.4, duration: 1.2, ease: 'easeOut' }}
+                          initial={progressBarInitial}
+                          whileInView={progressBarAnimate}
+                          viewport={progressBarViewport}
+                          transition={progressBarTransition}
                         />
                       </div>
                     )}

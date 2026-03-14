@@ -1,7 +1,69 @@
 'use client'
 
 import { motion, type Easing } from 'framer-motion'
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react'
+
+const blurTextSpanStyle = { display: 'inline-block', willChange: 'transform, filter, opacity' } as const
+
+interface BlurTextSpanProps {
+  segment: string
+  index: number
+  fromSnapshot: Record<string, string | number>
+  toSnapshots: Array<Record<string, string | number>>
+  inView: boolean
+  totalDuration: number
+  times: number[]
+  delay: number
+  easing: Easing | Easing[]
+  isLast: boolean
+  addSpace: boolean
+  onAnimationComplete?: () => void
+  buildKeyframes: (
+    from: Record<string, string | number>,
+    steps: Array<Record<string, string | number>>,
+  ) => Record<string, Array<string | number>>
+}
+
+function BlurTextSpan({
+  segment,
+  index,
+  fromSnapshot,
+  toSnapshots,
+  inView,
+  totalDuration,
+  times,
+  delay,
+  easing,
+  isLast,
+  addSpace,
+  onAnimationComplete,
+  buildKeyframes,
+}: BlurTextSpanProps) {
+  const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
+  const transition = useMemo(
+    () => ({
+      duration: totalDuration,
+      times,
+      delay: (index * delay) / 1000,
+      ease: easing,
+    }),
+    [totalDuration, times, index, delay, easing],
+  )
+
+  return (
+    <motion.span
+      key={index}
+      initial={fromSnapshot}
+      animate={inView ? animateKeyframes : fromSnapshot}
+      transition={transition}
+      onAnimationComplete={isLast ? onAnimationComplete : undefined}
+      style={blurTextSpanStyle}
+    >
+      {segment === ' ' ? '\u00A0' : segment}
+      {addSpace && '\u00A0'}
+    </motion.span>
+  )
+}
 
 type BlurTextProps = {
   text?: string
@@ -69,7 +131,7 @@ const BlurText: React.FC<BlurTextProps> = ({
     stepCount === 1 ? 0 : i / (stepCount - 1),
   )
 
-  const buildKeyframes = (
+  const buildKeyframes = useCallback((
     from: Record<string, string | number>,
     steps: Array<Record<string, string | number>>,
   ): Record<string, Array<string | number>> => {
@@ -82,33 +144,28 @@ const BlurText: React.FC<BlurTextProps> = ({
       keyframes[k] = [from[k], ...steps.map((s) => s[k])]
     })
     return keyframes
-  }
+  }, [])
 
   return (
     <p ref={ref} className={`flex flex-wrap justify-center ${className}`}>
-      {elements.map((segment, index) => {
-        const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
-        return (
-          <motion.span
-            key={index}
-            initial={fromSnapshot}
-            animate={inView ? animateKeyframes : fromSnapshot}
-            transition={{
-              duration: totalDuration,
-              times,
-              delay: (index * delay) / 1000,
-              ease: easing,
-            }}
-            onAnimationComplete={
-              index === elements.length - 1 ? onAnimationComplete : undefined
-            }
-            style={{ display: 'inline-block', willChange: 'transform, filter, opacity' }}
-          >
-            {segment === ' ' ? '\u00A0' : segment}
-            {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}
-          </motion.span>
-        )
-      })}
+      {elements.map((segment, index) => (
+        <BlurTextSpan
+          key={index}
+          segment={segment}
+          index={index}
+          fromSnapshot={fromSnapshot}
+          toSnapshots={toSnapshots}
+          inView={inView}
+          totalDuration={totalDuration}
+          times={times}
+          delay={delay}
+          easing={easing}
+          isLast={index === elements.length - 1}
+          addSpace={animateBy === 'words' && index < elements.length - 1}
+          onAnimationComplete={onAnimationComplete}
+          buildKeyframes={buildKeyframes}
+        />
+      ))}
     </p>
   )
 }

@@ -93,8 +93,3 @@ export function getRoomImage(type: HouseType, rooms: RoomCount): string {
   return `/images/configuratore/${prefix}-${rooms}c.webp`
 }
 
-// Available room options per house type
-const roomOptions: Record<HouseType, RoomCount[]> = {
-  '1-piano': [2, 3, 4, 5],
-  '2-piani': [2, 3, 4, 5],
-}

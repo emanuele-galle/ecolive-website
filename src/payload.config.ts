@@ -9,7 +9,7 @@ import sharp from 'sharp'
 // Collections
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
+
 import { Projects } from './collections/Projects'
 import { News } from './collections/News'
 import { ContactSubmissions } from './collections/ContactSubmissions'
@@ -28,7 +28,7 @@ export default buildConfig({
     },
   },
 
-  collections: [Users, Media, Pages, Projects, News, ContactSubmissions],
+  collections: [Users, Media, Projects, News, ContactSubmissions],
 
   globals: [SiteSettings],
 

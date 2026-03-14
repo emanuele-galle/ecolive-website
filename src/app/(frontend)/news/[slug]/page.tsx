@@ -2,8 +2,9 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
-import type { News } from '@/payload-types'
+import type { News, Media } from '@/payload-types'
 import ArticleClient from './ArticleClient'
+import JsonLd from '@/components/JsonLd'
 
 interface PageProps {
   params: Promise<{
@@ -128,10 +129,51 @@ export default async function NewsArticlePage({ params }: PageProps) {
     sort: '-publishedDate',
   })
 
+  const featuredImage = article.featuredImage && typeof article.featuredImage !== 'number'
+    ? article.featuredImage as Media
+    : null
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt || article.seo?.metaDescription || '',
+    datePublished: article.publishedDate,
+    dateModified: article.updatedAt || article.publishedDate,
+    author: {
+      '@type': 'Organization',
+      name: 'Redazione Ecolive',
+      url: 'https://www.ecolive.srl',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Ecolive S.r.l.',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.ecolive.srl/images/logo-ecolive.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.ecolive.srl/news/${slug}`,
+    },
+    ...(featuredImage?.url ? {
+      image: {
+        '@type': 'ImageObject',
+        url: featuredImage.url,
+        width: featuredImage.width || undefined,
+        height: featuredImage.height || undefined,
+      },
+    } : {}),
+  }
+
   return (
-    <ArticleClient
-      article={article as News}
-      relatedArticles={relatedArticles.docs as News[]}
-    />
+    <>
+      <JsonLd data={articleJsonLd} />
+      <ArticleClient
+        article={article as News}
+        relatedArticles={relatedArticles.docs as News[]}
+      />
+    </>
   )
 }

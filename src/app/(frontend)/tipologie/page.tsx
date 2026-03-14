@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -83,7 +82,7 @@ export default function TipologiePage() {
         </div>
       </div>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* Griglia Tipologie */}
       <section className="bg-[#F5F5F7] py-28 lg:py-36">
@@ -149,7 +148,7 @@ export default function TipologiePage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* CTA Finale */}
       <section className="relative bg-[#1D1D1F] text-white py-28 lg:py-36 overflow-hidden">

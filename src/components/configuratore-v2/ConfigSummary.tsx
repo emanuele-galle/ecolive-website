@@ -6,6 +6,10 @@ import { Home, Layers, BedDouble, Ruler, Check, Edit2 } from 'lucide-react'
 import { useConfiguratorV2 } from './hooks/useConfiguratorV2'
 import { houseConfigurations, getRoomImage } from '@/lib/configuratore-v2/configurations'
 
+const fadeInUp = { opacity: 0, y: 20 }
+const visible = { opacity: 1, y: 0 }
+const fadeInUpTransition = { duration: 0.5 }
+
 interface ConfigSummaryProps {
   onEdit?: () => void
 }
@@ -21,9 +25,9 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={fadeInUp}
+      animate={visible}
+      transition={fadeInUpTransition}
       className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
     >
       {/* Image */}
@@ -110,7 +114,7 @@ export default function ConfigSummary({ onEdit }: ConfigSummaryProps) {
             {[
               'Struttura in legno X-Frame',
               'Classe energetica A4',
-              'Garanzia 10 anni',
+              'Garanzia 30 anni',
             ].map((benefit, i) => (
               <div key={i} className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#A0845C]" />

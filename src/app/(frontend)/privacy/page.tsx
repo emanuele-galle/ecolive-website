@@ -4,6 +4,38 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Shield, Mail, MapPin, Phone, ArrowLeft } from 'lucide-react'
 
+const fadeInUp = { opacity: 0, y: 20 }
+const fadeInDown = { opacity: 0, y: -20 }
+const fadeInLeft = { opacity: 0, x: -20 }
+const visible = { opacity: 1, y: 0 }
+const visibleX = { opacity: 1, x: 0 }
+const delayTransition01 = { delay: 0.1 }
+const delayTransition02 = { delay: 0.2 }
+const delayTransition03 = { delay: 0.3 }
+const delayTransition05 = { delay: 0.5 }
+const delayTransition06 = { delay: 0.6 }
+const patternStyle = {
+  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+  backgroundSize: '32px 32px'
+}
+const sectionTransitions = Array.from({ length: 10 }, (_, i) => ({ delay: i * 0.05 }))
+
+const treatmentPurposes = [
+  { title: 'Rispondere alle richieste', desc: 'Gestione dei contatti e delle richieste di preventivo' },
+  { title: 'Migliorare il servizio', desc: 'Analisi statistiche anonime per ottimizzare il sito' },
+  { title: 'Obblighi di legge', desc: 'Adempimenti fiscali, contabili e normativi' },
+  { title: 'Marketing (con consenso)', desc: 'Invio di comunicazioni promozionali' },
+]
+
+const userRights = [
+  'Diritto di accesso',
+  'Diritto di rettifica',
+  'Diritto alla cancellazione',
+  'Diritto alla portabilita',
+  'Diritto di opposizione',
+  'Diritto di limitazione',
+]
+
 export default function PrivacyPage() {
   const sections = [
     {
@@ -67,12 +99,7 @@ export default function PrivacyPage() {
             I dati personali sono trattati per le seguenti finalita:
           </p>
           <div className="grid gap-3">
-            {[
-              { title: 'Rispondere alle richieste', desc: 'Gestione dei contatti e delle richieste di preventivo' },
-              { title: 'Migliorare il servizio', desc: 'Analisi statistiche anonime per ottimizzare il sito' },
-              { title: 'Obblighi di legge', desc: 'Adempimenti fiscali, contabili e normativi' },
-              { title: 'Marketing (con consenso)', desc: 'Invio di comunicazioni promozionali' },
-            ].map((item, i) => (
+            {treatmentPurposes.map((item, i) => (
               <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
                 <div className="w-8 h-8 bg-[#A0845C] rounded-lg flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-sm">{i + 1}</span>
@@ -117,14 +144,7 @@ export default function PrivacyPage() {
             In conformita al GDPR (Regolamento UE 2016/679), l&apos;interessato puo esercitare i seguenti diritti:
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              'Diritto di accesso',
-              'Diritto di rettifica',
-              'Diritto alla cancellazione',
-              'Diritto alla portabilita',
-              'Diritto di opposizione',
-              'Diritto di limitazione',
-            ].map((right, i) => (
+            {userRights.map((right, i) => (
               <div key={i} className="flex items-center gap-2 p-3 bg-[#1D1D1F]/5 rounded-lg">
                 <Shield className="w-4 h-4 text-[#A0845C]" />
                 <span className="text-[#1D1D1F] font-medium">{right}</span>
@@ -171,18 +191,15 @@ export default function PrivacyPage() {
         {/* Pattern */}
         <div
           className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px'
-          }}
+          style={patternStyle}
         />
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#A0845C]/20 rounded-full blur-3xl" />
 
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={fadeInDown}
+            animate={visible}
             className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
           >
             <Shield className="w-4 h-4 text-[#A0845C]" />
@@ -190,27 +207,27 @@ export default function PrivacyPage() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={delayTransition01}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
             Privacy <span className="text-[#A0845C]">Policy</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={delayTransition02}
             className="text-xl text-white/70 max-w-2xl mx-auto"
           >
             Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={delayTransition03}
             className="text-white/50 mt-6 text-sm"
           >
             Ultimo aggiornamento: Gennaio 2025
@@ -223,8 +240,8 @@ export default function PrivacyPage() {
         <div className="max-w-3xl mx-auto">
           {/* Back Link */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={fadeInLeft}
+            animate={visibleX}
             className="mb-8"
           >
             <Link
@@ -241,9 +258,9 @@ export default function PrivacyPage() {
             {sections.map((section, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
+                initial={fadeInUp}
+                animate={visible}
+                transition={sectionTransitions[index]}
                 className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100"
               >
                 <h2 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-4 flex items-center gap-3">
@@ -259,9 +276,9 @@ export default function PrivacyPage() {
 
           {/* Contact CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={delayTransition05}
             className="mt-12 p-8 bg-[#1D1D1F] rounded-2xl text-center"
           >
             <h3 className="text-xl font-bold text-white mb-2">Hai domande sulla privacy?</h3>
@@ -280,9 +297,9 @@ export default function PrivacyPage() {
       
           {/* Sviluppo e Gestione Tecnica */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={delayTransition06}
             className="mt-12 pt-8 border-t border-gray-200"
           >
             <h2 className="text-xl font-bold text-[#1D1D1F] mb-3">Sviluppo e Gestione Tecnica del Sito</h2>

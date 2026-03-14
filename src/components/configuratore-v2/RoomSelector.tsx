@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Home, Layers } from 'lucide-react'
@@ -8,8 +9,35 @@ import RoomOption from './RoomOption'
 import { houseConfigurations, getRoomImage } from '@/lib/configuratore-v2/configurations'
 import type { RoomCount } from '@/lib/configuratore-v2/types'
 
+const hoverScale = { scale: 1.02 }
+const tapScale = { scale: 0.98 }
+const emptyAnimation = {}
+const fadeInitial = { opacity: 0 }
+const fadeVisible = { opacity: 1 }
+const fadeOut = { opacity: 0 }
+const fadeTransition = { duration: 0.5 }
+const imageFadeInitial = { opacity: 0 }
+const imageFadeAnimate = { opacity: 1 }
+const imageFadeExit = { opacity: 0 }
+const imageFadeTransition = { duration: 0.5 }
+const slideInFromLeft = { opacity: 0, x: -20 }
+const slideInFromLeftAnimate = { opacity: 1, x: 0 }
+const slideInFromLeftTransition = { delay: 0.3 }
+const fadeInUp = { opacity: 0, y: 20 }
+const fadeInUpAnimate = { opacity: 1, y: 0 }
+const fadeInUpTransition = { delay: 0.4 }
+const panelSlideInitial = { x: 100, opacity: 0 }
+const panelSlideAnimate = { x: 0, opacity: 1 }
+const panelSlideTransition = { duration: 0.5, delay: 0.2 }
+
 export default function RoomSelector() {
   const { selectedHouse, selectedRooms, selectRooms, goBack, setStep } = useConfiguratorV2()
+
+  const handleContinue = useCallback(() => {
+    if (selectedRooms) {
+      setStep('form')
+    }
+  }, [selectedRooms, setStep])
 
   if (!selectedHouse) return null
 
@@ -24,20 +52,20 @@ export default function RoomSelector() {
   return (
     <motion.div
       className="min-h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={fadeInitial}
+      animate={fadeVisible}
+      exit={fadeOut}
+      transition={fadeTransition}
     >
       {/* Background Image */}
       <div className="absolute inset-0 lg:relative lg:flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={backgroundImage}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={imageFadeInitial}
+            animate={imageFadeAnimate}
+            exit={imageFadeExit}
+            transition={imageFadeTransition}
             className="absolute inset-0"
           >
             <Image
@@ -56,9 +84,9 @@ export default function RoomSelector() {
         <motion.button
           onClick={goBack}
           className="hidden lg:flex absolute top-28 left-8 items-center gap-2 px-5 py-2.5 bg-white text-[#1D1D1F] rounded-full shadow-lg hover:shadow-xl hover:bg-gray-50 transition-all z-10"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
+          initial={slideInFromLeft}
+          animate={slideInFromLeftAnimate}
+          transition={slideInFromLeftTransition}
         >
           <ArrowLeft className="w-5 h-5" />
           <span className="text-sm font-semibold">Indietro</span>
@@ -67,9 +95,9 @@ export default function RoomSelector() {
         {/* House type badge (desktop only) */}
         <motion.div
           className="hidden lg:flex absolute bottom-8 left-8 items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          initial={fadeInUp}
+          animate={fadeInUpAnimate}
+          transition={fadeInUpTransition}
         >
           <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
             <Icon className="w-5 h-5 text-white" />
@@ -84,9 +112,9 @@ export default function RoomSelector() {
       {/* Selection Panel */}
       <motion.div
         className="relative z-10 flex-1 lg:flex-none lg:w-[500px] xl:w-[550px] bg-white lg:rounded-l-[32px] shadow-2xl overflow-hidden flex flex-col"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        initial={panelSlideInitial}
+        animate={panelSlideAnimate}
+        transition={panelSlideTransition}
       >
         {/* Header */}
         <div className="p-6 lg:p-8 border-b border-gray-100">
@@ -136,11 +164,7 @@ export default function RoomSelector() {
         {/* Footer CTA */}
         <div className="p-6 lg:p-8 border-t border-gray-100 bg-gray-50/50">
           <motion.button
-            onClick={() => {
-              if (selectedRooms) {
-                setStep('form')
-              }
-            }}
+            onClick={handleContinue}
             disabled={!selectedRooms}
             className={`
               w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300
@@ -150,8 +174,8 @@ export default function RoomSelector() {
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }
             `}
-            whileHover={selectedRooms ? { scale: 1.02 } : {}}
-            whileTap={selectedRooms ? { scale: 0.98 } : {}}
+            whileHover={selectedRooms ? hoverScale : emptyAnimation}
+            whileTap={selectedRooms ? tapScale : emptyAnimation}
           >
             <span>Richiedi Preventivo</span>
             <ArrowRight className="w-5 h-5" />

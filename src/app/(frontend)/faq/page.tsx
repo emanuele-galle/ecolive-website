@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -12,6 +12,7 @@ import BlurText from '@/components/ui/BlurText'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
 import SectionTransition from '@/components/ui/SectionTransition'
+import JsonLd from '@/components/JsonLd'
 
 const categories = [
   { id: 'sistema', label: 'Sistema X-Frame', icon: Leaf },
@@ -24,6 +25,18 @@ type FAQItem = {
   question: string
   answer: React.ReactNode
 }
+
+const qualitySteps = [
+  { num: '1', title: 'Produzione in stabilimento', desc: 'Componenti realizzati con precisione millimetrica' },
+  { num: '2', title: 'Materiali certificati', desc: 'Legno da foreste gestite responsabilmente' },
+  { num: '3', title: 'Collaudo finale', desc: 'Test e verifiche prima della consegna' },
+]
+
+const permitItems = [
+  { label: 'Permesso di Costruire', desc: 'per nuove costruzioni' },
+  { label: 'SCIA', desc: 'per alcune tipologie di intervento' },
+  { label: 'Denuncia al Genio Civile', desc: 'per la parte strutturale' },
+]
 
 const faqsByCategory: Record<string, FAQItem[]> = {
   sistema: [
@@ -250,11 +263,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
         <>
           <p className="mb-4 text-[var(--color-muted)]">La qualita e al centro di tutto quello che facciamo.</p>
           <div className="space-y-4 mb-4">
-            {[
-              { num: '1', title: 'Produzione in stabilimento', desc: 'Componenti realizzati con precisione millimetrica' },
-              { num: '2', title: 'Materiali certificati', desc: 'Legno da foreste gestite responsabilmente' },
-              { num: '3', title: 'Collaudo finale', desc: 'Test e verifiche prima della consegna' },
-            ].map((step) => (
+            {qualitySteps.map((step) => (
               <div key={step.num} className="flex items-start gap-4">
                 <div className="w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-sm">{step.num}</span>
@@ -269,7 +278,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
           <div className="flex items-center gap-4 p-4 bg-[var(--color-secondary-dark)]/5 rounded-xl">
             <Award className="w-8 h-8 text-[var(--color-primary)]" />
             <div>
-              <p className="font-semibold text-[var(--color-secondary-dark)]">Garanzia 10 anni</p>
+              <p className="font-semibold text-[var(--color-secondary-dark)]">Garanzia 30 anni</p>
               <p className="text-sm text-[var(--color-muted)]">Sulla struttura portante</p>
             </div>
           </div>
@@ -287,11 +296,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
             gli stessi permessi dell&apos;edilizia tradizionale.
           </p>
           <div className="space-y-2 mb-4">
-            {[
-              { label: 'Permesso di Costruire', desc: 'per nuove costruzioni' },
-              { label: 'SCIA', desc: 'per alcune tipologie di intervento' },
-              { label: 'Denuncia al Genio Civile', desc: 'per la parte strutturale' },
-            ].map((item) => (
+            {permitItems.map((item) => (
               <div key={item.label} className="flex items-center gap-3 p-3 bg-[var(--color-surface)] rounded-xl">
                 <FileCheck className="w-5 h-5 text-[var(--color-primary)]" />
                 <span className="text-[var(--color-foreground)]"><strong className="text-[var(--color-secondary-dark)]">{item.label}</strong> — {item.desc}</span>
@@ -363,8 +368,8 @@ function FAQItemComponent({ faq, isOpen, onToggle, index }: { faq: FAQItem; isOp
             {faq.question}
           </h3>
           <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            animate={isOpen ? chevronRotateOpen : chevronRotateClosed}
+            transition={chevronTransition}
             className={`transition-colors duration-300 ${isOpen ? 'text-[var(--color-primary)]' : 'text-[#EDE6DB]'}`}
           >
             <ChevronDown className="w-5 h-5" />
@@ -374,10 +379,10 @@ function FAQItemComponent({ faq, isOpen, onToggle, index }: { faq: FAQItem; isOp
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              initial={accordionInitial}
+              animate={accordionOpen}
+              exit={accordionInitial}
+              transition={accordionTransition}
             >
               <div className="px-6 pb-6 pt-2 ml-14">
                 {faq.answer}
@@ -390,6 +395,16 @@ function FAQItemComponent({ faq, isOpen, onToggle, index }: { faq: FAQItem; isOp
   )
 }
 
+const chevronRotateOpen = { rotate: 180 }
+const chevronRotateClosed = { rotate: 0 }
+const chevronTransition = { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] as const }
+const accordionInitial = { height: 0, opacity: 0 }
+const accordionOpen = { height: 'auto', opacity: 1 }
+const accordionTransition = { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const }
+const categoryListInitial = { opacity: 0, x: 20 }
+const categoryListAnimate = { opacity: 1, x: 0 }
+const categoryListExit = { opacity: 0, x: -20 }
+
 const marqueeItems = [
   'Domande?',
   'Chiama Ora',
@@ -399,14 +414,149 @@ const marqueeItems = [
   'Team di Esperti',
 ]
 
+const faqJsonLdData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Perche scegliere il sistema X-Frame?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Il sistema X-Frame rappresenta l\'evoluzione dell\'edilizia in legno, combinando tre tecnologie collaudate in un unico sistema ibrido. Offre rispetto per l\'ambiente con materiali naturali e rinnovabili, innovazione tecnologica con precisione industriale millimetrica, comfort superiore con isolamento termico e acustico eccellente, Classe A4 garantita per massima efficienza energetica, e casa pronta in 60 giorni con tempi di costruzione ridotti.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quali sono i vantaggi rispetto alle case tradizionali?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Rispetto all\'edilizia in muratura, le nostre case offrono vantaggi concreti sia economici che prestazionali: tempi ridotti (costruzione 70% piu veloce, 4-8 settimane invece di mesi), risparmio economico (costi inferiori del 20-40% a parita di qualita), efficienza energetica (consumi ridotti fino all\'80% rispetto alle case tradizionali), e resistenza sismica (strutture certificate per zona sismica 1).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quanto costa una casa Ecolive?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Offriamo diverse soluzioni: Grezzo Base (struttura completa) da 1.100 euro/mq, Grezzo Avanzato (pronto per finiture) da 1.200 euro/mq, Chiavi in Mano (casa pronta da abitare) da 1.800 euro/mq. Preventivo dettagliato e bloccato, nessuna sorpresa. Prezzo garantito fino alla consegna.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quanto tempo ci vuole per costruire una casa?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Una delle cose che stupisce di piu i nostri clienti e la velocita di realizzazione: 5-7 giorni per il montaggio, 30 giorni per chiavi in mano. Questi tempi non includono la preparazione del terreno, le fondazioni e gli allacci alle utenze.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quali opzioni di finanziamento sono disponibili?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Le banche finanziano le case in legno esattamente come quelle tradizionali. Opzioni disponibili: mutuo ipotecario, finanziamenti convenzionati con istituti partner, contributi regionali per efficienza energetica, Conto Termico con contributi statali per rinnovabili. I nostri consulenti ti guideranno nella scelta migliore, con piani da 5 a 30 anni.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Le case in legno durano nel tempo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Assolutamente si. Con la giusta cura, una casa in legno puo durare secoli, come dimostrano le costruzioni storiche in Scandinavia e Giappone. Le nostre case sono progettate per durare grazie a: legno essiccato industrialmente con umidita controllata al 12%, trattamenti protettivi contro funghi, insetti e umidita, membrane traspiranti e barriere al vapore, sistema di ventilazione che previene condense e muffe. La manutenzione richiesta e simile a quella di una casa tradizionale.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Sono sicure in caso di incendio?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Si, sono molto sicure. Contrariamente a quanto si pensa, il legno ha un comportamento prevedibile in caso di incendio, a differenza dell\'acciaio che puo collassare improvvisamente. Resistenza al fuoco REI 60: 60 minuti di resistenza strutturale certificata, tempo sufficiente per evacuare e per l\'intervento dei vigili del fuoco. Utilizziamo inoltre materiali ignifughi, compartimentazione degli ambienti e impianti conformi alle normative piu recenti.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Come viene garantita la qualita?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'La qualita e al centro di tutto quello che facciamo. Il processo prevede: 1) Produzione in stabilimento con componenti realizzati con precisione millimetrica, 2) Materiali certificati da legno da foreste gestite responsabilmente, 3) Collaudo finale con test e verifiche prima della consegna. Garanzia 30 anni sulla struttura portante.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quali permessi sono necessari?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Le case in legno sono edifici a tutti gli effetti e richiedono gli stessi permessi dell\'edilizia tradizionale: Permesso di Costruire per nuove costruzioni, SCIA per alcune tipologie di intervento, Denuncia al Genio Civile per la parte strutturale. Non preoccuparti della burocrazia: gestiamo tutta la documentazione, le pratiche e i rapporti con gli enti.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Come funziona il riscaldamento e raffrescamento?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Le nostre case sono progettate per il massimo comfort con consumi minimi. Includono: riscaldamento a pavimento per calore uniforme in ogni ambiente, pompa di calore che riscalda e raffresca, VMC con recupero calore al 95%, deumidificazione per controllo umidita ottimale. Grazie all\'eccellente isolamento, i consumi sono ridotti fino all\'80% rispetto a una casa tradizionale.',
+      },
+    },
+  ],
+}
+
+function FAQItemWrapper({ faq, openFAQ, setOpenFAQ, index }: {
+  faq: FAQItem
+  openFAQ: number | null
+  setOpenFAQ: (value: number | null) => void
+  index: number
+}) {
+  const handleToggle = useCallback(() => {
+    setOpenFAQ(openFAQ === index ? null : index)
+  }, [openFAQ, setOpenFAQ, index])
+
+  return (
+    <FAQItemComponent
+      faq={faq}
+      isOpen={openFAQ === index}
+      onToggle={handleToggle}
+      index={index}
+    />
+  )
+}
+
+function CategoryTabButton({ cat, isActive, onClick }: {
+  cat: typeof categories[number]
+  isActive: boolean
+  onClick: (id: string) => void
+}) {
+  const Icon = cat.icon
+  const handleClick = useCallback(() => onClick(cat.id), [onClick, cat.id])
+  return (
+    <button
+      onClick={handleClick}
+      className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap ${
+        isActive
+          ? 'bg-[var(--color-secondary-dark)] text-white shadow-lg shadow-[var(--color-secondary-dark)]/20'
+          : 'bg-[var(--color-surface)] text-[var(--color-muted)] hover:bg-[#EDE6DB] hover:text-[var(--color-secondary-dark)]'
+      }`}
+    >
+      <Icon className={`w-4 h-4 ${isActive ? 'text-[var(--color-primary)]' : ''}`} />
+      {cat.label}
+    </button>
+  )
+}
+
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState('sistema')
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
 
   const currentFAQs = faqsByCategory[activeCategory] || []
 
+  const handleCategoryChange = useCallback((id: string) => {
+    setActiveCategory(id)
+    setOpenFAQ(0)
+  }, [])
+
   return (
     <main className="min-h-screen bg-[var(--color-surface)]">
+      <JsonLd data={faqJsonLdData} />
 
       {/* ===== HERO ===== */}
       <section className="relative py-28 lg:py-40 bg-gradient-to-br from-[var(--color-secondary-dark)] to-[var(--color-secondary)]">
@@ -427,33 +577,20 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <SectionTransition from="#48484A" to="#F5F5F7" variant="wave" height={60} />
+      <SectionTransition from="#48484A" to="#F5F5F7" height={60} />
 
       {/* ===== CATEGORY TABS ===== */}
       <section className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-[#EDE6DB] shadow-premium">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
-            {categories.map((cat) => {
-              const Icon = cat.icon
-              const isActive = activeCategory === cat.id
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id)
-                    setOpenFAQ(0)
-                  }}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap ${
-                    isActive
-                      ? 'bg-[var(--color-secondary-dark)] text-white shadow-lg shadow-[var(--color-secondary-dark)]/20'
-                      : 'bg-[var(--color-surface)] text-[var(--color-muted)] hover:bg-[#EDE6DB] hover:text-[var(--color-secondary-dark)]'
-                  }`}
-                >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[var(--color-primary)]' : ''}`} />
-                  {cat.label}
-                </button>
-              )
-            })}
+            {categories.map((cat) => (
+              <CategoryTabButton
+                key={cat.id}
+                cat={cat}
+                isActive={activeCategory === cat.id}
+                onClick={handleCategoryChange}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -464,17 +601,17 @@ export default function FAQPage() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={categoryListInitial}
+              animate={categoryListAnimate}
+              exit={categoryListExit}
               className="space-y-5"
             >
               {currentFAQs.map((faq, index) => (
-                <FAQItemComponent
+                <FAQItemWrapper
                   key={index}
                   faq={faq}
-                  isOpen={openFAQ === index}
-                  onToggle={() => setOpenFAQ(openFAQ === index ? null : index)}
+                  openFAQ={openFAQ}
+                  setOpenFAQ={setOpenFAQ}
                   index={index}
                 />
               ))}
@@ -492,7 +629,7 @@ export default function FAQPage() {
         />
       </div>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
@@ -548,7 +685,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#FFFFFF" variant="wave" height={60} />
+      <SectionTransition from="#1D1D1F" to="#FFFFFF" height={60} />
 
       {/* ===== BROCHURE ===== */}
       <section className="py-20 px-4 bg-white">
@@ -564,7 +701,7 @@ export default function FAQPage() {
                 </p>
               </div>
               <a
-                href="http://127.0.0.1:9000/ecolive-media/documenti/Brochure-2025.pdf"
+                href="https://storage.fodivps2.cloud/ecolive-media/documenti/Brochure-2025.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-[var(--color-surface)] text-[var(--color-secondary-dark)] font-semibold rounded-xl transition-colors whitespace-nowrap shadow-premium"

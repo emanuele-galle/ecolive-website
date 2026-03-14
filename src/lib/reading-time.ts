@@ -56,12 +56,8 @@ export function calculateReadingTime(
  * @param minutes - Minuti di lettura
  * @returns Stringa formattata (es: "3 min di lettura")
  */
-function formatReadingTime(minutes: number): string {
-  return `${minutes} min di lettura`
-}
-
 // Tipo per heading estratti
-export interface ExtractedHeading {
+interface ExtractedHeading {
   id: string
   text: string
   level: 2 | 3

@@ -63,6 +63,14 @@ const values = [
   },
 ]
 
+const fadeInUpInitial = { opacity: 0, y: 20 }
+const fadeInUpAnimate = { opacity: 1, y: 0 }
+const heroSubtitleTransition = { duration: 0.8, delay: 0.2 }
+const fadeInTransition = { duration: 0.8, delay: 0.4 }
+const fadeInInitial = { opacity: 0 }
+const fadeInAnimate = { opacity: 1 }
+const marqueeValues = ['Bioedilizia', 'Innovazione', 'Sostenibilita', 'Qualita', 'Tradizione', 'Made in Italy']
+
 export default function ChiSiamoPage() {
   return (
     <main className="overflow-hidden">
@@ -84,17 +92,17 @@ export default function ChiSiamoPage() {
           />
           <motion.p
             className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={fadeInUpInitial}
+            animate={fadeInUpAnimate}
+            transition={heroSubtitleTransition}
           >
             Bioedilizia di eccellenza in Calabria
           </motion.p>
           <motion.div
             className="mt-12 flex flex-wrap justify-center gap-10 md:gap-16 text-white/60 text-sm tracking-wide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={fadeInInitial}
+            animate={fadeInAnimate}
+            transition={fadeInTransition}
           >
             <span className="text-center">
               <strong className="text-white text-3xl md:text-4xl font-bold block mb-1">
@@ -121,7 +129,7 @@ export default function ChiSiamoPage() {
       {/* MARQUEE VALUES */}
       <div className="bg-[#F5F5F7] py-5 border-b border-[#D2D2D7]/50">
         <InfiniteMarquee
-          items={['Bioedilizia', 'Innovazione', 'Sostenibilita', 'Qualita', 'Tradizione', 'Made in Italy']}
+          items={marqueeValues}
           speed={25}
           className="text-[#1D1D1F]/60"
         />
@@ -178,7 +186,7 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* IL TEAM */}
       <section className="py-28 lg:py-36 px-6 bg-white">
@@ -229,7 +237,7 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
       {/* I NOSTRI VALORI */}
       <section className="py-28 lg:py-36 px-6 bg-[#F5F5F7]">
@@ -273,7 +281,7 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="wave" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* CTA */}
       <section className="py-28 lg:py-36 px-6 bg-[#1D1D1F]">

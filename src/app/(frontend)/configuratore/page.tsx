@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import ConfiguratoreWrapper from './ConfiguratoreWrapper'
 
 export const metadata: Metadata = {
-  title: 'Configura la tua Casa | Ecolive - Case Prefabbricate in Legno',
+  title: 'Configura la tua Casa in Legno',
   description:
     'Configura la tua casa prefabbricata in legno in pochi click. Scegli tra casa a 1 o 2 piani, seleziona il numero di camere e richiedi un preventivo personalizzato.',
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'case prefabbricate preventivo',
   ],
   openGraph: {
-    title: 'Configura la tua Casa in Legno | Ecolive',
+    title: 'Configura la tua Casa in Legno',
     description: 'Configura la tua casa prefabbricata in pochi click e richiedi un preventivo gratuito.',
     type: 'website',
   },

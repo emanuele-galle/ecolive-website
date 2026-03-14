@@ -55,6 +55,33 @@ export default function Header() {
     submenuTimeout.current = setTimeout(() => setSubmenuOpen(false), 150)
   }, [])
 
+  const handleDesktopMouseEnter = useCallback(
+    (hasSubmenu: boolean) => { if (hasSubmenu) handleSubmenuEnter() },
+    [handleSubmenuEnter]
+  )
+
+  const handleDesktopMouseLeave = useCallback(
+    (hasSubmenu: boolean) => { if (hasSubmenu) handleSubmenuLeave() },
+    [handleSubmenuLeave]
+  )
+
+  const handleSubmenuKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setSubmenuOpen((prev) => !prev)
+    } else if (e.key === 'Escape') {
+      setSubmenuOpen(false)
+    }
+  }, [])
+
+  const toggleMobileOpen = useCallback(() => {
+    setMobileOpen((prev) => !prev)
+  }, [])
+
+  const toggleMobileSubmenu = useCallback(() => {
+    setMobileSubmenuOpen((prev) => !prev)
+  }, [])
+
   return (
     <>
       <header
@@ -88,8 +115,14 @@ export default function Header() {
                 <div
                   key={item.href}
                   className="relative"
-                  onMouseEnter={() => item.submenu && handleSubmenuEnter()}
-                  onMouseLeave={() => item.submenu && handleSubmenuLeave()}
+                  onMouseEnter={() => handleDesktopMouseEnter(!!item.submenu)}
+                  onMouseLeave={() => handleDesktopMouseLeave(!!item.submenu)}
+                  onFocus={() => handleDesktopMouseEnter(!!item.submenu)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget)) {
+                      handleDesktopMouseLeave(!!item.submenu)
+                    }
+                  }}
                 >
                   <Link
                     href={item.href}
@@ -98,6 +131,11 @@ export default function Header() {
                         ? 'text-[#86868B] hover:text-[#1D1D1F]'
                         : 'text-white/80 hover:text-white'
                     }`}
+                    {...(item.submenu && {
+                      'aria-expanded': submenuOpen,
+                      'aria-haspopup': true as const,
+                      onKeyDown: handleSubmenuKeyDown,
+                    })}
                   >
                     {item.label}
                     {item.submenu && (
@@ -150,7 +188,7 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={toggleMobileOpen}
               className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${
                 scrolled
                   ? 'text-[#1D1D1F] hover:bg-[#F5F5F7]'
@@ -202,7 +240,8 @@ export default function Header() {
               {item.submenu ? (
                 <>
                   <button
-                    onClick={() => setMobileSubmenuOpen(!mobileSubmenuOpen)}
+                    onClick={toggleMobileSubmenu}
+                    aria-expanded={mobileSubmenuOpen}
                     className="flex items-center justify-between w-full px-4 py-3.5 text-[#1D1D1F] hover:text-[#A0845C] hover:bg-[#F5F5F7] rounded-xl transition-all duration-200 font-medium"
                   >
                     {item.label}

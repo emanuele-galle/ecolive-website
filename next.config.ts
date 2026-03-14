@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/il-sistema-x-frame',
-        destination: '/x-frame',
+        destination: '/sistema-x-frame',
         permanent: true,
       },
     ]

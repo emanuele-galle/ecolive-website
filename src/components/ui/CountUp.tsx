@@ -8,6 +8,7 @@ interface CountUpProps {
   from?: number
   delay?: number
   duration?: number
+  decimals?: number
   className?: string
   separator?: string
   suffix?: string
@@ -19,6 +20,7 @@ export default function CountUp({
   from = 0,
   delay = 0,
   duration = 2,
+  decimals = 0,
   className = '',
   separator = '',
   suffix = '',
@@ -33,16 +35,16 @@ export default function CountUp({
 
   const formatValue = useCallback(
     (latest: number) => {
-      const rounded = Math.round(latest)
+      const value = decimals > 0 ? parseFloat(latest.toFixed(decimals)) : Math.round(latest)
       const options: Intl.NumberFormatOptions = {
         useGrouping: !!separator,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
       }
-      const formatted = Intl.NumberFormat('it-IT', options).format(rounded)
+      const formatted = Intl.NumberFormat('it-IT', options).format(value)
       return (separator ? formatted.replace(/\./g, separator) : formatted) + suffix
     },
-    [separator, suffix],
+    [separator, suffix, decimals],
   )
 
   useEffect(() => {
@@ -75,5 +77,5 @@ export default function CountUp({
     return () => unsubscribe()
   }, [springValue, formatValue])
 
-  return <span className={className} ref={ref} />
+  return <span className={className} ref={ref} aria-label={`${to}${suffix}`} />
 }

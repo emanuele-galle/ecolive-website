@@ -9,13 +9,13 @@ import {
   Phone, ArrowLeft, type LucideIcon,
 } from 'lucide-react'
 import { getTipologiaById } from '@/data/tipologie'
+import JsonLd from '@/components/JsonLd'
 import BlurText from '@/components/ui/BlurText'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import SectionTransition from '@/components/ui/SectionTransition'
 import InfiniteMarquee from '@/components/ui/InfiniteMarquee'
 import ImageLightbox from '@/components/ui/ImageLightbox'
-import GlassCard from '@/components/ui/GlassCard'
 
 const features: { icon: LucideIcon; title: string; description: string }[] = [
   {
@@ -51,15 +51,15 @@ const features: { icon: LucideIcon; title: string; description: string }[] = [
 ]
 
 const galleryImages = [
-  { src: '/images/luxury/gallery-1.jpg', alt: 'Villa Contemporanea', title: 'Villa Contemporanea' },
-  { src: '/images/luxury/gallery-5.jpg', alt: 'Villa Moderna', title: 'Villa Moderna' },
-  { src: '/images/luxury/gallery-8.jpg', alt: 'Residenza Premium', title: 'Residenza Premium' },
-  { src: '/images/luxury/gallery-12.jpg', alt: 'Villa Esclusiva', title: 'Villa Esclusiva' },
-  { src: '/images/luxury/gallery-15.jpg', alt: 'Villa Design', title: 'Villa Design' },
-  { src: '/images/luxury/gallery-20.jpg', alt: 'Residenza Elegante', title: 'Residenza Elegante' },
-  { src: '/images/luxury/gallery-25.jpg', alt: 'Villa Panoramica', title: 'Villa Panoramica' },
-  { src: '/images/luxury/gallery-30.jpg', alt: 'Villa Natura', title: 'Villa Natura' },
-  { src: '/images/luxury/gallery-35.jpg', alt: 'Residenza Esclusiva', title: 'Residenza Esclusiva' },
+  { src: '/images/luxury/gallery-1.webp', alt: 'Villa Contemporanea', title: 'Villa Contemporanea' },
+  { src: '/images/luxury/gallery-5.webp', alt: 'Villa Moderna', title: 'Villa Moderna' },
+  { src: '/images/luxury/gallery-8.webp', alt: 'Residenza Premium', title: 'Residenza Premium' },
+  { src: '/images/luxury/gallery-12.webp', alt: 'Villa Esclusiva', title: 'Villa Esclusiva' },
+  { src: '/images/luxury/gallery-15.webp', alt: 'Villa Design', title: 'Villa Design' },
+  { src: '/images/luxury/gallery-20.webp', alt: 'Residenza Elegante', title: 'Residenza Elegante' },
+  { src: '/images/luxury/gallery-25.webp', alt: 'Villa Panoramica', title: 'Villa Panoramica' },
+  { src: '/images/luxury/gallery-30.webp', alt: 'Villa Natura', title: 'Villa Natura' },
+  { src: '/images/luxury/gallery-35.webp', alt: 'Residenza Esclusiva', title: 'Residenza Esclusiva' },
 ]
 
 const processSteps: { icon: LucideIcon; title: string; description: string }[] = [
@@ -81,15 +81,53 @@ const luxuryMarqueeItems = [
   'Garanzia 30 Anni',
 ]
 
+const heroOrbLeftAnimate = { y: [0, 30, 0], scale: [1, 1.1, 1] }
+const heroOrbLeftTransition = { duration: 8, repeat: Infinity, ease: 'easeInOut' as const }
+const heroOrbRightAnimate = { y: [0, -25, 0], scale: [1, 1.05, 1] }
+const heroOrbRightTransition = { duration: 10, repeat: Infinity, ease: 'easeInOut' as const }
+const badgeInitial = { opacity: 0, y: 20 }
+const badgeAnimate = { opacity: 1, y: 0 }
+const badgeTransition = { duration: 0.8 }
+const ctaOrbLeftAnimate = { scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }
+const ctaOrbLeftTransition = { duration: 6, repeat: Infinity, ease: 'easeInOut' as const }
+const ctaOrbRightAnimate = { scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }
+const ctaOrbRightTransition = { duration: 8, repeat: Infinity, ease: 'easeInOut' as const, delay: 2 }
+
+const luxuryJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Luxury - Ville esclusive in bioedilizia',
+  description: 'Ville esclusive che combinano l\'eccellenza costruttiva del sistema X-Frame con finiture di alto livello. Ampi spazi, design contemporaneo e prestazioni energetiche superiori per chi cerca il massimo della qualita abitativa in armonia con l\'ambiente.',
+  brand: {
+    '@type': 'Brand',
+    name: 'Ecolive',
+  },
+  category: 'Ville di lusso prefabbricate in legno',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    lowPrice: '1800',
+    priceValidUntil: '2026-12-31',
+    url: 'https://www.ecolive.srl/luxury',
+  },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Superficie', value: '150-400 m\u00B2' },
+    { '@type': 'PropertyValue', name: 'Tempi realizzazione', value: '90-120 giorni' },
+    { '@type': 'PropertyValue', name: 'Garanzia struttura', value: '30 anni' },
+  ],
+}
+
 export default function LuxuryPage() {
   const tipologia = getTipologiaById('luxury')
 
   return (
     <main className="overflow-hidden">
+      <JsonLd data={luxuryJsonLd} />
       {/* ===== HERO ===== */}
       <section className="relative min-h-[90vh] flex items-center justify-center bg-[#1D1D1F]">
         <Image
-          src="/images/luxury/hero-1.jpg"
+          src="/images/luxury/hero-1.webp"
           alt="Villa luxury Ecolive"
           fill
           className="object-cover opacity-40"
@@ -101,13 +139,13 @@ export default function LuxuryPage() {
         {/* Floating decorative orbs */}
         <motion.div
           className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-[#A0845C]/15 blur-[100px] pointer-events-none"
-          animate={{ y: [0, 30, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          animate={heroOrbLeftAnimate}
+          transition={heroOrbLeftTransition}
         />
         <motion.div
           className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-[#48484A]/20 blur-[120px] pointer-events-none"
-          animate={{ y: [0, -25, 0], scale: [1, 1.05, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          animate={heroOrbRightAnimate}
+          transition={heroOrbRightTransition}
         />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -120,9 +158,9 @@ export default function LuxuryPage() {
           </Link>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={badgeInitial}
+            animate={badgeAnimate}
+            transition={badgeTransition}
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-[#A0845C]/20 text-[#A0845C] border border-[#A0845C]/30 mb-8">
               Residenziale Premium
@@ -158,7 +196,7 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
       {/* ===== CARATTERISTICHE ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
@@ -206,7 +244,7 @@ export default function LuxuryPage() {
         </div>
       </div>
 
-      <SectionTransition from="#F5F5F7" to="#ffffff" variant="gradient" height={60} />
+      <SectionTransition from="#F5F5F7" to="#ffffff" height={60} />
 
       {/* ===== GALLERY ===== */}
       <section className="py-28 lg:py-36 px-4 bg-white">
@@ -226,7 +264,7 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#ffffff" to="#F5F5F7" variant="wave" height={80} />
+      <SectionTransition from="#ffffff" to="#F5F5F7" height={80} />
 
       {/* ===== PROCESSO ===== */}
       <section className="py-28 lg:py-36 px-4 bg-[#F5F5F7]">
@@ -272,20 +310,20 @@ export default function LuxuryPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" variant="angle" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* ===== CTA ===== */}
       <section className="relative py-28 lg:py-36 px-4 bg-[#1D1D1F] overflow-hidden">
         {/* Animated gradient orbs */}
         <motion.div
           className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#A0845C]/8 blur-[150px] pointer-events-none"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          animate={ctaOrbLeftAnimate}
+          transition={ctaOrbLeftTransition}
         />
         <motion.div
           className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#48484A]/15 blur-[120px] pointer-events-none"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          animate={ctaOrbRightAnimate}
+          transition={ctaOrbRightTransition}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center">

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Users, TrendingUp, Wrench, Award, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Franchising e Affiliazione | Ecolive',
+  title: 'Franchising e Affiliazione',
   description: 'Diventa partner Ecolive. Opportunità di franchising e affiliazione per imprenditori edili. Know-how, formazione e lead generation garantita.',
 }
 

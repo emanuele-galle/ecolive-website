@@ -45,18 +45,6 @@ export interface ConfiguratorState {
   goBack: () => void
 }
 
-interface QuoteFormData {
-  nome: string
-  email: string
-  telefono?: string
-  messaggio?: string
-  privacy: boolean
-  // Config data
-  tipoCasa: HouseType
-  numStanze: RoomCount
-  metratura: number
-}
-
 export interface SubmitQuoteResult {
   success: boolean
   message: string

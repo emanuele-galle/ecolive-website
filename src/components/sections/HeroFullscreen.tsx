@@ -3,8 +3,20 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import BlurText from '@/components/ui/BlurText'
+
+const fadeInUp = { opacity: 0, y: 20 }
+const fadeInUpSmall = { opacity: 0, y: 15 }
+const visible = { opacity: 1, y: 0 }
+const heroSubtitleTransition = { duration: 1, delay: 0.6 }
+const heroTrustTransition = { duration: 0.8, delay: 0.9 }
+const heroCtaTransition = { duration: 1, delay: 1.1 }
+const scrollIndicatorInitial = { opacity: 0 }
+const scrollIndicatorAnimate = { opacity: 1 }
+const scrollIndicatorTransition = { delay: 1.5, duration: 1 }
+const scrollLineAnimate = { height: ['0%', '100%', '0%'], top: ['0%', '0%', '100%'] }
+const scrollLineTransition = { duration: 2.5, repeat: Infinity, ease: 'easeInOut' as const }
 
 interface HeroMedia {
   url?: string
@@ -30,8 +42,9 @@ export default function HeroFullscreen({
 }: HeroFullscreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const handleVideoLoaded = useCallback(() => setVideoLoaded(true), [])
 
-  const imageUrl = heroImage?.url || '/images/luxury/gallery-1.jpg'
+  const imageUrl = heroImage?.url || '/images/luxury/gallery-1.webp'
   const videoUrl = heroVideo?.url
   const posterUrl = heroVideoPoster?.url || imageUrl
 
@@ -49,7 +62,7 @@ export default function HeroFullscreen({
               loop
               playsInline
               poster={posterUrl}
-              onLoadedData={() => setVideoLoaded(true)}
+              onLoadedData={handleVideoLoaded}
             >
               <source src={videoUrl} type="video/mp4" />
             </video>
@@ -86,9 +99,9 @@ export default function HeroFullscreen({
 
           <motion.p
             className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={heroSubtitleTransition}
           >
             {heroSubtitle}
           </motion.p>
@@ -96,9 +109,9 @@ export default function HeroFullscreen({
           {/* Trust indicators - simple text with dot separators */}
           <motion.div
             className="flex flex-wrap justify-center items-center gap-x-2 gap-y-2 mb-12"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            initial={fadeInUpSmall}
+            animate={visible}
+            transition={heroTrustTransition}
           >
             {['Classe A4', 'Garanzia 30 Anni', 'Made in Italy', 'Montaggio in 1 Giorno'].map(
               (item, i, arr) => (
@@ -115,9 +128,9 @@ export default function HeroFullscreen({
           {/* CTAs */}
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
+            initial={fadeInUp}
+            animate={visible}
+            transition={heroCtaTransition}
           >
             <Link
               href="/tipologie"
@@ -138,9 +151,9 @@ export default function HeroFullscreen({
       {/* Scroll indicator - animated line */}
       <motion.div
         className="relative z-10 flex flex-col items-center pb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        initial={scrollIndicatorInitial}
+        animate={scrollIndicatorAnimate}
+        transition={scrollIndicatorTransition}
       >
         <span className="text-white/40 text-xs uppercase tracking-[0.2em] mb-3 font-medium">
           Scorri
@@ -148,8 +161,8 @@ export default function HeroFullscreen({
         <div className="relative w-px h-12 bg-white/15 rounded-full overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 w-full bg-[#A0845C] rounded-full"
-            animate={{ height: ['0%', '100%', '0%'], top: ['0%', '0%', '100%'] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            animate={scrollLineAnimate}
+            transition={scrollLineTransition}
           />
         </div>
       </motion.div>
