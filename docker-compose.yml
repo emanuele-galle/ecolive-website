@@ -12,6 +12,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      network: panel-internal
+      args:
+        DATABASE_URL: ${DATABASE_URL:-postgresql://ecolive_user:Ecolive2026Secure@vps-panel-postgres:5432/ecolive_db}
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET:-pUJ6xb8j7seZ6t4ed3kjCGYqPoCi0OCm}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://www.ecolive.srl}
+        S3_ENDPOINT: ${S3_ENDPOINT:-http://vps-panel-minio:9000}
+        S3_ACCESS_KEY: ${S3_ACCESS_KEY:-vps_minio_admin}
+        S3_SECRET_KEY: ${S3_SECRET_KEY:-4V55yUhe8MGrDpDFxgFiIC7dViUqD4gG}
+        S3_BUCKET: ${S3_BUCKET:-ecolive-media}
+        S3_REGION: ${S3_REGION:-us-east-1}
+        S3_PUBLIC_URL: ${S3_PUBLIC_URL:-https://storage.fodivps2.cloud/ecolive-media}
+        N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL:-https://n8n.fodivps2.cloud/webhook/ecolive-lead}
     container_name: ecolive-website_app
     restart: unless-stopped
     env_file:

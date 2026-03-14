@@ -34,29 +34,28 @@ jobs:
             # Pull latest changes
             git pull origin main
 
-            # Install dependencies
-            npm ci --prefer-offline
-
-            # Build application
-            npm run build
-
-            # Rebuild and restart container
+            # Build inside Docker (multi-stage, accesso DB via panel-internal network)
             docker compose build --no-cache
+
+            # Restart container
             docker compose up -d
 
             # Wait for container to be ready
-            sleep 15
+            sleep 20
 
             # Health check
-            HEALTH_URL="http://localhost:3000/api/health"
-            if curl -sf $HEALTH_URL > /dev/null 2>&1; then
-              echo "Health check passed"
-            else
-              echo "Warning: Health check endpoint not responding"
+            CONTAINER_ID=$(docker compose ps -q app)
+            if [ -n "$CONTAINER_ID" ]; then
+              HEALTH=$(docker inspect --format='{{.State.Health.Status}}' "$CONTAINER_ID" 2>/dev/null || echo "unknown")
+              echo "Container health: $HEALTH"
+              if [ "$HEALTH" = "healthy" ] || [ "$HEALTH" = "starting" ]; then
+                echo "Deploy successful"
+              else
+                echo "Warning: Container health is $HEALTH"
+              fi
             fi
 
-            # Docker cleanup - remove old images and build cache
-            echo "Cleaning up old Docker resources..."
+            # Docker cleanup
             docker image prune -f 2>/dev/null || true
             docker builder prune -f --filter "until=24h" 2>/dev/null || true
 

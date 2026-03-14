@@ -87,7 +87,7 @@ export default function HeroFullscreen({
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20 z-[1]" />
 
       {/* Main Content */}
-      <div className="relative z-10 flex-1 flex items-center justify-center">
+      <div className="relative z-10 flex-1 flex items-center justify-center pt-20 lg:pt-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <BlurText
             text={heroTitle}
