@@ -34,8 +34,20 @@ jobs:
             # Pull latest changes
             git pull origin main
 
-            # Build inside Docker (multi-stage, accesso DB via panel-internal network)
-            docker compose build --no-cache
+            # Build inside Docker with --network host (accesso DB via localhost:5445)
+            source .env.docker.build 2>/dev/null || true
+            docker build --network host --no-cache \
+              --build-arg DATABASE_URL="postgresql://ecolive_user:Ecolive2026Secure@127.0.0.1:5445/ecolive_db" \
+              --build-arg PAYLOAD_SECRET="$(grep PAYLOAD_SECRET .env.docker | cut -d= -f2)" \
+              --build-arg NEXT_PUBLIC_SITE_URL="$(grep NEXT_PUBLIC_SITE_URL .env.docker | cut -d= -f2)" \
+              --build-arg S3_ENDPOINT="http://127.0.0.1:9000" \
+              --build-arg S3_ACCESS_KEY="$(grep S3_ACCESS_KEY .env.docker | cut -d= -f2)" \
+              --build-arg S3_SECRET_KEY="$(grep S3_SECRET_KEY .env.docker | cut -d= -f2)" \
+              --build-arg S3_BUCKET="$(grep S3_BUCKET .env.docker | cut -d= -f2)" \
+              --build-arg S3_REGION="$(grep S3_REGION .env.docker | cut -d= -f2)" \
+              --build-arg S3_PUBLIC_URL="$(grep S3_PUBLIC_URL .env.docker | cut -d= -f2)" \
+              --build-arg N8N_WEBHOOK_URL="$(grep N8N_WEBHOOK_URL .env.docker | cut -d= -f2)" \
+              -t ecolive-website-app .
 
             # Restart container
             docker compose up -d
