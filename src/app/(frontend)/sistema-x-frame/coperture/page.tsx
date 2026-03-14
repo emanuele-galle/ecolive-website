@@ -200,7 +200,7 @@ export default function CoperturePage() {
             {[
               { value: 1, label: 'Giorno di montaggio' },
               { value: 100, label: '% Prefabbricato', suffix: '%' },
-              { value: 0, label: 'Lavorazioni extra' },
+              { value: 0, label: 'Lavorazioni extra in cantiere' },
             ].map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.15}>
                 <div className="text-center">

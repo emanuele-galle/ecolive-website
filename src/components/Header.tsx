@@ -253,6 +253,7 @@ export default function Header() {
             width={120}
             height={36}
             className="h-8 w-auto object-contain"
+            unoptimized
           />
           <button
             onClick={closeMobile}

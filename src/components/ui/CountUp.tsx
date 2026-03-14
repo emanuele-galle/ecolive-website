@@ -30,7 +30,7 @@ export default function CountUp({
   const motionValue = useMotionValue(from)
   const damping = 20 + 40 * (1 / duration)
   const stiffness = 100 * (1 / duration)
-  const springValue = useSpring(motionValue, { damping, stiffness })
+  const springValue = useSpring(motionValue, { damping, stiffness, restDelta: 0.001 })
   const isInView = useInView(ref, { once: true, margin: '0px' })
 
   const formatValue = useCallback(
@@ -76,6 +76,18 @@ export default function CountUp({
     })
     return () => unsubscribe()
   }, [springValue, formatValue])
+
+  // Safety net: force exact final value after animation should have completed
+  useEffect(() => {
+    if (isInView) {
+      const safetyTimeout = setTimeout(() => {
+        if (ref.current) {
+          ref.current.textContent = formatValue(to)
+        }
+      }, (delay + duration + 0.5) * 1000)
+      return () => clearTimeout(safetyTimeout)
+    }
+  }, [isInView, to, delay, duration, formatValue])
 
   return <span className={className} ref={ref} aria-label={`${to}${suffix}`} />
 }
