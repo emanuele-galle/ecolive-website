@@ -12,202 +12,247 @@ import {
   HardHat,
   Factory,
   Wrench,
+  Camera,
+  Users,
+  Shield,
+  Euro,
 } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import BlurText from '@/components/ui/BlurText'
 import SectionTransition from '@/components/ui/SectionTransition'
 import CountUp from '@/components/ui/CountUp'
-import {
-  pagamentiGrezzoAvanzato,
-  pagamentiChiaviInMano,
-  notaPagamentiChiaviInMano,
-  inclusoGrezzoAvanzato,
-  inclusoChiaviInMano,
-  type Tranche,
-  type InclusoItem,
-} from '@/data/processo'
 import { motion } from 'framer-motion'
 
-/* ─── Inline rich process steps ─── */
+/* ─── Step data ─── */
 
-const richSteps = [
+interface ProcessStep {
+  id: string
+  number: number
+  title: string
+  icon: typeof MessageCircle
+  subtitle: string
+  description: string
+  details: string[]
+  highlight?: string
+}
+
+const steps: ProcessStep[] = [
   {
     id: 'primo-contatto',
     number: 1,
     title: 'Primo Contatto',
     icon: MessageCircle,
-    description: 'Il cliente scopre EcoLive e ci contatta. Viene invitato a visitare la sede operativa a Spadola portando la documentazione necessaria.',
+    subtitle: 'Il punto di partenza',
+    description:
+      'Il cliente che vuole costruire casa inizia a informarsi e documentarsi. Dopo il primo contatto, viene invitato a visitare i nostri uffici a Spadola per un incontro conoscitivo senza impegno.',
     details: [
-      'Bozza con dimensioni del progetto desiderato',
-      'Rilievo del terreno e particella catastale',
-      'Posizionamento e orientamento del lotto',
-      'Obiettivo: capire le esigenze e mostrare le capacita EcoLive',
+      'Bozza dell\'idea progettuale: dimensioni indicative e volumi desiderati',
+      'Posizione esatta del lotto e orientamento',
+      'Documentazione catastale del terreno (visura, mappa)',
+      'Nessun costo e nessun impegno per il primo incontro',
     ],
-    quote: 'Il cliente deve venire con bozza dimensioni, rilievo, particella catastale.',
+    highlight: 'Da portare al primo incontro: bozza idea, posizione lotto, documenti catastali.',
   },
   {
     id: 'visita-sede',
     number: 2,
     title: 'Visita in Sede',
     icon: Building,
-    description: 'Il cliente visita lo stabilimento e vede dal vivo il sistema X-Frame. La nostra organizzazione, i lavori, il centro di calcolo.',
+    subtitle: 'Toccare con mano',
+    description:
+      'Il cliente visita la sede EcoLive e vede dal vivo l\'organizzazione, le presentazioni dei lavori realizzati, il centro di calcolo e il sistema informativo. Soprattutto, osserva gli spaccati delle pareti X-Frame dal vivo.',
     details: [
-      'Sezioni trasversali, campioni materiali, dettagli costruttivi',
-      'Postazioni Revit per la progettazione BIM',
-      'Strutture tipo: piccola, media e grande dimensione',
-      'Firma del mandato di progettazione',
-      'Prima visita senza costi',
+      'Spaccati reali delle pareti X-Frame: materiali, strati, dettagli costruttivi',
+      '2-3 strutture tipo (piccola, media, grande) per mostrare il livello progettuale',
+      'Rendering e simulazioni avanzate per visualizzare la futura casa',
+      'Obiettivo della visita: firma del mandato di progettazione architettonica',
+      'Costo progettazione diviso in 3 fasce (piccola/media/grande) - detratto dal prezzo finale',
+      'Nessun pagamento richiesto al primo incontro',
     ],
-    quote: 'Vede la nostra organizzazione, le presentazioni, i nostri lavori, il centro di calcolo.',
+    highlight: 'La visita mostra concretamente cosa significa costruire con il sistema X-Frame.',
   },
   {
     id: 'progettazione',
     number: 3,
     title: 'Progettazione',
     icon: Pencil,
-    description: 'Mandato firmato, sopralluogo drone, modellazione Revit, rendering fotorealistici ambientati nel contesto reale.',
+    subtitle: 'La casa prende forma',
+    description:
+      'Mandato firmato, si parte con la progettazione completa su Revit e la modellazione 3D. Il sopralluogo sul sito include rilievo topografico, video mapping e scansione 3D dell\'area circostante.',
     details: [
-      'Sopralluogo con drone: video-mappatura e rilievo 3D',
-      'Modellazione BIM in Revit su misura del cliente',
-      'Rendering fotorealistici con Blender/Twinmotion',
-      'Pagamento: 50% alla prima versione, 50% alla definitiva',
-      'Importo interamente detratto dal prezzo della casa',
+      'Progettazione BIM completa su Revit con modellazione 3D',
+      'Sopralluogo sul sito: rilievo topografico, video mapping, scansione 3D',
+      'Rendering e animazioni fotorealistiche inserite nell\'ambiente reale',
+      'Il cliente vede la sua casa nel contesto reale prima di costruirla',
+      'Pagamento: 50% alla consegna della prima versione, 50% alla versione definitiva',
+      'L\'intero costo di progettazione viene detratto dal prezzo della casa',
     ],
-    quote: 'Il cliente vedra la sua casa in maniera realistica, senza possibilita di sbagliare.',
+    highlight: 'Il costo della progettazione viene interamente scalato dal prezzo finale della casa.',
   },
   {
     id: 'contratto',
     number: 4,
     title: 'Contratto',
     icon: FileSignature,
-    description: 'Stipula del contratto formale con tutte le specifiche costruttive, i termini essenziali e le date importanti.',
+    subtitle: 'Tutto nero su bianco',
+    description:
+      'Contratto di appalto formale e dettagliato, con date precise come termini essenziali. Ogni comunicazione avviene in modo formale e tracciabile: PEC, email certificata, raccomandate.',
     details: [
-      'Termini essenziali e termini vessatori chiariti',
-      'Definizione fase: grezzo avanzato e/o chiavi in mano',
-      'Pagamenti strutturati in tranches (listino 2025)',
-      'Conseguenze chiare per ritardi lato cliente',
+      'Contratto di appalto con tutte le specifiche costruttive e tempistiche',
+      'Date precise definite come termini essenziali del contratto',
+      'Comunicazioni formali e tracciabili: PEC, email, raccomandate',
+      'EcoLive informa la produzione della nuova commessa',
+      'Pre-ordine materiali, ordine definitivo 60 giorni prima della costruzione',
     ],
-    quote: 'Il cliente vuole la casa prima possibile ma i tempi tecnici non sono mai quelli previsti.',
+    highlight: 'Trasparenza totale: date, costi, specifiche e comunicazioni sempre tracciabili.',
   },
   {
     id: 'preparazione-cantiere',
     number: 5,
     title: 'Preparazione Cantiere',
     icon: HardHat,
-    description: 'Fase a carico del cliente: scavo, magrone, fondazioni e platea. EcoLive verifica la conformita prima di attivare la produzione.',
+    subtitle: 'A cura del cliente',
+    description:
+      'Questa fase e a carico del cliente: scavi, magrone, fondazioni e platea devono essere completati prima del montaggio. L\'area cantiere deve essere pronta con accessi adeguati per i mezzi pesanti.',
     details: [
-      'Platea con barre filettate di fissaggio predisposte',
-      'Documentazione fotografica e video di ogni fase',
-      'Verifica tecnica della platea da parte di EcoLive',
-      '60 giorni prima: versamento della tranche programmata',
+      'Scavi, magrone, fondazioni e platea a carico del cliente',
+      'Barre filettate e tirafondi posizionati e livellati con precisione',
+      'Area cantiere pronta con accessi adeguati per autogru e bilici',
+      'EcoLive verifica la conformita della platea prima del montaggio',
+      'Il cliente carica documentazione fotografica e video nel sistema informativo',
     ],
-    quote: 'Barre filettate di fissaggio. Verifica tecnica della platea.',
+    highlight: 'EcoLive verifica personalmente la platea prima di dare il via al montaggio.',
   },
   {
     id: 'produzione',
     number: 6,
     title: 'Produzione in Laboratorio',
     icon: Factory,
-    description: 'EcoLive produce pareti, solai, coperture e struttura portante in ambiente controllato. Tutto e pronto per il montaggio.',
+    subtitle: 'Precisione industriale',
+    description:
+      'La produzione avviene in ambiente completamente controllato: temperatura, umidita e tempi di asciugatura sono monitorati costantemente. Ogni elemento segue procedure standard e replicabili.',
     details: [
-      'Temperatura, umidita e tempi monitorati costantemente',
-      'Carico ottimizzato sui camion (1-2 viaggi)',
-      'Trasporto in orizzontale (vantaggio esclusivo EcoLive)',
-      '60 giorni prima della data: il cliente versa la quota',
+      'Ambiente controllato: temperatura, umidita, tempi di asciugatura monitorati',
+      '4-6 operatori specializzati per turno (di piu creerebbe solo confusione)',
+      'Procedure standard e replicabili per ogni elemento costruttivo',
+      'Distinta di taglio e dettagli costruttivi per ogni singolo componente',
+      'Elementi finiti stoccabili all\'aperto: i monoblocchi sono completamente protetti',
     ],
-    quote: 'EcoLive produce pareti, solai, coperture. 60 giorni prima: il cliente versa la quota.',
+    highlight: 'Come McDonald\'s: procedure standard, risultato garantito, qualita replicabile.',
   },
   {
     id: 'montaggio',
     number: 7,
     title: 'Montaggio',
     icon: Wrench,
-    description: 'Come il cambio gomme in Formula 1. 8-12 operatori, una giornata, la casa prende forma.',
+    subtitle: 'Lo spettacolo in una giornata',
+    description:
+      'Come il pit stop in Formula 1: dove un gommista tradizionale impiega mezz\'ora, il team F1 finisce in 10 secondi. Per una struttura fino a 150 mq su un livello: la mattina non c\'e nulla, la sera la casa e completa.',
     details: [
-      'Mezz\'ora per i pilastri, due ore per le pareti',
-      'Pausa pranzo, pomeriggio il tetto',
-      '1 autogru (braccio 30+ m), 3 squadre specializzate',
-      'Documentazione: time-lapse, drone, reportage fotografico',
-      'Dopo il montaggio: solo finitura esterna acril-silossanica',
+      '8-12 operatori, 1 autogru (30+ m di sbraccio), 3 squadre specializzate',
+      'Coordinatore generale come un direttore d\'orchestra',
+      'Mattina: piastre e pilastri (~30 min), poi pareti perimetrali (~2 ore)',
+      'Pomeriggio: monoblocchi di copertura',
+      'Giorno dopo: fissaggio definitivo (gru gia rimossa)',
+      'Carico bilici ottimizzato: sotto i monoblocchi tetto, sopra pareti, travi e pilastri',
+      'Sicurezza: DPI obbligatori, badge, POS, documentazione completa',
+      'Cantiere come evento: riprese drone, foto professionali, timelapse, banner',
     ],
-    quote: 'Come il cambio gomme in Formula 1. Mezz\'ora i pilastri, due ore le pareti.',
+    highlight: 'Per una casa da 150 mq: la mattina non c\'e nulla, la sera la struttura e completa.',
   },
 ]
 
-const constructionTimes = [
-  { label: 'Grezzo di base', value: 3, suffix: ' gg', note: 'Struttura portante + pareti + copertura' },
-  { label: 'Grezzo avanzato', value: 7, suffix: ' gg', note: 'Cappotto, intonaco, finiture grezzo' },
-  { label: 'Chiavi in mano', value: 30, suffix: ' gg', note: 'Impianti, infissi, finiture complete' },
+/* ─── Payment data ─── */
+
+interface PaymentTranche {
+  label: string
+  percent: number
+}
+
+const pagamentiGA: PaymentTranche[] = [
+  { label: 'Alla firma del contratto', percent: 10 },
+  { label: 'Sessanta giorni prima del montaggio', percent: 30 },
+  { label: 'Al completamento del grezzo base', percent: 30 },
+  { label: 'Al completamento del grezzo avanzato', percent: 30 },
+]
+
+const pagamentiCiM: PaymentTranche[] = [
+  { label: 'Avvio impianti', percent: 30 },
+  { label: 'Posa infissi', percent: 40 },
+  { label: 'Posa pavimenti', percent: 20 },
+  { label: 'Consegna chiavi', percent: 10 },
+]
+
+const tempi = [
+  { label: 'Grezzo di base', value: 3, unit: 'giorni', note: 'Struttura portante, pareti e copertura montati' },
+  { label: 'Grezzo avanzato', value: 7, unit: 'giorni', note: 'Cappotto, intonaco e finiture esterne' },
+  { label: 'Chiavi in mano', value: 30, unit: 'giorni', note: 'Impianti, infissi, pavimenti e consegna' },
 ]
 
 /* ─── Sub-components ─── */
 
-function PaymentCard({
+function SectionHeader({
+  tag,
   title,
-  tranches,
-  note,
+  subtitle,
+  dark = false,
 }: {
+  tag: string
   title: string
-  tranches: Tranche[]
-  note?: string
+  subtitle?: string
+  dark?: boolean
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8 h-full">
-      <h3 className="text-xl font-bold text-[#1D1D1F] mb-6">{title}</h3>
-      <div className="space-y-4">
-        {tranches.map((t) => {
-          const pctNum = parseInt(t.percentuale, 10)
-          return (
-            <div key={t.numero}>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-sm text-[#86868B]">{t.descrizione}</span>
-                <span className="text-lg font-bold text-[#A0845C] ml-4 shrink-0">
-                  {t.percentuale}
-                </span>
-              </div>
-              <div className="h-2 rounded-full bg-[#F5F5F7] overflow-hidden">
-                <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-[#A0845C] to-[#C4A97D]"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${pctNum}%` }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.8, delay: t.numero * 0.15, ease: 'easeOut' }}
-                />
-              </div>
-            </div>
-          )
-        })}
+    <ScrollReveal>
+      <div className="text-center mb-16">
+        <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">{tag}</span>
+        <h2
+          className={`font-serif text-3xl md:text-4xl lg:text-5xl font-bold mt-3 ${dark ? 'text-white' : 'text-[#1D1D1F]'}`}
+        >
+          {title}
+        </h2>
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+          <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+          <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+        </div>
+        {subtitle && (
+          <p className={`mt-6 max-w-xl mx-auto ${dark ? 'text-white/60' : 'text-[#86868B]'}`}>{subtitle}</p>
+        )}
       </div>
-      {note && (
-        <p className="mt-6 text-xs text-[#86868B] italic border-t border-[#D2D2D7]/50 pt-4">
-          {note}
-        </p>
-      )}
-    </div>
+    </ScrollReveal>
   )
 }
 
-function InclusoSection({ title, items }: { title: string; items: InclusoItem[] }) {
+function PaymentCard({ title, tranches, note }: { title: string; tranches: PaymentTranche[]; note?: string }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8">
-      <h3 className="text-xl font-bold text-[#1D1D1F] mb-6">{title}</h3>
-      <div className="space-y-6">
-        {items.map((cat) => (
-          <div key={cat.categoria}>
-            <h4 className="text-sm font-semibold text-[#A0845C] uppercase tracking-wider mb-3">
-              {cat.categoria}
-            </h4>
-            <ul className="space-y-2">
-              {cat.voci.map((voce) => (
-                <li key={voce} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80">
-                  <Check className="w-4 h-4 text-[#A0845C] shrink-0 mt-0.5" />
-                  <span>{voce}</span>
-                </li>
-              ))}
-            </ul>
+    <div className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8 h-full">
+      <div className="flex items-center gap-3 mb-6">
+        <Euro className="w-5 h-5 text-[#A0845C]" />
+        <h3 className="text-xl font-bold text-[#1D1D1F]">{title}</h3>
+      </div>
+      <div className="space-y-4">
+        {tranches.map((t, i) => (
+          <div key={t.label}>
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-sm text-[#86868B]">{t.label}</span>
+              <span className="text-lg font-bold text-[#A0845C] ml-4 shrink-0">{t.percent}%</span>
+            </div>
+            <div className="h-2 rounded-full bg-[#F5F5F7] overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-[#A0845C] to-[#C4A97D]"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${t.percent}%` }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.8, delay: (i + 1) * 0.15, ease: 'easeOut' }}
+              />
+            </div>
           </div>
         ))}
       </div>
+      {note && (
+        <p className="mt-6 text-xs text-[#86868B] italic border-t border-[#D2D2D7]/50 pt-4">{note}</p>
+      )}
     </div>
   )
 }
@@ -217,7 +262,6 @@ function InclusoSection({ title, items }: { title: string; items: InclusoItem[] 
 export default function ProcessoContent() {
   return (
     <div className="overflow-hidden">
-
       {/* ── HERO ── */}
       <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F] via-[#1D1D1F] to-[#141414]" />
@@ -239,9 +283,28 @@ export default function ProcessoContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Dalla prima visita alla casa finita: un percorso chiaro, trasparente e
-            spettacolare. Ogni step e pensato per garantire precisione assoluta.
+            Dal primo contatto alla casa finita: 7 step chiari, trasparenti e controllati.
+            Ogni fase e pensata per garantire precisione, qualita e zero sorprese.
           </motion.p>
+          <motion.div
+            className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-white/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <span className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-[#A0845C]" />
+              30 giorni chiavi in mano
+            </span>
+            <span className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-[#A0845C]" />
+              Contratto con date essenziali
+            </span>
+            <span className="flex items-center gap-2">
+              <Camera className="w-4 h-4 text-[#A0845C]" />
+              Tutto documentato
+            </span>
+          </motion.div>
         </div>
       </section>
 
@@ -249,65 +312,50 @@ export default function ProcessoContent() {
 
       {/* ── 7 STEP TIMELINE ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Il Percorso
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                7 Step verso la tua casa
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
-            </div>
-          </ScrollReveal>
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader tag="Il Percorso" title="7 Step verso la tua casa" />
 
           <div className="relative">
-            <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-[#A0845C]/20" />
-            <div className="space-y-10">
-              {richSteps.map((step, i) => {
+            {/* Timeline line - visible on all screens */}
+            <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-[#A0845C]/20" />
+
+            <div className="space-y-12">
+              {steps.map((step, i) => {
                 const Icon = step.icon
+                const isLeft = i % 2 === 0
                 return (
-                  <ScrollReveal key={step.id} delay={i * 0.08} direction="up" distance={30}>
-                    <div className="relative pl-16 md:pl-20">
-                      <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#A0845C] flex items-center justify-center shadow-lg shadow-[#A0845C]/20 z-10">
-                        <span className="text-white text-lg md:text-xl font-bold">
-                          {step.number}
-                        </span>
+                  <ScrollReveal key={step.id} delay={i * 0.06} direction="up" distance={30}>
+                    <div className="relative">
+                      {/* Mobile layout: always left-aligned */}
+                      <div className="md:hidden relative pl-16">
+                        <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-[#A0845C] flex items-center justify-center shadow-lg shadow-[#A0845C]/20 z-10">
+                          <span className="text-white text-lg font-bold">{step.number}</span>
+                        </div>
+                        <StepCard step={step} Icon={Icon} />
                       </div>
 
-                      <motion.div
-                        className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8"
-                        whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="flex items-center gap-3 mb-3">
-                          <Icon className="w-5 h-5 text-[#A0845C]" />
-                          <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F]">
-                            {step.title}
-                          </h3>
+                      {/* Desktop layout: alternating left/right */}
+                      <div className="hidden md:grid md:grid-cols-2 md:gap-8 items-start">
+                        {isLeft ? (
+                          <>
+                            <div className="pr-8">
+                              <StepCard step={step} Icon={Icon} />
+                            </div>
+                            <div />
+                          </>
+                        ) : (
+                          <>
+                            <div />
+                            <div className="pl-8">
+                              <StepCard step={step} Icon={Icon} />
+                            </div>
+                          </>
+                        )}
+                        {/* Center dot */}
+                        <div className="absolute left-1/2 -translate-x-1/2 top-4 w-12 h-12 rounded-full bg-[#A0845C] flex items-center justify-center shadow-lg shadow-[#A0845C]/20 z-10">
+                          <span className="text-white text-lg font-bold">{step.number}</span>
                         </div>
-                        <p className="text-[#86868B] leading-relaxed mb-4">
-                          {step.description}
-                        </p>
-                        <ul className="space-y-2 mb-4">
-                          {step.details.map((d) => (
-                            <li key={d} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80">
-                              <Check className="w-4 h-4 text-[#A0845C] shrink-0 mt-0.5" />
-                              <span>{d}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="mt-4 pt-4 border-t border-[#D2D2D7]/50">
-                          <p className="text-sm italic text-[#A0845C]">
-                            &ldquo;{step.quote}&rdquo;
-                          </p>
-                        </div>
-                      </motion.div>
+                      </div>
                     </div>
                   </ScrollReveal>
                 )
@@ -319,31 +367,19 @@ export default function ProcessoContent() {
 
       <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
-      {/* ── TEMPI DI COSTRUZIONE (dark) ── */}
+      {/* ── TEMPI DI COSTRUZIONE ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="relative z-10 max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Tempi Certi
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3">
-                Tempi di costruzione
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
-              <p className="mt-6 text-white/60 max-w-xl mx-auto">
-                Per una struttura di circa 100 mq
-              </p>
-            </div>
-          </ScrollReveal>
+          <SectionHeader
+            tag="Tempi Certi"
+            title="Tempi di costruzione"
+            subtitle="Riferimento per una struttura di circa 100 mq"
+            dark
+          />
 
           <div className="grid md:grid-cols-3 gap-6">
-            {constructionTimes.map((item, i) => (
+            {tempi.map((item, i) => (
               <ScrollReveal key={item.label} delay={i * 0.12} direction="up">
                 <motion.div
                   className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center h-full"
@@ -354,14 +390,25 @@ export default function ProcessoContent() {
                     <Clock className="w-7 h-7 text-[#A0845C]" />
                   </div>
                   <h3 className="text-lg font-bold text-white mb-2">{item.label}</h3>
-                  <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-3">
-                    <CountUp to={item.value} duration={2} delay={0.3 + i * 0.2} suffix={item.suffix} />
+                  <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-1">
+                    <CountUp to={item.value} duration={2} delay={0.3 + i * 0.2} suffix={` ${item.unit}`} />
                   </div>
-                  <p className="text-sm text-white/50">{item.note}</p>
+                  <p className="text-sm text-white/50 mt-3">{item.note}</p>
                 </motion.div>
               </ScrollReveal>
             ))}
           </div>
+
+          {/* Nota aggiuntiva montaggio */}
+          <ScrollReveal delay={0.3}>
+            <div className="mt-12 bg-white/5 rounded-2xl border border-[#A0845C]/20 p-6 md:p-8 text-center">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                <span className="text-[#A0845C] font-semibold">Montaggio struttura in 1 giornata</span> &mdash; Per
+                una casa fino a 150 mq su un livello, la mattina il cantiere e vuoto e la sera la struttura e
+                completamente montata. Il fissaggio definitivo avviene il giorno successivo.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -370,34 +417,21 @@ export default function ProcessoContent() {
       {/* ── PIANO PAGAMENTI ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Pagamenti
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Piano pagamenti trasparente
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
-            </div>
-          </ScrollReveal>
+          <SectionHeader
+            tag="Pagamenti"
+            title="Piano pagamenti trasparente"
+            subtitle="Tranches chiare legate all'avanzamento reale dei lavori"
+          />
 
           <div className="grid lg:grid-cols-2 gap-6">
             <ScrollReveal delay={0.1} direction="left">
-              <PaymentCard
-                title="Grezzo Avanzato (GA)"
-                tranches={pagamentiGrezzoAvanzato}
-              />
+              <PaymentCard title="Grezzo Avanzato" tranches={pagamentiGA} />
             </ScrollReveal>
             <ScrollReveal delay={0.2} direction="right">
               <PaymentCard
-                title="Chiavi in Mano (CiM)"
-                tranches={pagamentiChiaviInMano}
-                note={notaPagamentiChiaviInMano}
+                title="Chiavi in Mano (aggiuntivo)"
+                tranches={pagamentiCiM}
+                note="I pagamenti Chiavi in Mano si sommano a quelli del Grezzo Avanzato e seguono l'avanzamento delle singole lavorazioni."
               />
             </ScrollReveal>
           </div>
@@ -406,33 +440,83 @@ export default function ProcessoContent() {
 
       <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
-      {/* ── COSA INCLUDE ── */}
+      {/* ── IL MONTAGGIO COME EVENTO ── */}
       <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Dettagli
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Cosa include ogni fase
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
+          <SectionHeader
+            tag="Il Giorno del Montaggio"
+            title="Un evento, non un cantiere"
+            subtitle="Il montaggio EcoLive e uno spettacolo a cui assistono anche potenziali clienti"
+          />
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Users,
+                title: 'Team specializzato',
+                items: [
+                  '8-12 operatori coordinati',
+                  '1 autogru con 30+ m di sbraccio',
+                  '3 squadre specializzate',
+                  'Coordinatore come direttore d\'orchestra',
+                ],
+              },
+              {
+                icon: Camera,
+                title: 'Documentazione completa',
+                items: [
+                  'Riprese drone professionali',
+                  'Fotografie di ogni fase',
+                  'Timelapse dall\'inizio alla fine',
+                  'Banner e materiale comunicativo',
+                ],
+              },
+              {
+                icon: Shield,
+                title: 'Sicurezza e protocollo',
+                items: [
+                  'DPI obbligatori per tutti',
+                  'Badge identificativo operatori',
+                  'POS (Piano Operativo Sicurezza)',
+                  'Documentazione tracciabile',
+                ],
+              },
+            ].map((card, i) => {
+              const CardIcon = card.icon
+              return (
+                <ScrollReveal key={card.title} delay={i * 0.1} direction="up">
+                  <motion.div
+                    className="bg-[#F5F5F7] rounded-2xl border border-[#D2D2D7] p-6 md:p-8 h-full"
+                    whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.06)' }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[#A0845C]/10 flex items-center justify-center mb-5">
+                      <CardIcon className="w-6 h-6 text-[#A0845C]" />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#1D1D1F] mb-4">{card.title}</h3>
+                    <ul className="space-y-2">
+                      {card.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/70">
+                          <Check className="w-4 h-4 text-[#A0845C] shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </ScrollReveal>
+              )
+            })}
+          </div>
+
+          <ScrollReveal delay={0.3}>
+            <div className="mt-10 bg-[#F5F5F7] rounded-2xl border border-[#A0845C]/20 p-6 md:p-8">
+              <p className="text-[#1D1D1F]/70 text-sm md:text-base leading-relaxed text-center">
+                <span className="text-[#A0845C] font-semibold">Potenziali clienti invitati come spettatori</span>{' '}
+                &mdash; Il montaggio e aperto a chi vuole vedere con i propri occhi cosa significa costruire con
+                EcoLive. Nessuna brochure vale quanto vedere una casa prendere forma in una sola giornata.
+              </p>
             </div>
           </ScrollReveal>
-
-          <div className="grid lg:grid-cols-2 gap-6">
-            <ScrollReveal delay={0.1} direction="left">
-              <InclusoSection title="Grezzo Avanzato" items={inclusoGrezzoAvanzato} />
-            </ScrollReveal>
-            <ScrollReveal delay={0.2} direction="right">
-              <InclusoSection title="Chiavi in Mano" items={inclusoChiaviInMano} />
-            </ScrollReveal>
-          </div>
         </div>
       </section>
 
@@ -447,8 +531,8 @@ export default function ProcessoContent() {
               Pronto a iniziare il tuo percorso?
             </h2>
             <p className="mt-6 text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
-              Configura la tua casa ideale e scopri prezzi, tempi e specifiche tecniche
-              del sistema X-Frame.
+              Configura la tua casa ideale e scopri prezzi, tempi e specifiche tecniche del sistema X-Frame.
+              Il primo incontro e sempre senza impegno.
             </p>
             <div className="mt-12">
               <Link
@@ -462,7 +546,38 @@ export default function ProcessoContent() {
           </ScrollReveal>
         </div>
       </section>
-
     </div>
+  )
+}
+
+/* ─── Step Card (extracted to avoid duplication) ─── */
+
+function StepCard({ step, Icon }: { step: ProcessStep; Icon: typeof MessageCircle }) {
+  return (
+    <motion.div
+      className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8"
+      whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="flex items-center gap-3 mb-1">
+        <Icon className="w-5 h-5 text-[#A0845C]" />
+        <span className="text-xs text-[#A0845C] uppercase tracking-wider font-medium">{step.subtitle}</span>
+      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-3">{step.title}</h3>
+      <p className="text-[#86868B] leading-relaxed mb-5">{step.description}</p>
+      <ul className="space-y-2.5 mb-5">
+        {step.details.map((d) => (
+          <li key={d} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80">
+            <Check className="w-4 h-4 text-[#A0845C] shrink-0 mt-0.5" />
+            <span>{d}</span>
+          </li>
+        ))}
+      </ul>
+      {step.highlight && (
+        <div className="pt-4 border-t border-[#D2D2D7]/50">
+          <p className="text-sm italic text-[#A0845C]">&ldquo;{step.highlight}&rdquo;</p>
+        </div>
+      )}
+    </motion.div>
   )
 }

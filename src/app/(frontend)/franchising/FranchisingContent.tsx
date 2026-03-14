@@ -6,12 +6,17 @@ import {
   GraduationCap,
   Wrench,
   Users,
-  CheckCircle,
   Phone,
   ArrowRight,
   TrendingUp,
   Shield,
   Banknote,
+  Building2,
+  Home,
+  Tent,
+  Landmark,
+  AlertTriangle,
+  MapPin,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -23,60 +28,65 @@ import CountUp from '@/components/ui/CountUp'
 const provisions = [
   {
     icon: Factory,
-    title: 'Know-how produttivo',
+    title: 'Know-how completo',
     description:
-      'Accesso completo alla tecnologia X-Frame: brevetti, processi industriali, software gestionale e controllo qualita. Produzione studiata all\'estremo, replicabile.',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Formazione continua',
-    description:
-      'Training iniziale e aggiornamenti periodici per il tuo team: produzione, vendita, gestione cantiere. Ti affianchiamo fino alla piena autonomia.',
+      'Accesso integrale al sistema X-Frame: brevetti, processi industriali, software gestionale e controllo qualita. Produzione industrializzata come nel settore automotive, con optional personalizzabili.',
   },
   {
     icon: Wrench,
-    title: 'Attrezzature',
+    title: 'Macchinari e attrezzature',
     description:
-      'Setup completo del laboratorio produttivo con macchinari dedicati. Niente macchine CNC costose. L\'investimento non supera quasi mai i 100.000 euro.',
+      'Setup completo del laboratorio produttivo con macchinari specifici per il sistema X-Frame. Niente macchine CNC costose: investimento contenuto, circa 100.000 euro.',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Formazione operatori',
+    description:
+      'Training completo del personale con procedure standard e replicabili. Come McDonald\'s: ogni passaggio e studiato per essere eseguito in modo identico, ovunque.',
   },
   {
     icon: Users,
     title: 'Flusso clienti garantito',
     description:
-      'Il cliente che non e riuscito a costruire con noi se lo prende l\'affiliato. Ne Tecnocasa ne Gabetti danno questo. Loro ti danno il marchio, noi ti diamo il cliente.',
+      'Il cliente che EcoLive non riesce a seguire viene indirizzato all\'affiliato. Nessun altro franchising edile puo garantire questo. Il flusso e generato direttamente dal sistema.',
   },
 ]
 
 const investmentStats = [
-  { value: 100, suffix: 'k', label: 'Investimento massimo' },
+  { value: 100, suffix: 'k', label: 'Investimento iniziale', prefix: '~' },
   { value: 6, suffix: '', label: 'Operatori per turno' },
-  { value: 10, suffix: '+', label: 'Case/anno per affiliato' },
+  { value: 1, suffix: '', label: 'Giorno per la struttura' },
 ]
 
-const scalabilitySteps = [
+const scalabilityItems = [
   {
-    num: '01',
-    title: 'Singolo laboratorio',
-    desc: 'Inizi con un laboratorio nella tua zona, servendo il mercato locale con il supporto completo di EcoLive.',
+    icon: Home,
+    title: 'Abitazioni residenziali',
+    description: 'Ville unifamiliari, bifamiliari, schiera. Dalla singola commessa alle lottizzazioni e villaggi residenziali completi.',
   },
   {
-    num: '02',
-    title: 'Espansione regionale',
-    desc: 'Cresci con nuove commesse, ampli la capacita produttiva. Doppi turni di lavoro quando la domanda aumenta.',
+    icon: Tent,
+    title: 'Moduli glamping e turismo',
+    description: 'Strutture turistiche, moduli glamping, resort ecologici. Il legno strutturale si integra perfettamente nel paesaggio.',
   },
   {
-    num: '03',
-    title: 'Rete nazionale',
-    desc: 'Diventi parte di una rete di produzione decentralizzata su tutto il territorio. Dal 2027: espansione massiva.',
+    icon: Building2,
+    title: 'Edifici multipiano',
+    description: 'Il legno strutturale oggi permette edifici di grandi dimensioni. Condomini, uffici, strutture commerciali multipiano.',
+  },
+  {
+    icon: Landmark,
+    title: 'Strutture sportive e speciali',
+    description: 'Persino palazzetti dello sport. Il sistema X-Frame non ha limiti tipologici, solo quelli dell\'immaginazione.',
   },
 ]
 
 const businessModelItems = [
-  'Fee di ingresso per accesso al know-how e setup iniziale',
-  'Royalties sulla produzione: modello trasparente e sostenibile',
-  'Contratto di affiliazione con esclusiva territoriale',
-  'Supporto marketing centralizzato e materiale promozionale',
-  'Assistenza tecnica continua e aggiornamenti di processo',
+  { label: 'Fee d\'ingresso', desc: 'Accesso al know-how, setup iniziale e formazione completa del team' },
+  { label: 'Royalty sulla produzione', desc: 'Modello trasparente e sostenibile, percentuali chiare sul prodotto' },
+  { label: 'Contratto di affiliazione', desc: 'Termini commerciali definiti, con supporto tecnico e progettuale continuo' },
+  { label: 'Flusso clienti diretto', desc: 'I clienti che EcoLive non riesce a servire vengono indirizzati a te' },
+  { label: 'Marketing centralizzato', desc: 'Materiale promozionale professionale e visibilita nel network EcoLive' },
 ]
 
 /* ─── Component ─── */
@@ -95,20 +105,20 @@ export default function FranchisingContent() {
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <ScrollReveal>
             <span className="inline-block px-5 py-2 mb-8 text-sm font-medium text-[#A0845C] bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-              Opportunita di Business
+              Affiliazione Produttiva
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1]">
-              Porta la Rivoluzione X-Frame
+              Produci Case X-Frame
               <span className="block text-[#A0845C]">nel Tuo Territorio</span>
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className="mt-8 text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Produci case X-Frame nella tua zona con il know-how EcoLive. Un modello di
-              produzione decentralizzata &mdash; come McDonald&apos;s: produzione studiata
-              all&apos;estremo, replicabile ovunque.
+              Imprese nel settore costruzioni &mdash; bioedilizia o tradizionale &mdash; possono
+              adottare il sistema X-Frame e creare stabilimenti produttivi locali.
+              EcoLive fornisce macchinari, formazione e, soprattutto, il cliente.
             </p>
           </ScrollReveal>
         </div>
@@ -116,44 +126,74 @@ export default function FranchisingContent() {
 
       <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* ── VISIONE: PRODUZIONE DECENTRALIZZATA ── */}
+      {/* ── VISIONE: DECENTRALIZZAZIONE PRODUTTIVA ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-              La Visione
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
-              Produzione decentralizzata
-            </h2>
-            <div className="mt-5 flex items-center justify-center gap-3">
-              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+            <div className="text-center mb-12">
+              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
+                La Visione
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
+                Decentralizzazione produttiva
+              </h2>
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+              </div>
             </div>
           </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <p className="mt-8 text-lg text-[#86868B] leading-relaxed max-w-3xl mx-auto">
-              EcoLive ha sviluppato un sistema costruttivo brevettato che puo essere replicato
-              ovunque. Gli affiliati producono localmente utilizzando il know-how, i processi e
-              gli standard qualitativi EcoLive. Meno trasporto, piu velocita, piu valore per il
-              territorio. Dal 2027 dovremo far fronte alla domanda: espansione in loco, doppi
-              turni di lavoro.
-            </p>
-          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <ScrollReveal delay={0.1} direction="left">
+              <div className="bg-white rounded-2xl p-8 border border-[#D2D2D7] h-full">
+                <h3 className="text-xl font-bold text-[#1D1D1F] mb-4">Il contesto</h3>
+                <p className="text-[#86868B] leading-relaxed mb-4">
+                  Se dal 2027 gli ordinativi cresceranno come previsto, sara necessario
+                  un secondo stabilimento produttivo. Due le strade possibili: centralizzare
+                  con un&apos;espansione locale a Serra San Bruno, oppure decentralizzare
+                  con una rete di affiliati sul territorio.
+                </p>
+                <p className="text-[#86868B] leading-relaxed">
+                  EcoLive ha scelto la seconda via. Continuera a essere la realta
+                  produttiva principale, ma gli affiliati permetteranno di coprire
+                  la domanda crescente con produzione locale: meno trasporto, piu
+                  velocita, piu valore per il territorio.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2} direction="right">
+              <div className="bg-white rounded-2xl p-8 border border-[#D2D2D7] h-full">
+                <h3 className="text-xl font-bold text-[#1D1D1F] mb-4">Il modello</h3>
+                <p className="text-[#86868B] leading-relaxed mb-4">
+                  Produzione industrializzata come nel settore automotive: processi
+                  standardizzati, optional personalizzabili, qualita costante.
+                  Come McDonald&apos;s: ogni passaggio e studiato all&apos;estremo per
+                  essere replicabile ovunque.
+                </p>
+                <p className="text-[#86868B] leading-relaxed">
+                  Le imprese nel settore costruzioni &mdash; sia bioedilizia che
+                  tradizionale &mdash; possono adottare il sistema X-Frame e creare
+                  stabilimenti produttivi locali con il supporto completo di EcoLive.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
       <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
-      {/* ── IL VANTAGGIO UNICO (dark + grain + dramatic) ── */}
+      {/* ── IL VANTAGGIO UNICO ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="relative z-10 max-w-5xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-10">
               <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Il Vantaggio Unico
+                USP Unica
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 leading-tight">
                 &ldquo;Noi ti diamo il cliente&rdquo;
@@ -167,26 +207,28 @@ export default function FranchisingContent() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 text-center">
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-8">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10">
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-6 text-center">
+                Questo e il vantaggio piu importante, e lo garantiamo per iscritto.
                 Quando EcoLive riceve una richiesta che non puo gestire per tempistiche
                 o logistica, il cliente viene affidato all&apos;affiliato piu vicino.
-                Il cliente che non e riuscito a costruire con noi, se lo prende l&apos;affiliato.
               </p>
-              <motion.div
-                className="inline-flex items-center gap-3 px-6 py-4 bg-[#A0845C]/20 rounded-xl border border-[#A0845C]/30"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Shield className="w-6 h-6 text-[#A0845C]" />
-                <span className="text-white font-semibold text-lg">
-                  Nessun altro franchising edile puo garantirti questo
-                </span>
-              </motion.div>
-              <p className="mt-8 text-white/50 italic">
-                &ldquo;Ne Tecnocasa ne Gabetti danno questo. Loro ti danno il marchio,
-                noi ti diamo il cliente.&rdquo;
+              <p className="text-lg text-white/70 leading-relaxed max-w-3xl mx-auto mb-8 text-center">
+                Nel franchising classico ti danno il brand ma il cliente devi trovarlo
+                da solo. Qui il flusso clienti e generato direttamente dal sistema.
               </p>
+              <div className="flex justify-center">
+                <motion.div
+                  className="inline-flex items-center gap-3 px-6 py-4 bg-[#A0845C]/20 rounded-xl border border-[#A0845C]/30"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Shield className="w-6 h-6 text-[#A0845C]" />
+                  <span className="text-white font-semibold text-lg">
+                    Garantito contrattualmente
+                  </span>
+                </motion.div>
+              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -194,7 +236,7 @@ export default function FranchisingContent() {
 
       <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
 
-      {/* ── COSA TI FORNIAMO ── */}
+      {/* ── COSA INCLUDE L'AFFILIAZIONE ── */}
       <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
@@ -203,7 +245,7 @@ export default function FranchisingContent() {
                 Il Pacchetto
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Cosa ti forniamo
+                Cosa include l&apos;affiliazione
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
@@ -211,12 +253,12 @@ export default function FranchisingContent() {
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
               <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
-                Tutto cio che serve per avviare e gestire la tua produzione X-Frame
+                Tutto cio che serve per avviare la tua produzione X-Frame
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-10">
             {provisions.map((item, i) => {
               const Icon = item.icon
               return (
@@ -236,12 +278,28 @@ export default function FranchisingContent() {
               )
             })}
           </div>
+
+          {/* Vincolo importante */}
+          <ScrollReveal delay={0.4}>
+            <div className="bg-[#1D1D1F] rounded-2xl p-6 md:p-8 flex items-start gap-4">
+              <AlertTriangle className="w-6 h-6 text-[#A0845C] flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="text-white font-semibold mb-2">Vincolo di produzione</h4>
+                <p className="text-white/70 leading-relaxed">
+                  L&apos;affiliato puo produrre autonomamente <strong className="text-white">solo la struttura portante</strong>.
+                  Le pareti e i monoblocchi solaio/copertura devono essere prodotti da EcoLive
+                  o sotto la sua diretta supervisione. Questo garantisce la qualita e le
+                  prestazioni certificate del sistema X-Frame.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
-      {/* ── INVESTIMENTO (Stats + CountUp) ── */}
+      {/* ── INVESTIMENTO ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
@@ -272,8 +330,9 @@ export default function FranchisingContent() {
                     <Banknote className="w-6 h-6 text-[#A0845C]" />
                   </div>
                   <div className="text-4xl md:text-5xl font-bold text-[#1D1D1F]">
+                    {stat.prefix && <span className="text-2xl text-[#86868B]">{stat.prefix}</span>}
                     <CountUp to={stat.value} duration={2.5} delay={0.3 + i * 0.2} suffix={stat.suffix} />
-                    {stat.label === 'Investimento massimo' && (
+                    {stat.label === 'Investimento iniziale' && (
                       <span className="text-2xl text-[#A0845C] ml-1">&euro;</span>
                     )}
                   </div>
@@ -285,44 +344,13 @@ export default function FranchisingContent() {
             ))}
           </div>
 
+          {/* Modello di business */}
           <ScrollReveal delay={0.3}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-[#D2D2D7] text-center">
-              <p className="text-[#86868B] leading-relaxed">
-                <strong className="text-[#1D1D1F]">Niente macchine CNC costose.</strong>{' '}
-                L&apos;investimento non supera quasi mai i 100.000 euro. Attualmente 4-6 operatori
-                per turno, con possibilita di doppi turni per scalare la produzione.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
-
-      {/* ── MODELLO DI BUSINESS ── */}
-      <section className="py-24 lg:py-32 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Business Model
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Modello di business
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <div className="bg-[#F5F5F7] rounded-2xl p-8 md:p-10 border border-[#D2D2D7]">
-              <ul className="space-y-5">
+            <div className="bg-white rounded-2xl p-8 md:p-10 border border-[#D2D2D7]">
+              <h3 className="text-xl font-bold text-[#1D1D1F] mb-6 text-center">Modello contrattuale</h3>
+              <div className="space-y-5">
                 {businessModelItems.map((item, i) => (
-                  <motion.li
+                  <motion.div
                     key={i}
                     className="flex items-start gap-4"
                     initial={{ opacity: 0, x: -20 }}
@@ -333,27 +361,30 @@ export default function FranchisingContent() {
                     <div className="w-8 h-8 bg-[#A0845C] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <span className="text-white font-bold text-sm">{i + 1}</span>
                     </div>
-                    <span className="text-[#1D1D1F] text-lg">{item}</span>
-                  </motion.li>
+                    <div>
+                      <span className="text-[#1D1D1F] font-semibold">{item.label}</span>
+                      <p className="text-[#86868B] text-sm mt-1">{item.desc}</p>
+                    </div>
+                  </motion.div>
                 ))}
-              </ul>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ── SCALABILITA ── */}
-      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-24 lg:py-32 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Crescita
+                Cosa Puoi Realizzare
               </span>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Scalabilita
+                Scalabilita senza limiti
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
@@ -361,79 +392,94 @@ export default function FranchisingContent() {
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
               <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
-                Da singolo laboratorio a rete produttiva nazionale
+                Con il sistema X-Frame non ci sono limiti tipologici.
+                Dalla singola casa alla lottizzazione, dal glamping al multipiano.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {scalabilitySteps.map((step, i) => (
-              <ScrollReveal key={step.num} delay={i * 0.12} direction="up">
-                <motion.div
-                  className="relative bg-white rounded-2xl p-8 border border-[#D2D2D7] text-center h-full"
-                  whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-5xl font-bold text-[#A0845C]/20">{step.num}</span>
-                  <h3 className="text-xl font-bold text-[#1D1D1F] mt-2 mb-3">{step.title}</h3>
-                  <p className="text-[#86868B] leading-relaxed">{step.desc}</p>
-                  {i < scalabilitySteps.length - 1 && (
-                    <TrendingUp className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-[#A0845C]/40 z-10" />
-                  )}
-                </motion.div>
-              </ScrollReveal>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            {scalabilityItems.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <ScrollReveal key={item.title} delay={i * 0.1} direction="up">
+                  <motion.div
+                    className="bg-[#F5F5F7] rounded-2xl p-8 border border-[#D2D2D7] h-full flex items-start gap-5"
+                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="w-12 h-12 bg-[#A0845C]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-6 h-6 text-[#A0845C]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-[#1D1D1F] mb-2">{item.title}</h3>
+                      <p className="text-[#86868B] leading-relaxed text-sm">{item.description}</p>
+                    </div>
+                  </motion.div>
+                </ScrollReveal>
+              )
+            })}
           </div>
+
+          <ScrollReveal delay={0.4}>
+            <div className="mt-10 bg-[#A0845C]/10 rounded-2xl p-6 md:p-8 text-center border border-[#A0845C]/20">
+              <TrendingUp className="w-8 h-8 text-[#A0845C] mx-auto mb-3" />
+              <p className="text-[#1D1D1F] font-semibold text-lg mb-2">
+                Lottizzazioni e complessi residenziali
+              </p>
+              <p className="text-[#86868B] max-w-2xl mx-auto">
+                La vera opportunita e nella scala: villaggi residenziali, complessi
+                turistici, quartieri interi. Il sistema X-Frame e pensato per
+                la produzione in serie senza perdere qualita.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
-      </section>
-
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
-
-      {/* ── REFERENTE AFFILIAZIONI ── */}
-      <section className="py-20 lg:py-28 px-6 bg-white">
-        <ScrollReveal>
-          <div className="max-w-xl mx-auto bg-[#F5F5F7] rounded-2xl p-8 md:p-10 border border-[#D2D2D7] text-center">
-            <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-              Referente Affiliazioni
-            </span>
-            <p className="text-xl font-semibold text-[#1D1D1F] mt-3 mb-1">
-              Dott.ssa Sara Santaguida
-            </p>
-            <p className="text-[#86868B] mb-6">
-              Area Legale / Affiliazioni
-            </p>
-            <a
-              href="tel:+393387774250"
-              className="inline-flex items-center gap-2 text-[#A0845C] font-semibold text-lg hover:text-[#856B45] transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              338.7774250
-            </a>
-          </div>
-        </ScrollReveal>
       </section>
 
       <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
-      {/* ── CTA ── */}
+      {/* ── REFERENTE + CTA ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <ScrollReveal>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              Pronto a portare X-Frame nel tuo territorio?
+              Richiedi informazioni sull&apos;affiliazione
             </h2>
             <p className="text-white/70 mb-10 text-lg max-w-2xl mx-auto leading-relaxed">
-              Contattaci per ricevere il dossier di affiliazione completo e fissare un
-              incontro con il nostro team.
+              Contattaci per ricevere il dossier di affiliazione completo e fissare
+              un incontro con il nostro team.
             </p>
             <Link
               href="/contatti?oggetto=affiliazione"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
             >
-              Richiedi il Dossier
+              Richiedi Informazioni sull&apos;Affiliazione
               <ArrowRight className="w-5 h-5" />
             </Link>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className="mt-14 pt-8 border-t border-white/10">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <MapPin className="w-4 h-4 text-[#A0845C]" />
+                <p className="text-white/50 text-sm uppercase tracking-wide">
+                  Referente Affiliazioni
+                </p>
+              </div>
+              <p className="text-white font-semibold text-xl mb-1">
+                Dott.ssa Sara Santaguida
+              </p>
+              <p className="text-white/60 mb-5">Area Legale / Affiliazioni</p>
+              <a
+                href="tel:+393387774250"
+                className="inline-flex items-center gap-2 text-[#A0845C] font-semibold text-lg hover:text-white transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                338.7774250
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </section>

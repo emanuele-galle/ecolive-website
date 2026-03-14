@@ -2,9 +2,20 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react'
+import {
+  ChevronRight,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  XCircle,
+  Factory,
+  Sparkles,
+  TrendingDown,
+  Award,
+} from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CountUp from '@/components/ui/CountUp'
+import GlassCard from '@/components/ui/GlassCard'
 
 const grainOverlay = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`
 
@@ -14,29 +25,29 @@ const confrontoSistemi = [
   { parametro: 'Eurocodice 5', telaio: 4, xlam: 4, xframe: 5 },
   { parametro: 'Prefabbricazione max', telaio: 2, xlam: 3, xframe: 5 },
   { parametro: 'Tempi cantiere', telaio: 2, xlam: 3, xframe: 5 },
-  { parametro: 'Capacita dissipativa sismica', telaio: 3, xlam: 4, xframe: 5 },
+  { parametro: 'Capacit\u00E0 dissipativa sismica', telaio: 3, xlam: 4, xframe: 5 },
   { parametro: 'Resistenza al fuoco', telaio: 3, xlam: 4, xframe: 5 },
-  { parametro: 'Trasmittanza (parita spessore)', telaio: 3, xlam: 2, xframe: 5 },
-  { parametro: 'Sfasamento (parita spessore)', telaio: 2, xlam: 3, xframe: 5 },
+  { parametro: 'Trasmittanza (parit\u00E0 spessore)', telaio: 3, xlam: 2, xframe: 5 },
+  { parametro: 'Sfasamento (parit\u00E0 spessore)', telaio: 2, xlam: 3, xframe: 5 },
   { parametro: 'Tenuta all\'aria', telaio: 2, xlam: 5, xframe: 5 },
-  { parametro: 'Sostituibilita parti', telaio: 5, xlam: 2, xframe: 5 },
+  { parametro: 'Sostituibilit\u00E0 parti', telaio: 5, xlam: 2, xframe: 5 },
   { parametro: 'Edifici multipiano', telaio: 2, xlam: 5, xframe: 4 },
-  { parametro: 'Flessibilita impiantistica', telaio: 4, xlam: 2, xframe: 5 },
-  { parametro: 'Prezzo (parita classe/strutt.)', telaio: 3, xlam: 2, xframe: 5 },
+  { parametro: 'Flessibilit\u00E0 impiantistica', telaio: 4, xlam: 2, xframe: 5 },
+  { parametro: 'Prezzo (parit\u00E0 classe/strutt.)', telaio: 3, xlam: 2, xframe: 5 },
 ]
 
 const confrontoMuratura = [
-  { parametro: 'Tempo struttura', xframe: '3-7 giorni', muratura: '12-48 mesi' },
-  { parametro: 'Chiavi in mano', xframe: '30 giorni', muratura: 'Non definibile' },
-  { parametro: 'Classe energetica base', xframe: 'A1', muratura: 'B-C (con cappotto)' },
-  { parametro: 'Classe energetica max', xframe: 'A4 (passiva)', muratura: 'A1 (raro, costoso)' },
-  { parametro: 'Trasmittanza pareti', xframe: '0,159 W/m\u00b2K', muratura: '0,28-0,40 W/m\u00b2K' },
-  { parametro: 'Sfasamento', xframe: '18,8 ore', muratura: '8-12 ore' },
-  { parametro: 'Antisismicita', xframe: 'Eccellente', muratura: 'Dipende da esecuzione' },
-  { parametro: 'Prefabbricazione', xframe: '95%+ in laboratorio', muratura: '0% (cantiere)' },
-  { parametro: 'Ponti termici', xframe: 'Eliminati (base XPS)', muratura: 'Presenti' },
-  { parametro: 'Controllo qualita', xframe: 'Laboratorio controllato', muratura: 'Cantiere (intemperie)' },
-  { parametro: 'Garanzia struttura', xframe: '50 anni', muratura: 'Non standard' },
+  { parametro: 'Tempo struttura', xframe: '3-7 giorni', muratura: '12-48 mesi', xframeWins: true },
+  { parametro: 'Chiavi in mano', xframe: '30 giorni', muratura: 'Non definibile', xframeWins: true },
+  { parametro: 'Classe energetica base', xframe: 'A1', muratura: 'B-C (con cappotto)', xframeWins: true },
+  { parametro: 'Classe energetica max', xframe: 'A4 (passiva)', muratura: 'A1 (raro, costoso)', xframeWins: true },
+  { parametro: 'Trasmittanza pareti', xframe: '0,159 W/m\u00B2K', muratura: '0,28-0,40 W/m\u00B2K', xframeWins: true },
+  { parametro: 'Sfasamento', xframe: '18,8 ore', muratura: '8-12 ore', xframeWins: true },
+  { parametro: 'Antisismicit\u00E0', xframe: 'Eccellente (capacit\u00E0 dissipativa)', muratura: 'Dipende da esecuzione', xframeWins: true },
+  { parametro: 'Prefabbricazione', xframe: '95%+ in laboratorio', muratura: '0% (tutto in cantiere)', xframeWins: true },
+  { parametro: 'Ponti termici', xframe: 'Eliminati (base XPS)', muratura: 'Presenti (cordoli, pilastri)', xframeWins: true },
+  { parametro: 'Controllo qualit\u00E0', xframe: 'Laboratorio controllato', muratura: 'Cantiere (intemperie)', xframeWins: true },
+  { parametro: 'Garanzia struttura', xframe: '50 anni', muratura: 'Non standard', xframeWins: true },
 ]
 
 function DotRating({ value, highlight }: { value: number; highlight?: boolean }) {
@@ -84,8 +95,9 @@ export default function ConfrontoContent() {
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className="text-lg md:text-xl text-white/50 max-w-3xl leading-relaxed">
-              X-Frame e un ibrido dei sistemi Platform Frame, X-Lam e Post and Beam.
-              Confronta i dati reali di prestazione su 14 parametri tecnici rispetto ai sistemi tradizionali e alla muratura.
+              X-Frame &egrave; un ibrido dei sistemi Platform Frame, X-Lam e Post and Beam.
+              Confronta i dati reali di prestazione su 14 parametri tecnici rispetto ai sistemi
+              tradizionali in legno e alla muratura convenzionale.
             </p>
           </ScrollReveal>
         </div>
@@ -100,9 +112,14 @@ export default function ConfrontoContent() {
               <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">14 parametri tecnici</span>
               <div className="w-8 h-px bg-[#A0845C]" />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               X-Frame vs Telaio vs X-Lam
             </h2>
+            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
+              X-Frame eccelle in prefabbricazione, tempi cantiere, capacit&agrave; dissipativa,
+              resistenza al fuoco, trasmittanza, sfasamento, flessibilit&agrave; impiantistica
+              e prezzo a parit&agrave; di classe. I dati sono dalla brochure tecnica 2025.
+            </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
@@ -118,16 +135,27 @@ export default function ConfrontoContent() {
                     </tr>
                   </thead>
                   <tbody>
-                    {confrontoSistemi.map((row, i) => (
-                      <tr key={row.parametro} className={`border-b border-[#EDE6DB]/60 ${i % 2 !== 0 ? 'bg-[#F5F5F7]/50' : ''}`}>
-                        <td className="py-4 px-6 text-[#1D1D1F] font-medium">{row.parametro}</td>
-                        <td className="py-4 px-4"><DotRating value={row.telaio} /></td>
-                        <td className="py-4 px-4"><DotRating value={row.xlam} /></td>
-                        <td className="py-4 px-4 bg-[#A0845C]/5"><DotRating value={row.xframe} highlight /></td>
-                      </tr>
-                    ))}
+                    {confrontoSistemi.map((row, i) => {
+                      const isXframeBest = row.xframe >= row.telaio && row.xframe >= row.xlam
+                      return (
+                        <tr key={row.parametro} className={`border-b border-[#EDE6DB]/60 ${i % 2 !== 0 ? 'bg-[#F5F5F7]/50' : ''}`}>
+                          <td className="py-4 px-6 text-[#1D1D1F] font-medium">{row.parametro}</td>
+                          <td className="py-4 px-4"><DotRating value={row.telaio} /></td>
+                          <td className="py-4 px-4"><DotRating value={row.xlam} /></td>
+                          <td className="py-4 px-4 bg-[#A0845C]/5">
+                            <DotRating value={row.xframe} highlight={isXframeBest} />
+                          </td>
+                        </tr>
+                      )
+                    })}
                   </tbody>
                 </table>
+              </div>
+
+              <div className="px-6 py-4 bg-[#A0845C]/5 border-t border-[#EDE6DB]">
+                <p className="text-xs text-[#86868B] text-center">
+                  Valutazione su scala 1-5. Dati da brochure tecnica EcoLive 2025. X-Frame raggiunge il punteggio massimo su 10 parametri su 14.
+                </p>
               </div>
             </div>
           </ScrollReveal>
@@ -143,37 +171,58 @@ export default function ConfrontoContent() {
               <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Due mondi a confronto</span>
               <div className="w-8 h-px bg-[#A0845C]" />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               X-Frame vs Muratura Tradizionale
             </h2>
+            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
+              Il committente deve avere chiare le differenze per fare un paragone obiettivo.
+              Non si possono confrontare pere con mele. Ecco i numeri reali, parametro per parametro.
+            </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="space-y-3">
-              {/* Header */}
-              <div className="grid grid-cols-3 gap-4 px-6 py-3">
-                <div className="text-sm font-bold text-[#86868B] uppercase tracking-wide">Parametro</div>
-                <div className="text-sm font-bold text-[#A0845C] uppercase tracking-wide text-center">X-Frame</div>
-                <div className="text-sm font-bold text-[#86868B] uppercase tracking-wide text-center">Muratura</div>
+            <div className="bg-[#F5F5F7] rounded-2xl border border-[#EDE6DB] overflow-hidden shadow-lg">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b-2 border-[#EDE6DB] bg-white">
+                      <th className="text-left py-5 px-6 font-bold text-[#1D1D1F]">Parametro</th>
+                      <th className="text-center py-5 px-6 font-bold text-[#A0845C] bg-[#A0845C]/5">
+                        <div className="flex items-center justify-center gap-2">
+                          <span>EcoLive X-Frame</span>
+                        </div>
+                      </th>
+                      <th className="text-center py-5 px-6 font-bold text-[#86868B]">Muratura Tradizionale</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {confrontoMuratura.map((row, i) => (
+                      <motion.tr
+                        key={row.parametro}
+                        className={`border-b border-[#EDE6DB]/60 ${i % 2 === 0 ? 'bg-white' : 'bg-[#F5F5F7]/50'}`}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.04, duration: 0.35 }}
+                      >
+                        <td className="py-4 px-6 text-[#1D1D1F] font-medium">{row.parametro}</td>
+                        <td className="py-4 px-6 bg-[#A0845C]/5 text-center">
+                          <div className="flex items-center justify-center gap-2">
+                            {row.xframeWins && <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />}
+                            <span className="font-bold text-[#A0845C]">{row.xframe}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-center">
+                          <div className="flex items-center justify-center gap-2">
+                            {row.xframeWins && <XCircle className="w-4 h-4 text-red-400/60 flex-shrink-0" />}
+                            <span className="text-[#86868B]">{row.muratura}</span>
+                          </div>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              {confrontoMuratura.map((row, i) => (
-                <motion.div
-                  key={row.parametro}
-                  className="grid grid-cols-3 gap-4 px-6 py-4 bg-[#F5F5F7] rounded-xl border border-transparent hover:border-[#A0845C]/20 transition-colors"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                >
-                  <div className="text-[#1D1D1F] font-medium text-sm">{row.parametro}</div>
-                  <div className="text-center">
-                    <span className="font-bold text-[#A0845C] text-sm">{row.xframe}</span>
-                  </div>
-                  <div className="text-center">
-                    <span className="text-[#86868B] text-sm">{row.muratura}</span>
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </ScrollReveal>
         </div>
@@ -191,7 +240,7 @@ export default function ConfrontoContent() {
                 <div className="w-8 h-px bg-[#A0845C]/50" />
               </div>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-                Perche <span className="text-[#A0845C]">Costiamo di Piu</span>
+                Perch&eacute; costiamo di pi&ugrave; <span className="text-[#A0845C]">e perch&eacute; vale di pi&ugrave;</span>
               </h2>
             </div>
           </ScrollReveal>
@@ -199,55 +248,92 @@ export default function ConfrontoContent() {
           <div className="max-w-4xl mx-auto space-y-8">
             <ScrollReveal delay={0.1}>
               <div className="p-8 rounded-2xl bg-white/5 border border-white/10 border-l-4 border-l-[#A0845C]">
-                <p className="text-white/70 text-lg leading-relaxed italic mb-4">
-                  &ldquo;Il committente deve avere chiare le differenze per fare un paragone obiettivo.
-                  Non si possono confrontare pere con mele.&rdquo;
-                </p>
-                <p className="text-white/40 text-sm">
-                  Il prezzo al metro quadro di una casa X-Frame puo sembrare piu alto di una costruzione tradizionale.
-                  Ma la differenza si spiega interamente con cio che e incluso: classe energetica A4, antisismicita certificata,
-                  prefabbricazione al 95%, 50 anni di garanzia strutturale.
-                </p>
+                <div className="flex items-start gap-4">
+                  <Award className="w-6 h-6 text-[#A0845C] flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-3">La domanda giusta da porsi</h3>
+                    <p className="text-white/60 text-lg leading-relaxed mb-4">
+                      Il nostro prezzo non &egrave; inferiore a Wolf Haus o Rubner Haus. Il cliente
+                      deve chiedersi: <em className="text-white/80">perch&eacute; una realt&agrave; calabrese ha prezzi
+                      simili ai grandi marchi altoatesini?</em>
+                    </p>
+                    <p className="text-white/40 leading-relaxed">
+                      La risposta &egrave; semplice: il sistema costruttivo, la qualit&agrave; dei materiali e le
+                      prestazioni lo giustificano completamente. Non vendiamo un brand,
+                      vendiamo un sistema costruttivo superiore a un prezzo equo.
+                    </p>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
-              <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
-                <h3 className="text-white font-bold text-xl mb-4">Artigianato sartoriale, non produzione di massa</h3>
-                <p className="text-white/50 leading-relaxed">
-                  Preferiamo fare poche costruzioni ma con precisione assoluta, sartoriali, artigianali.
-                  Ogni elemento viene prodotto nel nostro laboratorio di Spadola a temperatura e umidita controllate.
-                  Un livello di controllo qualita impossibile da ottenere in cantiere, dove pioggia, vento e
-                  variazioni termiche compromettono lavorazioni e materiali.
-                </p>
-              </div>
+              <GlassCard intensity="light" className="p-8">
+                <div className="flex items-start gap-4">
+                  <Factory className="w-6 h-6 text-[#A0845C] flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-3">Artigianato sartoriale, non produzione di massa</h3>
+                    <p className="text-white/50 leading-relaxed">
+                      Preferiamo fare poche costruzioni ma con precisione assoluta, sartoriali, artigianali.
+                      Ogni elemento viene prodotto nel nostro laboratorio di Spadola a temperatura e umidit&agrave; controllate.
+                      Un livello di controllo qualit&agrave; impossibile da ottenere in cantiere, dove pioggia, vento e
+                      variazioni termiche compromettono lavorazioni e materiali.
+                    </p>
+                  </div>
+                </div>
+              </GlassCard>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
-                <h3 className="text-white font-bold text-xl mb-4">Meno tempo in cantiere = meno costo complessivo</h3>
-                <p className="text-white/50 leading-relaxed">
-                  Rimanendo poco tempo sul cantiere, portando tutti i pezzi gia pronti, riusciamo ad abbattere
-                  anche di un 20% il costo complessivo rispetto a prestazioni equivalenti in muratura.
-                  30 giorni per le chiavi in mano significa meno esposizione a ritardi meteo, aumenti imprevisti
-                  dei prezzi dei materiali e costi di cantiere prolungato.
-                </p>
-              </div>
+              <GlassCard intensity="light" className="p-8">
+                <div className="flex items-start gap-4">
+                  <TrendingDown className="w-6 h-6 text-[#A0845C] flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-3">Meno tempo in cantiere = 20% risparmio complessivo</h3>
+                    <p className="text-white/50 leading-relaxed mb-4">
+                      Gran parte della lavorazione avviene in laboratorio. I tempi in cantiere sono brevissimi.
+                      Questo si traduce in un risparmio fino al 20% sui costi complessivi rispetto a prestazioni
+                      equivalenti in muratura: meno esposizione a ritardi meteo, aumenti imprevisti
+                      dei prezzi dei materiali e costi di cantiere prolungato.
+                    </p>
+                    <p className="text-white/50 leading-relaxed">
+                      30 giorni per le chiavi in mano contro i 12-48 mesi della muratura tradizionale.
+                    </p>
+                  </div>
+                </div>
+              </GlassCard>
             </ScrollReveal>
 
             <ScrollReveal delay={0.4}>
+              <GlassCard intensity="light" className="p-8">
+                <div className="flex items-start gap-4">
+                  <Sparkles className="w-6 h-6 text-[#A0845C] flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-3">Possibilit&agrave; di ulteriore risparmio</h3>
+                    <p className="text-white/50 leading-relaxed">
+                      Per chi cerca un prezzo ancora pi&ugrave; competitivo, &egrave; possibile ottenere
+                      uno sconto ulteriore scegliendo materiali alternativi a parit&agrave; di prestazione:
+                      polistirene al posto del sughero, pannelli OSB al posto dei tre strati.
+                      Le prestazioni restano eccellenti, cambia solo il materiale.
+                    </p>
+                  </div>
+                </div>
+              </GlassCard>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.5}>
               <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
-                <h3 className="text-white font-bold text-xl mb-4">Costo totale di proprieta</h3>
-                <p className="text-white/50 leading-relaxed mb-6">
-                  Una casa in classe A4 consuma fino all&apos;80% in meno di energia rispetto a una costruzione tradizionale.
-                  In 30 anni il risparmio energetico supera abbondantemente il costo iniziale aggiuntivo.
-                  E con una garanzia strutturale di 50 anni, i costi di manutenzione straordinaria sono azzerati.
+                <h3 className="text-white font-bold text-xl mb-4 text-center">Costo totale di propriet&agrave;</h3>
+                <p className="text-white/50 leading-relaxed text-center mb-8 max-w-2xl mx-auto">
+                  Una casa in classe A4 consuma fino all&apos;80% in meno di energia rispetto a una costruzione
+                  tradizionale. In 30 anni il risparmio energetico supera abbondantemente il costo iniziale aggiuntivo.
+                  Con una garanzia strutturale di 50 anni, i costi di manutenzione straordinaria sono azzerati.
                 </p>
                 <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
                   {[
                     { value: 80, suffix: '%', label: 'Risparmio energetico' },
-                    { value: 50, suffix: '', label: 'Anni garanzia' },
-                    { value: 20, suffix: '%', label: 'Risparmio complessivo' },
+                    { value: 50, suffix: '', label: 'Anni garanzia struttura' },
+                    { value: 20, suffix: '%', label: 'Risparmio costi complessivi' },
                   ].map((stat, i) => (
                     <div key={stat.label} className="text-center">
                       <div className="text-3xl md:text-4xl font-bold text-[#A0845C]">
@@ -260,7 +346,7 @@ export default function ConfrontoContent() {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.5}>
+            <ScrollReveal delay={0.6}>
               <div className="p-6 rounded-2xl bg-[#A0845C]/10 border border-[#A0845C]/20 text-center">
                 <p className="text-white/80 text-lg font-medium">
                   50 anni di garanzia sulla struttura parlano da soli.

@@ -178,7 +178,7 @@ export default function SystemPreview() {
         >
           <path
             d="M0 0h1440v32c-240 22-480 32-720 32S240 54 0 32V0z"
-            fill="#F5F5F7"
+            fill="#FAF8F5"
           />
         </svg>
       </div>

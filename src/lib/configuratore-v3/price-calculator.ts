@@ -37,7 +37,7 @@ export function calcolaRangePrezzo(
   const moltiplicatoreTipo = moltiplicatoreTipologia[tipologia]
 
   // Prezzo base al mq
-  let prezzoBaseMq = PREZZO_BASE_PREMIUM_MQ * moltiplicatoreFinitura * moltiplicatoreTipo
+  const prezzoBaseMq = PREZZO_BASE_PREMIUM_MQ * moltiplicatoreFinitura * moltiplicatoreTipo
 
   // Grezzo avanzato
   let prezzoGA = prezzoBaseMq * mq

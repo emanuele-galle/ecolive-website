@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Check, ArrowRight, Layers, Ruler, Clock } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import JsonLd from '@/components/JsonLd'
 
 interface TipologiaSpec {
   label: string
@@ -60,8 +61,25 @@ export default function TipologiaTemplate({
   const heroStats = specs.slice(0, 3)
   const statIcons = [Ruler, Clock, Layers]
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${title} - Casa Prefabbricata EcoLive`,
+    description: extendedDescription,
+    brand: { '@type': 'Brand', name: 'EcoLive' },
+    manufacturer: { '@type': 'Organization', name: 'EcoLive S.r.l.' },
+    category: 'Case Prefabbricate in Legno',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      offerCount: modules.length,
+    },
+  }
+
   return (
     <div>
+      <JsonLd data={productJsonLd} />
       {/* ── Hero ── */}
       <section className="relative min-h-[60vh] flex flex-col justify-end overflow-hidden">
         <Image

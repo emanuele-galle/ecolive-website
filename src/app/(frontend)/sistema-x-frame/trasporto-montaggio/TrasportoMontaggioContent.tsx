@@ -2,28 +2,49 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react'
+import {
+  ChevronRight,
+  ArrowLeft,
+  ArrowRight,
+  Truck,
+  Users,
+  Clock,
+  Camera,
+  Shield,
+  Package,
+  Ruler,
+  Zap,
+} from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CountUp from '@/components/ui/CountUp'
+import GlassCard from '@/components/ui/GlassCard'
 
 const grainOverlay = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`
 
 const transportAdvantages = [
   {
-    title: 'Doppia quantita, meta camion',
-    description: 'Dove altri costruttori usano 4 bilici per una casa, noi ne usiamo 2. Il trasporto orizzontale raddoppia la quantita di elementi per ogni viaggio. Meno viaggi significa meno costi e meno impatto ambientale.',
+    icon: Package,
+    title: 'Quantit\u00E0 doppia, met\u00E0 camion',
+    description:
+      '"Dimezziamo i carichi": dove altri costruttori usano 4 bilici per una casa, EcoLive ne usa 2. Il trasporto orizzontale raddoppia la quantit\u00E0 di elementi per ogni viaggio, abbattendo costi logistici e impatto ambientale.',
   },
   {
-    title: 'Stabilita e sicurezza',
-    description: 'Pareti e solai viaggiano in orizzontale, non in verticale come la concorrenza. Baricentro basso, nessun rischio di oscillazione, integrita perfetta degli elementi anche su percorsi lunghi e strade tortuose.',
+    icon: Shield,
+    title: 'Stabilit\u00E0 e sicurezza superiori',
+    description:
+      'Pareti e solai viaggiano in orizzontale, non in verticale come la concorrenza. Baricentro basso, nessun rischio di oscillazione, integrit\u00E0 perfetta degli elementi anche su percorsi lunghi e strade tortuose.',
   },
   {
+    icon: Ruler,
     title: 'Ottimizzazione geniale del carico',
-    description: 'Moduli di copertura alla base del carico, pareti, travi e pilastri impilati sopra. Le travi portanti viaggiano all\'interno dei moduli solaio interpiano: ogni centimetro cubo del camion viene sfruttato.',
+    description:
+      'Sotto: i monoblocchi tetto e solaio interpiano. Sopra: pareti, travi e pilastri impilati. Le travi portanti viaggiano all\'interno dei monoblocchi solaio: ogni centimetro cubo del camion viene sfruttato al massimo.',
   },
   {
+    icon: Zap,
     title: 'Meno costi, meno prezzo finale',
-    description: 'Dimezzando i trasporti si abbattono i costi logistici. Questo risparmio si riflette direttamente sul prezzo finale della casa. Il trasporto orizzontale non e un dettaglio: e un vantaggio competitivo strutturale.',
+    description:
+      'Dimezzando i trasporti si abbattono i costi logistici. Questo risparmio si riflette direttamente sul prezzo finale della casa. Il trasporto orizzontale non \u00E8 un dettaglio: \u00E8 un vantaggio competitivo strutturale.',
   },
 ]
 
@@ -31,26 +52,84 @@ const timelineSteps = [
   {
     time: '07:00',
     label: 'Piastre di base e pilastri',
-    description: 'Posizionamento degli ancoraggi sulla platea e innesto dei pilastri portanti. Operazione completata in circa 30 minuti. La struttura verticale prende forma.',
-    phase: 'mattina',
+    duration: '~30 min',
+    description:
+      'Posizionamento delle piastre di ancoraggio sulla platea e innesto dei pilastri portanti. Operazione completata in circa 30 minuti. La struttura verticale prende forma.',
+    phase: 'mattina' as const,
   },
   {
     time: '08:00',
     label: 'Pareti perimetrali',
-    description: 'Tutte le pareti esterne vengono sollevate dall\'autogru e posizionate una ad una. Entro mezzogiorno l\'intero perimetro e chiuso. La casa ha gia la sua forma definitiva.',
-    phase: 'mattina',
+    duration: '~2 ore',
+    description:
+      'Tutte le pareti esterne vengono sollevate dall\'autogru e posizionate una ad una. Entro le 10:00 l\'intero perimetro \u00E8 chiuso. La casa ha gi\u00E0 la sua forma definitiva.',
+    phase: 'mattina' as const,
   },
   {
     time: '13:00',
-    label: 'Moduli di copertura',
-    description: 'Dopo la pausa pranzo si posano i moduli tetto prefabbricati. La struttura viene chiusa e protetta dalle intemperie. Le tegole possono essere posate immediatamente.',
-    phase: 'pomeriggio',
+    label: 'Monoblocchi di copertura',
+    duration: 'pomeriggio',
+    description:
+      'Dopo la pausa pranzo si posano i monoblocchi tetto prefabbricati con primo fissaggio. La struttura viene chiusa e protetta dalle intemperie. Le tegole possono essere posate immediatamente.',
+    phase: 'pomeriggio' as const,
   },
   {
     time: 'Giorno +1',
     label: 'Fissaggio definitivo',
-    description: 'Connessioni strutturali definitive, verifica degli allineamenti, collaudo dei collegamenti antisismici. La struttura e pronta per la fase di finitura.',
-    phase: 'completamento',
+    duration: 'gru rimossa',
+    description:
+      'Connessioni strutturali definitive, verifica degli allineamenti, collaudo dei collegamenti antisismici. La gru viene rimossa: la struttura \u00E8 autonoma e pronta per la fase di finitura.',
+    phase: 'completamento' as const,
+  },
+]
+
+const phaseColors: Record<string, string> = {
+  mattina: 'bg-amber-500',
+  pomeriggio: 'bg-orange-500',
+  completamento: 'bg-emerald-500',
+}
+
+const crewDetails = [
+  {
+    value: '8-12',
+    label: 'Operatori specializzati',
+    description: 'Squadre formate internamente, con esperienza diretta sul sistema X-Frame. Ogni operatore conosce il sistema nel dettaglio.',
+  },
+  {
+    value: '1',
+    label: 'Autogru (30m+ sbraccio)',
+    description: 'Braccio sufficiente per raggiungere qualsiasi punto della struttura anche nelle configurazioni pi\u00F9 ampie.',
+  },
+  {
+    value: '3',
+    label: 'Squadre coordinate',
+    description: 'Fondazioni, pareti e coperture in parallelo sotto un unico coordinatore che dirige le operazioni come un direttore d\'orchestra.',
+  },
+]
+
+const buildTimings = [
+  {
+    level: 'Grezzo di base',
+    days: '3',
+    unit: 'giorni',
+    description: 'Struttura portante, pareti perimetrali e copertura posata. La casa \u00E8 strutturalmente completa.',
+    price: null,
+  },
+  {
+    level: 'Grezzo avanzato',
+    days: '7',
+    unit: 'giorni',
+    description:
+      'Struttura completa, serramenti, cappotto, finiture esterne. L\'esterno manca solo del tonachino acril-silossanico finale.',
+    price: '1.250 \u20AC/mq',
+  },
+  {
+    level: 'Chiavi in mano',
+    days: '30',
+    unit: 'giorni',
+    description:
+      'Casa completa con impianti, finiture interne, certificazioni, pronta da abitare. Tempi certi, costi certi.',
+    price: '+430 \u20AC/mq',
   },
 ]
 
@@ -79,9 +158,14 @@ export default function TrasportoMontaggioContent() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-14">
-              Al mattino non c&apos;e nulla. La sera avete una struttura presente.
-              Il montaggio X-Frame e uno spettacolo che non ha paragoni in Italia e in Europa.
+            <p className="text-lg md:text-xl text-white/50 max-w-3xl leading-relaxed mb-6">
+              Al mattino non c&apos;&egrave; nulla. La sera avete una struttura completa.
+              Il montaggio X-Frame &egrave; uno spettacolo senza paragoni in Italia e in Europa:
+              come un pit stop di Formula 1, ogni movimento &egrave; pianificato, ogni minuto conta.
+            </p>
+            <p className="text-base text-white/35 max-w-2xl leading-relaxed mb-14">
+              Per strutture fino a 150 m&sup2; su un livello, l&apos;intera struttura viene montata in un solo giorno.
+              L&apos;esterno manca solo del tonachino acril-silossanico finale.
             </p>
           </ScrollReveal>
 
@@ -111,31 +195,51 @@ export default function TrasportoMontaggioContent() {
           <ScrollReveal>
             <div className="flex items-center gap-4 mb-4">
               <div className="w-8 h-px bg-[#A0845C]" />
-              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Differenza chiave</span>
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Esclusivo X-Frame</span>
               <div className="w-8 h-px bg-[#A0845C]" />
             </div>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
-              Trasporto Orizzontale
+              Trasporto <span className="text-[#A0845C]">Orizzontale</span>
             </h2>
-            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
-              Il nostro sistema esclusivo di trasporto orizzontale e una delle ragioni principali per cui
-              una casa X-Frame costa meno a parita di prestazioni. Dove altri costruttori usano 4 bilici, noi ne usiamo 2.
+            <p className="text-[#86868B] text-lg max-w-3xl mb-6">
+              Mentre la concorrenza trasporta i pannelli in verticale, EcoLive li carica in orizzontale.
+              Sembra un dettaglio, ma cambia tutto: stabilit&agrave;, sicurezza, quantit&agrave; per viaggio, costo finale.
             </p>
           </ScrollReveal>
 
+          <ScrollReveal delay={0.1}>
+            <div className="bg-white rounded-2xl border border-[#EDE6DB] p-6 mb-12 max-w-3xl">
+              <div className="flex items-start gap-3">
+                <Truck className="w-5 h-5 text-[#A0845C] flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-[#1D1D1F] font-semibold mb-1">La travatura viaggia dentro i monoblocchi solaio interpiano</p>
+                  <p className="text-[#86868B] text-sm leading-relaxed">
+                    Alla base del carico i monoblocchi tetto e solaio, sopra pareti, travi e pilastri.
+                    Le travi portanti si inseriscono all&apos;interno dei monoblocchi solaio: zero spazio sprecato.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
           <div className="grid md:grid-cols-2 gap-6">
-            {transportAdvantages.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 0.1}>
-                <motion.div
-                  className="group p-8 bg-white rounded-2xl border-t-2 border-t-transparent border border-[#EDE6DB] h-full hover:border-t-[#A0845C] hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                  whileHover={{ scale: 1.005 }}
-                >
-                  <div className="w-8 h-1 bg-[#A0845C]/30 rounded-full mb-5 group-hover:w-12 group-hover:bg-[#A0845C] transition-all duration-300" />
-                  <h3 className="text-xl font-bold text-[#1D1D1F] mb-3 group-hover:text-[#A0845C] transition-colors">{item.title}</h3>
-                  <p className="text-[#86868B] leading-relaxed">{item.description}</p>
-                </motion.div>
-              </ScrollReveal>
-            ))}
+            {transportAdvantages.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <ScrollReveal key={item.title} delay={i * 0.1}>
+                  <motion.div
+                    className="group p-8 bg-white rounded-2xl border-t-2 border-t-transparent border border-[#EDE6DB] h-full hover:border-t-[#A0845C] hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    whileHover={{ scale: 1.005 }}
+                  >
+                    <div className="w-10 h-10 bg-[#A0845C]/10 rounded-lg flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5 text-[#A0845C]" />
+                    </div>
+                    <h3 className="text-xl font-bold text-[#1D1D1F] mb-3 group-hover:text-[#A0845C] transition-colors">{item.title}</h3>
+                    <p className="text-[#86868B] leading-relaxed">{item.description}</p>
+                  </motion.div>
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -147,12 +251,16 @@ export default function TrasportoMontaggioContent() {
             <div className="text-center mb-16">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="w-8 h-px bg-[#A0845C]" />
-                <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Strutture fino a 150 m&sup2;</span>
+                <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Strutture fino a 150 m&sup2;, 1 livello</span>
                 <div className="w-8 h-px bg-[#A0845C]" />
               </div>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F]">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
                 Una Giornata, una Casa
               </h2>
+              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+                Come un pit stop di Formula 1: velocit&agrave; coordinata, precisione millimetrica,
+                ogni operatore sa esattamente cosa fare e quando.
+              </p>
             </div>
           </ScrollReveal>
 
@@ -160,10 +268,13 @@ export default function TrasportoMontaggioContent() {
             {timelineSteps.map((step, i) => (
               <ScrollReveal key={step.time} direction="left" delay={i * 0.12} distance={20}>
                 <div className="relative">
-                  <div className="absolute -left-[calc(2rem+7px)] md:-left-[calc(3rem+7px)] top-1.5 w-3.5 h-3.5 rounded-full bg-[#A0845C] ring-4 ring-white shadow-md" />
+                  <div className={`absolute -left-[calc(2rem+7px)] md:-left-[calc(3rem+7px)] top-1.5 w-3.5 h-3.5 rounded-full ${phaseColors[step.phase]} ring-4 ring-white shadow-md`} />
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-2">
                     <span className="text-[#A0845C] font-bold text-xl whitespace-nowrap">{step.time}</span>
                     <h3 className="font-bold text-[#1D1D1F] text-xl">{step.label}</h3>
+                    <span className="text-xs font-medium text-[#A0845C] bg-[#A0845C]/10 px-2 py-0.5 rounded-full whitespace-nowrap">
+                      {step.duration}
+                    </span>
                   </div>
                   <p className="text-[#86868B] leading-relaxed text-lg">{step.description}</p>
                 </div>
@@ -174,8 +285,8 @@ export default function TrasportoMontaggioContent() {
           <ScrollReveal delay={0.4}>
             <div className="mt-16 p-8 bg-[#F5F5F7] rounded-2xl border-l-4 border-l-[#A0845C]">
               <p className="text-[#1D1D1F] text-lg leading-relaxed italic">
-                &ldquo;Al mattino non c&apos;e nulla, la sera avete una struttura presente.
-                Non c&apos;e paragone con nessun&apos;altra realta in Italia e in Europa.&rdquo;
+                &ldquo;Al mattino non c&apos;&egrave; nulla, la sera avete una struttura presente.
+                Non c&apos;&egrave; paragone con nessun&apos;altra realt&agrave; in Italia e in Europa.&rdquo;
               </p>
             </div>
           </ScrollReveal>
@@ -198,38 +309,71 @@ export default function TrasportoMontaggioContent() {
               </h2>
               <p className="text-white/50 text-lg max-w-3xl mx-auto">
                 Un coordinatore generale come direttore d&apos;orchestra. Tre squadre specializzate in parallelo.
-                Ogni movimento e pianificato, ogni minuto conta.
+                Ogni movimento &egrave; pianificato, ogni minuto conta.
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {[
-              { value: '8-12', label: 'Operatori specializzati', description: 'Squadre formate internamente, con esperienza diretta sul sistema X-Frame' },
-              { value: '1', label: 'Autogru (30m+ portata)', description: 'Braccio sufficiente per raggiungere qualsiasi punto della struttura' },
-              { value: '3', label: 'Squadre coordinate', description: 'Fondazioni, pareti e coperture in parallelo sotto un unico coordinatore' },
-            ].map((item, i) => (
+            {crewDetails.map((item, i) => (
               <ScrollReveal key={item.label} delay={i * 0.12}>
-                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 text-center h-full hover:bg-white/8 transition-colors">
+                <GlassCard intensity="medium" className="p-8 text-center h-full">
                   <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-3">{item.value}</div>
                   <div className="text-white font-semibold mb-2">{item.label}</div>
                   <p className="text-white/40 text-sm leading-relaxed">{item.description}</p>
-                </div>
+                </GlassCard>
               </ScrollReveal>
             ))}
           </div>
 
+          <ScrollReveal delay={0.15}>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 max-w-4xl mx-auto mb-8">
+              <div className="flex items-start gap-3">
+                <Ruler className="w-5 h-5 text-[#A0845C] flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-white font-semibold mb-1">Struttura modulare: griglia 4-4,5m x 7m</p>
+                  <p className="text-white/40 text-sm leading-relaxed">
+                    Il sistema X-Frame si basa su una griglia modulare flessibile. Configurazioni da 4x4 fino a 20x8 metri,
+                    combinabili liberamente per qualsiasi pianta architettonica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
           <ScrollReveal delay={0.3}>
             <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {[
-                { title: 'Sicurezza totale', text: 'DPI completi per ogni operatore, documentazione di sicurezza in cantiere, coordinatore dedicato, ponteggi e sistemi anticaduta professionali.' },
-                { title: 'Il montaggio e un evento', text: 'Droni, foto e video professionali, striscioni. Invitiamo gli spettatori. I potenziali clienti vengono a vedere, i professionisti imparano il sistema.' },
-              ].map((card, i) => (
-                <div key={card.title} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="text-white font-bold mb-2">{card.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{card.text}</p>
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <Shield className="w-5 h-5 text-[#A0845C]" />
+                  <h3 className="text-white font-bold">Sicurezza totale</h3>
                 </div>
-              ))}
+                <p className="text-white/50 text-sm leading-relaxed">
+                  DPI completi per ogni operatore, documentazione di sicurezza in cantiere,
+                  coordinatore dedicato, ponteggi e sistemi anticaduta professionali.
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <Camera className="w-5 h-5 text-[#A0845C]" />
+                  <h3 className="text-white font-bold">Il cantiere come evento</h3>
+                </div>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  Droni, foto e video professionali, timelapse, banner e striscioni.
+                  Invitiamo gli spettatori: potenziali clienti vengono a vedere, professionisti
+                  imparano il sistema. Il montaggio &egrave; il miglior biglietto da visita.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <div className="mt-8 p-6 rounded-2xl bg-[#A0845C]/10 border border-[#A0845C]/20 text-center max-w-3xl mx-auto">
+              <p className="text-white/80 text-lg font-medium">
+                Al mattino nulla, alla sera casa completa strutturalmente.
+                <br />
+                <span className="text-white/50 text-base">L&apos;esterno manca solo del tonachino acril-silossanico finale.</span>
+              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -252,13 +396,15 @@ export default function TrasportoMontaggioContent() {
           </ScrollReveal>
 
           <div className="space-y-5">
-            {[
-              { level: 'Grezzo di base', days: '3', unit: 'giorni', description: 'Struttura portante, pareti perimetrali, copertura posata', price: null },
-              { level: 'Grezzo avanzato', days: '7', unit: 'giorni', description: 'Struttura completa, serramenti, cappotto, finiture esterne. Manca solo la mano finale acrilsilossanica.', price: '1.250 \u20ac/mq' },
-              { level: 'Chiavi in mano', days: '30', unit: 'giorni', description: 'Casa completa con impianti, finiture interne, certificazioni, pronta da abitare', price: '+430 \u20ac/mq' },
-            ].map((item, i) => (
+            {buildTimings.map((item, i) => (
               <ScrollReveal key={item.level} delay={i * 0.1}>
-                <div className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB] hover:border-[#A0845C]/30 hover:shadow-lg transition-all duration-300">
+                <motion.div
+                  className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-6 md:p-8 bg-white rounded-2xl border border-[#EDE6DB] hover:border-[#A0845C]/30 hover:shadow-lg transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                >
                   <div className="flex items-center gap-5 flex-1">
                     <div className="text-center min-w-[4rem]">
                       <div className="text-3xl md:text-4xl font-bold text-[#A0845C]">{item.days}</div>
@@ -274,7 +420,7 @@ export default function TrasportoMontaggioContent() {
                       <span className="text-lg font-bold text-[#A0845C]">{item.price}</span>
                     </div>
                   )}
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>

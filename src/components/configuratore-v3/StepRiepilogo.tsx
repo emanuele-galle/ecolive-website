@@ -70,32 +70,87 @@ export default function StepRiepilogo() {
     if (!validate()) return
 
     setSubmitting(true)
-
-    // TODO: POST to /api/contact-submissions
-    console.log('Configurazione completa:', {
-      tipologia,
-      modulo,
-      finitura,
-      stanze,
-      tetto,
-      contatto: form,
-      prezzi,
-    })
-
     setContatto(form)
 
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 800))
+    const configSummary = [
+      `Tipologia: ${tipologiaData?.title ?? tipologia}`,
+      `Modulo: ${modulo?.label ?? '—'} (${modulo?.mq ?? 0} m²)`,
+      `Finitura: ${finituraData?.label ?? finitura}`,
+      `Tetto: ${tettoLabels[tetto] ?? tetto}`,
+      `Stanze: ${stanze.map((s) => s.label).join(', ') || '—'}`,
+      prezzi ? `Range GA: ${formatPrezzo(prezzi.grezzoAvanzato.min)}–${formatPrezzo(prezzi.grezzoAvanzato.max)}` : '',
+      prezzi ? `Range CiM: ${formatPrezzo(prezzi.chiaviInMano.min)}–${formatPrezzo(prezzi.chiaviInMano.max)}` : '',
+      form.localitaTerreno ? `Località terreno: ${form.localitaTerreno}` : '',
+      form.note ? `Note: ${form.note}` : '',
+    ].filter(Boolean).join('\n')
 
-    setSubmitting(false)
-    setSubmitted(true)
+    try {
+      const res = await fetch('/api/contact-submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          telefono: form.telefono,
+          messaggio: configSummary,
+          source: '/configuratore',
+          configurazione: {
+            tipoCasa: modulo && modulo.livelli > 1 ? '2-piani' : '1-piano',
+            numStanze: stanze.filter((s) => s.tipo === 'camera').length,
+            metratura: modulo?.mq ?? 0,
+          },
+        }),
+      })
+
+      if (!res.ok) throw new Error('Errore invio')
+      setSubmitted(true)
+    } catch {
+      alert('Errore durante l\'invio. Riprova o contattaci direttamente al (0963) 530945.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  function handleSaveEmail() {
+  async function handleSaveEmail() {
     if (!validate()) return
     setContatto(form)
-    console.log('Salva e invia via email:', form)
-    alert('Configurazione salvata! Riceverai un riepilogo via email.')
+
+    const configSummary = [
+      `[RICHIESTA RIEPILOGO VIA EMAIL]`,
+      `Tipologia: ${tipologiaData?.title ?? tipologia}`,
+      `Modulo: ${modulo?.label ?? '—'} (${modulo?.mq ?? 0} m²)`,
+      `Finitura: ${finituraData?.label ?? finitura}`,
+      `Tetto: ${tettoLabels[tetto] ?? tetto}`,
+      `Stanze: ${stanze.map((s) => s.label).join(', ') || '—'}`,
+      prezzi ? `Range GA: ${formatPrezzo(prezzi.grezzoAvanzato.min)}–${formatPrezzo(prezzi.grezzoAvanzato.max)}` : '',
+      prezzi ? `Range CiM: ${formatPrezzo(prezzi.chiaviInMano.min)}–${formatPrezzo(prezzi.chiaviInMano.max)}` : '',
+      form.localitaTerreno ? `Località terreno: ${form.localitaTerreno}` : '',
+      form.note ? `Note: ${form.note}` : '',
+    ].filter(Boolean).join('\n')
+
+    try {
+      const res = await fetch('/api/contact-submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          telefono: form.telefono,
+          messaggio: configSummary,
+          source: '/configuratore',
+          configurazione: {
+            tipoCasa: modulo && modulo.livelli > 1 ? '2-piani' : '1-piano',
+            numStanze: stanze.filter((s) => s.tipo === 'camera').length,
+            metratura: modulo?.mq ?? 0,
+          },
+        }),
+      })
+
+      if (!res.ok) throw new Error('Errore invio')
+      setSubmitted(true)
+    } catch {
+      alert('Errore durante il salvataggio. Riprova o contattaci al (0963) 530945.')
+    }
   }
 
   // Success state

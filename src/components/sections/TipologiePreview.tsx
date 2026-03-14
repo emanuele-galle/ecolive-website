@@ -7,7 +7,7 @@ import { tipologie } from '@/data/tipologie'
 
 export default function TipologiePreview() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-[#FAF8F5] py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <motion.p
           initial={{ opacity: 0, y: 16 }}

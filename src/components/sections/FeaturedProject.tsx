@@ -39,7 +39,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
   const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.15, 1])
 
   return (
-    <section ref={sectionRef} className="relative py-32 lg:py-40 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 lg:py-40 bg-[#1D1D1F] overflow-hidden">
       {/* Section label */}
       <div className="max-w-7xl mx-auto px-6 mb-12">
         <motion.div
@@ -49,7 +49,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="h-px flex-1 max-w-[60px] bg-[#A0845C]" />
+          <div className="h-px flex-1 max-w-[60px] bg-[#A0845C]/60" />
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A0845C]">
             Progetti Realizzati
           </span>
@@ -143,7 +143,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
       >
         <Link
           href="/progetti"
-          className="inline-flex items-center gap-2 text-sm text-[#86868B] hover:text-[#A0845C] font-medium uppercase tracking-wider transition-colors duration-300 group"
+          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-[#A0845C] font-medium uppercase tracking-wider transition-colors duration-300 group"
         >
           Tutti i progetti
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

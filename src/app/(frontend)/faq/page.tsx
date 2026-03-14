@@ -139,27 +139,45 @@ const faqsByCategory: Record<string, FAQItem[]> = {
         '\u00ABLa platea non richiede un cordolo preciso grazie alla base XPS\u00BB \u2014 questo semplifica il lavoro dell\u2019impresa e riduce i margini di errore.',
       ],
     },
+    {
+      question: 'Che caratteristiche deve avere il cantiere?',
+      answer: [
+        'Il sito deve essere consegnato pronto per il montaggio: accessi adeguati per bilici e autogru (almeno 30 metri di sbraccio), spazi di manovra per i mezzi, nessun ostacolo alla movimentazione degli elementi strutturali.',
+        'Prima dell\u2019arrivo della struttura effettuiamo una verifica tecnica della platea: corretto posizionamento delle dime, ancoraggi e barre filettate livellate. Questo controllo preventivo evita ritardi il giorno del montaggio.',
+      ],
+    },
   ],
   confronto: [
     {
       question: 'Perch\u00E9 EcoLive costa di pi\u00F9 della muratura?',
       answer: [
-        '\u00ABPreferiamo poche costruzioni con precisione assoluta. Il prezzo corrisponde alla qualit\u00E0 dimostrata.\u00BB',
+        '\u00ABPreferiamo poche costruzioni con precisione assoluta, quasi sartoriale. Il prezzo corrisponde alla qualit\u00E0 dimostrata.\u00BB',
         'Il risparmio reale si vede nel costo complessivo: fino al 20% in meno rispetto alla muratura tradizionale, grazie alla drastica riduzione dei tempi e dei costi di cantiere. Meno operai, meno giorni, meno imprevisti.',
+        'Se il prezzo fosse troppo basso, il cliente potrebbe interpretarlo come segnale di qualit\u00E0 inferiore. Il nostro sistema costruttivo, la qualit\u00E0 e le prestazioni giustificano pienamente il posizionamento.',
       ],
     },
     {
-      question: 'Che differenze ci sono rispetto a Wolf e Rubner?',
+      question: 'Che differenze ci sono rispetto a Wolf Haus e Rubner Haus?',
       answer: [
-        '\u00ABQuando costruiamo, non deve esserci paragone. Noi siamo nettamente superiori nella fase di montaggio.\u00BB Il sistema X-Frame \u00E8 un ibrido che supera i singoli sistemi costruttivi tradizionali.',
-        'Il prezzo \u00E8 comparabile ai leader europei perch\u00E9 la qualit\u00E0 lo giustifica pienamente. La differenza sta nella velocit\u00E0: tempi di montaggio ridotti fino al 70%.',
+        'Il sistema X-Frame \u00E8 un ibrido unico che combina Platform Frame, X-Lam e Post and Beam, superando in prestazioni i singoli sistemi costruttivi usati dai competitor.',
+        'Il prezzo \u00E8 comparabile ai leader europei perch\u00E9 la qualit\u00E0 lo giustifica pienamente. La differenza chiave: tempi di montaggio ridotti fino al 70% e presenza diretta sul territorio calabrese/sud-italiano.',
+        'Il cliente pu\u00F2 visitare la sede, assistere alla costruzione, vedere il sistema dal vivo \u2014 cosa impossibile con le aziende del Nord che operano raramente al Sud.',
       ],
     },
     {
       question: 'Perch\u00E9 scegliere il legno rispetto al cemento?',
       answer: [
-        '\u00ABIl 98% del costruito in Italia fa pena. Case sismicamente inadeguate.\u00BB Una casa X-Frame \u00E8 antisismica per natura, efficiente dal punto di vista energetico e costruita per durare.',
-        'Il legno \u00E8 un materiale rinnovabile, che sequestra CO\u2082 e non ne produce durante la costruzione. Una casa EcoLive \u00E8 un investimento sul futuro \u2014 il vostro e quello del pianeta.',
+        'La maggior parte delle abitazioni in Italia presenta problemi: impianti obsoleti, scarsa efficienza energetica, standard strutturali non aggiornati. Una casa X-Frame \u00E8 antisismica per natura, con capacit\u00E0 dissipativa eccellente.',
+        'Il legno \u00E8 un materiale rinnovabile, che sequestra CO\u2082 e non ne produce durante la costruzione. La struttura non \u00E8 esposta agli agenti atmosferici ma protetta da strati isolanti e rivestimenti esterni.',
+        'In Calabria le case in legno sono circa l\u20191% del costruito, contro il 10-15% del Nord Italia e il 70% del Nord Europa. Il mercato ha un potenziale enorme.',
+      ],
+    },
+    {
+      question: '\u00C8 possibile ridurre il prezzo scegliendo materiali diversi?',
+      answer: [
+        'S\u00EC, in casi particolari \u00E8 possibile ottenere una riduzione fino al 20% apportando alcune modifiche: cappotto in polistirene invece del sughero, pannelli OSB al posto dei lamellari a tre strati.',
+        'La struttura portante rimane invariata (telai in Bilam). Si ha una riduzione solo nelle prestazioni energetiche e nella durabilit\u00E0 dei materiali di tamponamento, non nella sicurezza strutturale.',
+        'All\u2019interno delle pareti \u00E8 sempre presente uno strato di 16 cm di lana di roccia, quindi l\u2019isolamento termoacustico resta elevato.',
       ],
     },
   ],
@@ -495,7 +513,7 @@ export default function FAQPage() {
                 Contattaci
               </Link>
               <a
-                href="tel:+3909631951395"
+                href="tel:+390963530945"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-full border border-white/15 transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
@@ -508,7 +526,7 @@ export default function FAQPage() {
           <ScrollReveal delay={0.4}>
             <div className="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
               <a
-                href="tel:+3909631951395"
+                href="tel:+390963530945"
                 className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 group"
               >
                 <div className="w-12 h-12 bg-[#A0845C]/15 rounded-xl flex items-center justify-center group-hover:bg-[#A0845C]/25 transition-colors">
@@ -516,7 +534,7 @@ export default function FAQPage() {
                 </div>
                 <div className="text-left">
                   <p className="text-white font-medium">Telefono</p>
-                  <p className="text-white/40 text-sm">+39 0963 1951395</p>
+                  <p className="text-white/40 text-sm">(0963) 530945</p>
                 </div>
               </a>
               <a

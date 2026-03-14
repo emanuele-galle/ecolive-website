@@ -5,18 +5,16 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Building2,
-  Clapperboard,
+  Clock,
   Factory,
   Leaf,
   Mail,
   MapPin,
-  Monitor,
   Phone,
+  Shield,
+  Thermometer,
   TreePine,
-  User,
-  Cpu,
-  Camera,
-  HardHat,
+  Zap,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -27,76 +25,62 @@ import CountUp from '@/components/ui/CountUp'
 
 const teamMembers = [
   {
-    name: 'Dominik Galle',
+    name: 'Dominik Gallè',
     role: 'Amministratore',
     phone: '366.2037106',
-    image: '/api/media/file/dominik-galle.jpeg',
+    initials: 'DG',
+    color: 'from-[#A0845C] to-[#7A6544]',
   },
   {
     name: 'Arch. Pasquale Zaffino',
     role: 'Direttore tecnico',
     phone: '340.9013774',
-    image: '/api/media/file/pasquale-zaffino.jpg',
+    initials: 'PZ',
+    color: 'from-[#5C7A60] to-[#3D5A42]',
   },
   {
     name: 'Ing. Luisa Baffa',
-    role: 'Resp. commerciale',
+    role: 'Responsabile commerciale',
     phone: '328.7107639',
-    image: '/api/media/file/luisa-baffa-trasci.jpg',
+    initials: 'LB',
+    color: 'from-[#5C6E8A] to-[#3D4F6A]',
   },
   {
     name: 'Dott.ssa Sara Santaguida',
     role: 'Area legale / Affiliazioni',
     phone: '338.7774250',
-    image: null as string | null,
+    initials: 'SS',
+    color: 'from-[#8A6B5C] to-[#6A4D3D]',
   },
 ]
 
 const stats = [
-  { value: 1999, label: 'Anno di fondazione', suffix: '' },
-  { value: 10, label: 'Case all\'anno', suffix: '+' },
+  { value: 95, label: 'Produzione in laboratorio', suffix: '%' },
   { value: 1, label: 'Giorno di montaggio', suffix: '' },
-  { value: 100, label: 'Controllo qualita', suffix: '%' },
+  { value: 50, label: 'Anni di garanzia struttura', suffix: '' },
+  { value: 3, label: 'Tecnologie in un sistema', suffix: '' },
 ]
 
-const tools = [
+const differentiators = [
   {
-    icon: Cpu,
-    name: 'Revit (BIM)',
-    desc: 'Modellazione parametrica dell\'intera struttura. Il progetto nasce digitale, ogni componente e gia pronto per la produzione.',
+    icon: Zap,
+    title: 'Sistema X-Frame',
+    text: 'L\u2019unico sistema costruttivo che combina tre tecnologie \u2014 Platform Frame, X-Lam e Post and Beam \u2014 in un ibrido proprietario senza precedenti nel settore.',
   },
   {
-    icon: Monitor,
-    name: 'Blender & Twinmotion',
-    desc: 'Rendering fotorealistici ambientati nel contesto reale. Il cliente vede la sua casa senza possibilita di sbagliare.',
+    icon: Thermometer,
+    title: 'Ambiente controllato',
+    text: 'Il 95%+ della produzione avviene nel nostro stabilimento a temperatura, umidit\u00e0 e tempi di asciugatura monitorati. Zero imprevisti da cantiere tradizionale.',
   },
   {
-    icon: Camera,
-    name: 'Rilievo Drone',
-    desc: 'Video-mappatura 3D del terreno, sorvolo del lotto, analisi del contesto. Precisione millimetrica per la progettazione.',
+    icon: Clock,
+    title: 'Montaggio in 1 giorno',
+    text: 'La struttura portante viene montata in una sola giornata. Come il pit stop della Formula 1: 8-12 operatori, divise, droni, time-lapse. Il cantiere diventa spettacolo.',
   },
   {
-    icon: Factory,
-    name: 'AutoCAD Produzione',
-    desc: 'Dal modello BIM ai disegni di produzione: ogni tavola, ogni taglio, ogni giunto e definito prima di entrare in laboratorio.',
-  },
-]
-
-const pillars = [
-  {
-    icon: Factory,
-    title: 'Produzione in Laboratorio',
-    text: 'Tutto viene preparato nel nostro stabilimento a ambiente controllato: temperatura, umidita e tempi di essiccazione monitorati. Materie prime dall\'Austria: legno lamellare e pannelli a 3 strati di altissima qualita. Zero imprevisti tipici del cantiere tradizionale.',
-  },
-  {
-    icon: HardHat,
-    title: 'Centro Autorizzato',
-    text: 'EcoLive e centro di trasformazione autorizzato dal Ministero dei Lavori Pubblici. L\'unica azienda che gestisce l\'intero ciclo: dalla progettazione alla produzione, dalla vendita alla costruzione.',
-  },
-  {
-    icon: Clapperboard,
-    title: 'Montaggio come Evento',
-    text: 'Il cantiere deve essere uno spettacolo. Divise, casco, guanti. Droni, riprese foto e video. Banner. 8-12 operatori come il cambio gomme in Formula 1. Time-lapse dell\'intera giornata.',
+    icon: Shield,
+    title: 'Garanzia 50 anni',
+    text: 'Mezzo secolo di garanzia sulla struttura portante. Classe energetica fino ad A4, standard casa passiva. Qualit\u00e0 che si posiziona al livello dei migliori marchi nazionali.',
   },
 ]
 
@@ -106,7 +90,7 @@ export default function ChiSiamoPage() {
   return (
     <div className="overflow-hidden">
 
-      {/* ── 1. CINEMATIC HERO ── */}
+      {/* ── 1. HERO ── */}
       <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F] via-[#1D1D1F] to-[#141414]" />
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
@@ -119,15 +103,14 @@ export default function ChiSiamoPage() {
               Chi Siamo
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mt-4">
-              La bioedilizia piu innovativa
+              La bioedilizia pi&ugrave; innovativa
               <span className="block text-[#A0845C]">parte dal Sud</span>
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Dal cuore della Calabria, nel Parco delle Serre, progettiamo, produciamo e
-              costruiamo case prefabbricate in legno con il sistema X-Frame. Poche case,
-              ma perfette.
+              Dal cuore della Calabria, nel Parco delle Serre, progettiamo, produciamo e costruiamo
+              edifici in bioedilizia con il sistema costruttivo X-Frame. Poche case, ma perfette.
             </p>
           </ScrollReveal>
         </div>
@@ -165,7 +148,7 @@ export default function ChiSiamoPage() {
               La Nostra Storia
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
-              Da Spadola al futuro dell&apos;abitare
+              Due anime, un unico brand
             </h2>
             <div className="mt-6 flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[#A0845C]" />
@@ -173,24 +156,25 @@ export default function ChiSiamoPage() {
             </div>
             <div className="mt-6 space-y-4 text-[#86868B] text-lg leading-relaxed">
               <p>
-                Fondata nel <strong className="text-[#1D1D1F]">1999</strong>, EcoLive
-                ha sede a Spadola, nel cuore del Parco delle Serre. Anni di ricerca e
-                sviluppo hanno portato alla nascita del{' '}
+                EcoLive nasce dall&apos;unione di due esperienze complementari:{' '}
+                <strong className="text-[#1D1D1F]">EcoLive S.r.l.</strong> con sede a Spadola
+                (VV), nel cuore del Parco delle Serre, ed{' '}
+                <strong className="text-[#1D1D1F]">Edilius S.r.l.</strong> con sede a Cosenza.
+                Due societ&agrave; che hanno fuso competenze, visione e know-how sotto un unico
+                brand per dar vita a qualcosa di mai visto nel panorama della bioedilizia italiana.
+              </p>
+              <p>
+                Anni di ricerca e sviluppo hanno portato alla creazione del{' '}
                 <strong className="text-[#1D1D1F]">sistema X-Frame</strong>: un ibrido
-                proprietario che combina Platform Frame, X-Lam e Post and Beam in un
-                sistema costruttivo senza precedenti.
+                proprietario che combina Platform Frame, X-Lam e Post and Beam in un sistema
+                costruttivo senza precedenti. Non una semplice casa in legno, ma un&apos;opera
+                di ingegneria e artigianalit&agrave;.
               </p>
               <p>
-                Le materie prime arrivano dall&apos;Austria: legno lamellare e pannelli a 3 strati
-                di altissima qualita. Il nostro laboratorio opera in ambiente controllato dove
-                temperatura, umidita e tempi di lavorazione sono monitorati costantemente.
-              </p>
-              <p>
-                Oggi EcoLive e l&apos;unica azienda che gestisce l&apos;intero ciclo &mdash;
-                dalla progettazione alla produzione, dalla vendita alla costruzione &mdash;
-                all&apos;interno di un{' '}
+                Lo stabilimento di Spadola &egrave;{' '}
                 <strong className="text-[#1D1D1F]">centro di trasformazione autorizzato
-                dal Ministero dei Lavori Pubblici</strong>.
+                dal Ministero dei Lavori Pubblici</strong>: l&apos;unica realt&agrave; del Sud
+                Italia che gestisce l&apos;intero ciclo, dalla progettazione alla costruzione.
               </p>
             </div>
           </ScrollReveal>
@@ -198,11 +182,12 @@ export default function ChiSiamoPage() {
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8E8ED] shadow-premium">
               <Image
-                src="/api/media/file/stabilimento-ecolive.jpg"
-                alt="Stabilimento EcoLive a Spadola"
+                src="/images/chi-siamo-hero.webp"
+                alt="Stabilimento EcoLive nel Parco delle Serre, Spadola"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
             </div>
           </ScrollReveal>
@@ -211,93 +196,49 @@ export default function ChiSiamoPage() {
 
       <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
-      {/* ── 4. FILOSOFIA (dark section with grain) ── */}
+      {/* ── 4. IL NOSTRO STABILIMENTO (dark) ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <ScrollReveal>
-            <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-              La Nostra Filosofia
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 leading-tight">
-              &ldquo;Poche case, ma perfette&rdquo;
-            </h2>
-            <div className="mt-5 flex items-center justify-center gap-3">
-              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <div className="mt-8 space-y-5 text-white/70 text-lg leading-relaxed">
-              <p>
-                Preferiamo costruire poche case con una{' '}
-                <strong className="text-white">precisione assoluta</strong> &mdash; su misura,
-                sartoriali, artigianali, con la massima cura. Ogni casa EcoLive e un
-                capolavoro di ingegneria e artigianalita.
-              </p>
-              <p>
-                Il nostro prezzo e sensibilmente piu alto rispetto ad altri, perche la
-                qualita, la precisione e l&apos;innovazione lo giustificano. Non cerchiamo
-                il volume: cerchiamo l&apos;eccellenza.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3}>
-            <motion.div
-              className="mt-10 inline-block px-8 py-4 rounded-xl border border-[#A0845C]/30 bg-[#A0845C]/10"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <p className="text-[#A0845C] font-semibold text-lg italic">
-                &ldquo;Sartoriali, artigianali. Ogni casa e un capolavoro.&rdquo;
-              </p>
-            </motion.div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
-
-      {/* ── 5. STRUMENTI ALL'AVANGUARDIA ── */}
-      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
-        <div className="max-w-6xl mx-auto">
+        <div className="relative z-10 max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Tecnologia
+                Il Nostro Stabilimento
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Strumenti all&apos;avanguardia
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3">
+                Qualit&agrave; artigianale, precisione industriale
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
-                Il cliente vedra la sua casa in maniera realistica, senza possibilita di sbagliare.
+              <p className="mt-6 text-white/70 text-lg max-w-3xl mx-auto leading-relaxed">
+                A Spadola riceviamo semilavorati dall&apos;Austria &mdash; pannelli lamellari a
+                tre strati e travi in legno lamellare &mdash; e li trasformiamo in travi, pilastri
+                e ogni elemento strutturale necessario. Il tutto in un ambiente dove temperatura,
+                umidit&agrave; e tempi di asciugatura sono costantemente monitorati.
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {tools.map((tool, i) => {
-              const Icon = tool.icon
+            {differentiators.map((item, i) => {
+              const Icon = item.icon
               return (
-                <ScrollReveal key={tool.name} delay={i * 0.1} direction="up">
+                <ScrollReveal key={item.title} delay={i * 0.1} direction="up">
                   <motion.div
-                    className="bg-white rounded-2xl p-8 border border-[#D2D2D7] h-full"
-                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full"
+                    whileHover={{ y: -4, backgroundColor: 'rgba(255,255,255,0.08)' }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex items-start gap-5">
-                      <div className="w-14 h-14 rounded-xl bg-[#1D1D1F] flex items-center justify-center shrink-0">
+                      <div className="w-14 h-14 rounded-xl bg-[#A0845C]/20 flex items-center justify-center shrink-0">
                         <Icon className="w-7 h-7 text-[#A0845C]" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-[#1D1D1F] mb-2">{tool.name}</h3>
-                        <p className="text-[#86868B] leading-relaxed">{tool.desc}</p>
+                        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                        <p className="text-white/60 leading-relaxed">{item.text}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -308,53 +249,9 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* ── 6. COME LAVORIAMO (3 Pillars) ── */}
-      <section className="py-24 lg:py-32 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-                Come Lavoriamo
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
-                Tre pilastri del metodo EcoLive
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
-                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {pillars.map((p, i) => {
-              const Icon = p.icon
-              return (
-                <ScrollReveal key={p.title} delay={i * 0.12} direction="up">
-                  <motion.div
-                    className="bg-[#F5F5F7] rounded-2xl p-8 border border-[#D2D2D7] h-full"
-                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-14 h-14 rounded-xl bg-[#1D1D1F]/10 flex items-center justify-center mb-5">
-                      <Icon className="w-7 h-7 text-[#1D1D1F]" />
-                    </div>
-                    <h3 className="text-xl font-bold text-[#1D1D1F] mb-3">{p.title}</h3>
-                    <p className="text-[#86868B] leading-relaxed">{p.text}</p>
-                  </motion.div>
-                </ScrollReveal>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
-
-      {/* ── 7. IL TEAM ── */}
+      {/* ── 5. IL TEAM ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
@@ -370,38 +267,32 @@ export default function ChiSiamoPage() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
+              <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
+                Un team multidisciplinare che copre ogni aspetto: dalla visione imprenditoriale
+                alla direzione tecnica, dalla relazione commerciale alla tutela legale.
+              </p>
             </div>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((member, i) => (
               <ScrollReveal key={member.name} delay={i * 0.15} direction="up">
-                <div className="group">
-                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#E8E8ED] shadow-premium">
-                    {member.image ? (
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#A0845C]/10 to-[#A0845C]/5">
-                        <div className="w-24 h-24 rounded-full bg-[#A0845C]/15 flex items-center justify-center">
-                          <User className="w-12 h-12 text-[#A0845C]/60" />
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F]/60 via-transparent to-transparent" />
+                <div className="group text-center">
+                  <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-premium">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${member.color} flex items-center justify-center`}>
+                      <span className="text-3xl font-bold text-white/90 select-none">
+                        {member.initials}
+                      </span>
+                    </div>
                   </div>
                   <div className="mt-5">
-                    <h3 className="text-xl font-bold text-[#1D1D1F]">{member.name}</h3>
+                    <h3 className="text-lg font-bold text-[#1D1D1F]">{member.name}</h3>
                     <p className="text-[#A0845C] font-medium text-sm mt-0.5">{member.role}</p>
                     <a
                       href={`tel:+39${member.phone.replace(/\./g, '')}`}
-                      className="text-[#86868B] text-sm mt-1 block hover:text-[#A0845C] transition-colors"
+                      className="text-[#86868B] text-sm mt-2 inline-flex items-center gap-1.5 hover:text-[#A0845C] transition-colors"
                     >
-                      <Phone className="w-3.5 h-3.5 inline mr-1" />
+                      <Phone className="w-3.5 h-3.5" />
                       {member.phone}
                     </a>
                   </div>
@@ -414,16 +305,16 @@ export default function ChiSiamoPage() {
 
       <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
-      {/* ── 8. VISIONE FUTURA (dark + grain) ── */}
+      {/* ── 6. LA NOSTRA VISIONE (dark) ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <ScrollReveal direction="left" duration={0.7}>
             <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
-              Visione Futura
+              La Nostra Visione
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 leading-tight">
-              La risorsa che la natura ci ha dato
+              Poche case, ma perfette
             </h2>
             <div className="mt-6 flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[#A0845C]" />
@@ -431,25 +322,37 @@ export default function ChiSiamoPage() {
             </div>
             <div className="mt-6 space-y-4 text-white/70 text-lg leading-relaxed">
               <p>
-                La Calabria possiede foreste straordinarie. Il nostro obiettivo e costruire
-                una <strong className="text-white">filiera locale del legno calabrese</strong>{' '}
-                che valorizzi questo patrimonio, riducendo la dipendenza dall&apos;importazione
-                e creando lavoro sul territorio.
+                Non cerchiamo il volume: cerchiamo l&apos;eccellenza. Ogni casa EcoLive &egrave;
+                un progetto sartoriale, costruito su misura con la massima cura artigianale.
+                Il nostro posizionamento non &egrave; inferiore ai grandi marchi del Nord come
+                Wolf Haus o Rubner Haus, perch&eacute; la qualit&agrave; lo giustifica.
               </p>
               <p>
-                Oggi realizziamo <strong className="text-white">5-10 case l&apos;anno</strong>.
-                Dal 2027 dovremo far fronte alla domanda crescente: espansione in loco, doppi
-                turni di lavoro, rete di produttori affiliati su tutto il territorio nazionale.
+                La Calabria possiede foreste straordinarie. La nostra visione a lungo termine
+                &egrave; costruire una{' '}
+                <strong className="text-white">filiera locale del legno calabrese</strong> che
+                valorizzi questo patrimonio naturale, riduca la dipendenza dall&apos;importazione
+                e crei lavoro qualificato sul territorio.
               </p>
             </div>
+            <motion.div
+              className="mt-8 inline-block px-8 py-4 rounded-xl border border-[#A0845C]/30 bg-[#A0845C]/10"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-[#A0845C] font-semibold text-lg italic">
+                &ldquo;Sartoriali, artigianali. Ogni casa &egrave; un capolavoro.&rdquo;
+              </p>
+            </motion.div>
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
             <div className="space-y-6">
               {[
-                { icon: TreePine, label: 'Filiera locale del legno calabrese' },
-                { icon: Building2, label: 'Espansione produttiva e doppi turni dal 2027' },
-                { icon: Leaf, label: 'Rete di produttori affiliati in tutta Italia' },
+                { icon: TreePine, label: 'Filiera locale del legno calabrese', desc: 'Valorizzazione dei boschi del Parco delle Serre' },
+                { icon: Factory, label: 'Espansione produttiva', desc: 'Doppi turni e rete di produttori affiliati in Italia' },
+                { icon: Building2, label: 'Classe energetica A4', desc: 'Standard casa passiva per ogni edificio' },
+                { icon: Leaf, label: 'Sostenibilit\u00e0 concreta', desc: 'Legno certificato, produzione a impatto ridotto' },
               ].map((item, i) => {
                 const Icon = item.icon
                 return (
@@ -462,7 +365,10 @@ export default function ChiSiamoPage() {
                       <div className="w-11 h-11 rounded-lg bg-[#A0845C]/20 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5 text-[#A0845C]" />
                       </div>
-                      <p className="text-white font-medium">{item.label}</p>
+                      <div>
+                        <p className="text-white font-medium">{item.label}</p>
+                        <p className="text-white/50 text-sm mt-0.5">{item.desc}</p>
+                      </div>
                     </motion.div>
                   </ScrollReveal>
                 )
@@ -474,58 +380,62 @@ export default function ChiSiamoPage() {
 
       <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
 
-      {/* ── 9. COMPANY INFO CARD ── */}
+      {/* ── 7. COMPANY INFO + CTA ── */}
       <section className="py-20 lg:py-28 px-6 bg-white">
-        <ScrollReveal>
-          <div className="max-w-xl mx-auto bg-[#F5F5F7] rounded-2xl p-8 md:p-10 border border-[#D2D2D7] text-center">
-            <h3 className="font-serif text-2xl font-bold text-[#1D1D1F]">
-              EcoLive S.r.l.
-            </h3>
-            <div className="mt-5 space-y-2 text-[#86868B]">
-              <p className="flex items-center justify-center gap-2">
-                <MapPin className="w-4 h-4 text-[#A0845C]" />
-                Via Conte Ruggero, 128 &mdash; 89822 Spadola (VV)
-              </p>
-              <p>P.IVA 03607430794</p>
-              <p className="flex items-center justify-center gap-2">
-                <Phone className="w-4 h-4 text-[#A0845C]" />
-                <a href="tel:+390963530945" className="hover:text-[#A0845C] transition-colors">
-                  (0963) 530945
-                </a>
-              </p>
-              <p className="flex items-center justify-center gap-2">
-                <Mail className="w-4 h-4 text-[#A0845C]" />
-                <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors">
-                  info@ecolive.srl
-                </a>
-              </p>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
-
-      {/* ── 10. CTA ── */}
-      <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Vieni a trovarci
-            </h2>
-            <p className="mt-6 text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
-              Visita il nostro stabilimento a Spadola e scopri come nascono le case EcoLive.
-              Parla direttamente con il nostro team.
-            </p>
-            <div className="mt-12">
-              <Link
-                href="/contatti"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
-              >
-                Contattaci
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+            <div className="bg-[#F5F5F7] rounded-2xl p-8 md:p-12 border border-[#D2D2D7]">
+              <div className="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                  <h3 className="font-serif text-2xl font-bold text-[#1D1D1F]">
+                    EcoLive S.r.l.
+                  </h3>
+                  <div className="mt-5 space-y-3 text-[#86868B]">
+                    <p className="flex items-start gap-2.5">
+                      <MapPin className="w-4 h-4 text-[#A0845C] mt-1 shrink-0" />
+                      <span>Via Conte Ruggero, 128<br />89822 Spadola (VV), Calabria</span>
+                    </p>
+                    <p className="text-sm">P.IVA 03607430794</p>
+                    <p className="flex items-center gap-2.5">
+                      <Phone className="w-4 h-4 text-[#A0845C] shrink-0" />
+                      <span>
+                        <a href="tel:+390963530945" className="hover:text-[#A0845C] transition-colors">
+                          (0963) 530945
+                        </a>
+                        {' / '}
+                        <a href="tel:+393662037106" className="hover:text-[#A0845C] transition-colors">
+                          366.2037106
+                        </a>
+                      </span>
+                    </p>
+                    <p className="flex items-center gap-2.5">
+                      <Mail className="w-4 h-4 text-[#A0845C] shrink-0" />
+                      <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors">
+                        info@ecolive.srl
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center md:text-right">
+                  <h3 className="font-serif text-2xl font-bold text-[#1D1D1F]">
+                    Vieni a trovarci
+                  </h3>
+                  <p className="mt-3 text-[#86868B] leading-relaxed">
+                    Visita il nostro stabilimento a Spadola e scopri come nascono le case EcoLive.
+                    Parla direttamente con il nostro team.
+                  </p>
+                  <div className="mt-6">
+                    <Link
+                      href="/contatti"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
+                    >
+                      Contattaci
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
         </div>
