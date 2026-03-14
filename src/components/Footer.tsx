@@ -1,27 +1,44 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Youtube, ArrowRight, Download, Shield, Leaf, Zap, Award } from 'lucide-react'
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  ArrowRight,
+  Download,
+  Clock,
+  ExternalLink,
+} from 'lucide-react'
 
-const linkRapidi = [
+/* ─── Data ────────────────────────────────────────────────────────── */
+
+const navEsplora = [
   { label: 'Home', href: '/' },
   { label: 'Sistema X-Frame', href: '/sistema-x-frame' },
   { label: 'Tipologie', href: '/tipologie' },
   { label: 'Configuratore', href: '/configuratore' },
   { label: 'Progetti', href: '/progetti' },
-  { label: 'Chi Siamo', href: '/chi-siamo' },
-  { label: 'News', href: '/news' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Contatti', href: '/contatti' },
 ]
 
-const servizi = [
+const navAzienda = [
+  { label: 'Chi Siamo', href: '/chi-siamo' },
   { label: 'Il Processo', href: '/il-processo' },
-  { label: 'Per i Professionisti', href: '/professionisti' },
+  { label: 'Professionisti', href: '/professionisti' },
   { label: 'Franchising', href: '/franchising' },
-  { label: 'Glamping', href: '/tipologie/glamping' },
-  { label: 'SmartSuite', href: '/tipologie/smartsuite' },
-  { label: 'Residenziali', href: '/tipologie/residenziali' },
-  { label: 'Luxury', href: '/tipologie/luxury' },
+  { label: 'News', href: '/news' },
+  { label: 'FAQ', href: '/faq' },
+]
+
+const certifications = [
+  'Classe A4 CliMAX',
+  'Passive House / PHIUS',
+  'ARCA',
+  'LEED for Homes',
+  'Made in Italy, Calabria',
 ]
 
 const socialLinks = [
@@ -31,231 +48,245 @@ const socialLinks = [
   { name: 'YouTube', href: 'https://www.youtube.com/@Ecolive-xframe', icon: Youtube },
 ]
 
-const certBadges = [
-  { label: 'Classe A4', sublabel: 'NZEB', icon: Zap },
-  { label: 'Garanzia', sublabel: '50 Anni', icon: Shield },
-  { label: 'Passive House', sublabel: 'Certified', icon: Leaf },
-  { label: 'Made in Italy', sublabel: 'Calabria', icon: Award },
-]
+/* ─── Component ───────────────────────────────────────────────────── */
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative overflow-hidden">
-      {/* Certification Trust Bar */}
-      <div className="bg-[#1D1D1F] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {certBadges.map((badge) => (
-              <div key={badge.label} className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-lg bg-[#A0845C]/15 flex items-center justify-center flex-shrink-0 group-hover:bg-[#A0845C]/25 transition-colors">
-                  <badge.icon className="w-5 h-5 text-[#A0845C]" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-semibold leading-tight">{badge.label}</p>
-                  <p className="text-white/50 text-xs">{badge.sublabel}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <>
+      {/* ── Pre-footer CTA Band ───────────────────────────────────── */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#A0845C] to-[#856B45]">
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.04]" />
+        <div className="relative max-w-7xl mx-auto px-6 py-10 sm:py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <p className="text-white text-xl sm:text-2xl font-semibold tracking-tight text-center sm:text-left">
+            La tua casa inizia qui
+          </p>
+          <Link
+            href="/configuratore"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-white text-[#1D1D1F] text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-[1.03] group flex-shrink-0"
+          >
+            Configura la tua Casa
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="bg-[#1D1D1F] relative">
-        {/* Subtle grain texture */}
+      {/* ── Main Footer ───────────────────────────────────────────── */}
+      <footer className="relative bg-[#1D1D1F] overflow-hidden">
+        {/* Grain texture */}
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.02]" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        {/* Decorative radial glow behind logo */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-[#A0845C]/[0.03] blur-[160px] pointer-events-none" />
 
-            {/* Brand Column */}
-            <div className="lg:col-span-4">
-              <Link href="/" className="inline-block mb-6">
-                <Image
-                  src="/images/logo-ecolive.png"
-                  alt="Ecolive - Case Prefabbricate in Legno"
-                  width={160}
-                  height={56}
-                  className="h-12 w-auto object-contain brightness-0 invert"
-                />
-              </Link>
+        {/* ── Zone A: Brand Statement ──────────────────────────── */}
+        <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-10 sm:pt-20 sm:pb-12">
+          <div className="flex flex-col items-center text-center">
+            <Link href="/" className="inline-block mb-6">
+              <Image
+                src="/images/logo-ecolive.png"
+                alt="EcoLive - Case Prefabbricate in Legno"
+                width={200}
+                height={64}
+                className="h-16 w-auto object-contain brightness-0 invert"
+              />
+            </Link>
+            <p className="text-2xl sm:text-3xl text-white/80 font-light tracking-tight max-w-xl leading-snug">
+              La bioedilizia pi&ugrave; innovativa
+              <br className="hidden sm:block" /> parte dal Sud
+            </p>
+          </div>
+          {/* Gold separator */}
+          <div className="mt-10 sm:mt-12 h-px w-full bg-gradient-to-r from-transparent via-[#A0845C]/40 to-transparent" />
+        </div>
 
-              <p className="text-white/60 leading-relaxed mb-6 max-w-xs">
-                EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema costruttivo ibrido X-Frame. Bioedilizia certificata Classe A4 dalla Calabria.
-              </p>
+        {/* ── Zone B: 4-Column Grid ───────────────────────────── */}
+        <div className="relative max-w-7xl mx-auto px-6 pb-14">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+            {/* Col 1 — Esplora */}
+            <div>
+              <h4 className="text-[11px] font-semibold text-[#A0845C] uppercase tracking-[0.18em] mb-5">
+                Esplora
+              </h4>
+              <ul className="space-y-2.5">
+                {navEsplora.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="text-sm text-white/40 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-200"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                <Link
-                  href="/configuratore"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#A0845C] hover:bg-[#856B45] text-white text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] group"
-                >
-                  Configura la tua Casa
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-                <a
-                  href="https://storage.fodivps2.cloud/ecolive-media/documenti/Brochure-2025.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-white/20 hover:border-white/40 text-white/80 hover:text-white text-sm font-medium rounded-xl transition-all duration-300"
-                >
-                  <Download className="w-4 h-4" />
-                  Brochure 2025
-                </a>
-              </div>
+            {/* Col 2 — Azienda */}
+            <div>
+              <h4 className="text-[11px] font-semibold text-[#A0845C] uppercase tracking-[0.18em] mb-5">
+                Azienda
+              </h4>
+              <ul className="space-y-2.5">
+                {navAzienda.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="text-sm text-white/40 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-200"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              {/* Social */}
-              <div className="flex gap-2.5">
-                {socialLinks.map((social) => (
+            {/* Col 3 — Contatti */}
+            <div>
+              <h4 className="text-[11px] font-semibold text-[#A0845C] uppercase tracking-[0.18em] mb-5">
+                Contatti
+              </h4>
+              <ul className="space-y-3.5">
+                <li>
                   <a
-                    key={social.name}
-                    href={social.href}
+                    href="https://maps.google.com/?q=Via+Conte+Ruggiero+128+Spadola"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-white/5 hover:bg-[#A0845C] flex items-center justify-center transition-all duration-300 hover:scale-110 group"
-                    aria-label={social.name}
+                    className="flex items-start gap-2.5 text-sm text-white/40 hover:text-white transition-colors group"
                   >
-                    <social.icon className="w-[18px] h-[18px] text-white/50 group-hover:text-white transition-colors" />
+                    <MapPin className="w-4 h-4 text-[#A0845C] mt-0.5 flex-shrink-0" />
+                    <span className="leading-relaxed">
+                      Via Conte Ruggiero, 128
+                      <br />
+                      89822 Spadola (VV)
+                    </span>
                   </a>
-                ))}
-              </div>
+                </li>
+                <li>
+                  <a
+                    href="tel:+390963530945"
+                    className="flex items-center gap-2.5 text-sm text-white/40 hover:text-white transition-colors"
+                  >
+                    <Phone className="w-4 h-4 text-[#A0845C] flex-shrink-0" />
+                    (0963) 530945
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="tel:+393662037106"
+                    className="flex items-center gap-2.5 text-sm text-white/40 hover:text-white transition-colors"
+                  >
+                    <Phone className="w-4 h-4 text-[#A0845C] flex-shrink-0" />
+                    366.2037106
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:info@ecolive.srl"
+                    className="flex items-center gap-2.5 text-sm text-white/40 hover:text-white transition-colors"
+                  >
+                    <Mail className="w-4 h-4 text-[#A0845C] flex-shrink-0" />
+                    info@ecolive.srl
+                  </a>
+                </li>
+                <li>
+                  <span className="flex items-center gap-2.5 text-sm text-white/40">
+                    <Clock className="w-4 h-4 text-[#A0845C] flex-shrink-0" />
+                    Lun &mdash; Ven 08:30 &ndash; 17:30
+                  </span>
+                </li>
+              </ul>
+
+              {/* Brochure download */}
+              <a
+                href="https://storage.fodivps2.cloud/ecolive-media/documenti/Brochure-2025.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 text-xs text-[#A0845C] hover:text-white font-medium transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Scarica Brochure 2025
+                <ExternalLink className="w-3 h-3 opacity-50" />
+              </a>
             </div>
 
-            {/* Link Rapidi */}
-            <div className="lg:col-span-2 lg:col-start-6">
-              <h3 className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-5">
-                Navigazione
-              </h3>
+            {/* Col 4 — Certificazioni */}
+            <div>
+              <h4 className="text-[11px] font-semibold text-[#A0845C] uppercase tracking-[0.18em] mb-5">
+                Certificazioni
+              </h4>
               <ul className="space-y-2.5">
-                {linkRapidi.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/50 hover:text-white hover:translate-x-1 inline-flex items-center gap-1 transition-all duration-200"
-                    >
-                      {link.label}
-                    </Link>
+                {certifications.map((cert) => (
+                  <li
+                    key={cert}
+                    className="text-sm text-white/40 flex items-center gap-2"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#A0845C] flex-shrink-0" />
+                    {cert}
                   </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Servizi */}
-            <div className="lg:col-span-2">
-              <h3 className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-5">
-                Soluzioni
-              </h3>
-              <ul className="space-y-2.5">
-                {servizi.map((link) => (
-                  <li key={link.href + link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/50 hover:text-white hover:translate-x-1 inline-flex items-center gap-1 transition-all duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contatti */}
-            <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-5">
-                Contatti
-              </h3>
-
-              <div className="space-y-4 mb-8">
-                <a
-                  href="https://maps.google.com/?q=Via+Conte+Ruggiero+128+Spadola"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-white/50 hover:text-white transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <MapPin className="w-4 h-4 text-[#A0845C]" />
-                  </div>
-                  <div className="text-sm leading-relaxed pt-1.5">
-                    Via Conte Ruggiero, 128<br />89822 Spadola (VV), Calabria
-                  </div>
-                </a>
-
-                <a
-                  href="tel:+390963530945"
-                  className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <Phone className="w-4 h-4 text-[#A0845C]" />
-                  </div>
-                  <span className="text-sm pt-0.5">(0963) 530945</span>
-                </a>
-
-                <a
-                  href="tel:+39366203710"
-                  className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <Phone className="w-4 h-4 text-[#A0845C]" />
-                  </div>
-                  <span className="text-sm pt-0.5">366.2037106</span>
-                </a>
-
-                <a
-                  href="mailto:info@ecolive.srl"
-                  className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
-                    <Mail className="w-4 h-4 text-[#A0845C]" />
-                  </div>
-                  <span className="text-sm pt-0.5">info@ecolive.srl</span>
-                </a>
-              </div>
-
-              {/* Orari */}
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                <p className="text-xs text-[#A0845C] font-medium uppercase tracking-wider mb-2">Orari Ufficio</p>
-                <p className="text-sm text-white/60">Lun — Ven: 08:30 — 17:30</p>
-                <p className="text-sm text-white/40">Sab — Dom: Su appuntamento</p>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* ── Zone C: Bottom Bar ──────────────────────────────── */}
         <div className="relative border-t border-white/[0.06]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
-              <p>&copy; {currentYear} Ecolive S.r.l. &mdash; P.IVA 03607430794</p>
-              <div className="flex items-center gap-4">
+          <div className="max-w-7xl mx-auto px-6 py-5">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-5">
+              {/* Left — copyright */}
+              <p className="text-xs text-white/30 order-2 md:order-1">
+                &copy; {currentYear} EcoLive S.r.l. &mdash; P.IVA 03607430794
+              </p>
+
+              {/* Center — social icons */}
+              <div className="flex items-center gap-2 order-1 md:order-2">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    className="w-9 h-9 rounded-full bg-white/5 hover:bg-[#A0845C] flex items-center justify-center transition-all duration-300 group"
+                  >
+                    <s.icon className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
+                  </a>
+                ))}
+              </div>
+
+              {/* Right — legal links */}
+              <div className="flex items-center gap-3 text-xs text-white/30 order-3">
                 <Link href="/privacy" className="hover:text-white/60 transition-colors">
-                  Privacy Policy
+                  Privacy
                 </Link>
                 <span className="w-px h-3 bg-white/10" />
                 <Link href="/cookie" className="hover:text-white/60 transition-colors">
-                  Cookie Policy
+                  Cookie
                 </Link>
                 <span className="w-px h-3 bg-white/10" />
                 <Link href="/termini" className="hover:text-white/60 transition-colors">
                   Termini
                 </Link>
               </div>
-              <p>
-                Realizzato da{' '}
-                <a
-                  href="https://www.fodisrl.it"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-[#A0845C] transition-colors"
-                >
-                  Fodi S.r.l.
-                </a>
-              </p>
             </div>
+
+            {/* Attribution */}
+            <p className="text-center text-[11px] text-white/20 mt-4">
+              Realizzato da{' '}
+              <a
+                href="https://www.fodisrl.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/30 hover:text-[#A0845C] transition-colors"
+              >
+                Fodi S.r.l.
+              </a>
+            </p>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   )
 }
