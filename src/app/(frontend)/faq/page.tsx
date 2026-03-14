@@ -2,13 +2,29 @@
 
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
-import { ChevronDown, Euro, Clock, Layers, Shield, MapPin, GitCompare, Phone, MessageCircle, Mail } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  ChevronDown,
+  Euro,
+  Clock,
+  Layers,
+  Shield,
+  MapPin,
+  GitCompare,
+  Phone,
+  MessageCircle,
+  Mail,
+} from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import SectionTransition from '@/components/ui/SectionTransition'
 import BlurText from '@/components/ui/BlurText'
 import JsonLd from '@/components/JsonLd'
 
-type FAQItem = { question: string; answer: string }
+/* ──────────────────── Types ──────────────────── */
+
+type FAQItem = { question: string; answer: string | string[] }
+
+/* ──────────────────── Data ──────────────────── */
 
 const categories = [
   { id: 'costi', label: 'Costi', icon: Euro },
@@ -23,147 +39,311 @@ const faqsByCategory: Record<string, FAQItem[]> = {
   costi: [
     {
       question: 'Quanto costa una casa EcoLive?',
-      answer: 'Il grezzo avanzato parte da 1.250 \u20AC/mq con la nostra parete premium residenziale. Per il chiavi in mano si aggiungono circa 430 \u20AC/mq. Il preventivo definitivo viene elaborato dopo la visita in sede, dove analizziamo insieme il progetto nei dettagli.',
+      answer: [
+        'Il grezzo avanzato (GA) parte da 1.250 \u20AC/mq con la nostra parete premium residenziale. Per il chiavi in mano (CiM) si aggiungono circa 430 \u20AC/mq.',
+        '\u00ABIl prezzo \u00E8 sensibilmente superiore perch\u00E9 preferiamo fare poche costruzioni con precisione assoluta, sartoriali.\u00BB',
+        'Per chi cerca un ingresso pi\u00F9 accessibile, \u00E8 disponibile la configurazione con pannelli OSB e polistirene, che permette una riduzione di circa il 20% rispetto alla versione premium.',
+      ],
     },
     {
       question: 'Come funzionano i pagamenti?',
-      answer: 'Per il grezzo avanzato: 10% alla firma del contratto, 30% sessanta giorni prima dell\u2019inizio lavori, 30% al completamento del grezzo base, 30% al grezzo avanzato. Per il chiavi in mano le tranche sono: 30% al completamento impianti e massetti, 40% alla posa degli infissi, 20% alla posa pavimenti e porte interne, 10% al verbale di consegna.',
+      answer: [
+        'Grezzo avanzato: 10% alla firma del contratto, 30% sessanta giorni prima dell\u2019inizio lavori, 30% al completamento del grezzo base, 30% al grezzo avanzato.',
+        'Chiavi in mano: 30% al completamento impianti e massetti, 40% alla posa degli infissi, 20% alla posa pavimenti e porte interne, 10% al verbale di consegna.',
+        '\u00ABL\u2019importo della progettazione viene scorporato dal prezzo della casa\u00BB \u2014 nessun costo aggiuntivo a sorpresa.',
+      ],
     },
     {
-      question: "L\u2019importo della progettazione \u00E8 incluso?",
-      answer: 'S\u00EC, il costo della progettazione \u00E8 incluso e viene scorporato dal prezzo finale della casa. Non ci sono costi nascosti o sorprese.',
+      question: 'Ci sono costi nascosti?',
+      answer: [
+        'Sono a carico del committente: la relazione geologica, il permesso di costruire e la platea di fondazione. EcoLive fornisce tutti i calcoli statici e le specifiche tecniche.',
+        'Se i calcoli statici vengono depositati da un ingegnere esterno, si applica un costo pari al 3% dell\u2019importo della struttura.',
+        'Non ci sono spese impreviste: il preventivo definitivo viene elaborato in sede dopo aver analizzato ogni dettaglio del progetto.',
+      ],
     },
   ],
   tempi: [
     {
       question: 'Quanto ci vuole per avere la casa?',
-      answer: 'Per una struttura di circa 100 mq: il grezzo di base viene completato in 3 giorni, il grezzo avanzato in 7 giorni, il chiavi in mano in circa 30 giorni. Questi tempi non includono la preparazione della platea di fondazione.',
+      answer: [
+        'Per una struttura di circa 100 mq: il grezzo base viene completato in 3 giorni, il grezzo avanzato in 7 giorni, il chiavi in mano in circa 30 giorni.',
+        '\u00ABAl mattino non c\u2019\u00E8 nulla, la sera avete una struttura.\u00BB I tempi non includono la preparazione della platea di fondazione, che \u00E8 a cura del committente.',
+      ],
     },
     {
       question: 'Davvero montate in 1 giorno?',
-      answer: 'S\u00EC, per strutture fino a 150 mq ad un livello il montaggio della struttura base avviene in una singola giornata. I componenti arrivano in cantiere gi\u00E0 prefabbricati con precisione millimetrica dal nostro laboratorio.',
+      answer: [
+        'S\u00EC, per strutture fino a 150 mq ad un livello il montaggio della struttura base avviene in una singola giornata. La mattina si montano pilastri e pareti, il pomeriggio la copertura, e il giorno successivo si completa il fissaggio definitivo.',
+        'I componenti arrivano in cantiere gi\u00E0 prefabbricati con precisione millimetrica dal nostro laboratorio di Spadola.',
+      ],
     },
     {
-      question: 'Cosa devo preparare prima?',
-      answer: 'Serve la platea di fondazione con barre filettate, predisposta secondo le nostre specifiche tecniche. Forniamo tutti i dettagli costruttivi e verifichiamo il risultato prima di procedere con il montaggio.',
+      question: 'Cosa pu\u00F2 rallentare i lavori?',
+      answer: [
+        'Tipicamente tre fattori esterni: la relazione geologica, il rilascio del permesso di costruire e la preparazione della platea da parte dell\u2019impresa del cliente.',
+        '\u00ABI tempi tecnici non sono mai quelli previsti dal cliente\u00BB \u2014 per questo consigliamo di avviare le pratiche burocratiche il prima possibile, parallelamente alla progettazione.',
+      ],
     },
   ],
   materiali: [
     {
-      question: 'Che legno usate?',
-      answer: 'Utilizziamo lamellare Bilam e pannelli tre strati \u03BCXlam, acquistati dall\u2019Austria. Sono caratterizzati da elevata stabilit\u00E0 dimensionale e provengono da foreste certificate gestite responsabilmente.',
+      question: 'Che tipo di legno utilizzate?',
+      answer: [
+        'Utilizziamo lamellare Bilam dall\u2019Austria, un materiale con elevata stabilit\u00E0 dimensionale, gi\u00E0 essiccato e proveniente da foreste certificate. I pannelli strutturali sono tre strati \u03BCXlam.',
+        '\u00ABIn futuro puntiamo a una filiera locale calabrese\u00BB \u2014 un progetto di sostenibilit\u00E0 a km zero che stiamo sviluppando.',
+      ],
     },
     {
-      question: 'Sughero o polistirene?',
-      answer: 'Lo standard prevede sughero ad alta densit\u00E0 (3 cm), materiale naturale con eccellenti propriet\u00E0 isolanti. Nelle zone particolarmente umide si utilizza XPS ad alta densit\u00E0. Per chi cerca un\u2019opzione pi\u00F9 economica, \u00E8 disponibile il polistirene su tutta la parete.',
+      question: 'Sughero o polistirene per l\u2019isolamento?',
+      answer: [
+        'Lo standard prevede sughero ad alta densit\u00E0 (3 cm) abbinato a XPS nelle zone particolarmente umide. Per chi cerca un\u2019opzione pi\u00F9 economica, il polistirene (3 cm) \u00E8 disponibile su tutta la parete.',
+        '\u00ABA livello strutturale la differenza non \u00E8 elevata, tocca le performance energetiche\u00BB \u2014 il sughero garantisce un comportamento termoigrometrico superiore e una maggiore traspirabilit\u00E0.',
+      ],
     },
     {
       question: 'Le pareti sono resistenti al fuoco?',
-      answer: 'S\u00EC. La lana di roccia utilizzata \u00E8 totalmente incombustibile. I pannelli interni in gesso fibro-rinforzato sono classificati A1 incombustibili secondo la normativa europea. La struttura garantisce resistenza al fuoco certificata.',
+      answer: [
+        'La lana di roccia utilizzata \u00E8 totalmente incombustibile. I pannelli interni in gesso fibro-rinforzato sono classificati A1 (incombustibili) secondo la normativa europea.',
+        '\u00ABIl legno non brucia come si pensa \u2014 carbonizza proteggendo la struttura.\u00BB La carbonizzazione crea uno strato isolante che rallenta la propagazione del fuoco, superando in sicurezza molte soluzioni in acciaio.',
+      ],
     },
   ],
   garanzie: [
     {
       question: 'Quanto dura la garanzia?',
-      answer: 'La struttura (grezzo avanzato) \u00E8 coperta da garanzia 50 anni. La fornitura chiavi in mano ha garanzia 10 anni. Sono tra le garanzie pi\u00F9 lunghe del settore, a testimonianza della qualit\u00E0 dei nostri materiali e processi.',
+      answer: [
+        'La struttura (grezzo avanzato) \u00E8 coperta da garanzia 50 anni. La fornitura chiavi in mano ha garanzia 10 anni. Sono tra le garanzie pi\u00F9 lunghe dell\u2019intero settore.',
+        '\u00ABUna casa X-Frame durer\u00E0 molto pi\u00F9 di qualsiasi casa in muratura\u00BB \u2014 la qualit\u00E0 dei materiali e la precisione della prefabbricazione lo rendono possibile.',
+      ],
     },
     {
       question: 'Che certificazioni avete?',
-      answer: 'Le nostre case raggiungono la Classe energetica A4 CliMAX. Siamo certificati Passive House Institute / PHIUS, ARCA e LEED for Homes. Queste certificazioni attestano i massimi standard di efficienza energetica e sostenibilit\u00E0 ambientale.',
+      answer: [
+        'Le nostre case raggiungono la Classe energetica A4 CliMAX, il massimo livello di efficienza. Siamo certificati Passive House Institute / PHIUS, ARCA, LEED for Homes e Woodworks.',
+        'Queste certificazioni attestano i pi\u00F9 alti standard internazionali di efficienza energetica, durabilit\u00E0 strutturale e sostenibilit\u00E0 ambientale.',
+      ],
     },
   ],
   terreno: [
     {
       question: 'Devo gi\u00E0 avere un terreno?',
-      answer: 'S\u00EC, per procedere con il progetto \u00E8 necessario disporre di un terreno edificabile con i permessi necessari. Se hai dubbi sull\u2019edificabilit\u00E0 del tuo terreno, possiamo aiutarti a verificarlo.',
+      answer: [
+        'S\u00EC, per procedere con il progetto \u00E8 necessario disporre di un terreno edificabile con i permessi necessari.',
+        '\u00ABDiventa fondamentale che al primo incontro il cliente arrivi con bozza, dimensioni, rilievo, particella, posizionamento.\u00BB Pi\u00F9 informazioni avete, pi\u00F9 il preventivo sar\u00E0 preciso e rapido.',
+      ],
     },
     {
-      question: 'Chi si occupa della platea?',
-      answer: 'La platea di fondazione \u00E8 a cura del cliente, solitamente tramite un\u2019impresa edile locale. Noi forniamo le specifiche tecniche dettagliate con posizionamento delle barre filettate e verifichiamo il risultato prima del montaggio.',
+      question: 'Chi si occupa della platea di fondazione?',
+      answer: [
+        'La platea \u00E8 a cura del cliente, solitamente tramite un\u2019impresa edile locale. Noi forniamo le specifiche tecniche dettagliate con il posizionamento delle barre filettate e verifichiamo il risultato prima del montaggio.',
+        '\u00ABLa platea non richiede un cordolo preciso grazie alla base XPS\u00BB \u2014 questo semplifica il lavoro dell\u2019impresa e riduce i margini di errore.',
+      ],
     },
   ],
   confronto: [
     {
       question: 'Perch\u00E9 EcoLive costa di pi\u00F9 della muratura?',
-      answer: 'La qualit\u00E0 \u00E8 superiore su ogni fronte: produzione in laboratorio con precisione millimetrica, velocit\u00E0 di montaggio, efficienza energetica A1-A4 garantita e garanzia 50 anni. Il costo complessivo dell\u2019edificio risulta fino al 20% inferiore rispetto alla muratura tradizionale, grazie alla drastica riduzione dei costi e dei tempi di cantiere.',
+      answer: [
+        '\u00ABPreferiamo poche costruzioni con precisione assoluta. Il prezzo corrisponde alla qualit\u00E0 dimostrata.\u00BB',
+        'Il risparmio reale si vede nel costo complessivo: fino al 20% in meno rispetto alla muratura tradizionale, grazie alla drastica riduzione dei tempi e dei costi di cantiere. Meno operai, meno giorni, meno imprevisti.',
+      ],
     },
     {
-      question: 'Che differenze ci sono con Wolf e Rubner?',
-      answer: 'Il nostro sistema X-Frame \u00E8 un ibrido che surclassa i singoli sistemi costruttivi. Nella fase di montaggio siamo nettamente superiori, con tempi ridotti fino al 70%. Il prezzo \u00E8 comparabile ai leader europei perch\u00E9 la qualit\u00E0 lo giustifica pienamente.',
+      question: 'Che differenze ci sono rispetto a Wolf e Rubner?',
+      answer: [
+        '\u00ABQuando costruiamo, non deve esserci paragone. Noi siamo nettamente superiori nella fase di montaggio.\u00BB Il sistema X-Frame \u00E8 un ibrido che supera i singoli sistemi costruttivi tradizionali.',
+        'Il prezzo \u00E8 comparabile ai leader europei perch\u00E9 la qualit\u00E0 lo giustifica pienamente. La differenza sta nella velocit\u00E0: tempi di montaggio ridotti fino al 70%.',
+      ],
+    },
+    {
+      question: 'Perch\u00E9 scegliere il legno rispetto al cemento?',
+      answer: [
+        '\u00ABIl 98% del costruito in Italia fa pena. Case sismicamente inadeguate.\u00BB Una casa X-Frame \u00E8 antisismica per natura, efficiente dal punto di vista energetico e costruita per durare.',
+        'Il legno \u00E8 un materiale rinnovabile, che sequestra CO\u2082 e non ne produce durante la costruzione. Una casa EcoLive \u00E8 un investimento sul futuro \u2014 il vostro e quello del pianeta.',
+      ],
     },
   ],
 }
 
+/* ──────────────────── JSON-LD ──────────────────── */
+
 const faqJsonLdData = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: Object.values(faqsByCategory).flat().map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
+  mainEntity: Object.values(faqsByCategory)
+    .flat()
+    .map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: Array.isArray(faq.answer) ? faq.answer.join(' ') : faq.answer,
+      },
+    })),
 }
 
-function FAQAccordionItem({ faq, isOpen, onToggle, index }: {
-  faq: FAQItem; isOpen: boolean; onToggle: () => void; index: number
+/* ──────────────────── Animations ──────────────────── */
+
+const accordionVariants = {
+  collapsed: { height: 0, opacity: 0 },
+  expanded: { height: 'auto', opacity: 1 },
+}
+
+const accordionTransition = {
+  height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const },
+  opacity: { duration: 0.3, delay: 0.1 },
+}
+
+const collapseTransition = {
+  height: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const },
+  opacity: { duration: 0.2 },
+}
+
+const springTabTransition = { type: 'spring' as const, bounce: 0.2, duration: 0.5 }
+
+/* ──────────────────── Components ──────────────────── */
+
+function FAQAccordionItem({
+  faq,
+  isOpen,
+  onToggle,
+  index,
+}: {
+  faq: FAQItem
+  isOpen: boolean
+  onToggle: (index: number) => void
+  index: number
 }) {
+  const answerParagraphs = Array.isArray(faq.answer) ? faq.answer : [faq.answer]
+  const handleClick = useCallback(() => onToggle(index), [onToggle, index])
+
   return (
-    <ScrollReveal delay={index * 0.08}>
-      <div className="bg-white rounded-2xl border border-[#EDE6DB] shadow-sm overflow-hidden hover:shadow-md transition-all duration-300">
+    <ScrollReveal delay={index * 0.06}>
+      <div
+        className={`rounded-2xl border transition-all duration-500 ${
+          isOpen
+            ? 'bg-white border-[#A0845C]/30 shadow-lg shadow-[#A0845C]/5'
+            : 'bg-white border-[#EDE6DB] shadow-sm hover:shadow-md hover:border-[#A0845C]/20'
+        }`}
+      >
         <button
-          onClick={onToggle}
-          className="w-full flex items-center gap-4 p-6 text-left hover:bg-[var(--color-surface)] transition-colors"
+          onClick={handleClick}
+          className="w-full flex items-center gap-4 p-6 sm:p-7 text-left group"
+          aria-expanded={isOpen}
         >
-          <h3 className="flex-1 text-lg font-semibold text-[var(--color-secondary-dark)]">
+          {/* Gold accent bar */}
+          <div
+            className={`w-1 self-stretch rounded-full transition-all duration-500 flex-shrink-0 ${
+              isOpen ? 'bg-[#A0845C]' : 'bg-[#EDE6DB] group-hover:bg-[#A0845C]/40'
+            }`}
+          />
+          <h3
+            className={`flex-1 text-lg font-semibold transition-colors duration-300 ${
+              isOpen ? 'text-[#1D1D1F]' : 'text-[#48484A] group-hover:text-[#1D1D1F]'
+            }`}
+          >
             {faq.question}
           </h3>
-          <ChevronDown className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
-            isOpen ? 'rotate-180 text-[var(--color-primary)]' : 'text-[#EDE6DB]'
-          }`} />
-        </button>
-        <div
-          className="grid transition-all duration-300 ease-in-out"
-          style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
-        >
-          <div className="overflow-hidden">
-            <p className="px-6 pb-6 text-[var(--color-muted)] leading-relaxed">
-              {faq.answer}
-            </p>
+          <div
+            className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+              isOpen
+                ? 'bg-[#A0845C] rotate-180'
+                : 'bg-[#F5F5F7] group-hover:bg-[#A0845C]/10'
+            }`}
+          >
+            <ChevronDown
+              className={`w-5 h-5 transition-colors duration-300 ${
+                isOpen ? 'text-white' : 'text-[#86868B] group-hover:text-[#A0845C]'
+              }`}
+            />
           </div>
-        </div>
+        </button>
+
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial="collapsed"
+              animate="expanded"
+              exit="collapsed"
+              variants={accordionVariants}
+              transition={isOpen ? accordionTransition : collapseTransition}
+              className="overflow-hidden"
+            >
+              <div className="px-6 sm:px-7 pb-7 pl-[calc(1.5rem+1.25rem)] sm:pl-[calc(1.75rem+1.25rem)]">
+                <div className="w-12 h-0.5 bg-[#A0845C]/30 mb-5" />
+                <div className="space-y-3">
+                  {answerParagraphs.map((paragraph, i) => {
+                    const isQuote =
+                      paragraph.startsWith('\u00AB') || paragraph.startsWith('"')
+                    return (
+                      <p
+                        key={i}
+                        className={
+                          isQuote
+                            ? 'text-[#A0845C] font-medium italic leading-relaxed'
+                            : 'text-[#86868B] leading-relaxed'
+                        }
+                      >
+                        {paragraph}
+                      </p>
+                    )
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </ScrollReveal>
   )
 }
 
-function CategoryTab({ cat, isActive, onClick }: {
-  cat: typeof categories[number]; isActive: boolean; onClick: (id: string) => void
+function CategoryTab({
+  cat,
+  isActive,
+  onClick,
+}: {
+  cat: (typeof categories)[number]
+  isActive: boolean
+  onClick: (id: string) => void
 }) {
   const Icon = cat.icon
   const handleClick = useCallback(() => onClick(cat.id), [onClick, cat.id])
+
   return (
     <button
       onClick={handleClick}
-      className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 whitespace-nowrap ${
+      className={`relative flex items-center gap-2.5 px-6 py-3.5 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
         isActive
-          ? 'bg-[var(--color-secondary-dark)] text-white shadow-lg shadow-[var(--color-secondary-dark)]/20'
-          : 'bg-[var(--color-surface)] text-[var(--color-muted)] hover:bg-[#EDE6DB] hover:text-[var(--color-secondary-dark)]'
+          ? 'bg-[#1D1D1F] text-white shadow-lg shadow-[#1D1D1F]/20'
+          : 'bg-white text-[#86868B] hover:bg-[#F5F5F7] hover:text-[#1D1D1F] border border-[#EDE6DB]'
       }`}
     >
-      <Icon className={`w-4 h-4 ${isActive ? 'text-[var(--color-primary)]' : ''}`} />
+      <Icon
+        className={`w-4 h-4 transition-colors duration-300 ${
+          isActive ? 'text-[#A0845C]' : ''
+        }`}
+      />
       {cat.label}
+      {isActive && (
+        <motion.div
+          layoutId="activeTabIndicator"
+          className="absolute inset-0 rounded-full bg-[#1D1D1F] -z-10"
+          transition={springTabTransition}
+        />
+      )}
     </button>
   )
 }
+
+/* ──────────────────── Page ──────────────────── */
 
 export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState('costi')
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
 
   const currentFAQs = faqsByCategory[activeCategory] || []
+  const activeCat = categories.find((c) => c.id === activeCategory)
 
   const handleCategoryChange = useCallback((id: string) => {
     setActiveCategory(id)
@@ -175,33 +355,57 @@ export default function FAQPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[var(--color-surface)]">
+    <div className="min-h-screen bg-[#F5F5F7]">
       <JsonLd data={faqJsonLdData} />
 
       {/* ===== HERO ===== */}
-      <section className="relative py-28 lg:py-40 bg-gradient-to-br from-[var(--color-secondary-dark)] to-[var(--color-secondary)]">
+      <section className="relative py-32 lg:py-44 bg-[#1D1D1F] overflow-hidden">
+        {/* Grain texture */}
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="relative max-w-6xl mx-auto px-4 text-center">
+
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-[#A0845C]/5 blur-3xl" />
+        <div className="absolute bottom-10 right-[15%] w-48 h-48 rounded-full bg-[#A0845C]/3 blur-2xl" />
+        <div className="absolute top-16 right-20 w-2 h-2 rounded-full bg-[#A0845C]/30" />
+        <div className="absolute bottom-24 left-16 w-1.5 h-1.5 rounded-full bg-white/10" />
+
+        <div className="relative max-w-5xl mx-auto px-4 text-center">
+          <ScrollReveal delay={0}>
+            <span className="inline-block text-[#A0845C] text-sm tracking-[0.25em] uppercase font-medium mb-6">
+              Le risposte che cerchi
+            </span>
+          </ScrollReveal>
+
           <BlurText
             text="Domande Frequenti"
-            className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 justify-center"
+            className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 justify-center"
             delay={80}
             animateBy="words"
           />
-          <ScrollReveal delay={0.2}>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Tutto quello che devi sapere sulle case EcoLive: costi, tempi, materiali, garanzie e confronto con la muratura tradizionale.
+
+          <ScrollReveal delay={0.3}>
+            <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+              Costi, tempi, materiali, garanzie: tutto quello che devi sapere
+              per scegliere con consapevolezza la tua casa in legno.
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.5}>
+            <div className="flex items-center justify-center gap-3 mt-10">
+              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+              <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+              <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+            </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#48484A" to="#F5F5F7" height={60} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={60} />
 
-      {/* ===== CATEGORY TABS ===== */}
-      <section className="sticky top-0 z-20 bg-white/80 backdrop-blur-lg border-b border-[#EDE6DB] shadow-sm">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex gap-2 py-4 overflow-x-auto scrollbar-hide">
+      {/* ===== STICKY CATEGORY TABS ===== */}
+      <section className="sticky top-0 z-30 bg-white/80 backdrop-blur-xl border-b border-[#EDE6DB]/50 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex gap-2.5 py-4 overflow-x-auto scrollbar-hide">
             {categories.map((cat) => (
               <CategoryTab
                 key={cat.id}
@@ -215,65 +419,116 @@ export default function FAQPage() {
       </section>
 
       {/* ===== FAQ LIST ===== */}
-      <section className="py-16 lg:py-24 px-4">
-        <div className="max-w-3xl mx-auto space-y-5">
-          {currentFAQs.map((faq, index) => (
-            <FAQAccordionItem
-              key={`${activeCategory}-${index}`}
-              faq={faq}
-              isOpen={openFAQ === index}
-              onToggle={() => handleToggle(index)}
-              index={index}
-            />
-          ))}
+      <section className="py-16 lg:py-28 px-4">
+        <div className="max-w-3xl mx-auto">
+          {/* Category header */}
+          <ScrollReveal>
+            <div className="mb-10 flex items-center gap-4">
+              {activeCat && (
+                <>
+                  <div className="w-12 h-12 rounded-2xl bg-[#1D1D1F] flex items-center justify-center">
+                    <activeCat.icon className="w-6 h-6 text-[#A0845C]" />
+                  </div>
+                  <div>
+                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1D1D1F]">
+                      {activeCat.label}
+                    </h2>
+                    <p className="text-[#86868B] text-sm mt-0.5">
+                      {currentFAQs.length} domand{currentFAQs.length === 1 ? 'a' : 'e'}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </ScrollReveal>
+
+          {/* Accordion items */}
+          <div className="space-y-4">
+            {currentFAQs.map((faq, index) => (
+              <FAQAccordionItem
+                key={`${activeCategory}-${index}`}
+                faq={faq}
+                isOpen={openFAQ === index}
+                onToggle={handleToggle}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
       {/* ===== CTA ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative py-28 lg:py-40 px-4 bg-[#1D1D1F] overflow-hidden">
+        {/* Grain */}
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#A0845C]/3 blur-3xl" />
+
+        <div className="relative max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <span className="text-[#A0845C] text-sm tracking-[0.25em] uppercase font-medium">
+              Parliamone
+            </span>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-5 mb-6">
               Non hai trovato la risposta?
             </h2>
-            <p className="text-white/70 mb-12 text-lg max-w-xl mx-auto">
-              Il nostro team &egrave; a disposizione per rispondere a tutte le tue domande.
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <p className="text-white/50 mb-12 text-lg max-w-xl mx-auto leading-relaxed">
+              Il nostro team &egrave; a disposizione per rispondere a qualsiasi
+              domanda. Prenota una visita in sede o contattaci direttamente.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link
                 href="/contatti"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#A0845C] hover:bg-[#8B7050] text-white font-semibold rounded-full shadow-lg shadow-[#A0845C]/20 transition-all duration-300 hover:shadow-xl"
               >
                 <MessageCircle className="w-5 h-5" />
                 Contattaci
               </Link>
               <a
                 href="tel:+3909631951395"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/30 transition-colors"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-full border border-white/15 transition-all duration-300"
               >
                 <Phone className="w-5 h-5" />
                 Chiama Ora
               </a>
             </div>
+          </ScrollReveal>
+
+          {/* Contact cards */}
+          <ScrollReveal delay={0.4}>
             <div className="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
-              <a href="tel:+3909631951395" className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors group">
-                <div className="w-10 h-10 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center group-hover:bg-[var(--color-primary)]/30 transition-colors">
-                  <Phone className="w-5 h-5 text-[var(--color-primary)]" />
+              <a
+                href="tel:+3909631951395"
+                className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-[#A0845C]/15 rounded-xl flex items-center justify-center group-hover:bg-[#A0845C]/25 transition-colors">
+                  <Phone className="w-5 h-5 text-[#A0845C]" />
                 </div>
                 <div className="text-left">
-                  <p className="text-white font-medium text-sm">Telefono</p>
-                  <p className="text-white/50 text-xs">+39 0963 1951395</p>
+                  <p className="text-white font-medium">Telefono</p>
+                  <p className="text-white/40 text-sm">+39 0963 1951395</p>
                 </div>
               </a>
-              <a href="mailto:info@ecolive.srl" className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors group">
-                <div className="w-10 h-10 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center group-hover:bg-[var(--color-primary)]/30 transition-colors">
-                  <Mail className="w-5 h-5 text-[var(--color-primary)]" />
+              <a
+                href="mailto:info@ecolive.srl"
+                className="flex items-center gap-4 p-5 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-[#A0845C]/15 rounded-xl flex items-center justify-center group-hover:bg-[#A0845C]/25 transition-colors">
+                  <Mail className="w-5 h-5 text-[#A0845C]" />
                 </div>
                 <div className="text-left">
-                  <p className="text-white font-medium text-sm">Email</p>
-                  <p className="text-white/50 text-xs">info@ecolive.srl</p>
+                  <p className="text-white font-medium">Email</p>
+                  <p className="text-white/40 text-sm">info@ecolive.srl</p>
                 </div>
               </a>
             </div>

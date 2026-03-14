@@ -1,14 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import {
-  ArrowLeft, ChevronRight, CheckCircle, TrendingUp,
-  Factory, Timer, ShieldCheck, Banknote
-} from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import BlurText from '@/components/ui/BlurText'
-import SectionTransition from '@/components/ui/SectionTransition'
-import Button from '@/components/ui/Button'
+import CountUp from '@/components/ui/CountUp'
+
+const grainOverlay = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`
 
 const confrontoSistemi = [
   { parametro: 'Diffusione storica', telaio: 4, xlam: 3, xframe: 2 },
@@ -16,15 +14,15 @@ const confrontoSistemi = [
   { parametro: 'Eurocodice 5', telaio: 4, xlam: 4, xframe: 5 },
   { parametro: 'Prefabbricazione max', telaio: 2, xlam: 3, xframe: 5 },
   { parametro: 'Tempi cantiere', telaio: 2, xlam: 3, xframe: 5 },
-  { parametro: 'Capacit\u00e0 dissipativa sismica', telaio: 3, xlam: 4, xframe: 5 },
+  { parametro: 'Capacita dissipativa sismica', telaio: 3, xlam: 4, xframe: 5 },
   { parametro: 'Resistenza al fuoco', telaio: 3, xlam: 4, xframe: 5 },
-  { parametro: 'Trasmittanza (parit\u00e0 spessore)', telaio: 3, xlam: 2, xframe: 5 },
-  { parametro: 'Sfasamento (parit\u00e0 spessore)', telaio: 2, xlam: 3, xframe: 5 },
-  { parametro: 'Tenuta all\u2019aria', telaio: 2, xlam: 5, xframe: 5 },
-  { parametro: 'Sostituibilit\u00e0 parti', telaio: 5, xlam: 2, xframe: 5 },
+  { parametro: 'Trasmittanza (parita spessore)', telaio: 3, xlam: 2, xframe: 5 },
+  { parametro: 'Sfasamento (parita spessore)', telaio: 2, xlam: 3, xframe: 5 },
+  { parametro: 'Tenuta all\'aria', telaio: 2, xlam: 5, xframe: 5 },
+  { parametro: 'Sostituibilita parti', telaio: 5, xlam: 2, xframe: 5 },
   { parametro: 'Edifici multipiano', telaio: 2, xlam: 5, xframe: 4 },
-  { parametro: 'Flessibilit\u00e0 impiantistica', telaio: 4, xlam: 2, xframe: 5 },
-  { parametro: 'Prezzo (parit\u00e0 classe/strutt.)', telaio: 3, xlam: 2, xframe: 5 },
+  { parametro: 'Flessibilita impiantistica', telaio: 4, xlam: 2, xframe: 5 },
+  { parametro: 'Prezzo (parita classe/strutt.)', telaio: 3, xlam: 2, xframe: 5 },
 ]
 
 const confrontoMuratura = [
@@ -34,47 +32,24 @@ const confrontoMuratura = [
   { parametro: 'Classe energetica max', xframe: 'A4 (passiva)', muratura: 'A1 (raro, costoso)' },
   { parametro: 'Trasmittanza pareti', xframe: '0,159 W/m\u00b2K', muratura: '0,28-0,40 W/m\u00b2K' },
   { parametro: 'Sfasamento', xframe: '18,8 ore', muratura: '8-12 ore' },
-  { parametro: 'Antisismicit\u00e0', xframe: 'Eccellente', muratura: 'Dipende da esecuzione' },
+  { parametro: 'Antisismicita', xframe: 'Eccellente', muratura: 'Dipende da esecuzione' },
   { parametro: 'Prefabbricazione', xframe: '95%+ in laboratorio', muratura: '0% (cantiere)' },
   { parametro: 'Ponti termici', xframe: 'Eliminati (base XPS)', muratura: 'Presenti' },
-  { parametro: 'Controllo qualit\u00e0', xframe: 'Laboratorio controllato', muratura: 'Cantiere (intemperie)' },
+  { parametro: 'Controllo qualita', xframe: 'Laboratorio controllato', muratura: 'Cantiere (intemperie)' },
   { parametro: 'Garanzia struttura', xframe: '50 anni', muratura: 'Non standard' },
 ]
 
-const valueReasons = [
-  {
-    icon: Factory,
-    title: 'Prefabbricazione = meno costi in cantiere',
-    description: 'Il 95% del lavoro avviene in laboratorio controllato. Meno ore in cantiere, meno imprevisti, fino al 20% di risparmio complessivo rispetto a prestazioni equivalenti in muratura.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Qualit\u00e0 impossibile in cantiere',
-    description: 'Temperatura, umidit\u00e0 e tempi di lavorazione monitorati. Ogni elemento viene prodotto con precisione millimetrica, un livello di controllo irraggiungibile all\u2019aperto.',
-  },
-  {
-    icon: Timer,
-    title: 'Velocit\u00e0 = meno imprevisti',
-    description: '30 giorni per le chiavi in mano significa meno esposizione a ritardi meteo, aumenti dei prezzi dei materiali e costi di cantiere prolungato.',
-  },
-  {
-    icon: Banknote,
-    title: 'Costo totale di propriet\u00e0',
-    description: 'Una casa in classe A4 consuma fino all\u201980% in meno di energia. In 30 anni il risparmio energetico supera abbondantemente il costo iniziale aggiuntivo.',
-  },
-]
-
-function StarRating({ value, highlight }: { value: number; highlight?: boolean }) {
+function DotRating({ value, highlight }: { value: number; highlight?: boolean }) {
   return (
-    <div className="flex gap-1 justify-center">
+    <div className="flex gap-1.5 justify-center">
       {Array.from({ length: 5 }, (_, i) => (
         <span
           key={i}
-          className={`w-3 h-3 rounded-full inline-block ${
+          className={`w-3 h-3 rounded-full inline-block transition-colors ${
             i < value
               ? highlight
-                ? 'bg-[var(--color-primary)]'
-                : 'bg-[var(--color-secondary-dark)]/40'
+                ? 'bg-[#A0845C]'
+                : 'bg-[#1D1D1F]/30'
               : 'bg-[#EDE6DB]'
           }`}
         />
@@ -85,75 +60,70 @@ function StarRating({ value, highlight }: { value: number; highlight?: boolean }
 
 export default function ConfrontoContent() {
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen">
 
       {/* ===== HERO ===== */}
-      <section className="relative bg-gradient-to-br from-[var(--color-secondary-dark)] via-[var(--color-secondary)] to-[var(--color-secondary-dark)] py-28 lg:py-40">
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="relative max-w-6xl mx-auto px-4">
-          <ScrollReveal direction="left">
-            <nav className="flex items-center gap-2 text-white/60 text-sm mb-8">
-              <Link href="/sistema-x-frame" className="hover:text-white transition-colors">Sistema X-Frame</Link>
+      <section className="relative bg-[#1D1D1F] pt-32 pb-24 lg:pb-32 px-6 overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundImage: grainOverlay }} />
+        <div className="relative max-w-6xl mx-auto">
+          <ScrollReveal>
+            <nav className="flex items-center gap-2 text-sm text-white/40 mb-10">
+              <Link href="/sistema-x-frame" className="hover:text-white/70 transition-colors">Sistema X-Frame</Link>
               <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-white">Confronto</span>
+              <span className="text-[#A0845C]">Confronto</span>
             </nav>
           </ScrollReveal>
-
-          <BlurText
-            text="Confronto Costruttivo"
-            className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8"
-            delay={80}
-            animateBy="words"
-          />
-
+          <ScrollReveal delay={0.1}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-px bg-[#A0845C]" />
+              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">Dati reali, non marketing</span>
+            </div>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Confronto <span className="text-[#A0845C]">Costruttivo</span>
+            </h1>
+          </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="text-xl text-white/70 max-w-3xl">
-              L&apos;innovativo X-Frame rappresenta un ibrido dei sistemi costruttivi Platform Frame, X-Lam e Post and Beam. Confronta i dati reali di prestazione su 14 parametri tecnici.
+            <p className="text-lg md:text-xl text-white/50 max-w-3xl leading-relaxed">
+              X-Frame e un ibrido dei sistemi Platform Frame, X-Lam e Post and Beam.
+              Confronta i dati reali di prestazione su 14 parametri tecnici rispetto ai sistemi tradizionali e alla muratura.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
-
       {/* ===== TABLE 1: X-Frame vs Telaio vs X-Lam ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-[var(--color-surface)]">
+      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <div className="text-center mb-14">
-              <span className="text-[var(--color-primary)] text-sm tracking-[0.2em] uppercase font-medium">
-                14 parametri tecnici
-              </span>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)] mt-3">
-                X-Frame vs Telaio vs X-Lam
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[var(--color-primary)]/40" />
-                <div className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />
-                <div className="w-8 h-0.5 bg-[var(--color-primary)]/40" />
-              </div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-8 h-px bg-[#A0845C]" />
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">14 parametri tecnici</span>
+              <div className="w-8 h-px bg-[#A0845C]" />
             </div>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-16">
+              X-Frame vs Telaio vs X-Lam
+            </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="bg-white rounded-2xl border border-[#EDE6DB] overflow-hidden shadow-premium">
+            <div className="bg-white rounded-2xl border border-[#EDE6DB] overflow-hidden shadow-lg">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-[#EDE6DB]">
-                      <th className="text-left py-4 px-5 font-bold text-[var(--color-secondary-dark)]">Parametro</th>
-                      <th className="text-center py-4 px-4 font-bold text-[var(--color-muted)]">Telaio</th>
-                      <th className="text-center py-4 px-4 font-bold text-[var(--color-muted)]">X-Lam</th>
-                      <th className="text-center py-4 px-4 font-bold text-[var(--color-primary)] bg-[var(--color-primary)]/5">X-Frame</th>
+                    <tr className="border-b-2 border-[#EDE6DB]">
+                      <th className="text-left py-5 px-6 font-bold text-[#1D1D1F]">Parametro</th>
+                      <th className="text-center py-5 px-4 font-bold text-[#86868B]">Telaio</th>
+                      <th className="text-center py-5 px-4 font-bold text-[#86868B]">X-Lam</th>
+                      <th className="text-center py-5 px-4 font-bold text-[#A0845C] bg-[#A0845C]/5">X-Frame</th>
                     </tr>
                   </thead>
                   <tbody>
                     {confrontoSistemi.map((row, i) => (
-                      <tr key={row.parametro} className={`border-b border-[#EDE6DB]/60 ${i % 2 === 0 ? '' : 'bg-[var(--color-surface)]/50'}`}>
-                        <td className="py-3.5 px-5 text-[var(--color-secondary-dark)] font-medium">{row.parametro}</td>
-                        <td className="py-3.5 px-4"><StarRating value={row.telaio} /></td>
-                        <td className="py-3.5 px-4"><StarRating value={row.xlam} /></td>
-                        <td className="py-3.5 px-4 bg-[var(--color-primary)]/5"><StarRating value={row.xframe} highlight /></td>
+                      <tr key={row.parametro} className={`border-b border-[#EDE6DB]/60 ${i % 2 !== 0 ? 'bg-[#F5F5F7]/50' : ''}`}>
+                        <td className="py-4 px-6 text-[#1D1D1F] font-medium">{row.parametro}</td>
+                        <td className="py-4 px-4"><DotRating value={row.telaio} /></td>
+                        <td className="py-4 px-4"><DotRating value={row.xlam} /></td>
+                        <td className="py-4 px-4 bg-[#A0845C]/5"><DotRating value={row.xframe} highlight /></td>
                       </tr>
                     ))}
                   </tbody>
@@ -164,148 +134,177 @@ export default function ConfrontoContent() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
-
       {/* ===== TABLE 2: X-Frame vs Muratura ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-white">
+      <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <div className="text-center mb-14">
-              <span className="text-[var(--color-primary)] text-sm tracking-[0.2em] uppercase font-medium">
-                Dati reali di prestazione
-              </span>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)] mt-3">
-                X-Frame vs Muratura Tradizionale
-              </h2>
-              <div className="mt-5 flex items-center justify-center gap-3">
-                <div className="w-8 h-0.5 bg-[var(--color-primary)]/40" />
-                <div className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />
-                <div className="w-8 h-0.5 bg-[var(--color-primary)]/40" />
-              </div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-8 h-px bg-[#A0845C]" />
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Due mondi a confronto</span>
+              <div className="w-8 h-px bg-[#A0845C]" />
             </div>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-16">
+              X-Frame vs Muratura Tradizionale
+            </h2>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="bg-[var(--color-surface)] rounded-2xl border border-[#EDE6DB] overflow-hidden shadow-premium">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-[#EDE6DB]">
-                      <th className="text-left py-4 px-5 font-bold text-[var(--color-secondary-dark)]">Parametro</th>
-                      <th className="text-center py-4 px-5 font-bold text-[var(--color-primary)] bg-[var(--color-primary)]/5">X-Frame</th>
-                      <th className="text-center py-4 px-5 font-bold text-[var(--color-muted)]">Muratura</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {confrontoMuratura.map((row, i) => (
-                      <tr key={row.parametro} className={`border-b border-[#EDE6DB]/60 ${i % 2 === 0 ? '' : 'bg-white/60'}`}>
-                        <td className="py-3.5 px-5 text-[var(--color-secondary-dark)] font-medium">{row.parametro}</td>
-                        <td className="py-3.5 px-5 text-center bg-[var(--color-primary)]/5">
-                          <span className="font-semibold text-[var(--color-primary)]">{row.xframe}</span>
-                        </td>
-                        <td className="py-3.5 px-5 text-center text-[var(--color-muted)]">{row.muratura}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="space-y-3">
+              {/* Header */}
+              <div className="grid grid-cols-3 gap-4 px-6 py-3">
+                <div className="text-sm font-bold text-[#86868B] uppercase tracking-wide">Parametro</div>
+                <div className="text-sm font-bold text-[#A0845C] uppercase tracking-wide text-center">X-Frame</div>
+                <div className="text-sm font-bold text-[#86868B] uppercase tracking-wide text-center">Muratura</div>
               </div>
+              {confrontoMuratura.map((row, i) => (
+                <motion.div
+                  key={row.parametro}
+                  className="grid grid-cols-3 gap-4 px-6 py-4 bg-[#F5F5F7] rounded-xl border border-transparent hover:border-[#A0845C]/20 transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                >
+                  <div className="text-[#1D1D1F] font-medium text-sm">{row.parametro}</div>
+                  <div className="text-center">
+                    <span className="font-bold text-[#A0845C] text-sm">{row.xframe}</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="text-[#86868B] text-sm">{row.muratura}</span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
-
-      {/* ===== PERCHE VALE DI PIU ===== */}
-      <section className="py-28 lg:py-36 px-4 bg-[var(--color-secondary-dark)]">
-        <div className="max-w-6xl mx-auto">
+      {/* ===== PERCHE COSTIAMO DI PIU ===== */}
+      <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F] overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundImage: grainOverlay }} />
+        <div className="relative max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <div className="w-16 h-16 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <TrendingUp className="w-8 h-8 text-[var(--color-primary)]" />
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="w-8 h-px bg-[#A0845C]/50" />
+                <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Una questione di valore</span>
+                <div className="w-8 h-px bg-[#A0845C]/50" />
               </div>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
-                Perch&eacute; vale di pi&ugrave;
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                Perche <span className="text-[#A0845C]">Costiamo di Piu</span>
               </h2>
-              <p className="text-white/70 text-lg max-w-2xl mx-auto">
-                50 anni di garanzia sulla struttura parlano da soli. Ma c&apos;&egrave; molto di pi&ugrave; dietro il valore di una casa X-Frame.
-              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {valueReasons.map((reason, i) => {
-              const Icon = reason.icon
-              return (
-                <ScrollReveal key={reason.title} delay={i * 0.1}>
-                  <div className="p-7 rounded-2xl bg-white/5 border border-white/10 h-full hover:bg-white/8 transition-colors">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[var(--color-primary)]/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-[var(--color-primary)]" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-white mb-2">{reason.title}</h3>
-                        <p className="text-white/60 text-sm leading-relaxed">{reason.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              )
-            })}
-          </div>
-
-          <ScrollReveal delay={0.3}>
-            <div className="mt-14 p-6 rounded-2xl bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20 max-w-3xl mx-auto">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
-                <p className="text-white/80 leading-relaxed">
-                  <strong className="text-white">Garanzia 50 anni sulla struttura.</strong>{' '}
-                  Il costo iniziale si ammortizza in pochi anni grazie al risparmio energetico e all&apos;assenza di manutenzione straordinaria.
+          <div className="max-w-4xl mx-auto space-y-8">
+            <ScrollReveal delay={0.1}>
+              <div className="p-8 rounded-2xl bg-white/5 border border-white/10 border-l-4 border-l-[#A0845C]">
+                <p className="text-white/70 text-lg leading-relaxed italic mb-4">
+                  &ldquo;Il committente deve avere chiare le differenze per fare un paragone obiettivo.
+                  Non si possono confrontare pere con mele.&rdquo;
+                </p>
+                <p className="text-white/40 text-sm">
+                  Il prezzo al metro quadro di una casa X-Frame puo sembrare piu alto di una costruzione tradizionale.
+                  Ma la differenza si spiega interamente con cio che e incluso: classe energetica A4, antisismicita certificata,
+                  prefabbricazione al 95%, 50 anni di garanzia strutturale.
                 </p>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+                <h3 className="text-white font-bold text-xl mb-4">Artigianato sartoriale, non produzione di massa</h3>
+                <p className="text-white/50 leading-relaxed">
+                  Preferiamo fare poche costruzioni ma con precisione assoluta, sartoriali, artigianali.
+                  Ogni elemento viene prodotto nel nostro laboratorio di Spadola a temperatura e umidita controllate.
+                  Un livello di controllo qualita impossibile da ottenere in cantiere, dove pioggia, vento e
+                  variazioni termiche compromettono lavorazioni e materiali.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3}>
+              <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+                <h3 className="text-white font-bold text-xl mb-4">Meno tempo in cantiere = meno costo complessivo</h3>
+                <p className="text-white/50 leading-relaxed">
+                  Rimanendo poco tempo sul cantiere, portando tutti i pezzi gia pronti, riusciamo ad abbattere
+                  anche di un 20% il costo complessivo rispetto a prestazioni equivalenti in muratura.
+                  30 giorni per le chiavi in mano significa meno esposizione a ritardi meteo, aumenti imprevisti
+                  dei prezzi dei materiali e costi di cantiere prolungato.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
+                <h3 className="text-white font-bold text-xl mb-4">Costo totale di proprieta</h3>
+                <p className="text-white/50 leading-relaxed mb-6">
+                  Una casa in classe A4 consuma fino all&apos;80% in meno di energia rispetto a una costruzione tradizionale.
+                  In 30 anni il risparmio energetico supera abbondantemente il costo iniziale aggiuntivo.
+                  E con una garanzia strutturale di 50 anni, i costi di manutenzione straordinaria sono azzerati.
+                </p>
+                <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+                  {[
+                    { value: 80, suffix: '%', label: 'Risparmio energetico' },
+                    { value: 50, suffix: '', label: 'Anni garanzia' },
+                    { value: 20, suffix: '%', label: 'Risparmio complessivo' },
+                  ].map((stat, i) => (
+                    <div key={stat.label} className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-[#A0845C]">
+                        <CountUp to={stat.value} duration={2.5} delay={0.5 + i * 0.2} suffix={stat.suffix} />
+                      </div>
+                      <div className="text-xs text-white/40 mt-2">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.5}>
+              <div className="p-6 rounded-2xl bg-[#A0845C]/10 border border-[#A0845C]/20 text-center">
+                <p className="text-white/80 text-lg font-medium">
+                  50 anni di garanzia sulla struttura parlano da soli.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#A0845C" height={80} />
-
       {/* ===== CTA ===== */}
-      <section className="py-24 lg:py-32 px-4 bg-[var(--color-primary)]">
+      <section className="py-20 lg:py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-              Configura la tua Casa
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
+              Configura la tua <span className="text-[#A0845C]">Casa X-Frame</span>
             </h2>
-            <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+            <p className="text-[#86868B] text-lg mb-8">
               Scegli tipologia, metratura e livello di finitura. Ricevi un preventivo personalizzato in pochi minuti.
             </p>
-            <Button href="/configuratore" variant="secondary" size="lg">
+            <Link
+              href="/configuratore"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#8B7049] transition-colors"
+            >
               Vai al Configuratore
-            </Button>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ===== NAVIGATION ===== */}
-      <section className="py-16 px-4 bg-[var(--color-surface)] border-t border-[#EDE6DB]">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
-          <Link
-            href="/sistema-x-frame/trasporto-montaggio"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[var(--color-secondary-dark)]/20 text-[var(--color-secondary-dark)] font-semibold rounded-full hover:bg-[var(--color-secondary-dark)]/5 transition-all"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Trasporto e Montaggio
+      <section className="py-12 px-6 bg-[#F5F5F7] border-t border-[#EDE6DB]">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <Link href="/sistema-x-frame/trasporto-montaggio" className="group inline-flex items-center gap-2 text-[#86868B] hover:text-[#1D1D1F] transition-colors">
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-medium">Trasporto e Montaggio</span>
           </Link>
-          <Link
-            href="/sistema-x-frame"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[var(--color-secondary-dark)]/20 text-[var(--color-secondary-dark)] font-semibold rounded-full hover:bg-[var(--color-secondary-dark)]/5 transition-all"
-          >
-            Sistema X-Frame
+          <Link href="/sistema-x-frame" className="group inline-flex items-center gap-2 text-[#A0845C] hover:text-[#8B7049] transition-colors font-medium">
+            <span>Sistema X-Frame</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>
-
     </div>
   )
 }

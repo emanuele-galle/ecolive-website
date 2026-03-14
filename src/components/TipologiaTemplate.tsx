@@ -51,7 +51,6 @@ export default function TipologiaTemplate({
   category,
   extendedDescription,
   heroImage,
-  surfaceRange,
   priceRange,
   features,
   specs,

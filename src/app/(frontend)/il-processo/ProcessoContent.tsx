@@ -5,12 +5,19 @@ import {
   Check,
   ArrowRight,
   Clock,
+  MessageCircle,
+  Building,
+  Pencil,
+  FileSignature,
+  HardHat,
+  Factory,
+  Wrench,
 } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import BlurText from '@/components/ui/BlurText'
 import SectionTransition from '@/components/ui/SectionTransition'
+import CountUp from '@/components/ui/CountUp'
 import {
-  processoSteps,
   pagamentiGrezzoAvanzato,
   pagamentiChiaviInMano,
   notaPagamentiChiaviInMano,
@@ -21,19 +28,119 @@ import {
 } from '@/data/processo'
 import { motion } from 'framer-motion'
 
-// --- Static data ---
+/* ─── Inline rich process steps ─── */
 
-const constructionTimes = [
-  { label: 'Grezzo di base', days: '3 giorni', note: 'Struttura portante + pareti + copertura' },
-  { label: 'Grezzo avanzato', days: '7 giorni', note: 'Cappotto, intonaco, finiture grezzo' },
-  { label: 'Chiavi in mano', days: '30 giorni', note: 'Impianti, infissi, finiture complete' },
+const richSteps = [
+  {
+    id: 'primo-contatto',
+    number: 1,
+    title: 'Primo Contatto',
+    icon: MessageCircle,
+    description: 'Il cliente scopre EcoLive e ci contatta. Viene invitato a visitare la sede operativa a Spadola portando la documentazione necessaria.',
+    details: [
+      'Bozza con dimensioni del progetto desiderato',
+      'Rilievo del terreno e particella catastale',
+      'Posizionamento e orientamento del lotto',
+      'Obiettivo: capire le esigenze e mostrare le capacita EcoLive',
+    ],
+    quote: 'Il cliente deve venire con bozza dimensioni, rilievo, particella catastale.',
+  },
+  {
+    id: 'visita-sede',
+    number: 2,
+    title: 'Visita in Sede',
+    icon: Building,
+    description: 'Il cliente visita lo stabilimento e vede dal vivo il sistema X-Frame. La nostra organizzazione, i lavori, il centro di calcolo.',
+    details: [
+      'Sezioni trasversali, campioni materiali, dettagli costruttivi',
+      'Postazioni Revit per la progettazione BIM',
+      'Strutture tipo: piccola, media e grande dimensione',
+      'Firma del mandato di progettazione',
+      'Prima visita senza costi',
+    ],
+    quote: 'Vede la nostra organizzazione, le presentazioni, i nostri lavori, il centro di calcolo.',
+  },
+  {
+    id: 'progettazione',
+    number: 3,
+    title: 'Progettazione',
+    icon: Pencil,
+    description: 'Mandato firmato, sopralluogo drone, modellazione Revit, rendering fotorealistici ambientati nel contesto reale.',
+    details: [
+      'Sopralluogo con drone: video-mappatura e rilievo 3D',
+      'Modellazione BIM in Revit su misura del cliente',
+      'Rendering fotorealistici con Blender/Twinmotion',
+      'Pagamento: 50% alla prima versione, 50% alla definitiva',
+      'Importo interamente detratto dal prezzo della casa',
+    ],
+    quote: 'Il cliente vedra la sua casa in maniera realistica, senza possibilita di sbagliare.',
+  },
+  {
+    id: 'contratto',
+    number: 4,
+    title: 'Contratto',
+    icon: FileSignature,
+    description: 'Stipula del contratto formale con tutte le specifiche costruttive, i termini essenziali e le date importanti.',
+    details: [
+      'Termini essenziali e termini vessatori chiariti',
+      'Definizione fase: grezzo avanzato e/o chiavi in mano',
+      'Pagamenti strutturati in tranches (listino 2025)',
+      'Conseguenze chiare per ritardi lato cliente',
+    ],
+    quote: 'Il cliente vuole la casa prima possibile ma i tempi tecnici non sono mai quelli previsti.',
+  },
+  {
+    id: 'preparazione-cantiere',
+    number: 5,
+    title: 'Preparazione Cantiere',
+    icon: HardHat,
+    description: 'Fase a carico del cliente: scavo, magrone, fondazioni e platea. EcoLive verifica la conformita prima di attivare la produzione.',
+    details: [
+      'Platea con barre filettate di fissaggio predisposte',
+      'Documentazione fotografica e video di ogni fase',
+      'Verifica tecnica della platea da parte di EcoLive',
+      '60 giorni prima: versamento della tranche programmata',
+    ],
+    quote: 'Barre filettate di fissaggio. Verifica tecnica della platea.',
+  },
+  {
+    id: 'produzione',
+    number: 6,
+    title: 'Produzione in Laboratorio',
+    icon: Factory,
+    description: 'EcoLive produce pareti, solai, coperture e struttura portante in ambiente controllato. Tutto e pronto per il montaggio.',
+    details: [
+      'Temperatura, umidita e tempi monitorati costantemente',
+      'Carico ottimizzato sui camion (1-2 viaggi)',
+      'Trasporto in orizzontale (vantaggio esclusivo EcoLive)',
+      '60 giorni prima della data: il cliente versa la quota',
+    ],
+    quote: 'EcoLive produce pareti, solai, coperture. 60 giorni prima: il cliente versa la quota.',
+  },
+  {
+    id: 'montaggio',
+    number: 7,
+    title: 'Montaggio',
+    icon: Wrench,
+    description: 'Come il cambio gomme in Formula 1. 8-12 operatori, una giornata, la casa prende forma.',
+    details: [
+      'Mezz\'ora per i pilastri, due ore per le pareti',
+      'Pausa pranzo, pomeriggio il tetto',
+      '1 autogru (braccio 30+ m), 3 squadre specializzate',
+      'Documentazione: time-lapse, drone, reportage fotografico',
+      'Dopo il montaggio: solo finitura esterna acril-silossanica',
+    ],
+    quote: 'Come il cambio gomme in Formula 1. Mezz\'ora i pilastri, due ore le pareti.',
+  },
 ]
 
-const fadeInUpInitial = { opacity: 0, y: 20 }
-const fadeInUpAnimate = { opacity: 1, y: 0 }
-const heroSubtitleTransition = { duration: 0.8, delay: 0.2 }
+const constructionTimes = [
+  { label: 'Grezzo di base', value: 3, suffix: ' gg', note: 'Struttura portante + pareti + copertura' },
+  { label: 'Grezzo avanzato', value: 7, suffix: ' gg', note: 'Cappotto, intonaco, finiture grezzo' },
+  { label: 'Chiavi in mano', value: 30, suffix: ' gg', note: 'Impianti, infissi, finiture complete' },
+]
 
-// --- Sub-components ---
+/* ─── Sub-components ─── */
 
 function PaymentCard({
   title,
@@ -47,7 +154,6 @@ function PaymentCard({
   return (
     <div className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8 h-full">
       <h3 className="text-xl font-bold text-[#1D1D1F] mb-6">{title}</h3>
-
       <div className="space-y-4">
         {tranches.map((t) => {
           const pctNum = parseInt(t.percentuale, 10)
@@ -72,7 +178,6 @@ function PaymentCard({
           )
         })}
       </div>
-
       {note && (
         <p className="mt-6 text-xs text-[#86868B] italic border-t border-[#D2D2D7]/50 pt-4">
           {note}
@@ -107,15 +212,16 @@ function InclusoSection({ title, items }: { title: string; items: InclusoItem[] 
   )
 }
 
-// --- Main component ---
+/* ─── Main ─── */
 
 export default function ProcessoContent() {
   return (
     <div className="overflow-hidden">
 
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F] via-[#1D1D1F] to-[#141414]" />
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#A0845C]/30" />
         <div className="absolute top-32 right-20 w-1.5 h-1.5 rounded-full bg-[#A0845C]/20" />
         <div className="absolute bottom-24 left-1/4 w-1 h-1 rounded-full bg-white/10" />
@@ -129,20 +235,20 @@ export default function ProcessoContent() {
           />
           <motion.p
             className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
-            initial={fadeInUpInitial}
-            animate={fadeInUpAnimate}
-            transition={heroSubtitleTransition}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Dalla prima visita alla casa finita, un percorso chiaro e trasparente.
-            Ogni step è pensato per garantire precisione e rispetto dei tempi.
+            Dalla prima visita alla casa finita: un percorso chiaro, trasparente e
+            spettacolare. Ogni step e pensato per garantire precisione assoluta.
           </motion.p>
         </div>
       </section>
 
       <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* 7 STEP TIMELINE */}
-      <section className="py-28 lg:py-36 px-6 bg-[#F5F5F7]">
+      {/* ── 7 STEP TIMELINE ── */}
+      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -160,26 +266,25 @@ export default function ProcessoContent() {
             </div>
           </ScrollReveal>
 
-          {/* Timeline */}
           <div className="relative">
-            {/* Vertical line */}
             <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-[#A0845C]/20" />
-
-            <div className="space-y-12">
-              {processoSteps.map((step, i) => {
+            <div className="space-y-10">
+              {richSteps.map((step, i) => {
                 const Icon = step.icon
                 return (
                   <ScrollReveal key={step.id} delay={i * 0.08} direction="up" distance={30}>
                     <div className="relative pl-16 md:pl-20">
-                      {/* Step number circle */}
                       <div className="absolute left-0 top-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#A0845C] flex items-center justify-center shadow-lg shadow-[#A0845C]/20 z-10">
                         <span className="text-white text-lg md:text-xl font-bold">
                           {step.number}
                         </span>
                       </div>
 
-                      {/* Content card */}
-                      <div className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                      <motion.div
+                        className="bg-white rounded-2xl border border-[#D2D2D7] p-6 md:p-8"
+                        whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+                        transition={{ duration: 0.3 }}
+                      >
                         <div className="flex items-center gap-3 mb-3">
                           <Icon className="w-5 h-5 text-[#A0845C]" />
                           <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F]">
@@ -189,18 +294,20 @@ export default function ProcessoContent() {
                         <p className="text-[#86868B] leading-relaxed mb-4">
                           {step.description}
                         </p>
-                        <ul className="space-y-2">
-                          {step.highlights.map((h) => (
-                            <li
-                              key={h}
-                              className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80"
-                            >
+                        <ul className="space-y-2 mb-4">
+                          {step.details.map((d) => (
+                            <li key={d} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80">
                               <Check className="w-4 h-4 text-[#A0845C] shrink-0 mt-0.5" />
-                              <span>{h}</span>
+                              <span>{d}</span>
                             </li>
                           ))}
                         </ul>
-                      </div>
+                        <div className="mt-4 pt-4 border-t border-[#D2D2D7]/50">
+                          <p className="text-sm italic text-[#A0845C]">
+                            &ldquo;{step.quote}&rdquo;
+                          </p>
+                        </div>
+                      </motion.div>
                     </div>
                   </ScrollReveal>
                 )
@@ -210,17 +317,18 @@ export default function ProcessoContent() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
 
-      {/* TEMPI DI COSTRUZIONE */}
-      <section className="py-28 lg:py-36 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
+      {/* ── TEMPI DI COSTRUZIONE (dark) ── */}
+      <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
+        <div className="relative z-10 max-w-5xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
                 Tempi Certi
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3">
                 Tempi di costruzione
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
@@ -228,7 +336,7 @@ export default function ProcessoContent() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-[#86868B] max-w-xl mx-auto">
+              <p className="mt-6 text-white/60 max-w-xl mx-auto">
                 Per una struttura di circa 100 mq
               </p>
             </div>
@@ -237,26 +345,30 @@ export default function ProcessoContent() {
           <div className="grid md:grid-cols-3 gap-6">
             {constructionTimes.map((item, i) => (
               <ScrollReveal key={item.label} delay={i * 0.12} direction="up">
-                <div className="bg-[#F5F5F7] rounded-2xl border border-[#D2D2D7] p-8 text-center h-full hover:shadow-lg transition-shadow duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#A0845C]/10 flex items-center justify-center mx-auto mb-5">
+                <motion.div
+                  className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center h-full"
+                  whileHover={{ y: -4, borderColor: 'rgba(160,132,92,0.3)' }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-14 h-14 rounded-full bg-[#A0845C]/20 flex items-center justify-center mx-auto mb-5">
                     <Clock className="w-7 h-7 text-[#A0845C]" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#1D1D1F] mb-2">{item.label}</h3>
-                  <p className="text-3xl md:text-4xl font-bold text-[#A0845C] mb-3">
-                    {item.days}
-                  </p>
-                  <p className="text-sm text-[#86868B]">{item.note}</p>
-                </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{item.label}</h3>
+                  <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-3">
+                    <CountUp to={item.value} duration={2} delay={0.3 + i * 0.2} suffix={item.suffix} />
+                  </div>
+                  <p className="text-sm text-white/50">{item.note}</p>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* PIANO PAGAMENTI */}
-      <section className="py-28 lg:py-36 px-6 bg-[#F5F5F7]">
+      {/* ── PIANO PAGAMENTI ── */}
+      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -277,13 +389,13 @@ export default function ProcessoContent() {
           <div className="grid lg:grid-cols-2 gap-6">
             <ScrollReveal delay={0.1} direction="left">
               <PaymentCard
-                title="Grezzo Avanzato"
+                title="Grezzo Avanzato (GA)"
                 tranches={pagamentiGrezzoAvanzato}
               />
             </ScrollReveal>
             <ScrollReveal delay={0.2} direction="right">
               <PaymentCard
-                title="Chiavi in Mano"
+                title="Chiavi in Mano (CiM)"
                 tranches={pagamentiChiaviInMano}
                 note={notaPagamentiChiaviInMano}
               />
@@ -294,8 +406,8 @@ export default function ProcessoContent() {
 
       <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
-      {/* COSA INCLUDE */}
-      <section className="py-28 lg:py-36 px-6 bg-white">
+      {/* ── COSA INCLUDE ── */}
+      <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -326,9 +438,10 @@ export default function ProcessoContent() {
 
       <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
-      {/* CTA */}
-      <section className="py-28 lg:py-36 px-6 bg-[#1D1D1F]">
-        <div className="max-w-3xl mx-auto text-center">
+      {/* ── CTA ── */}
+      <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
+        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
           <ScrollReveal>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
               Pronto a iniziare il tuo percorso?
