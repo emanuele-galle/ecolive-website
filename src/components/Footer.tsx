@@ -235,9 +235,10 @@ export default function Footer() {
         <div className="relative border-t border-white/[0.06]">
           <div className="max-w-7xl mx-auto px-6 py-5">
             <div className="flex flex-col md:flex-row items-center justify-between gap-5">
-              {/* Left — copyright */}
+              {/* Left — copyright + attribution */}
               <p className="text-xs text-white/30 order-2 md:order-1">
-                &copy; {currentYear} EcoLive S.r.l. &mdash; P.IVA 03607430794
+                &copy; {currentYear} EcoLive S.r.l. &mdash; P.IVA 03607430794 &mdash; Realizzato da{' '}
+                <a href="https://www.fodisrl.it" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-[#A0845C] transition-colors">Fodi S.r.l.</a>
               </p>
 
               {/* Center — social icons */}
@@ -272,18 +273,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Attribution */}
-            <p className="text-center text-[11px] text-white/20 mt-4">
-              Realizzato da{' '}
-              <a
-                href="https://www.fodisrl.it"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/30 hover:text-[#A0845C] transition-colors"
-              >
-                Fodi S.r.l.
-              </a>
-            </p>
           </div>
         </div>
       </footer>
