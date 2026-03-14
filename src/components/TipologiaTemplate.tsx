@@ -2,8 +2,10 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Check, ArrowRight, Layers, Ruler, Clock } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+
 interface TipologiaSpec {
   label: string
   value: string
@@ -29,21 +31,40 @@ interface TipologiaTemplateProps {
   modules: TipologiaModule[]
 }
 
+const GOLD = '#A0845C'
+const DARK = '#1D1D1F'
+const SURFACE = '#F5F5F7'
+const MUTED = '#86868B'
+
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
+}
+
 export default function TipologiaTemplate({
   title,
   category,
   extendedDescription,
   heroImage,
-  color,
+  surfaceRange,
   priceRange,
   features,
   specs,
   modules,
 }: TipologiaTemplateProps) {
+  /* Pick first 3 specs for the hero stats bar */
+  const heroStats = specs.slice(0, 3)
+  const statIcons = [Ruler, Clock, Layers]
+
   return (
     <div>
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
+      {/* ── Hero ── */}
+      <section className="relative min-h-[60vh] flex flex-col justify-end overflow-hidden">
         <Image
           src={heroImage}
           alt={title}
@@ -51,104 +72,250 @@ export default function TipologiaTemplate({
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pb-12 w-full">
-          <p className="text-sm font-semibold uppercase tracking-[0.15em] mb-3" style={{ color }}>{category}</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">{title}</h1>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pb-14 pt-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span
+              className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.15em] backdrop-blur-md border mb-5"
+              style={{ color: GOLD, backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(160,132,92,0.3)' }}
+            >
+              {category}
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            {title}
+          </motion.h1>
+
+          {/* Stats bar */}
+          <motion.div
+            className="flex flex-wrap gap-6 md:gap-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+          >
+            {heroStats.map((stat, i) => {
+              const Icon = statIcons[i] ?? Layers
+              return (
+                <div key={stat.label} className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-white/10 backdrop-blur-sm">
+                    <Icon className="w-4 h-4" style={{ color: GOLD }} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm leading-tight">{stat.value}</p>
+                    <p className="text-white/50 text-xs">{stat.label}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
       </section>
 
-      {/* Description + Specs */}
-      <section className="py-20 bg-white">
+      {/* ── Description + Features ── */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 relative">
+            {/* Gold vertical accent line (desktop only) */}
+            <div
+              className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
+              style={{ background: `linear-gradient(to bottom, transparent, ${GOLD}40, transparent)` }}
+            />
+
+            {/* Left: Description */}
             <ScrollReveal>
               <div>
-                <p className="text-lg text-[#86868B] leading-relaxed mb-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: GOLD }}>
+                  Panoramica
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-6" style={{ color: DARK }}>
+                  Progettazione su misura
+                </h2>
+                <p className="text-base md:text-lg leading-relaxed" style={{ color: MUTED }}>
                   {extendedDescription}
                 </p>
-                <div className="space-y-3">
-                  {features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${color}20` }}>
-                        <Check className="w-3 h-3" style={{ color }} />
-                      </div>
-                      <span className="text-[#1D1D1F]">{feature}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </ScrollReveal>
 
+            {/* Right: Features */}
             <ScrollReveal delay={0.15}>
-              <div className="space-y-6">
-                {/* Specs */}
-                <div className="bg-[#F5F5F7] rounded-2xl p-8">
-                  <h3 className="text-lg font-bold text-[#1D1D1F] mb-6">Specifiche</h3>
-                  <div className="space-y-4">
-                    {specs.map((spec) => (
-                      <div key={spec.label} className="flex justify-between items-center border-b border-[#D2D2D7]/50 pb-3 last:border-0">
-                        <span className="text-[#86868B]">{spec.label}</span>
-                        <span className="font-semibold text-[#1D1D1F]">{spec.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Price */}
-                <div className="rounded-2xl p-8 border-2" style={{ borderColor: `${color}30` }}>
-                  <p className="text-sm text-[#86868B] mb-1">A partire da</p>
-                  <p className="text-2xl font-bold" style={{ color }}>{priceRange}</p>
-                  <p className="text-xs text-[#86868B] mt-2">Prezzo indicativo. Il preventivo definitivo viene elaborato dopo la visita in sede.</p>
-                </div>
-              </div>
+              <motion.div
+                className="space-y-3"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {features.map((feature) => (
+                  <motion.div
+                    key={feature}
+                    variants={fadeUp}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-[#F5F5F7] border border-transparent hover:border-[#A0845C]/20 transition-colors duration-300"
+                  >
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${GOLD}15` }}
+                    >
+                      <Check className="w-4 h-4" style={{ color: GOLD }} />
+                    </div>
+                    <span className="text-[15px] font-medium" style={{ color: DARK }}>{feature}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Modules */}
+      {/* ── Specs ── */}
+      <section className="relative py-20 lg:py-28 overflow-hidden" style={{ backgroundColor: DARK }}>
+        {/* Grain overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto px-6">
+          <ScrollReveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: GOLD }}>
+              Specifiche Tecniche
+            </p>
+            <p className="text-lg text-white/50 mb-14">Prestazioni e certificazioni</p>
+          </ScrollReveal>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.06] rounded-2xl overflow-hidden"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {specs.map((spec) => (
+              <motion.div
+                key={spec.label}
+                variants={fadeUp}
+                className="relative p-8 lg:p-10"
+                style={{ backgroundColor: DARK }}
+              >
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-px origin-left"
+                  style={{ backgroundColor: GOLD }}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                />
+                <p className="text-3xl md:text-4xl font-bold mb-2" style={{ color: GOLD, fontFeatureSettings: '"tnum"' }}>
+                  {spec.value}
+                </p>
+                <p className="text-sm text-white/50">{spec.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Modules ── */}
       {modules.length > 0 && (
-        <section className="py-20 bg-[#F5F5F7]">
+        <section className="py-20 lg:py-28" style={{ backgroundColor: SURFACE }}>
           <div className="max-w-7xl mx-auto px-6">
             <ScrollReveal>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-10 text-center">
-                Configurazioni Modulari
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3 text-center" style={{ color: GOLD }}>
+                Configurazioni
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-14" style={{ color: DARK }}>
+                Moduli Disponibili
               </h2>
             </ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {modules.map((mod, i) => (
-                <ScrollReveal key={mod.label} delay={i * 0.1}>
-                  <div className="bg-white rounded-xl p-6 text-center border border-[#D2D2D7]/60">
-                    <p className="text-3xl font-bold text-[#1D1D1F] mb-1">{mod.mq} <span className="text-lg font-normal">m²</span></p>
-                    <p className="text-sm text-[#86868B] mb-2">{mod.label}</p>
-                    <p className="text-xs font-medium" style={{ color }}>
-                      {mod.livelli === 1 ? '1 livello' : '2 livelli'}
-                    </p>
-                  </div>
-                </ScrollReveal>
+
+            <motion.div
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {modules.map((mod) => (
+                <motion.div
+                  key={mod.label}
+                  variants={fadeUp}
+                  className="group relative bg-white rounded-2xl p-6 md:p-8 text-center border border-transparent hover:border-[#A0845C]/25 transition-all duration-300 hover:shadow-lg overflow-hidden"
+                >
+                  {/* Top gold accent */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ backgroundColor: GOLD }} />
+                  <p className="text-4xl md:text-5xl font-bold mb-1" style={{ color: DARK, fontFeatureSettings: '"tnum"' }}>
+                    {mod.mq}
+                  </p>
+                  <p className="text-sm font-medium mb-3" style={{ color: MUTED }}>m²</p>
+                  <p className="text-sm font-medium mb-3" style={{ color: DARK }}>{mod.label}</p>
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold"
+                    style={{ backgroundColor: `${GOLD}12`, color: GOLD }}
+                  >
+                    {mod.livelli === 1 ? '1 livello' : '2 livelli'}
+                  </span>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
 
-      {/* CTA */}
-      <section className="py-20 bg-white">
+      {/* ── Price Callout ── */}
+      <section className="py-20 lg:py-24 bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-4">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-px w-12 md:w-20" style={{ backgroundColor: `${GOLD}50` }} />
+              <p className="text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
+                Investimento
+              </p>
+              <div className="h-px w-12 md:w-20" style={{ backgroundColor: `${GOLD}50` }} />
+            </div>
+            <p className="text-3xl md:text-5xl font-bold mb-4" style={{ color: GOLD }}>
+              {priceRange}
+            </p>
+            <p className="text-sm leading-relaxed max-w-md mx-auto" style={{ color: MUTED }}>
+              Prezzo indicativo. Il preventivo definitivo viene elaborato dopo la visita in sede e il rilievo tecnico del terreno.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="relative py-20 lg:py-28 overflow-hidden" style={{ backgroundColor: DARK }}>
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative max-w-3xl mx-auto px-6 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               Configura la tua {title}
             </h2>
-            <p className="text-[#86868B] mb-8">
-              Scegli dimensioni, finitura e vedi il range di prezzo in tempo reale.
+            <p className="text-white/50 mb-10 max-w-lg mx-auto">
+              Scegli dimensioni, finitura e ottieni un preventivo personalizzato in tempo reale.
             </p>
             <Link
               href="/configuratore"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] group"
+              className="inline-flex items-center gap-2.5 px-10 py-4 font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(160,132,92,0.3)] group"
+              style={{ backgroundColor: GOLD }}
             >
               Configura la tua Casa
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </ScrollReveal>
         </div>

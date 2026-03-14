@@ -4,8 +4,8 @@ import { revalidatePath } from 'next/cache'
 import ContactPageClient from './ContactPageClient'
 
 export const metadata = {
-  title: 'Contatti',
-  description: 'Contattaci per informazioni sulle nostre case prefabbricate in legno. Richiedi un preventivo gratuito o prenota una visita allo stabilimento.',
+  title: 'Contatti - Prenota una Visita in Sede',
+  description: 'Contatta EcoLive per informazioni sulle case in legno X-Frame. Prenota una visita in sede a Spadola (VV). Tel: (0963) 530945 — info@ecolive.srl',
 }
 
 async function handleContactSubmission(formData: FormData): Promise<{ success: boolean; message: string }> {

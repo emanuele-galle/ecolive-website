@@ -13,25 +13,14 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import CountUp from '@/components/ui/CountUp'
 
 // --- Static Data ---
 
 const keyStats = [
-  {
-    value: '0,159',
-    unit: 'W/m²K',
-    label: 'Trasmittanza pareti',
-  },
-  {
-    value: '18,8',
-    unit: 'ore',
-    label: 'Sfasamento',
-  },
-  {
-    value: '29',
-    unit: 'cm',
-    label: 'Spessore pareti',
-  },
+  { to: 0.159, decimals: 3, suffix: ' W/m²K', label: 'Trasmittanza pareti' },
+  { to: 18.8, decimals: 1, suffix: ' ore', label: 'Sfasamento termico' },
+  { to: 29, decimals: 0, suffix: ' cm', label: 'Spessore pareti' },
 ]
 
 const navigationCards = [
@@ -40,35 +29,35 @@ const navigationCards = [
     href: '/sistema-x-frame/pareti',
     icon: Layers,
     description:
-      'Stratigrafia completa delle pareti X-Frame: 14 componenti ingegnerizzati per isolamento termoacustico superiore e zero ponti termici.',
+      '14 componenti ingegnerizzati per isolamento termoacustico superiore e zero ponti termici.',
   },
   {
     title: 'Solai',
     href: '/sistema-x-frame/solai',
     icon: LayoutGrid,
     description:
-      'Moduli solaio prefabbricati con struttura portante in legno lamellare, isolamento integrato e predisposizione impiantistica.',
+      'Moduli prefabbricati con struttura portante in legno lamellare e isolamento integrato.',
   },
   {
     title: 'Coperture',
     href: '/sistema-x-frame/coperture',
     icon: Home,
     description:
-      'Soluzioni per tetto piano, a falde e combinato. Trasmittanza fino a 0,137 W/m²K con ventilazione naturale integrata.',
+      'Tetto piano, a falde e combinato. Trasmittanza fino a 0,137 W/m²K con ventilazione naturale.',
   },
   {
     title: 'Trasporto e Montaggio',
     href: '/sistema-x-frame/trasporto-montaggio',
     icon: Truck,
     description:
-      'Trasporto orizzontale dei pannelli e montaggio della struttura portante in un solo giorno grazie alla prefabbricazione totale.',
+      'Struttura portante montata in un solo giorno grazie alla prefabbricazione totale in stabilimento.',
   },
   {
     title: 'Confronto',
     href: '/sistema-x-frame/confronto',
     icon: BarChart3,
     description:
-      'Tabelle comparative dettagliate tra X-Frame, costruzione tradizionale, X-Lam e Platform Frame su prestazioni, tempi e costi.',
+      'Tabelle comparative tra X-Frame, costruzione tradizionale, X-Lam e Platform Frame.',
   },
 ]
 
@@ -77,6 +66,7 @@ const certifications = [
   { name: 'Passive House / PHIUS', label: 'Standard Passivo' },
   { name: 'ARCA', label: 'Architettura Comfort Ambiente' },
   { name: 'LEED for Homes', label: 'Green Building' },
+  { name: 'Woodworks', label: 'Residential Construction' },
 ]
 
 // --- Animation Variants ---
@@ -86,21 +76,13 @@ const fadeInUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1] as const,
-    },
+    transition: { delay: i * 0.1, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const },
   }),
 }
 
 const staggerContainer = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.12 } },
 }
 
 // --- Component ---
@@ -109,9 +91,8 @@ export default function SistemaXFrameContent() {
   return (
     <div className="min-h-screen">
 
-      {/* ========== 1. HERO BANNER ========== */}
-      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background image */}
+      {/* ========== 1. HERO ========== */}
+      <section className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/xframe-render/optimized/spaccato-copertina.webp"
@@ -121,36 +102,41 @@ export default function SistemaXFrameContent() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[#1D1D1F]/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F]/40 via-transparent to-[#1D1D1F]/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F] via-[#1D1D1F]/50 to-[#1D1D1F]/20" />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center py-20">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-16 lg:pb-24">
           <ScrollReveal>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <p className="uppercase tracking-[0.25em] text-[#A0845C] text-xs sm:text-sm font-semibold mb-4">
+              La bioedilizia più innovativa parte dal Sud
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.08] max-w-4xl">
               Sistema Costruttivo{' '}
               <span className="text-[#A0845C]">X-Frame</span>
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Il sistema costruttivo ibrido che unisce il meglio di{' '}
+          <ScrollReveal delay={0.2}>
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+              L&apos;ibrido brevettato che fonde{' '}
               <span className="text-white/90 font-medium">Platform Frame</span>,{' '}
               <span className="text-white/90 font-medium">X-Lam</span> e{' '}
               <span className="text-white/90 font-medium">Post and Beam</span>{' '}
-              in un&apos;unica tecnologia brevettata.
+              in un unico sistema dalle prestazioni insuperabili.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ========== 2. INTRODUCTION ========== */}
-      <section className="py-20 lg:py-28 bg-[#F5F5F7]">
+      {/* ========== 2. BLOCKQUOTE ========== */}
+      <section className="py-24 lg:py-32 bg-[#F5F5F7]">
         <div className="max-w-4xl mx-auto px-6">
           <ScrollReveal>
-            <blockquote className="text-center">
-              <p className="text-xl md:text-2xl lg:text-[1.65rem] text-[#1D1D1F] leading-relaxed font-light">
+            <blockquote className="relative pl-8 border-l-4 border-[#A0845C]">
+              <p className="text-xl md:text-2xl lg:text-[1.7rem] text-[#1D1D1F]/90 leading-relaxed italic font-light">
                 &ldquo;L&apos;innovativo X-Frame rappresenta un ibrido dei sistemi costruttivi
                 Platform Frame, X-Lam e Post and Beam. Le performance strutturali
                 complessive surclassano qualsivoglia altro sistema, così come la
@@ -162,10 +148,10 @@ export default function SistemaXFrameContent() {
       </section>
 
       {/* ========== 3. KEY STATS ========== */}
-      <section className="py-16 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-[#1D1D1F]">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
-            className="grid md:grid-cols-3 gap-6 lg:gap-8"
+            className="grid md:grid-cols-3 gap-8 lg:gap-12"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -176,13 +162,20 @@ export default function SistemaXFrameContent() {
                 key={stat.label}
                 custom={i}
                 variants={fadeInUp}
-                className="text-center p-8 rounded-2xl bg-[#F5F5F7] border border-[#E5E5E7]"
+                className="text-center py-10"
               >
-                <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-1">
-                  {stat.value}
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#A0845C] mb-2 tabular-nums">
+                  <CountUp
+                    to={stat.to}
+                    decimals={stat.decimals}
+                    suffix={stat.suffix}
+                    duration={2.5}
+                    separator="."
+                  />
                 </div>
-                <div className="text-sm text-[#86868B] mb-3">{stat.unit}</div>
-                <div className="text-[#1D1D1F] font-medium">{stat.label}</div>
+                <div className="text-white/50 text-sm uppercase tracking-wider mt-3">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -190,7 +183,7 @@ export default function SistemaXFrameContent() {
       </section>
 
       {/* ========== 4. NAVIGATION CARDS ========== */}
-      <section className="py-20 lg:py-28 bg-[#F5F5F7]">
+      <section className="py-24 lg:py-32 bg-[#F5F5F7]">
         <div className="max-w-6xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -208,7 +201,7 @@ export default function SistemaXFrameContent() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             {navigationCards.map((card, i) => {
               const Icon = card.icon
@@ -220,22 +213,25 @@ export default function SistemaXFrameContent() {
                   className={i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}
                 >
                   <Link href={card.href} className="group block h-full">
-                    <div className="h-full p-8 rounded-2xl bg-white border border-[#E5E5E7] hover:shadow-lg hover:shadow-[#A0845C]/8 transition-all duration-300 hover:border-[#A0845C]/30 flex flex-col">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#F5F5F7] text-[#A0845C] mb-5 group-hover:bg-[#A0845C]/10 transition-colors duration-300">
-                        <Icon className="w-6 h-6" />
+                    <div className="relative h-full p-8 rounded-2xl bg-white border border-[#E5E5E7] transition-all duration-300 hover:shadow-xl hover:shadow-[#A0845C]/8 hover:border-[#A0845C]/30 flex flex-col overflow-hidden">
+                      {/* Gold top border on hover */}
+                      <div className="absolute top-0 inset-x-0 h-[3px] bg-[#A0845C] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+
+                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[#F5F5F7] text-[#A0845C] mb-6 group-hover:bg-[#A0845C]/10 transition-colors duration-300">
+                        <Icon className="w-7 h-7" />
                       </div>
 
                       <h3 className="text-xl font-semibold text-[#1D1D1F] mb-3">
                         {card.title}
                       </h3>
 
-                      <p className="text-[#86868B] leading-relaxed text-sm flex-1 mb-5">
+                      <p className="text-[#86868B] leading-relaxed text-sm flex-1 mb-6">
                         {card.description}
                       </p>
 
                       <div className="flex items-center gap-2 text-[#A0845C] font-medium text-sm group-hover:gap-3 transition-all duration-300">
                         Scopri di più
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </div>
                     </div>
                   </Link>
@@ -247,21 +243,21 @@ export default function SistemaXFrameContent() {
       </section>
 
       {/* ========== 5. CERTIFICATIONS ========== */}
-      <section className="py-16 lg:py-20 bg-white border-t border-[#E5E5E7]">
+      <section className="py-20 lg:py-24 bg-white border-t border-[#E5E5E7]">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F] mb-3">
+            <div className="text-center mb-14">
+              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D1D1F] mb-3">
                 Certificazioni e Standard
               </h2>
-              <p className="text-[#86868B]">
-                Il sistema X-Frame soddisfa i più rigorosi standard internazionali
+              <p className="text-[#86868B] text-base max-w-xl mx-auto">
+                X-Frame soddisfa i più rigorosi standard internazionali di bioedilizia
               </p>
             </div>
           </ScrollReveal>
 
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -272,9 +268,9 @@ export default function SistemaXFrameContent() {
                 key={cert.name}
                 custom={i}
                 variants={fadeInUp}
-                className="text-center p-6 rounded-2xl border border-[#E5E5E7] bg-[#F5F5F7] hover:border-[#A0845C]/30 transition-colors duration-300"
+                className="text-center p-6 rounded-2xl border border-[#E5E5E7] bg-[#F5F5F7] hover:border-[#A0845C]/30 hover:bg-white transition-all duration-300"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#A0845C]/10 text-[#A0845C] mb-4">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#A0845C]/10 text-[#A0845C] mb-4">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div className="text-[#1D1D1F] font-semibold text-sm mb-1">

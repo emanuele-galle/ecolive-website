@@ -77,7 +77,7 @@ export default function SystemPreview() {
                 <div className="absolute inset-0 bg-[#A0845C]/[0.05] z-10 mix-blend-multiply" />
                 <motion.div className="absolute inset-0 -inset-y-[10%]" style={{ y: imageY }}>
                   <Image
-                    src="/images/xframe-spaccato.webp"
+                    src="/images/xframe-render/optimized/spaccato-copertina.webp"
                     alt="Sezione trasversale del sistema costruttivo X-Frame Ecolive"
                     fill
                     className="object-cover"

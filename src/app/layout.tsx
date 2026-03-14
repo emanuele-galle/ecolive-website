@@ -11,22 +11,23 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ecolive.srl'),
   title: {
-    default: 'Ecolive - Case Prefabbricate in Legno',
-    template: '%s | Ecolive',
+    default: 'EcoLive - Case Prefabbricate in Legno | Sistema X-Frame',
+    template: '%s | EcoLive',
   },
-  description: 'Leader nella progettazione e realizzazione di case prefabbricate in legno. Sistema costruttivo X-Frame, bioedilizia e sostenibilità dal 1999.',
-  keywords: ['case prefabbricate', 'case in legno', 'bioedilizia', 'X-Frame', 'sostenibilità', 'passive house'],
-  authors: [{ name: 'Ecolive S.r.l.' }],
+  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 1 giorno, classe A4, garanzia 50 anni. Spadola (VV), Calabria.',
+  keywords: ['case prefabbricate legno', 'case in legno Calabria', 'bioedilizia', 'sistema X-Frame', 'casa passiva', 'EcoLive', 'case prefabbricate Sud Italia', 'costruttore case legno'],
+  authors: [{ name: 'EcoLive S.r.l.' }],
   openGraph: {
     type: 'website',
     locale: 'it_IT',
     url: 'https://www.ecolive.srl',
-    siteName: 'Ecolive',
+    siteName: 'EcoLive',
+    description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. La bioedilizia più innovativa parte dal Sud.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ecolive - Case Prefabbricate in Legno',
-    description: 'Leader nella progettazione e realizzazione di case prefabbricate in legno. Sistema costruttivo X-Frame, bioedilizia e sostenibilità dal 1999.',
+    title: 'EcoLive - Case Prefabbricate in Legno | Sistema X-Frame',
+    description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 1 giorno, classe A4, garanzia 50 anni.',
   },
 }
 
