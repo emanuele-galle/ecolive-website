@@ -3,68 +3,84 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import { tipologie } from '@/data/tipologie'
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.1 },
-  }),
-}
 
 export default function TipologiePreview() {
   return (
     <section className="bg-white py-24 px-6">
       <div className="mx-auto max-w-7xl">
-        <p className="text-center text-sm uppercase tracking-widest font-medium text-[#A0845C] mb-3">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-xs uppercase tracking-[0.25em] font-medium text-[#A0845C] mb-4"
+        >
           Le nostre soluzioni
-        </p>
-        <h2 className="text-center text-3xl md:text-4xl font-bold mb-16">
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-center text-3xl md:text-5xl font-bold text-[#1D1D1F] mb-16"
+        >
           Dalla suite glamping alla villa di pregio
-        </h2>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {tipologie.map((tip, i) => (
             <motion.div
               key={tip.id}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
             >
-              <Link
-                href={tip.href}
-                className="group block rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="relative aspect-[4/3]">
+              <Link href={tip.href} className="group relative block rounded-2xl overflow-hidden">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="relative aspect-[4/3] md:aspect-[3/4]"
+                >
                   <Image
                     src={tip.imageUrl}
                     alt={tip.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
                   />
-                </div>
 
-                <div className="p-5 space-y-2">
-                  <span
-                    className="text-xs uppercase tracking-wider font-semibold"
-                    style={{ color: tip.color }}
-                  >
-                    {tip.category}
-                  </span>
-                  <h3 className="text-xl font-bold">{tip.title}</h3>
-                  <p className="text-sm text-gray-500">{tip.surfaceRange}</p>
-                  <p className="text-sm font-medium text-[#A0845C]">
-                    {tip.priceRange}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-[#A0845C] group-hover:gap-2 transition-all">
-                    Scopri <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  {/* Hover accent border */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-[3px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                    style={{ backgroundColor: tip.color }}
+                  />
+
+                  {/* Content overlay */}
+                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex flex-col gap-3">
+                    <span className="self-start px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-semibold rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-white">
+                      {tip.category}
+                    </span>
+
+                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                      {tip.title}
+                    </h3>
+
+                    <p className="text-sm text-white/60">
+                      {tip.surfaceRange} &middot; {tip.priceRange}
+                    </p>
+
+                    {/* Animated line */}
+                    <div className="relative h-px w-full mt-1">
+                      <div className="absolute inset-0 bg-white/10" />
+                      <div className="absolute inset-y-0 left-0 w-0 group-hover:w-full bg-white/40 transition-all duration-700" />
+                    </div>
+                  </div>
+                </motion.div>
               </Link>
             </motion.div>
           ))}

@@ -1,81 +1,132 @@
 'use client'
 
 import CountUp from '@/components/ui/CountUp'
-import SpotlightCard from '@/components/ui/SpotlightCard'
-import ScrollReveal from '@/components/ui/ScrollReveal'
-import { Zap, Factory, Shield, Timer } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-const pillars = [
+const stats = [
   {
     value: 1,
     suffix: '',
+    bg: '1',
     label: 'Giorno di Montaggio',
-    description: 'Struttura completa montata in una sola giornata per case fino a 150 mq',
-    icon: Zap,
+    description: 'Struttura completa montata in una sola giornata',
   },
   {
     value: 95,
     suffix: '%',
+    bg: '95',
     label: 'Prodotto in Laboratorio',
-    description: 'Pareti, solai e coperture arrivano in cantiere già finiti. Zero imprevisti.',
-    icon: Factory,
+    description: 'Pareti, solai e coperture arrivano già finiti',
   },
   {
     value: 50,
     suffix: '',
+    bg: '50',
     label: 'Anni di Garanzia',
-    description: 'Sulla struttura portante. Durabilità praticamente eterna.',
-    icon: Shield,
+    description: 'Sulla struttura portante. Durabilità eterna.',
   },
   {
     value: 30,
     suffix: '',
+    bg: '30',
     label: 'Giorni Chiavi in Mano',
-    description: 'Dalla struttura alla casa abitabile completa di impianti e finiture.',
-    icon: Timer,
+    description: 'Casa abitabile completa di impianti e finiture',
   },
 ]
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.15 * i, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
+  }),
+}
+
+const borderVariants = {
+  hidden: { scaleX: 0 },
+  visible: (i: number) => ({
+    scaleX: 1,
+    transition: { delay: 0.15 * i + 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const },
+  }),
+}
+
 export default function ValueProposition() {
   return (
-    <section className="py-24 lg:py-32 bg-[#F5F5F7]">
-      <div className="max-w-6xl mx-auto px-6">
-        <ScrollReveal>
-          <div className="text-center mb-20">
-            <p className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-4">I NUMERI CHE CONTANO</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] tracking-tight">
-              Velocit&agrave;, precisione, <span className="text-[#A0845C]">durabilit&agrave;</span>
-            </h2>
-            <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-5 leading-relaxed font-normal">
-              Poche case, ma perfette. Artigianato d&apos;eccellenza e innovazione industriale per costruzioni sartoriali.
-            </p>
-          </div>
-        </ScrollReveal>
+    <section className="relative py-24 lg:py-36 bg-[#1D1D1F] overflow-hidden">
+      {/* Grain overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {pillars.map((stat, i) => {
-            const Icon = stat.icon
-            return (
-              <ScrollReveal key={stat.label} delay={i * 0.12}>
-                <SpotlightCard
-                  className="bg-white border border-[#D2D2D7]/60 p-8 text-center h-full"
-                  spotlightColor="rgba(160, 132, 92, 0.12)"
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Left-aligned header */}
+        <motion.div
+          className="mb-16 lg:mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.2em] mb-3">
+            I numeri che contano
+          </p>
+          <p className="text-lg text-white/50 font-normal">
+            Velocità, precisione, durabilità
+          </p>
+        </motion.div>
+
+        {/* Stats grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="relative bg-[#1D1D1F] p-10 lg:p-14 overflow-hidden"
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              custom={i}
+            >
+              {/* Animated gold top border */}
+              <motion.div
+                className="absolute top-0 left-0 right-0 h-px bg-[#A0845C] origin-left"
+                variants={borderVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+                custom={i}
+              />
+
+              {/* Giant background number */}
+              <span
+                className="pointer-events-none select-none absolute -right-4 -bottom-6 text-[8rem] md:text-[10rem] lg:text-[12rem] font-bold leading-none text-white/[0.04]"
+                style={{ fontFeatureSettings: '"tnum"' }}
+                aria-hidden
+              >
+                {stat.bg}
+              </span>
+
+              {/* Foreground content */}
+              <div className="relative">
+                <div
+                  className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#A0845C] mb-4"
+                  style={{ fontFeatureSettings: '"tnum"' }}
                 >
-                  <div className="w-12 h-12 mx-auto mb-5 rounded-xl bg-[#A0845C]/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-[#A0845C]" />
-                  </div>
-                  <div className="text-5xl md:text-6xl font-bold text-[#A0845C] mb-2">
-                    <CountUp to={stat.value} suffix={stat.suffix} duration={2.5} />
-                  </div>
-                  <div className="text-lg font-semibold text-[#1D1D1F] mb-1">{stat.label}</div>
-                  <div className="text-sm text-[#86868B] font-normal">{stat.description}</div>
-
-                  {/* Subtle decorative bottom line */}
-                  <div className="mt-5 mx-auto w-10 h-px bg-gradient-to-r from-transparent via-[#A0845C]/20 to-transparent" />
-                </SpotlightCard>
-              </ScrollReveal>
-            )
-          })}
+                  <CountUp to={stat.value} suffix={stat.suffix} duration={2.5} />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-1 tracking-tight">
+                  {stat.label}
+                </h3>
+                <p className="text-sm text-white/40 leading-relaxed max-w-xs">
+                  {stat.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
