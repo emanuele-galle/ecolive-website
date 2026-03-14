@@ -4,8 +4,10 @@ import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Youtube, ArrowRight
 
 const linkRapidi = [
   { label: 'Home', href: '/' },
+  { label: 'Sistema X-Frame', href: '/sistema-x-frame' },
   { label: 'Tipologie', href: '/tipologie' },
   { label: 'Configuratore', href: '/configuratore' },
+  { label: 'Progetti', href: '/progetti' },
   { label: 'Chi Siamo', href: '/chi-siamo' },
   { label: 'News', href: '/news' },
   { label: 'FAQ', href: '/faq' },
@@ -13,12 +15,13 @@ const linkRapidi = [
 ]
 
 const servizi = [
-  { label: 'Sistema X-Frame', href: '/sistema-x-frame' },
-  { label: 'Area Tecnica', href: '/area-tecnica' },
-  { label: 'Certificazioni', href: '/area-tecnica/certificazioni' },
+  { label: 'Il Processo', href: '/il-processo' },
+  { label: 'Per i Professionisti', href: '/professionisti' },
   { label: 'Franchising', href: '/franchising' },
-  { label: 'Glamping', href: '/glamping' },
-  { label: 'SmartSuite', href: '/smartsuite' },
+  { label: 'Glamping', href: '/tipologie/glamping' },
+  { label: 'SmartSuite', href: '/tipologie/smartsuite' },
+  { label: 'Residenziali', href: '/tipologie/residenziali' },
+  { label: 'Luxury', href: '/tipologie/luxury' },
 ]
 
 const socialLinks = [
@@ -80,7 +83,7 @@ export default function Footer() {
               </Link>
 
               <p className="text-white/60 leading-relaxed mb-6 max-w-xs">
-                Case prefabbricate in legno con sistema costruttivo X-Frame. Bioedilizia certificata dal 1999 dalla Calabria.
+                EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema costruttivo ibrido X-Frame. Bioedilizia certificata Classe A4 dalla Calabria.
               </p>
 
               {/* CTA */}
@@ -180,13 +183,23 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="tel:+3909631951395"
+                  href="tel:+390963530945"
                   className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
                     <Phone className="w-4 h-4 text-[#A0845C]" />
                   </div>
-                  <span className="text-sm pt-0.5">+39 0963 1951395</span>
+                  <span className="text-sm pt-0.5">(0963) 530945</span>
+                </a>
+
+                <a
+                  href="tel:+39366203710"
+                  className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-[#A0845C]/20 flex items-center justify-center flex-shrink-0 transition-colors">
+                    <Phone className="w-4 h-4 text-[#A0845C]" />
+                  </div>
+                  <span className="text-sm pt-0.5">366.2037106</span>
                 </a>
 
                 <a

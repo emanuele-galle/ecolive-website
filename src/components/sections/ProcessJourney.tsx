@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { MessageCircle, PenTool, Hammer, Key } from 'lucide-react'
+import { MessageCircle, PenTool, Factory, Hammer, Eye, FileCheck, Wrench } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -27,34 +27,58 @@ const steps: Step[] = [
   {
     number: '01',
     icon: MessageCircle,
-    title: 'Consulenza Gratuita',
-    duration: 'Giorno 1',
+    title: 'Primo Contatto',
+    duration: '',
     description:
-      'Analizziamo le tue esigenze, il terreno e il budget per definire il progetto ideale.',
+      'Ci conosci online, ci contatti. Ti invitiamo in sede a Spadola con la documentazione del tuo terreno.',
   },
   {
     number: '02',
-    icon: PenTool,
-    title: 'Progettazione Su Misura',
-    duration: 'Giorni 2-14',
+    icon: Eye,
+    title: 'Visita in Sede',
+    duration: '',
     description:
-      'Il nostro team sviluppa il progetto con rendering 3D e documentazione tecnica.',
+      'Vedi il sistema X-Frame dal vivo, i nostri rendering, il modo in cui lavoriamo. Firmi il mandato di progettazione.',
   },
   {
     number: '03',
-    icon: Hammer,
-    title: 'Produzione in Stabilimento',
-    duration: 'Giorni 15-45',
+    icon: PenTool,
+    title: 'Progettazione',
+    duration: '',
     description:
-      'I moduli vengono realizzati nel nostro stabilimento con il sistema X-Frame.',
+      'Sopralluogo drone, modellazione Revit, rendering fotorealistici della tua casa nel contesto reale.',
   },
   {
     number: '04',
-    icon: Key,
-    title: 'Montaggio e Consegna',
-    duration: 'Giorni 46-60',
+    icon: FileCheck,
+    title: 'Contratto',
+    duration: '',
     description:
-      'Montaggio rapido in cantiere e consegna chiavi in mano.',
+      'Contratto di appalto dettagliato con termini, fasi e pagamenti strutturati.',
+  },
+  {
+    number: '05',
+    icon: Wrench,
+    title: 'Preparazione Cantiere',
+    duration: 'A cura tua',
+    description:
+      'Scavi, fondazioni e platea. Noi verifichiamo che sia tutto pronto per il montaggio.',
+  },
+  {
+    number: '06',
+    icon: Factory,
+    title: 'Produzione',
+    duration: '',
+    description:
+      'Produciamo pareti, solai e coperture nel nostro laboratorio a temperatura e umidità controllate.',
+  },
+  {
+    number: '07',
+    icon: Hammer,
+    title: 'Montaggio',
+    duration: '1 giorno',
+    description:
+      'Pilastri, pareti e copertura montati in una sola giornata. La sera hai la tua casa.',
   },
 ]
 

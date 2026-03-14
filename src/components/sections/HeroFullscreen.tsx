@@ -37,8 +37,8 @@ export default function HeroFullscreen({
   heroImage,
   heroVideo,
   heroVideoPoster,
-  heroTitle = 'Abitare il futuro, in armonia con la natura',
-  heroSubtitle = 'Progettiamo e realizziamo case prefabbricate in legno certificate Classe A4. Design su misura, montaggio in 1 giorno, consegna in 60 giorni.',
+  heroTitle = 'La tua casa, in un giorno',
+  heroSubtitle = 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 1 giornata, classe energetica A4, garanzia 50 anni.',
 }: HeroFullscreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
@@ -113,7 +113,7 @@ export default function HeroFullscreen({
             animate={visible}
             transition={heroTrustTransition}
           >
-            {['Classe A4', 'Garanzia 50 Anni', 'Made in Italy', 'Montaggio in 1 Giorno'].map(
+            {['Classe A4', 'Garanzia 50 Anni', 'Montaggio in 1 Giorno', '1.250 €/mq'].map(
               (item, i, arr) => (
                 <span key={item} className="flex items-center gap-2 text-white/60 text-sm font-medium">
                   <span>{item}</span>
@@ -133,16 +133,16 @@ export default function HeroFullscreen({
             transition={heroCtaTransition}
           >
             <Link
-              href="/tipologie"
+              href="/configuratore"
               className="inline-flex items-center px-8 py-4 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold text-lg rounded-xl transition-all duration-300 hover:scale-[1.02]"
             >
-              Scopri le Tipologie
+              Configura la tua Casa
             </Link>
             <Link
-              href="/contatti"
+              href="/sistema-x-frame"
               className="inline-flex items-center px-8 py-4 bg-transparent hover:bg-white/10 text-white font-semibold text-lg rounded-xl border border-white/30 hover:border-white/50 transition-all duration-300 hover:scale-[1.02]"
             >
-              Richiedi Consulenza
+              Scopri il Sistema X-Frame
             </Link>
           </motion.div>
         </div>

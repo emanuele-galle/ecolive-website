@@ -1,68 +1,88 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, ArrowRight } from 'lucide-react'
+import { ArrowRight, Home, Briefcase, Users } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
-const trustPoints = [
-  'Risposta entro 24 ore',
-  'Consulenza senza impegno',
-  'Preventivo trasparente e dettagliato',
+const paths = [
+  {
+    icon: Home,
+    title: 'Hai un terreno?',
+    description: 'Configura la tua casa e scopri quanto costa realizzarla con il sistema X-Frame.',
+    cta: 'Configura la tua Casa',
+    href: '/configuratore',
+  },
+  {
+    icon: Briefcase,
+    title: 'Sei un professionista?',
+    description: 'Architetti, ingegneri e geometri: scopri come collaborare con EcoLive.',
+    cta: 'Scopri le opportunità',
+    href: '/professionisti',
+  },
+  {
+    icon: Users,
+    title: 'Vuoi affiliarti?',
+    description: 'Porta la rivoluzione X-Frame nel tuo territorio. Noi ti diamo il cliente.',
+    cta: 'Scopri il franchising',
+    href: '/franchising',
+  },
 ]
 
 export default function ContactCTA() {
   return (
-    <section className="py-24 lg:py-32 bg-[#1D1D1F]">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        {/* Title */}
+    <section className="py-24 lg:py-32 bg-[#F5F5F7]">
+      <div className="max-w-6xl mx-auto px-6">
         <ScrollReveal>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Inizia il Tuo Progetto
-          </h2>
-        </ScrollReveal>
-
-        {/* Subtitle */}
-        <ScrollReveal delay={0.1}>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
-            Raccontaci la tua idea. Ti guideremo dalla prima consulenza alla
-            consegna delle chiavi, con trasparenza e professionalità in ogni fase.
-          </p>
-        </ScrollReveal>
-
-        {/* CTAs */}
-        <ScrollReveal delay={0.2}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-            <Link
-              href="/contatti"
-              className="inline-flex items-center gap-2 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:scale-[1.02] group"
-            >
-              Richiedi Consulenza Gratuita
-              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <a
-              href="tel:+3909631951395"
-              className="inline-flex items-center gap-2 border border-white/30 hover:border-white/50 text-white font-semibold rounded-xl px-8 py-4 transition-all duration-300 hover:bg-white/5"
-            >
-              <Phone className="w-5 h-5" />
-              Chiama +39 0963 1951395
-            </a>
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-4">INIZIA DA QUI</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] tracking-tight">
+              Qual è il tuo prossimo passo?
+            </h2>
           </div>
         </ScrollReveal>
 
-        {/* Trust points */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {paths.map((path, i) => {
+            const Icon = path.icon
+            return (
+              <ScrollReveal key={path.href} delay={i * 0.1}>
+                <div className="bg-white rounded-2xl p-8 h-full flex flex-col border border-[#D2D2D7]/60 hover:shadow-premium-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="w-12 h-12 rounded-xl bg-[#A0845C]/10 flex items-center justify-center mb-6">
+                    <Icon className="w-6 h-6 text-[#A0845C]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1D1D1F] mb-3">{path.title}</h3>
+                  <p className="text-[#86868B] leading-relaxed mb-6 flex-1">{path.description}</p>
+                  <Link
+                    href={path.href}
+                    className="inline-flex items-center gap-2 text-[#A0845C] font-semibold hover:gap-3 transition-all duration-300 group"
+                  >
+                    {path.cta}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </ScrollReveal>
+            )
+          })}
+        </div>
+
         <ScrollReveal delay={0.3}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-10">
-            {trustPoints.map((point, i) => (
-              <span
-                key={i}
-                className="text-white/50 text-sm flex items-center gap-2"
+          <div className="text-center mt-12">
+            <p className="text-[#86868B] mb-4">Oppure contattaci direttamente</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:+390963530945"
+                className="text-[#1D1D1F] font-semibold hover:text-[#A0845C] transition-colors"
               >
-                {i > 0 && (
-                  <span className="hidden sm:inline text-white/20">&middot;</span>
-                )}
-                {point}
-              </span>
-            ))}
+                (0963) 530945
+              </a>
+              <span className="hidden sm:inline text-[#D2D2D7]">|</span>
+              <a
+                href="mailto:info@ecolive.srl"
+                className="text-[#1D1D1F] font-semibold hover:text-[#A0845C] transition-colors"
+              >
+                info@ecolive.srl
+              </a>
+            </div>
           </div>
         </ScrollReveal>
       </div>

@@ -7,17 +7,29 @@ import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 
 const menuItems = [
   { label: 'Home', href: '/' },
-  { label: 'X-Frame', href: '/sistema-x-frame' },
-  { label: 'Configuratore', href: '/configuratore' },
-  { label: 'Tipologie', href: '/tipologie' },
-  { label: 'Chi Siamo', href: '/chi-siamo' },
   {
-    label: 'Area Tecnica',
-    href: '/area-tecnica',
+    label: 'Sistema X-Frame',
+    href: '/sistema-x-frame',
     submenu: [
-      { label: 'Panoramica', href: '/area-tecnica' },
-      { label: 'Certificazioni', href: '/area-tecnica/certificazioni' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Panoramica', href: '/sistema-x-frame' },
+      { label: 'Pareti', href: '/sistema-x-frame/pareti' },
+      { label: 'Solai', href: '/sistema-x-frame/solai' },
+      { label: 'Coperture', href: '/sistema-x-frame/coperture' },
+      { label: 'Trasporto e Montaggio', href: '/sistema-x-frame/trasporto-montaggio' },
+      { label: 'Confronto', href: '/sistema-x-frame/confronto' },
+    ],
+  },
+  { label: 'Tipologie', href: '/tipologie' },
+  { label: 'Configuratore', href: '/configuratore' },
+  { label: 'Progetti', href: '/progetti' },
+  {
+    label: 'Azienda',
+    href: '/chi-siamo',
+    submenu: [
+      { label: 'Chi Siamo', href: '/chi-siamo' },
+      { label: 'Il Processo', href: '/il-processo' },
+      { label: 'Professionisti', href: '/professionisti' },
+      { label: 'Franchising', href: '/franchising' },
     ],
   },
   { label: 'News', href: '/news' },
@@ -26,8 +38,8 @@ const menuItems = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [submenuOpen, setSubmenuOpen] = useState(false)
-  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(false)
+  const [submenuOpen, setSubmenuOpen] = useState<string | null>(null)
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null)
   const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -43,20 +55,20 @@ export default function Header() {
 
   const closeMobile = useCallback(() => {
     setMobileOpen(false)
-    setMobileSubmenuOpen(false)
+    setMobileSubmenuOpen(null)
   }, [])
 
-  const handleSubmenuEnter = useCallback(() => {
+  const handleSubmenuEnter = useCallback((href: string) => {
     if (submenuTimeout.current) clearTimeout(submenuTimeout.current)
-    setSubmenuOpen(true)
+    setSubmenuOpen(href)
   }, [])
 
   const handleSubmenuLeave = useCallback(() => {
-    submenuTimeout.current = setTimeout(() => setSubmenuOpen(false), 150)
+    submenuTimeout.current = setTimeout(() => setSubmenuOpen(null), 150)
   }, [])
 
   const handleDesktopMouseEnter = useCallback(
-    (hasSubmenu: boolean) => { if (hasSubmenu) handleSubmenuEnter() },
+    (href: string, hasSubmenu: boolean) => { if (hasSubmenu) handleSubmenuEnter(href) },
     [handleSubmenuEnter]
   )
 
@@ -65,12 +77,12 @@ export default function Header() {
     [handleSubmenuLeave]
   )
 
-  const handleSubmenuKeyDown = useCallback((e: React.KeyboardEvent) => {
+  const handleSubmenuKeyDown = useCallback((e: React.KeyboardEvent, href: string) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault()
-      setSubmenuOpen((prev) => !prev)
+      setSubmenuOpen((prev) => (prev === href ? null : href))
     } else if (e.key === 'Escape') {
-      setSubmenuOpen(false)
+      setSubmenuOpen(null)
     }
   }, [])
 
@@ -78,8 +90,8 @@ export default function Header() {
     setMobileOpen((prev) => !prev)
   }, [])
 
-  const toggleMobileSubmenu = useCallback(() => {
-    setMobileSubmenuOpen((prev) => !prev)
+  const toggleMobileSubmenu = useCallback((href: string) => {
+    setMobileSubmenuOpen((prev) => (prev === href ? null : href))
   }, [])
 
   return (
@@ -115,9 +127,9 @@ export default function Header() {
                 <div
                   key={item.href}
                   className="relative"
-                  onMouseEnter={() => handleDesktopMouseEnter(!!item.submenu)}
+                  onMouseEnter={() => handleDesktopMouseEnter(item.href, !!item.submenu)}
                   onMouseLeave={() => handleDesktopMouseLeave(!!item.submenu)}
-                  onFocus={() => handleDesktopMouseEnter(!!item.submenu)}
+                  onFocus={() => handleDesktopMouseEnter(item.href, !!item.submenu)}
                   onBlur={(e) => {
                     if (!e.currentTarget.contains(e.relatedTarget)) {
                       handleDesktopMouseLeave(!!item.submenu)
@@ -132,14 +144,14 @@ export default function Header() {
                         : 'text-white/80 hover:text-white'
                     }`}
                     {...(item.submenu && {
-                      'aria-expanded': submenuOpen,
+                      'aria-expanded': submenuOpen === item.href,
                       'aria-haspopup': true as const,
-                      onKeyDown: handleSubmenuKeyDown,
+                      onKeyDown: (e: React.KeyboardEvent) => handleSubmenuKeyDown(e, item.href),
                     })}
                   >
                     {item.label}
                     {item.submenu && (
-                      <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${submenuOpen ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${submenuOpen === item.href ? 'rotate-180' : ''}`} />
                     )}
                     {/* Animated underline */}
                     <span className={`absolute bottom-0 left-3 right-3 h-[2px] rounded-full transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out ${
@@ -151,12 +163,12 @@ export default function Header() {
                   {item.submenu && (
                     <div
                       className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${
-                        submenuOpen
+                        submenuOpen === item.href
                           ? 'opacity-100 translate-y-0 pointer-events-auto'
                           : 'opacity-0 -translate-y-2 pointer-events-none'
                       }`}
                     >
-                      <div className="w-52 bg-white/95 backdrop-blur-xl rounded-xl shadow-premium-xl border border-[#D2D2D7]/50 py-2 overflow-hidden">
+                      <div className="w-56 bg-white/95 backdrop-blur-xl rounded-xl shadow-premium-xl border border-[#D2D2D7]/50 py-2 overflow-hidden">
                         {item.submenu.map((sub) => (
                           <Link
                             key={sub.href}
@@ -175,14 +187,14 @@ export default function Header() {
 
             {/* Desktop CTA */}
             <Link
-              href="/contatti"
+              href="/configuratore"
               className={`hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 group ${
                 scrolled
                   ? 'bg-[#A0845C] text-white hover:bg-[#856B45] shadow-md hover:shadow-lg'
                   : 'border border-white/40 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-sm'
               }`}
             >
-              Richiedi Preventivo
+              Configura la tua Casa
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" />
             </Link>
 
@@ -240,17 +252,17 @@ export default function Header() {
               {item.submenu ? (
                 <>
                   <button
-                    onClick={toggleMobileSubmenu}
-                    aria-expanded={mobileSubmenuOpen}
+                    onClick={() => toggleMobileSubmenu(item.href)}
+                    aria-expanded={mobileSubmenuOpen === item.href}
                     className="flex items-center justify-between w-full px-4 py-3.5 text-[#1D1D1F] hover:text-[#A0845C] hover:bg-[#F5F5F7] rounded-xl transition-all duration-200 font-medium"
                   >
                     {item.label}
                     <ChevronDown className={`w-4 h-4 text-[#86868B] transition-transform duration-300 ${
-                      mobileSubmenuOpen ? 'rotate-180' : ''
+                      mobileSubmenuOpen === item.href ? 'rotate-180' : ''
                     }`} />
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ease-out ${
-                    mobileSubmenuOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                    mobileSubmenuOpen === item.href ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     <div className="pl-4 pb-1 space-y-0.5">
                       {item.submenu.map((sub) => (
@@ -282,11 +294,11 @@ export default function Header() {
         {/* Mobile CTA */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#D2D2D7]/50 bg-white">
           <Link
-            href="/contatti"
+            href="/configuratore"
             onClick={closeMobile}
             className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#A0845C] text-white rounded-xl font-medium hover:bg-[#856B45] transition-colors duration-200 shadow-md"
           >
-            Richiedi Preventivo
+            Configura la tua Casa
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

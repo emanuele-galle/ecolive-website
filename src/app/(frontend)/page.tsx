@@ -4,22 +4,23 @@ import type { Media } from '@/payload-types'
 
 import HeroFullscreen from '@/components/sections/HeroFullscreen'
 import ValueProposition from '@/components/sections/ValueProposition'
-import LifestyleVision from '@/components/sections/LifestyleVision'
+import SystemPreview from '@/components/sections/SystemPreview'
+import TipologiePreview from '@/components/sections/TipologiePreview'
+import FeaturedProject from '@/components/sections/FeaturedProject'
 import ProcessJourney from '@/components/sections/ProcessJourney'
-import AssemblyShowcase from '@/components/sections/AssemblyShowcase'
-import TestimonialSection from '@/components/sections/TestimonialSection'
+import QuickComparison from '@/components/sections/QuickComparison'
 import ContactCTA from '@/components/sections/ContactCTA'
 import JsonLd from '@/components/JsonLd'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
-  name: 'Ecolive S.r.l.',
-  description: 'Case prefabbricate in legno con sistema costruttivo X-Frame. Bioedilizia certificata, Classe A4, garanzia 50 anni. Dal 1999 in Calabria.',
+  name: 'EcoLive S.r.l.',
+  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema costruttivo ibrido X-Frame. Bioedilizia certificata Classe A4, garanzia 50 anni. Sede a Spadola (VV), Calabria.',
   url: 'https://www.ecolive.srl',
   logo: 'https://www.ecolive.srl/images/logo-ecolive.png',
   image: 'https://www.ecolive.srl/images/logo-ecolive.png',
-  telephone: '+3909631951395',
+  telephone: '+390963530945',
   email: 'info@ecolive.srl',
   foundingDate: '1999',
   priceRange: '\u20AC\u20AC\u20AC',
@@ -62,9 +63,35 @@ export default async function HomePage() {
   const heroVideoProp = heroVideo ? { url: heroVideo.url || undefined, alt: heroVideo.alt } : null
   const heroVideoPosterProp = heroVideoPoster ? { url: heroVideoPoster.url || undefined, alt: heroVideoPoster.alt } : null
 
+  // Fetch featured project from CMS
+  let featuredProject = null
+  try {
+    const projects = await payload.find({
+      collection: 'projects',
+      limit: 1,
+      sort: '-createdAt',
+    })
+    if (projects.docs.length > 0) {
+      const p = projects.docs[0]
+      const featuredImage = p.featuredImage as Media | null
+      featuredProject = {
+        title: p.title,
+        slug: p.slug,
+        location: p.location || undefined,
+        surface: p.area ? `${p.area} m²` : undefined,
+        year: p.year ? String(p.year) : undefined,
+        imageUrl: featuredImage?.url || '/images/tipologie/residenziali.webp',
+      }
+    }
+  } catch {
+    // No projects yet, FeaturedProject will use defaults
+  }
+
   return (
     <div className="min-h-screen">
       <JsonLd data={organizationJsonLd} />
+
+      {/* 1. Hero — Impatto emotivo + promessa */}
       <HeroFullscreen
         heroType={siteSettings?.heroType as 'image' | 'video' | undefined}
         heroImage={heroImageProp}
@@ -73,11 +100,26 @@ export default async function HomePage() {
         heroTitle={siteSettings?.heroTitle || undefined}
         heroSubtitle={siteSettings?.heroSubtitle || undefined}
       />
+
+      {/* 2. I Numeri che Contano — 4 pilastri */}
       <ValueProposition />
-      <LifestyleVision />
+
+      {/* 3. Il Sistema in 30 Secondi — Preview X-Frame */}
+      <SystemPreview />
+
+      {/* 4. Le Nostre Soluzioni — 4 tipologie */}
+      <TipologiePreview />
+
+      {/* 5. Progetto in Evidenza */}
+      <FeaturedProject project={featuredProject || undefined} />
+
+      {/* 6. Il Processo — Timeline 7 step */}
       <ProcessJourney />
-      <AssemblyShowcase />
-      <TestimonialSection />
+
+      {/* 7. Confronto Rapido — X-Frame vs Muratura */}
+      <QuickComparison />
+
+      {/* 8. CTA Finale — 3 percorsi */}
       <ContactCTA />
     </div>
   )

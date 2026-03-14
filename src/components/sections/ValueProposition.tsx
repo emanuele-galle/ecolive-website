@@ -3,36 +3,36 @@
 import CountUp from '@/components/ui/CountUp'
 import SpotlightCard from '@/components/ui/SpotlightCard'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import { Shield, Home, Award, Leaf } from 'lucide-react'
+import { Zap, Factory, Shield, Timer } from 'lucide-react'
 
-const stats = [
+const pillars = [
   {
-    value: 25,
-    suffix: '+',
-    label: 'Anni di Esperienza',
-    description: 'Pionieri della bioedilizia in Italia',
-    icon: Shield,
+    value: 1,
+    suffix: '',
+    label: 'Giorno di Montaggio',
+    description: 'Struttura completa montata in una sola giornata per case fino a 150 mq',
+    icon: Zap,
   },
   {
-    value: 40,
-    suffix: '+',
-    label: 'Progetti Realizzati',
-    description: 'Residenze, glamping e spazi commerciali',
-    icon: Home,
+    value: 95,
+    suffix: '%',
+    label: 'Prodotto in Laboratorio',
+    description: 'Pareti, solai e coperture arrivano in cantiere già finiti. Zero imprevisti.',
+    icon: Factory,
+  },
+  {
+    value: 50,
+    suffix: '',
+    label: 'Anni di Garanzia',
+    description: 'Sulla struttura portante. Durabilità praticamente eterna.',
+    icon: Shield,
   },
   {
     value: 30,
     suffix: '',
-    label: 'Anni di Garanzia',
-    description: 'Sulla struttura portante certificata',
-    icon: Award,
-  },
-  {
-    value: 70,
-    suffix: '%',
-    label: 'Risparmio Energetico',
-    description: 'Prestazioni in classe A4',
-    icon: Leaf,
+    label: 'Giorni Chiavi in Mano',
+    description: 'Dalla struttura alla casa abitabile completa di impianti e finiture.',
+    icon: Timer,
   },
 ]
 
@@ -42,18 +42,18 @@ export default function ValueProposition() {
       <div className="max-w-6xl mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-20">
+            <p className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.15em] mb-4">I NUMERI CHE CONTANO</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1D1D1F] tracking-tight">
-              Perch&eacute; Scegliere <span className="text-[#A0845C]">Ecolive</span>
+              Velocit&agrave;, precisione, <span className="text-[#A0845C]">durabilit&agrave;</span>
             </h2>
             <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-5 leading-relaxed font-normal">
-              Dal 1999 progettiamo abitazioni sostenibili certificate che valorizzano il territorio e
-              il benessere delle persone
+              Poche case, ma perfette. Artigianato d&apos;eccellenza e innovazione industriale per costruzioni sartoriali.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {stats.map((stat, i) => {
+          {pillars.map((stat, i) => {
             const Icon = stat.icon
             return (
               <ScrollReveal key={stat.label} delay={i * 0.12}>

@@ -168,10 +168,10 @@ export default function TipologiePage() {
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
             <Link
-              href="/contatti"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#A0845C] hover:bg-[#b56140] text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
+              href="/configuratore"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#A0845C] hover:bg-[#856B45] text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
             >
-              Contattaci per una consulenza gratuita
+              Configura la tua Casa
               <ArrowRight className="w-5 h-5" />
             </Link>
           </ScrollReveal>
