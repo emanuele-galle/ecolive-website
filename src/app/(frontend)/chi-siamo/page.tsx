@@ -15,12 +15,13 @@ import {
   Thermometer,
   TreePine,
   Zap,
+  Play,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
-import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 import SectionTransition from '@/components/ui/SectionTransition'
 import CountUp from '@/components/ui/CountUp'
+import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 
 /* ─── Data ─── */
 
@@ -62,74 +63,55 @@ const stats = [
   { value: 3, label: 'Tecnologie in un sistema', suffix: '' },
 ]
 
-const differentiators = [
-  {
-    icon: Zap,
-    title: 'Sistema X-Frame',
-    text: 'L\u2019unico sistema costruttivo che combina tre tecnologie \u2014 Platform Frame, X-Lam e Post and Beam \u2014 in un ibrido proprietario senza precedenti nel settore.',
-  },
-  {
-    icon: Thermometer,
-    title: 'Ambiente controllato',
-    text: 'Il 95%+ della produzione avviene nel nostro stabilimento a temperatura, umidit\u00e0 e tempi di asciugatura monitorati. Zero imprevisti da cantiere tradizionale.',
-  },
-  {
-    icon: Clock,
-    title: 'Montaggio in 7 giorni',
-    text: 'La struttura portante viene montata in 7 giorni lavorativi. 8-12 operatori specializzati con autogru, divise, droni, time-lapse. Il cantiere diventa spettacolo.',
-  },
-  {
-    icon: Shield,
-    title: 'Garanzia 30 anni',
-    text: 'Mezzo secolo di garanzia sulla struttura portante. Classe energetica fino ad A4, standard casa passiva. Qualit\u00e0 che si posiziona al livello dei migliori marchi nazionali.',
-  },
-]
-
 /* ─── Page ─── */
 
 export default function ChiSiamoPage() {
   return (
     <div className="overflow-hidden">
 
-      {/* ── 1. HERO ── */}
-      <section className="relative bg-[#1D1D1F] py-32 md:py-40 lg:py-48">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1D1D1F] via-[#1D1D1F] to-[#141414]" />
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="absolute top-20 left-10 w-2 h-2 rounded-full bg-[#A0845C]/30" />
-        <div className="absolute top-32 right-20 w-1.5 h-1.5 rounded-full bg-[#A0845C]/20" />
-        <div className="absolute bottom-24 left-1/4 w-1 h-1 rounded-full bg-white/10" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      {/* ── 1. HERO — Full-bleed foto cantiere ── */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/processo/gru-solleva-pannello.webp"
+            alt="Gru solleva pannello prefabbricato X-Frame in cantiere EcoLive"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F] via-[#1D1D1F]/50 to-transparent" />
+        </div>
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 pb-16 md:pb-24">
           <ScrollReveal duration={0.8}>
             <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
               Chi Siamo
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mt-4">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mt-4 max-w-3xl">
               La bioedilizia pi&ugrave; innovativa
               <span className="block text-[#A0845C]">parte dal Sud</span>
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="mt-8 text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
               Dal cuore della Calabria, nel Parco delle Serre, progettiamo, produciamo e costruiamo
-              edifici in bioedilizia con il sistema costruttivo X-Frame. Poche case, ma perfette.
+              edifici in bioedilizia con il sistema costruttivo X-Frame.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
-
-      {/* ── 2. STATS BAR ── */}
-      <section className="py-16 lg:py-20 px-6 bg-[#F5F5F7]">
+      {/* ── 2. STATS — inline su sfondo scuro ── */}
+      <section className="py-12 lg:py-14 px-6 bg-[#1D1D1F]">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.1} direction="up">
                 <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-[#1D1D1F]">
+                  <div className="text-4xl md:text-5xl font-bold text-[#A0845C]">
                     <CountUp to={stat.value} duration={2.5} delay={0.3} suffix={stat.suffix} />
                   </div>
-                  <p className="mt-2 text-sm text-[#86868B] uppercase tracking-wide">
+                  <p className="mt-2 text-sm text-white/50 uppercase tracking-wide">
                     {stat.label}
                   </p>
                 </div>
@@ -139,9 +121,9 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+      <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
 
-      {/* ── 3. LA NOSTRA STORIA ── */}
+      {/* ── 3. LA NOSTRA STORIA — Testo + foto connettore X-Frame ── */}
       <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <ScrollReveal direction="left" duration={0.7}>
@@ -162,13 +144,13 @@ export default function ChiSiamoPage() {
                 (VV), nel cuore del Parco delle Serre, ed{' '}
                 <strong className="text-[#1D1D1F]">Edilius S.r.l.</strong> con sede a Cosenza.
                 Due societ&agrave; che hanno fuso competenze, visione e know-how sotto un unico
-                brand per dar vita a qualcosa di mai visto nel panorama della bioedilizia italiana.
+                brand.
               </p>
               <p>
-                Anni di ricerca e sviluppo hanno portato alla creazione del{' '}
+                Anni di ricerca hanno portato alla creazione del{' '}
                 <strong className="text-[#1D1D1F]">sistema X-Frame</strong>: un ibrido
-                proprietario che combina Platform Frame, X-Lam e Post and Beam in un sistema
-                costruttivo senza precedenti. Non una semplice casa in legno, ma un&apos;opera
+                proprietario che combina Platform Frame, X-Lam e Post and Beam.
+                Non una semplice casa in legno, ma un&apos;opera
                 di ingegneria e artigianalit&agrave;.
               </p>
               <p>
@@ -181,32 +163,37 @@ export default function ChiSiamoPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8E8ED] shadow-premium">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/chi-siamo-hero.webp"
-                alt="Stabilimento EcoLive nel Parco delle Serre, Spadola"
+                src="/images/xframe-dettaglio/connettore-fondazione.webp"
+                alt="Connettore brevettato X-Frame: staffa in acciaio zincato su fondazione"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-white/90 text-sm font-medium drop-shadow-lg">
+                  Il connettore brevettato X-Frame &mdash; il cuore del sistema costruttivo
+                </p>
+              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
-      {/* ── 4. IL NOSTRO STABILIMENTO (dark) ── */}
-      <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
-        <div className="relative z-10 max-w-6xl mx-auto">
+      {/* ── 4. IL NOSTRO STABILIMENTO — Foto-driven ── */}
+      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
+        <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
                 Il Nostro Stabilimento
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
                 Qualit&agrave; artigianale, precisione industriale
               </h2>
               <div className="mt-5 flex items-center justify-center gap-3">
@@ -214,103 +201,126 @@ export default function ChiSiamoPage() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-white/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                A Spadola riceviamo semilavorati dall&apos;Austria &mdash; pannelli lamellari a
-                tre strati e travi in legno lamellare &mdash; e li trasformiamo in travi, pilastri
-                e ogni elemento strutturale necessario. Il tutto in un ambiente dove temperatura,
-                umidit&agrave; e tempi di asciugatura sono costantemente monitorati.
+              <p className="mt-6 text-[#86868B] text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                A Spadola riceviamo semilavorati dall&apos;Austria e li trasformiamo in ogni
+                elemento strutturale necessario. Temperatura, umidit&agrave; e tempi di
+                asciugatura sono costantemente monitorati.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {differentiators.map((item, i) => {
+          {/* Bento gallery — foto reali fabbrica e cantiere */}
+          <div className="grid grid-cols-6 md:grid-cols-12 gap-3 md:gap-4">
+            {/* Row 1: Grande CNC (8 cols) + Sezionatrice (4 cols) */}
+            <ScrollReveal delay={0.1} direction="up">
+              <div className="col-span-6 md:col-span-8 relative aspect-[16/9] rounded-2xl overflow-hidden group">
+                <Image
+                  src="/images/fabbrica/linea-cnc.webp"
+                  alt="Linea CNC automatizzata per assemblaggio pannelli parete"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-4 left-5">
+                  <p className="text-white font-semibold text-sm md:text-base drop-shadow-lg">Linea CNC automatizzata</p>
+                  <p className="text-white/70 text-xs mt-0.5">Assemblaggio pannelli parete</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2} direction="up">
+              <div className="col-span-3 md:col-span-4 relative aspect-[3/4] md:aspect-[16/9] rounded-2xl overflow-hidden group">
+                <Image
+                  src="/images/fabbrica/sezionatrice.webp"
+                  alt="Operaio X-Frame alla sezionatrice verticale"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 left-4">
+                  <p className="text-white font-semibold text-sm drop-shadow-lg">Sezionatrice verticale</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Row 2: Pressa (4 cols) + Montaggio colonne (4 cols) + Operaio (4 cols) */}
+            <ScrollReveal delay={0.15} direction="up">
+              <div className="col-span-3 md:col-span-4 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden group">
+                <Image
+                  src="/images/fabbrica/pressa-idraulica.webp"
+                  alt="Pressa idraulica per laminazione pannelli"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 left-4">
+                  <p className="text-white font-semibold text-sm drop-shadow-lg">Pressa idraulica</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.25} direction="up">
+              <div className="col-span-3 md:col-span-4 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden group">
+                <Image
+                  src="/images/processo/montaggio-colonne.webp"
+                  alt="Squadra monta colonne legno nei connettori X-Frame"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 left-4">
+                  <p className="text-white font-semibold text-sm drop-shadow-lg">Montaggio in cantiere</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3} direction="up">
+              <div className="col-span-6 md:col-span-4 relative aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden group">
+                <Image
+                  src="/images/processo/operaio-installazione.webp"
+                  alt="Operaio installa componenti su parete in legno lamellare"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 left-4">
+                  <p className="text-white font-semibold text-sm drop-shadow-lg">Artigianalit&agrave;</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Differentiators — 4 cards sotto le foto */}
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: Zap, title: 'Sistema X-Frame', text: 'Tre tecnologie in un ibrido proprietario senza precedenti.' },
+              { icon: Thermometer, title: 'Ambiente controllato', text: '95% della produzione in laboratorio a condizioni monitorate.' },
+              { icon: Clock, title: '7 giorni di montaggio', text: 'Struttura portante montata in una settimana.' },
+              { icon: Shield, title: '30 anni di garanzia', text: 'Classe energetica fino ad A4, standard casa passiva.' },
+            ].map((item, i) => {
               const Icon = item.icon
               return (
-                <ScrollReveal key={item.title} delay={i * 0.1} direction="up">
-                  <motion.div
-                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full"
-                    whileHover={{ y: -4, backgroundColor: 'rgba(255,255,255,0.08)' }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-start gap-5">
-                      <div className="w-14 h-14 rounded-xl bg-[#A0845C]/20 flex items-center justify-center shrink-0">
-                        <Icon className="w-7 h-7 text-[#A0845C]" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                        <p className="text-white/60 leading-relaxed">{item.text}</p>
-                      </div>
+                <ScrollReveal key={item.title} delay={i * 0.08} direction="up">
+                  <div className="bg-white rounded-xl p-6 border border-[#E5E5E7] h-full hover:shadow-md hover:border-[#A0845C]/20 transition-all duration-300">
+                    <div className="w-10 h-10 rounded-lg bg-[#A0845C]/10 flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5 text-[#A0845C]" />
                     </div>
-                  </motion.div>
+                    <h3 className="text-base font-bold text-[#1D1D1F] mb-1.5">{item.title}</h3>
+                    <p className="text-sm text-[#86868B] leading-relaxed">{item.text}</p>
+                  </div>
                 </ScrollReveal>
               )
             })}
           </div>
-
-          {/* Factory photos — bento layout */}
-          <div className="mt-16">
-            <ScrollReveal>
-              <p className="text-center text-white/40 text-xs font-semibold uppercase tracking-[0.25em] mb-6">
-                Il nostro laboratorio
-              </p>
-            </ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {/* Large image spanning 2 cols */}
-              <ScrollReveal delay={0.1} direction="up">
-                <div className="col-span-2 relative aspect-[16/9] rounded-xl overflow-hidden group">
-                  <Image
-                    src="/images/fabbrica/linea-cnc.webp"
-                    alt="Linea CNC automatizzata per assemblaggio pannelli parete"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <p className="absolute bottom-3 left-4 text-white text-sm font-medium drop-shadow-lg">
-                    Linea CNC automatizzata
-                  </p>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={0.2} direction="up">
-                <div className="relative aspect-square rounded-xl overflow-hidden group">
-                  <Image
-                    src="/images/fabbrica/sezionatrice.webp"
-                    alt="Operaio X-Frame alla sezionatrice verticale"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <p className="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-lg">
-                    Sezionatrice verticale
-                  </p>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={0.3} direction="up">
-                <div className="relative aspect-square rounded-xl overflow-hidden group">
-                  <Image
-                    src="/images/fabbrica/pressa-idraulica.webp"
-                    alt="Pressa idraulica per laminazione pannelli"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <p className="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-lg">
-                    Pressa idraulica
-                  </p>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
 
       {/* ── 5. IL TEAM ── */}
-      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
+      <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -325,20 +335,16 @@ export default function ChiSiamoPage() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto">
-                Un team multidisciplinare che copre ogni aspetto: dalla visione imprenditoriale
-                alla direzione tecnica, dalla relazione commerciale alla tutela legale.
-              </p>
             </div>
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {teamMembers.map((member, i) => (
-              <ScrollReveal key={member.name} delay={i * 0.15} direction="up">
+              <ScrollReveal key={member.name} delay={i * 0.12} direction="up">
                 <div className="group text-center">
-                  <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden shadow-premium">
+                  <div className="relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-lg ring-2 ring-[#A0845C]/20">
                     <div className={`absolute inset-0 bg-gradient-to-br ${member.color} flex items-center justify-center`}>
-                      <span className="text-3xl font-bold text-white/90 select-none">
+                      <span className="text-2xl font-bold text-white/90 select-none">
                         {member.initials}
                       </span>
                     </div>
@@ -348,7 +354,7 @@ export default function ChiSiamoPage() {
                     <p className="text-[#A0845C] font-medium text-sm mt-0.5">{member.role}</p>
                     <a
                       href={`tel:+39${member.phone.replace(/\./g, '')}`}
-                      className="text-[#86868B] text-sm mt-2 inline-flex items-center gap-1.5 hover:text-[#A0845C] transition-colors"
+                      className="text-[#86868B] text-sm mt-2 inline-flex items-center gap-1.5 hover:text-[#A0845C] transition-colors cursor-pointer"
                     >
                       <Phone className="w-3.5 h-3.5" />
                       {member.phone}
@@ -361,9 +367,9 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#1D1D1F" height={80} />
+      <SectionTransition from="#FFFFFF" to="#1D1D1F" height={80} />
 
-      {/* ── 6. LA NOSTRA VISIONE (dark) ── */}
+      {/* ── 6. LA NOSTRA VISIONE ── */}
       <section className="relative py-24 lg:py-32 px-6 bg-[#1D1D1F]">
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03]" />
         <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -382,19 +388,15 @@ export default function ChiSiamoPage() {
               <p>
                 Non cerchiamo il volume: cerchiamo l&apos;eccellenza. Ogni casa EcoLive &egrave;
                 un progetto sartoriale, costruito su misura con la massima cura artigianale.
-                Il nostro posizionamento non &egrave; inferiore ai grandi marchi del Nord come
-                Wolf Haus o Rubner Haus, perch&eacute; la qualit&agrave; lo giustifica.
               </p>
               <p>
-                La Calabria possiede foreste straordinarie. La nostra visione a lungo termine
-                &egrave; costruire una{' '}
+                La Calabria possiede foreste straordinarie. La nostra visione &egrave; costruire una{' '}
                 <strong className="text-white">filiera locale del legno calabrese</strong> che
-                valorizzi questo patrimonio naturale, riduca la dipendenza dall&apos;importazione
-                e crei lavoro qualificato sul territorio.
+                valorizzi questo patrimonio naturale e crei lavoro qualificato sul territorio.
               </p>
             </div>
             <motion.div
-              className="mt-8 inline-block px-8 py-4 rounded-xl border border-[#A0845C]/30 bg-[#A0845C]/10"
+              className="mt-8 px-6 py-4 rounded-xl border border-[#A0845C]/30 bg-[#A0845C]/10"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -405,7 +407,7 @@ export default function ChiSiamoPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
-            <div className="space-y-6">
+            <div className="space-y-5">
               {[
                 { icon: TreePine, label: 'Filiera locale del legno calabrese', desc: 'Valorizzazione dei boschi del Parco delle Serre' },
                 { icon: Factory, label: 'Espansione produttiva', desc: 'Doppi turni e rete di produttori affiliati in Italia' },
@@ -438,7 +440,7 @@ export default function ChiSiamoPage() {
 
       <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* ── 7. VIDEO ── */}
+      {/* ── 7. VIDEO — Featured + secondary ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal>
@@ -457,20 +459,46 @@ export default function ChiSiamoPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <ScrollReveal delay={0.1} direction="left">
+          {/* Featured video — grande */}
+          <ScrollReveal delay={0.1}>
+            <div className="mb-6">
               <YouTubeEmbed
                 videoId="Q29WmCQuqa8"
                 title="Ecolive Srl: La Nostra Storia nel mondo delle Case in Legno"
               />
-            </ScrollReveal>
-            <ScrollReveal delay={0.2} direction="right">
+            </div>
+          </ScrollReveal>
+
+          {/* Secondary videos — grid 2 col */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <ScrollReveal delay={0.2} direction="left">
               <YouTubeEmbed
                 videoId="swQRUOTvxJ8"
-                title="Made in Calabria — Tgr RAI Calabria Ecolive"
+                title="Made in Calabria — Tgr RAI Calabria"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.3} direction="right">
+              <YouTubeEmbed
+                videoId="nptTzlZwGOg"
+                title="Costruzione di una Casa in Legno Ecolive"
               />
             </ScrollReveal>
           </div>
+
+          {/* Link al canale */}
+          <ScrollReveal delay={0.4}>
+            <div className="mt-8 text-center">
+              <a
+                href="https://www.youtube.com/@Ecolive-xframe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[#86868B] hover:text-[#A0845C] font-medium uppercase tracking-wider transition-colors cursor-pointer group"
+              >
+                Tutti i video sul nostro canale YouTube
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -495,18 +523,18 @@ export default function ChiSiamoPage() {
                     <p className="flex items-center gap-2.5">
                       <Phone className="w-4 h-4 text-[#A0845C] shrink-0" />
                       <span>
-                        <a href="tel:+390963530945" className="hover:text-[#A0845C] transition-colors">
+                        <a href="tel:+390963530945" className="hover:text-[#A0845C] transition-colors cursor-pointer">
                           (0963) 530945
                         </a>
                         {' / '}
-                        <a href="tel:+393662037106" className="hover:text-[#A0845C] transition-colors">
+                        <a href="tel:+393662037106" className="hover:text-[#A0845C] transition-colors cursor-pointer">
                           366.2037106
                         </a>
                       </span>
                     </p>
                     <p className="flex items-center gap-2.5">
                       <Mail className="w-4 h-4 text-[#A0845C] shrink-0" />
-                      <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors">
+                      <a href="mailto:info@ecolive.srl" className="hover:text-[#A0845C] transition-colors cursor-pointer">
                         info@ecolive.srl
                       </a>
                     </p>
@@ -519,12 +547,11 @@ export default function ChiSiamoPage() {
                   </h3>
                   <p className="mt-3 text-[#86868B] leading-relaxed">
                     Visita il nostro stabilimento a Spadola e scopri come nascono le case EcoLive.
-                    Parla direttamente con il nostro team.
                   </p>
                   <div className="mt-6">
                     <Link
                       href="/contatti"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A0845C] text-white font-semibold rounded-full hover:bg-[#856B45] transition-all duration-300 hover:shadow-lg hover:shadow-[#A0845C]/20 cursor-pointer"
                     >
                       Contattaci
                       <ArrowRight className="w-5 h-5" />
