@@ -210,10 +210,10 @@ export default function ChiSiamoPage() {
           </ScrollReveal>
 
           {/* Bento gallery — foto reali fabbrica e cantiere */}
-          <div className="grid grid-cols-6 md:grid-cols-12 gap-3 md:gap-4">
-            {/* Row 1: Grande CNC (8 cols) + Sezionatrice (4 cols) */}
-            <ScrollReveal delay={0.1} direction="up">
-              <div className="col-span-6 md:col-span-8 relative aspect-[16/9] rounded-2xl overflow-hidden group">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {/* Grande CNC — spanning 2 cols */}
+            <ScrollReveal delay={0.1} direction="up" className="col-span-2">
+              <div className="relative aspect-[2/1] md:aspect-[21/9] rounded-2xl overflow-hidden group cursor-default">
                 <Image
                   src="/images/fabbrica/linea-cnc.webp"
                   alt="Linea CNC automatizzata per assemblaggio pannelli parete"
@@ -228,8 +228,10 @@ export default function ChiSiamoPage() {
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={0.2} direction="up">
-              <div className="col-span-3 md:col-span-4 relative aspect-[3/4] md:aspect-[16/9] rounded-2xl overflow-hidden group">
+
+            {/* Sezionatrice */}
+            <ScrollReveal delay={0.2} direction="up" className="col-span-1">
+              <div className="relative aspect-[3/4] md:aspect-[3/4] rounded-2xl overflow-hidden group cursor-default">
                 <Image
                   src="/images/fabbrica/sezionatrice.webp"
                   alt="Operaio X-Frame alla sezionatrice verticale"
@@ -244,9 +246,9 @@ export default function ChiSiamoPage() {
               </div>
             </ScrollReveal>
 
-            {/* Row 2: Pressa (4 cols) + Montaggio colonne (4 cols) + Operaio (4 cols) */}
-            <ScrollReveal delay={0.15} direction="up">
-              <div className="col-span-3 md:col-span-4 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden group">
+            {/* Pressa + Montaggio + Operaio — 3 cols */}
+            <ScrollReveal delay={0.15} direction="up" className="col-span-1">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-default">
                 <Image
                   src="/images/fabbrica/pressa-idraulica.webp"
                   alt="Pressa idraulica per laminazione pannelli"
@@ -260,8 +262,8 @@ export default function ChiSiamoPage() {
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={0.25} direction="up">
-              <div className="col-span-3 md:col-span-4 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden group">
+            <ScrollReveal delay={0.25} direction="up" className="col-span-1">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-default">
                 <Image
                   src="/images/processo/montaggio-colonne.webp"
                   alt="Squadra monta colonne legno nei connettori X-Frame"
@@ -275,8 +277,8 @@ export default function ChiSiamoPage() {
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={0.3} direction="up">
-              <div className="col-span-6 md:col-span-4 relative aspect-[16/9] md:aspect-[4/3] rounded-2xl overflow-hidden group">
+            <ScrollReveal delay={0.3} direction="up" className="col-span-1">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-default">
                 <Image
                   src="/images/processo/operaio-installazione.webp"
                   alt="Operaio installa componenti su parete in legno lamellare"
