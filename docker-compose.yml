@@ -31,8 +31,8 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-public"
 
-      # Production router (www.ecolive.srl + ecolive.srl + preview)
-      - "traefik.http.routers.ecolive.rule=Host(`www.ecolive.srl`) || Host(`ecolive.srl`) || Host(`ecolive.fodivps2.cloud`) || Host(`ecolive-website.fodivps2.cloud`)"
+      # Production router (www.ecolive.srl + ecolive.srl)
+      - "traefik.http.routers.ecolive.rule=Host(`www.ecolive.srl`) || Host(`ecolive.srl`)"
       - "traefik.http.routers.ecolive.entrypoints=websecure"
       - "traefik.http.routers.ecolive.tls.certresolver=letsencrypt"
       - "traefik.http.routers.ecolive.middlewares=ecolive-security-headers"
