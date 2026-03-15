@@ -112,7 +112,7 @@ const faqsByCategory: Record<string, FAQItem[]> = {
     {
       question: 'Quanto dura la garanzia?',
       answer: [
-        'La struttura (grezzo avanzato) \u00E8 coperta da garanzia 50 anni. La fornitura chiavi in mano ha garanzia 10 anni. Sono tra le garanzie pi\u00F9 lunghe dell\u2019intero settore.',
+        'La struttura (grezzo avanzato) \u00E8 coperta da garanzia 30 anni. La fornitura chiavi in mano ha garanzia 10 anni. Sono tra le garanzie pi\u00F9 lunghe dell\u2019intero settore.',
         '\u00ABUna casa X-Frame durer\u00E0 molto pi\u00F9 di qualsiasi casa in muratura\u00BB \u2014 la qualit\u00E0 dei materiali e la precisione della prefabbricazione lo rendono possibile.',
       ],
     },

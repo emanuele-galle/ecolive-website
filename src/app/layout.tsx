@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'EcoLive - Case Prefabbricate in Legno | Sistema X-Frame',
     template: '%s | EcoLive',
   },
-  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe A4, garanzia 50 anni. Spadola (VV), Calabria.',
+  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe A4, garanzia 30 anni. Spadola (VV), Calabria.',
   keywords: ['case prefabbricate legno', 'case in legno Calabria', 'bioedilizia', 'sistema X-Frame', 'casa passiva', 'EcoLive', 'case prefabbricate Sud Italia', 'costruttore case legno'],
   authors: [{ name: 'EcoLive S.r.l.' }],
   openGraph: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'EcoLive - Case Prefabbricate in Legno | Sistema X-Frame',
-    description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe A4, garanzia 50 anni.',
+    description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe A4, garanzia 30 anni.',
   },
 }
 

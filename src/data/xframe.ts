@@ -324,7 +324,7 @@ export const confrontoMuratura: ConfrontoMuraturaRiga[] = [
   },
   {
     parametro: 'Garanzia strutturale',
-    xframe: '50 anni',
+    xframe: '30 anni',
     muratura: '10 anni (legge)',
   },
 ]
@@ -384,7 +384,7 @@ export const listino2025: Listino2025 = {
     medieGrandi: 18_000,
   },
   garanzia: {
-    struttura: 50,
+    struttura: 30,
     chiavInMano: 10,
   },
   incentivoCasaCampione: 5,
@@ -465,7 +465,7 @@ export const inclusoGrezzoAvanzato: string[] = [
   'Trasporto e montaggio in cantiere',
   'Progetto strutturale e relazione di calcolo',
   'Certificazione energetica APE',
-  'Garanzia strutturale 50 anni',
+  'Garanzia strutturale 30 anni',
 ]
 
 /** Voci incluse nel livello "Chiavi in Mano" (in aggiunta al Grezzo Avanzato) */

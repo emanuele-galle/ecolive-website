@@ -47,7 +47,7 @@ const confrontoMuratura = [
   { parametro: 'Prefabbricazione', xframe: '95%+ in laboratorio', muratura: '0% (tutto in cantiere)', xframeWins: true },
   { parametro: 'Ponti termici', xframe: 'Eliminati (base XPS)', muratura: 'Presenti (cordoli, pilastri)', xframeWins: true },
   { parametro: 'Controllo qualit\u00E0', xframe: 'Laboratorio controllato', muratura: 'Cantiere (intemperie)', xframeWins: true },
-  { parametro: 'Garanzia struttura', xframe: '50 anni', muratura: 'Non standard', xframeWins: true },
+  { parametro: 'Garanzia struttura', xframe: '30 anni', muratura: 'Non standard', xframeWins: true },
 ]
 
 function DotRating({ value, highlight }: { value: number; highlight?: boolean }) {
@@ -327,7 +327,7 @@ export default function ConfrontoContent() {
                 <p className="text-white/50 leading-relaxed text-center mb-8 max-w-2xl mx-auto">
                   Una casa in classe A4 consuma fino all&apos;80% in meno di energia rispetto a una costruzione
                   tradizionale. In 30 anni il risparmio energetico supera abbondantemente il costo iniziale aggiuntivo.
-                  Con una garanzia strutturale di 50 anni, i costi di manutenzione straordinaria sono azzerati.
+                  Con una garanzia strutturale di 30 anni, i costi di manutenzione straordinaria sono azzerati.
                 </p>
                 <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
                   {[
@@ -349,7 +349,7 @@ export default function ConfrontoContent() {
             <ScrollReveal delay={0.6}>
               <div className="p-6 rounded-2xl bg-[#A0845C]/10 border border-[#A0845C]/20 text-center">
                 <p className="text-white/80 text-lg font-medium">
-                  50 anni di garanzia sulla struttura parlano da soli.
+                  30 anni di garanzia sulla struttura parlano da soli.
                 </p>
               </div>
             </ScrollReveal>

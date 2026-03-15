@@ -65,7 +65,7 @@ export const SiteSettings: GlobalConfig = {
               name: 'heroSubtitle',
               type: 'textarea',
               label: 'Sottotitolo Hero',
-              defaultValue: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe energetica A4, garanzia 50 anni.',
+              defaultValue: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe energetica A4, garanzia 30 anni.',
             },
           ],
         },

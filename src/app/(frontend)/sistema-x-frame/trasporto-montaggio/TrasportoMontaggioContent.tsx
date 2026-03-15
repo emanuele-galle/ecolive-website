@@ -175,7 +175,7 @@ export default function TrasportoMontaggioContent() {
                 { value: 2, label: 'Camion (vs 4)', suffix: '' },
                 { value: 7, label: 'Giorni montaggio', suffix: '' },
                 { value: 30, label: 'Giorni chiavi in mano', suffix: '' },
-                { value: 50, label: 'Anni garanzia', suffix: '' },
+                { value: 30, label: 'Anni garanzia', suffix: '' },
               ].map((stat, i) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-4xl md:text-5xl font-bold text-[#A0845C]">

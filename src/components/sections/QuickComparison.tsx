@@ -33,7 +33,7 @@ const comparisons: ComparisonItem[] = [
   { param: 'Classe energetica', xframe: 'A1 — A4 (passiva)', masonry: 'B-C (tipica)', icon: Zap },
   { param: 'Trasmittanza pareti', xframe: '0,159 W/m²K', masonry: '0,28-0,40 W/m²K', icon: Thermometer },
   { param: 'Sfasamento termico', xframe: '18,8 ore', masonry: '8-12 ore', icon: Timer },
-  { param: 'Garanzia struttura', xframe: '50 anni', masonry: 'Non standard', icon: Shield },
+  { param: 'Garanzia struttura', xframe: '30 anni', masonry: 'Non standard', icon: Shield },
   { param: 'Prefabbricazione', xframe: '95%+ in laboratorio', masonry: '0% (tutto in cantiere)', icon: Factory },
   { param: 'Antisismicità', xframe: 'Eccellente (legno + acciaio)', masonry: 'Buona (con rinforzi)', icon: Activity },
   { param: 'Sostenibilità', xframe: 'Legno certificato PEFC', masonry: 'Calcestruzzo + laterizi', icon: Leaf },

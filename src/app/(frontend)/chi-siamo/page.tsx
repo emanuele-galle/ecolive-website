@@ -57,7 +57,7 @@ const teamMembers = [
 const stats = [
   { value: 95, label: 'Produzione in laboratorio', suffix: '%' },
   { value: 7, label: 'Giorni di montaggio', suffix: '' },
-  { value: 50, label: 'Anni di garanzia struttura', suffix: '' },
+  { value: 30, label: 'Anni di garanzia struttura', suffix: '' },
   { value: 3, label: 'Tecnologie in un sistema', suffix: '' },
 ]
 
@@ -79,7 +79,7 @@ const differentiators = [
   },
   {
     icon: Shield,
-    title: 'Garanzia 50 anni',
+    title: 'Garanzia 30 anni',
     text: 'Mezzo secolo di garanzia sulla struttura portante. Classe energetica fino ad A4, standard casa passiva. Qualit\u00e0 che si posiziona al livello dei migliori marchi nazionali.',
   },
 ]

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Case Residenziali - La Casa dei Tuoi Sogni in 30 Giorni',
-  description: 'Case residenziali EcoLive: 60-250 m², grezzo avanzato da 1.250 €/mq, chiavi in mano in 30 giorni, classe energetica A1 (A4 opzionale), garanzia 50 anni.',
+  description: 'Case residenziali EcoLive: 60-250 m², grezzo avanzato da 1.250 €/mq, chiavi in mano in 30 giorni, classe energetica A1 (A4 opzionale), garanzia 30 anni.',
 }
 
 export default function ResidenzialePage() {

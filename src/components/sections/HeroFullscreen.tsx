@@ -38,7 +38,7 @@ export default function HeroFullscreen({
   heroVideo,
   heroVideoPoster,
   heroTitle = 'La tua casa, in una settimana',
-  heroSubtitle = 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe energetica A4, garanzia 50 anni.',
+  heroSubtitle = 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema X-Frame. Struttura montata in 7 giorni, classe energetica A4, garanzia 30 anni.',
 }: HeroFullscreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
@@ -113,7 +113,7 @@ export default function HeroFullscreen({
             animate={visible}
             transition={heroTrustTransition}
           >
-            {['Classe A4', 'Garanzia 50 Anni', 'Montaggio in 7 Giorni', '1.250 €/mq'].map(
+            {['Classe A4', 'Garanzia 30 Anni', 'Montaggio in 7 Giorni', '1.250 €/mq'].map(
               (item, i, arr) => (
                 <span key={item} className="flex items-center gap-2 text-white/90 text-sm font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
                   <span>{item}</span>

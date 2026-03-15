@@ -18,7 +18,7 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   name: 'EcoLive S.r.l.',
-  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema costruttivo ibrido X-Frame. Bioedilizia certificata Classe A4, garanzia 50 anni. Sede a Spadola (VV), Calabria.',
+  description: 'EcoLive progetta, produce e costruisce case prefabbricate in legno con il sistema costruttivo ibrido X-Frame. Bioedilizia certificata Classe A4, garanzia 30 anni. Sede a Spadola (VV), Calabria.',
   url: 'https://www.ecolive.srl',
   logo: 'https://www.ecolive.srl/images/logo-ecolive.png',
   image: 'https://www.ecolive.srl/images/logo-ecolive.png',

@@ -14,7 +14,7 @@ const stats = [
   { label: 'Linee', value: '4' },
   { label: 'Superficie', value: 'Da 15 a 400 m²' },
   { label: 'Consegna', value: '30-120 giorni' },
-  { label: 'Garanzia', value: '50 anni' },
+  { label: 'Garanzia', value: '30 anni' },
 ]
 
 const marqueeItems = [

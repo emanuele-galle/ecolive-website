@@ -53,7 +53,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '25-50 m²' },
       { label: 'Tempi realizzazione', value: '30-45 giorni' },
-      { label: 'Garanzia struttura', value: '50 anni' },
+      { label: 'Garanzia struttura', value: '30 anni' },
       { label: 'Classe energetica', value: 'A1 (A4 opzionale)' },
     ],
     modules: [
@@ -85,7 +85,7 @@ export const tipologie: Tipologia[] = [
     specs: [
       { label: 'Superficie', value: '15-40 m²' },
       { label: 'Tempi realizzazione', value: '30-60 giorni' },
-      { label: 'Garanzia struttura', value: '50 anni' },
+      { label: 'Garanzia struttura', value: '30 anni' },
       { label: 'Classe energetica', value: 'A1 (A4 opzionale)' },
     ],
     modules: [
@@ -113,13 +113,13 @@ export const tipologie: Tipologia[] = [
       'Struttura montata in 7 giorni',
       'Classe energetica A1 (A4 opzionale)',
       'Rapporto qualità-prezzo ottimale',
-      'Garanzia struttura 50 anni'
+      'Garanzia struttura 30 anni'
     ],
     specs: [
       { label: 'Superficie', value: '60-250 m²' },
       { label: 'Grezzo avanzato', value: '7 giorni' },
       { label: 'Chiavi in mano', value: '30 giorni' },
-      { label: 'Garanzia struttura', value: '50 anni' },
+      { label: 'Garanzia struttura', value: '30 anni' },
       { label: 'Classe energetica', value: 'A1 (A4 opzionale)' },
     ],
     modules: [
@@ -148,13 +148,13 @@ export const tipologie: Tipologia[] = [
       'Domotica completa Alexa/HomeKit/Matter',
       'Classe A4 — Standard Casa Passiva',
       'Design paesaggistico integrato',
-      'Garanzia struttura 50 anni + manutenzione premium'
+      'Garanzia struttura 30 anni + manutenzione premium'
     ],
     specs: [
       { label: 'Superficie', value: '150-400 m²' },
       { label: 'Grezzo avanzato', value: '10-15 giorni' },
       { label: 'Chiavi in mano', value: '60-90 giorni' },
-      { label: 'Garanzia struttura', value: '50 anni' },
+      { label: 'Garanzia struttura', value: '30 anni' },
       { label: 'Classe energetica', value: 'A4 (casa passiva)' },
     ],
     modules: [
