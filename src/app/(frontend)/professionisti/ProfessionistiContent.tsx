@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Compass,
@@ -213,6 +214,27 @@ export default function ProfessionistiContent() {
             </div>
           </ScrollReveal>
 
+          <ScrollReveal delay={0.05}>
+            <div className="mb-12 relative aspect-[21/9] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/xframe-dettaglio/connettore-fondazione.webp"
+                alt="Dettaglio connettore brevettato X-Frame su fondazione — staffa acciaio zincato"
+                fill
+                className="object-cover object-center"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-6">
+                <p className="text-white font-semibold text-sm drop-shadow-lg">
+                  Connettore brevettato X-Frame
+                </p>
+                <p className="text-white/70 text-xs mt-0.5 drop-shadow-lg">
+                  Staffa in acciaio zincato su fondazione in calcestruzzo
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
           <div className="grid lg:grid-cols-2 gap-10">
             {/* Stratigrafia parete */}
             <ScrollReveal delay={0.1} direction="left">
@@ -349,6 +371,30 @@ export default function ProfessionistiContent() {
               </ul>
             </div>
           </ScrollReveal>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-4">
+            {[
+              { src: '/images/fabbrica/linea-cnc.webp', alt: 'Linea CNC nello stabilimento EcoLive' },
+              { src: '/images/fabbrica/sezionatrice.webp', alt: 'Sezionatrice verticale' },
+              { src: '/images/processo/panoramica-interni.webp', alt: 'Interni struttura X-Frame con travi legno' },
+            ].map((img) => (
+              <ScrollReveal key={img.src} direction="up">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <p className="absolute bottom-3 left-4 text-white text-sm font-medium drop-shadow-lg">
+                    {img.alt}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -7,8 +8,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Truck,
-  Users,
-  Clock,
   Camera,
   Shield,
   Package,
@@ -16,6 +15,7 @@ import {
   Zap,
 } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 import CountUp from '@/components/ui/CountUp'
 import GlassCard from '@/components/ui/GlassCard'
 
@@ -186,6 +186,19 @@ export default function TrasportoMontaggioContent() {
               ))}
             </div>
           </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <div className="mt-14 relative aspect-[21/9] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/processo/gru-solleva-pannello.webp"
+                alt="Gru solleva pannello prefabbricato X-Frame in cantiere"
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1F] via-transparent to-transparent" />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -290,6 +303,30 @@ export default function TrasportoMontaggioContent() {
               </p>
             </div>
           </ScrollReveal>
+
+          <div className="mt-12 grid md:grid-cols-3 gap-4">
+            {[
+              { src: '/images/processo/montaggio-colonne.webp', alt: 'Montaggio colonne legno nei connettori X-Frame' },
+              { src: '/images/processo/consegna-cantiere.webp', alt: 'Consegna componenti prefabbricati in cantiere' },
+              { src: '/images/xframe-dettaglio/connettore-fondazione.webp', alt: 'Connettore brevettato X-Frame su fondazione' },
+            ].map((img) => (
+              <ScrollReveal key={img.src} direction="up">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <p className="absolute bottom-3 left-4 right-4 text-white text-sm font-medium drop-shadow-lg">
+                    {img.alt}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -424,6 +461,26 @@ export default function TrasportoMontaggioContent() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== VIDEO ===== */}
+      <section className="py-16 lg:py-20 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-8">
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Video</span>
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#1D1D1F] mt-2">
+                Il montaggio dal vivo
+              </h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <YouTubeEmbed
+              videoId="nptTzlZwGOg"
+              title="Costruzione di una Casa in Legno Ecolive"
+            />
+          </ScrollReveal>
         </div>
       </section>
 
