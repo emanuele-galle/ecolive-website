@@ -248,29 +248,61 @@ export default function ChiSiamoPage() {
             })}
           </div>
 
-          {/* Factory photos */}
-          <div className="mt-12 grid md:grid-cols-3 gap-4">
-            {[
-              { src: '/images/fabbrica/linea-cnc.webp', alt: 'Linea CNC automatizzata assemblaggio pannelli' },
-              { src: '/images/fabbrica/sezionatrice.webp', alt: 'Operaio X-Frame alla sezionatrice verticale' },
-              { src: '/images/fabbrica/pressa-idraulica.webp', alt: 'Pressa idraulica per laminazione pannelli' },
-            ].map((img) => (
-              <ScrollReveal key={img.src} direction="up">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+          {/* Factory photos — bento layout */}
+          <div className="mt-16">
+            <ScrollReveal>
+              <p className="text-center text-white/40 text-xs font-semibold uppercase tracking-[0.25em] mb-6">
+                Il nostro laboratorio
+              </p>
+            </ScrollReveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {/* Large image spanning 2 cols */}
+              <ScrollReveal delay={0.1} direction="up">
+                <div className="col-span-2 relative aspect-[16/9] rounded-xl overflow-hidden group">
                   <Image
-                    src={img.src}
-                    alt={img.alt}
+                    src="/images/fabbrica/linea-cnc.webp"
+                    alt="Linea CNC automatizzata per assemblaggio pannelli parete"
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                    {img.alt}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <p className="absolute bottom-3 left-4 text-white text-sm font-medium drop-shadow-lg">
+                    Linea CNC automatizzata
                   </p>
                 </div>
               </ScrollReveal>
-            ))}
+              <ScrollReveal delay={0.2} direction="up">
+                <div className="relative aspect-square rounded-xl overflow-hidden group">
+                  <Image
+                    src="/images/fabbrica/sezionatrice.webp"
+                    alt="Operaio X-Frame alla sezionatrice verticale"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <p className="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-lg">
+                    Sezionatrice verticale
+                  </p>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3} direction="up">
+                <div className="relative aspect-square rounded-xl overflow-hidden group">
+                  <Image
+                    src="/images/fabbrica/pressa-idraulica.webp"
+                    alt="Pressa idraulica per laminazione pannelli"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <p className="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-lg">
+                    Pressa idraulica
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
@@ -370,16 +402,6 @@ export default function ChiSiamoPage() {
                 &ldquo;Sartoriali, artigianali. Ogni casa &egrave; un capolavoro.&rdquo;
               </p>
             </motion.div>
-            <div className="mt-10 space-y-6">
-              <YouTubeEmbed
-                videoId="Q29WmCQuqa8"
-                title="Ecolive Srl: La Nostra Storia nel mondo delle Case in Legno"
-              />
-              <YouTubeEmbed
-                videoId="swQRUOTvxJ8"
-                title="Made in Calabria — Tgr RAI Calabria Ecolive"
-              />
-            </div>
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
@@ -414,9 +436,47 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
+      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
 
-      {/* ── 7. COMPANY INFO + CTA ── */}
+      {/* ── 7. VIDEO ── */}
+      <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <span className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium">
+                Video
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3">
+                Scopri EcoLive
+              </h2>
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+                <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
+                <div className="w-8 h-0.5 bg-[#A0845C]/40" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <ScrollReveal delay={0.1} direction="left">
+              <YouTubeEmbed
+                videoId="Q29WmCQuqa8"
+                title="Ecolive Srl: La Nostra Storia nel mondo delle Case in Legno"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.2} direction="right">
+              <YouTubeEmbed
+                videoId="swQRUOTvxJ8"
+                title="Made in Calabria — Tgr RAI Calabria Ecolive"
+              />
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+
+      {/* ── 8. COMPANY INFO + CTA ── */}
       <section className="py-20 lg:py-28 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
