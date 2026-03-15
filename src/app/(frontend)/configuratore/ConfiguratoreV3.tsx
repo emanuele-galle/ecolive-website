@@ -10,11 +10,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Check, RotateCcw } from 'lucide-react'
 
 const steps = [
-  { label: 'Tipologia', title: 'Scegli la Tipologia' },
-  { label: 'Dimensione', title: 'Dimensione Modulare' },
-  { label: 'Finitura', title: 'Livello di Finitura' },
-  { label: 'Planimetria', title: 'Planimetria' },
-  { label: 'Riepilogo', title: 'Riepilogo e Contatto' },
+  { label: 'Tipologia', title: 'Scegli la Tipologia', description: 'Seleziona il tipo di edificio che desideri realizzare' },
+  { label: 'Dimensione', title: 'Dimensione Modulare', description: 'Scegli la metratura e il numero di livelli' },
+  { label: 'Finitura', title: 'Livello di Finitura', description: 'Seleziona il pacchetto di materiali e prestazioni' },
+  { label: 'Planimetria', title: 'Planimetria', description: 'Visualizza il layout suggerito degli ambienti' },
+  { label: 'Riepilogo', title: 'Riepilogo e Contatto', description: 'Verifica la configurazione e prenota la visita in sede' },
 ]
 
 function StepIndicator({ index, currentStep }: { index: number; currentStep: number }) {
@@ -57,7 +57,7 @@ function StepIndicator({ index, currentStep }: { index: number; currentStep: num
           )}
         </div>
         <span
-          className={`absolute top-10 whitespace-nowrap text-[10px] sm:text-xs transition-colors duration-300 ${
+          className={`absolute top-10 whitespace-nowrap text-xs transition-colors duration-300 ${
             isCurrent
               ? 'text-[#A0845C] font-semibold'
               : isCompleted
@@ -81,7 +81,7 @@ export default function ConfiguratoreV3() {
       <div className="bg-white/95 backdrop-blur-md border-b border-[#E8E8ED] sticky top-16 lg:top-20 z-30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           {/* Top row: back + title + restart */}
-          <div className="flex items-center justify-between h-14">
+          <div className="flex items-center justify-between min-h-[3.5rem] py-3">
             <div className="flex items-center gap-2 min-w-0">
               {currentStep > 1 ? (
                 <button
@@ -94,9 +94,12 @@ export default function ConfiguratoreV3() {
               ) : (
                 <div className="w-8 shrink-0" />
               )}
-              <h1 className="text-base sm:text-lg font-bold text-[#1D1D1F] truncate">
-                {steps[currentStep - 1].title}
-              </h1>
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-lg font-bold text-[#1D1D1F] truncate">
+                  {steps[currentStep - 1].title}
+                </h1>
+                <p className="text-sm text-[#86868B] mt-1 truncate">{steps[currentStep - 1].description}</p>
+              </div>
             </div>
 
             {currentStep > 1 && (
@@ -111,7 +114,7 @@ export default function ConfiguratoreV3() {
           </div>
 
           {/* Step indicator dots with connecting lines */}
-          <div className="flex items-center justify-center pb-7 pt-1">
+          <div className="flex items-center justify-center pb-5 pt-1">
             {steps.map((_, i) => (
               <StepIndicator key={i} index={i} currentStep={currentStep} />
             ))}

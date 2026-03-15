@@ -161,8 +161,8 @@ export default function StepRiepilogo() {
         animate={{ opacity: 1, scale: 1 }}
         className="mx-auto flex max-w-md flex-col items-center gap-6 rounded-2xl border border-[#E5E5E7] bg-white p-10 text-center shadow-sm"
       >
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#6B8F71]/15">
-          <svg className="h-8 w-8 text-[#6B8F71]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#6B8F71]/15">
+          <svg className="h-10 w-10 text-[#6B8F71]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
@@ -326,8 +326,8 @@ export default function StepRiepilogo() {
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between border-b border-[#F5F5F7] pb-2">
-      <span className="text-[#86868B]">{label}</span>
-      <span className="font-medium text-[#1D1D1F]">{value}</span>
+      <span className="text-base text-[#86868B]">{label}</span>
+      <span className="text-base font-medium text-[#1D1D1F]">{value}</span>
     </div>
   )
 }

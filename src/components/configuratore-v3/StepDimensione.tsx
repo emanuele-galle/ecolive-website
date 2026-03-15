@@ -40,6 +40,10 @@ export default function StepDimensione() {
   }
 
   return (
+    <div>
+      <div className="mb-6 text-center">
+        <p className="text-[#86868B] text-base">Dimensioni disponibili per la tipologia selezionata. I moduli sono combinabili.</p>
+      </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {moduli.map((m, i) => {
         const isSelected = modulo?.id === m.id
@@ -52,12 +56,17 @@ export default function StepDimensione() {
             animate="visible"
             whileHover={{ y: -4 }}
             onClick={() => handleSelect(m)}
-            className={`group relative flex flex-col items-start rounded-2xl border-2 p-6 text-left transition-colors ${
+            className={`group relative flex flex-col items-start rounded-2xl border-2 p-6 text-left transition-all overflow-hidden ${
               isSelected
                 ? 'border-[#A0845C] shadow-lg shadow-[#A0845C]/20 bg-[#A0845C]/5'
                 : 'border-[#E5E5E7] hover:border-[#A0845C]/50 bg-white'
             }`}
           >
+            {/* Gold top accent on hover */}
+            <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${
+              isSelected ? 'bg-[#A0845C]' : 'bg-transparent group-hover:bg-[#A0845C]/50'
+            }`} />
+
             {/* MQ large number */}
             <span className="text-5xl font-bold text-[#1D1D1F]">
               {m.mq}
@@ -78,6 +87,7 @@ export default function StepDimensione() {
           </motion.button>
         )
       })}
+    </div>
     </div>
   )
 }

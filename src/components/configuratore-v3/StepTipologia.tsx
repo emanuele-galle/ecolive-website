@@ -23,6 +23,10 @@ export default function StepTipologia() {
   }
 
   return (
+    <div>
+      <div className="mb-6 text-center">
+        <p className="text-[#86868B] text-base">Ogni tipologia ha caratteristiche e prezzi diversi. Clicca per selezionare.</p>
+      </div>
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
       {tipologie.map((t, i) => {
         const isSelected = tipologia === t.id
@@ -42,14 +46,14 @@ export default function StepTipologia() {
             } bg-white`}
           >
             {/* Image */}
-            <div className="relative h-[200px] w-full overflow-hidden">
+            <div className="relative h-[180px] sm:h-[200px] w-full overflow-hidden">
               <Image
                 src={t.imageUrl}
                 alt={t.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-[#1D1D1F]/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+              <span className="absolute left-3 top-3 rounded-full bg-[#1D1D1F]/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
                 {t.category}
               </span>
             </div>
@@ -68,6 +72,7 @@ export default function StepTipologia() {
           </motion.button>
         )
       })}
+    </div>
     </div>
   )
 }

@@ -30,6 +30,10 @@ export default function StepFinitura() {
   }
 
   return (
+    <div>
+      <div className="mb-6 text-center">
+        <p className="text-[#86868B] text-base">Tre livelli di finitura con materiali certificati. La finitura Premium è lo standard EcoLive.</p>
+      </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
       {finiture.map((f, i) => {
         const isSelected = finitura === f.id
@@ -55,7 +59,7 @@ export default function StepFinitura() {
           >
             {/* Recommended badge */}
             {isRecommended && (
-              <span className="absolute -top-3 right-4 inline-flex items-center gap-1 rounded-full bg-[#A0845C] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+              <span className="absolute -top-3 right-4 inline-flex items-center gap-1 rounded-full bg-[#A0845C] px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
                 <Star className="h-3 w-3" /> Raccomandato
               </span>
             )}
@@ -88,6 +92,7 @@ export default function StepFinitura() {
           </motion.button>
         )
       })}
+    </div>
     </div>
   )
 }
