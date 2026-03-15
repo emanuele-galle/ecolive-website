@@ -487,29 +487,7 @@ export default function ParetiContent() {
         </div>
       </section>
 
-      <SectionTransition from="#FFFFFF" to="#A0845C" height={80} />
-
-      {/* ===== 6. CALLOUT ===== */}
-      <section className="py-20 lg:py-28 bg-[var(--color-primary)]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <ScrollReveal>
-            <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
-              &ldquo;La parete arriva in cantiere gi&agrave; finita.
-              <br className="hidden md:block" />
-              Manca solo la mano finale di tonachino acril-silossanico.&rdquo;
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-8 text-white/70 text-sm">
-              <span>29 cm di spessore</span>
-              <span className="w-1 h-1 bg-white/40 rounded-full" />
-              <span>0,159 W/m&sup2;K</span>
-              <span className="w-1 h-1 bg-white/40 rounded-full" />
-              <span>18,8 ore di sfasamento</span>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <SectionTransition from="#A0845C" to="#F5F5F7" height={80} />
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
       {/* ===== 7. NAVIGAZIONE ===== */}
       <section className="py-20 lg:py-28 bg-[var(--color-surface)]">
