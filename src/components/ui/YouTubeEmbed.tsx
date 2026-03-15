@@ -12,7 +12,7 @@ interface YouTubeEmbedProps {
 export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
   const [playing, setPlaying] = useState(false)
   const [imgSrc, setImgSrc] = useState(
-    `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
+    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
   )
 
   if (playing) {
@@ -43,7 +43,7 @@ export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
         alt={title}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
-        onError={() => setImgSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)}
+        onError={() => setImgSrc(`https://img.youtube.com/vi/${videoId}/0.jpg`)}
       />
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
       <div className="absolute inset-0 flex items-center justify-center">
