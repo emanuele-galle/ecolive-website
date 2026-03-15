@@ -278,7 +278,7 @@ export default function ProcessoContent() {
             direction="bottom"
           />
           <motion.p
-            className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
+            className="mt-8 text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -530,7 +530,7 @@ export default function ProcessoContent() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
               Pronto a iniziare il tuo percorso?
             </h2>
-            <p className="mt-6 text-lg text-white/70 max-w-xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg md:text-xl text-white/70 max-w-xl mx-auto leading-relaxed">
               Configura la tua casa ideale e scopri prezzi, tempi e specifiche tecniche del sistema X-Frame.
               Il primo incontro e sempre senza impegno.
             </p>
@@ -564,7 +564,7 @@ function StepCard({ step, Icon }: { step: ProcessStep; Icon: typeof MessageCircl
         <span className="text-xs text-[#A0845C] uppercase tracking-wider font-medium">{step.subtitle}</span>
       </div>
       <h3 className="text-xl md:text-2xl font-bold text-[#1D1D1F] mb-3">{step.title}</h3>
-      <p className="text-[#86868B] leading-relaxed mb-5">{step.description}</p>
+      <p className="text-[#86868B] text-base leading-relaxed mb-5">{step.description}</p>
       <ul className="space-y-2.5 mb-5">
         {step.details.map((d) => (
           <li key={d} className="flex items-start gap-2.5 text-sm text-[#1D1D1F]/80">

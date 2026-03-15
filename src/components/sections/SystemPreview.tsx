@@ -126,7 +126,7 @@ export default function SystemPreview() {
                   surclassa tutti
                 </h2>
 
-                <p className="text-[#6E6E73] text-base lg:text-lg leading-relaxed mt-5 ml-4 lg:ml-5">
+                <p className="text-[#6E6E73] text-lg lg:text-xl leading-relaxed mt-5 ml-4 lg:ml-5">
                   L&apos;X-Frame combina Platform Frame, X-Lam e Post &amp; Beam
                   in un unico sistema costruttivo. Pareti, solai e coperture
                   vengono prodotti in laboratorio e arrivano in cantiere

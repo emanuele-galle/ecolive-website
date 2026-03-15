@@ -149,7 +149,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
             initial={fadeInUpInitial}
             animate={fadeInUpAnimate}
             transition={heroSubTransition}
-            className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-xl sm:text-2xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Prenota una visita in sede a Spadola e tocca con mano
             <br className="hidden sm:block" />
@@ -447,7 +447,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="text-[#86868B] text-lg max-w-2xl mx-auto mt-5 leading-relaxed">
+              <p className="text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto mt-5 leading-relaxed">
                 La sede e il laboratorio EcoLive si trovano a Spadola, nel cuore
                 del Parco Naturale delle Serre, in Calabria.
               </p>
@@ -464,7 +464,7 @@ export default function ContactPageClient({ onSubmit }: ContactPageClientProps) 
                   <h4 className="font-semibold text-[#1D1D1F] text-lg mb-3">
                     {dir.title}
                   </h4>
-                  <p className="text-[#86868B] text-sm leading-relaxed">{dir.desc}</p>
+                  <p className="text-[#86868B] text-base leading-relaxed">{dir.desc}</p>
                 </SpotlightCard>
               </ScrollReveal>
             ))}

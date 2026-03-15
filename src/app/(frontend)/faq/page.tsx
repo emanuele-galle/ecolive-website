@@ -298,8 +298,8 @@ function FAQAccordionItem({
                         key={i}
                         className={
                           isQuote
-                            ? 'text-[#A0845C] font-medium italic leading-relaxed'
-                            : 'text-[#86868B] leading-relaxed'
+                            ? 'text-[#A0845C] font-medium italic text-base leading-relaxed'
+                            : 'text-[#86868B] text-base leading-relaxed'
                         }
                       >
                         {paragraph}
@@ -402,7 +402,7 @@ export default function FAQPage() {
           />
 
           <ScrollReveal delay={0.3}>
-            <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">
               Costi, tempi, materiali, garanzie: tutto quello che devi sapere
               per scegliere con consapevolezza la tua casa in legno.
             </p>
@@ -497,7 +497,7 @@ export default function FAQPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <p className="text-white/50 mb-12 text-lg max-w-xl mx-auto leading-relaxed">
+            <p className="text-white/50 mb-12 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
               Il nostro team &egrave; a disposizione per rispondere a qualsiasi
               domanda. Prenota una visita in sede o contattaci direttamente.
             </p>

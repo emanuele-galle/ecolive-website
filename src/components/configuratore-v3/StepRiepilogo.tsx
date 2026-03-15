@@ -167,7 +167,7 @@ export default function StepRiepilogo() {
           </svg>
         </div>
         <h3 className="text-xl font-bold text-[#1D1D1F]">Grazie!</h3>
-        <p className="text-sm leading-relaxed text-[#86868B]">
+        <p className="text-base leading-relaxed text-[#86868B]">
           Ti contatteremo entro 24 ore per fissare la visita in sede e definire insieme ogni dettaglio del tuo progetto.
         </p>
         <Link

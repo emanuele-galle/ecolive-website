@@ -196,7 +196,7 @@ export default function TipologiaTemplate({
                         <Icon className="w-7 h-7" style={{ color: LUXURY_GOLD }} />
                       </div>
                       <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                      <p className="text-white/50 leading-relaxed">{item.description}</p>
+                      <p className="text-white/50 text-base leading-relaxed">{item.description}</p>
                     </motion.div>
                   </ScrollReveal>
                 )
@@ -252,7 +252,7 @@ export default function TipologiaTemplate({
                     >
                       <Check className="w-4 h-4" style={{ color: GOLD }} />
                     </div>
-                    <span className="text-[15px] font-medium" style={{ color: DARK }}>{feature}</span>
+                    <span className="text-base font-medium" style={{ color: DARK }}>{feature}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -313,7 +313,7 @@ export default function TipologiaTemplate({
                 <p className="text-3xl md:text-4xl font-bold mb-2" style={{ color: accentColor, fontFeatureSettings: '"tnum"' }}>
                   {spec.value}
                 </p>
-                <p className="text-sm text-white/50">{spec.label}</p>
+                <p className="text-base text-white/50">{spec.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -380,7 +380,7 @@ export default function TipologiaTemplate({
             <p className="text-3xl md:text-5xl font-bold mb-4" style={{ color: GOLD }}>
               {priceRange}
             </p>
-            <p className="text-sm leading-relaxed max-w-md mx-auto" style={{ color: MUTED }}>
+            <p className="text-base leading-relaxed max-w-md mx-auto" style={{ color: MUTED }}>
               Prezzo indicativo. Il preventivo definitivo viene elaborato dopo la visita in sede e il rilievo tecnico del terreno.
             </p>
           </ScrollReveal>
@@ -400,7 +400,7 @@ export default function TipologiaTemplate({
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               {isLuxury ? 'Prenota una Consulenza Esclusiva' : `Configura la tua ${title}`}
             </h2>
-            <p className="text-white/50 mb-10 max-w-lg mx-auto">
+            <p className="text-white/50 text-base mb-10 max-w-lg mx-auto">
               {isLuxury
                 ? 'Parla direttamente con il nostro team per progettare la villa dei tuoi sogni. Ogni dettaglio, su misura per te.'
                 : 'Scegli dimensioni, finitura e ottieni un preventivo personalizzato in tempo reale.'}

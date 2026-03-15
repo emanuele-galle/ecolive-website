@@ -108,7 +108,7 @@ export default function ChiSiamoPage() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-8 text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed">
               Dal cuore della Calabria, nel Parco delle Serre, progettiamo, produciamo e costruiamo
               edifici in bioedilizia con il sistema costruttivo X-Frame. Poche case, ma perfette.
             </p>
@@ -213,7 +213,7 @@ export default function ChiSiamoPage() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-white/70 text-lg max-w-3xl mx-auto leading-relaxed">
+              <p className="mt-6 text-white/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                 A Spadola riceviamo semilavorati dall&apos;Austria &mdash; pannelli lamellari a
                 tre strati e travi in legno lamellare &mdash; e li trasformiamo in travi, pilastri
                 e ogni elemento strutturale necessario. Il tutto in un ambiente dove temperatura,
@@ -267,7 +267,7 @@ export default function ChiSiamoPage() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
+              <p className="mt-6 text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto">
                 Un team multidisciplinare che copre ogni aspetto: dalla visione imprenditoriale
                 alla direzione tecnica, dalla relazione commerciale alla tutela legale.
               </p>

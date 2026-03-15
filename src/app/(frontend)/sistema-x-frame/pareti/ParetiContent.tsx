@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -116,6 +117,13 @@ export default function ParetiContent() {
     <div className="min-h-screen bg-[var(--color-background)]">
       {/* ===== 1. HEADER ===== */}
       <section className="relative bg-gradient-to-br from-[var(--color-secondary-dark)] via-[var(--color-secondary)] to-[var(--color-secondary-dark)] py-28 lg:py-40 overflow-hidden">
+        <Image
+          src="/images/xframe-render/optimized/render-base.webp"
+          alt="Parete X-Frame - render costruttivo"
+          fill
+          className="object-cover opacity-20"
+          priority
+        />
         <div className="absolute inset-0" style={{ backgroundImage: grainOverlay }} />
         <div className="relative max-w-5xl mx-auto px-6">
           <ScrollReveal direction="left">
@@ -198,7 +206,7 @@ export default function ParetiContent() {
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-[var(--color-secondary-dark)]">
                 Anatomia della <span className="text-[var(--color-primary)]">Parete</span>
               </h2>
-              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+              <p className="text-[var(--color-muted)] text-lg md:text-xl max-w-2xl mx-auto mt-4">
                 7 strati ingegnerizzati per prestazioni ai massimi livelli normativi.
                 Ogni componente ha una funzione precisa, nessun materiale &egrave; superfluo.
               </p>
@@ -215,6 +223,18 @@ export default function ParetiContent() {
                   Con il Bilam queste problematiche sono eliminate alla radice.
                 </p>
               </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.15}>
+            <div className="mb-12 rounded-2xl overflow-hidden border border-[#EDE6DB]">
+              <Image
+                src="/images/xframe-render/optimized/spaccato-copertina.webp"
+                alt="Spaccato stratigrafia parete X-Frame"
+                width={1200}
+                height={600}
+                className="w-full h-auto"
+              />
             </div>
           </ScrollReveal>
 
@@ -249,7 +269,7 @@ export default function ParetiContent() {
                         </span>
                       )}
                     </div>
-                    <p className="text-[var(--color-muted)] text-sm mt-1 leading-relaxed">
+                    <p className="text-[var(--color-muted)] text-base mt-1 leading-relaxed">
                       {layer.description}
                     </p>
                   </div>
@@ -277,7 +297,7 @@ export default function ParetiContent() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-secondary-dark)]">
                 Monoblocco <span className="text-[var(--color-primary)]">Finestra</span>
               </h2>
-              <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto mt-4">
+              <p className="text-[var(--color-muted)] text-lg md:text-xl max-w-2xl mx-auto mt-4">
                 Il controtelaio finestra &egrave; pre-assemblato in stabilimento come parte integrante
                 del pannello parete. Mazzette, paraspigoli, finitura e impermeabilizzazione:
                 tutto gi&agrave; integrato, nessun adattamento in cantiere.
@@ -300,7 +320,7 @@ export default function ParetiContent() {
                     <h3 className="font-bold text-[var(--color-secondary-dark)] text-lg mb-2 group-hover:text-[#A0845C] transition-colors">
                       {feat.title}
                     </h3>
-                    <p className="text-[var(--color-muted)] text-sm leading-relaxed">
+                    <p className="text-[var(--color-muted)] text-base leading-relaxed">
                       {feat.description}
                     </p>
                   </motion.div>
@@ -329,7 +349,7 @@ export default function ParetiContent() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                 Base <span className="text-[#A0845C]">XPS</span> al posto del cordolo
               </h2>
-              <p className="text-white/50 text-lg max-w-3xl mx-auto mt-4">
+              <p className="text-white/50 text-lg md:text-xl max-w-3xl mx-auto mt-4">
                 XPS ad altissima densit&agrave; (700&nbsp;kPa) nella parte inferiore della parete
                 sostituisce il tradizionale cordolo perimetrale in cemento armato.
                 Una rivoluzione che semplifica radicalmente la fondazione.
@@ -347,7 +367,7 @@ export default function ParetiContent() {
                       <Icon className="w-5 h-5 text-[#A0845C]" />
                     </div>
                     <h3 className="font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+                    <p className="text-base text-white/50 leading-relaxed">{item.description}</p>
                   </GlassCard>
                 </ScrollReveal>
               )
@@ -415,7 +435,59 @@ export default function ParetiContent() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#A0845C" height={80} />
+      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
+
+      {/* ===== 5b. REALIZZAZIONI GALLERY ===== */}
+      <section className="py-24 lg:py-32 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="w-8 h-px bg-[#A0845C]" />
+                <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">
+                  Portfolio
+                </span>
+                <div className="w-8 h-px bg-[#A0845C]" />
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">
+                Le Nostre Realizzazioni
+              </h2>
+              <p className="text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto mt-4">
+                Pareti X-Frame nei progetti completati. Ogni casa è una dimostrazione
+                tangibile della qualità costruttiva.
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[1, 5, 10, 15].map((n) => (
+              <ScrollReveal key={n} delay={n * 0.05}>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group">
+                  <Image
+                    src={`/images/luxury/gallery-${n}.webp`}
+                    alt={`Progetto EcoLive ${n}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center mt-10">
+              <Link
+                href="/tipologie"
+                className="inline-flex items-center gap-2 text-[#A0845C] font-medium hover:gap-3 transition-all"
+              >
+                Scopri tutte le tipologie
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <SectionTransition from="#FFFFFF" to="#A0845C" height={80} />
 
       {/* ===== 6. CALLOUT ===== */}
       <section className="py-20 lg:py-28 bg-[var(--color-primary)]">

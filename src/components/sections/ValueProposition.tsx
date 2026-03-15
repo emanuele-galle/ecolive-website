@@ -74,7 +74,7 @@ export default function ValueProposition() {
           <p className="text-xs font-semibold text-[#A0845C] uppercase tracking-[0.2em] mb-3">
             I numeri che contano
           </p>
-          <p className="text-lg text-white/50 font-normal">
+          <p className="text-lg md:text-xl text-white/50 font-normal">
             Velocità, precisione, durabilità
           </p>
         </motion.div>
@@ -121,7 +121,7 @@ export default function ValueProposition() {
                 <h3 className="text-lg font-semibold text-white mb-1 tracking-tight">
                   {stat.label}
                 </h3>
-                <p className="text-sm text-white/40 leading-relaxed max-w-xs">
+                <p className="text-base text-white/40 leading-relaxed max-w-xs">
                   {stat.description}
                 </p>
               </div>

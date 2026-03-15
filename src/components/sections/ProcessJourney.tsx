@@ -111,7 +111,7 @@ export default function ProcessJourney() {
                               </span>
                             )}
                           </div>
-                          <p className="text-[#86868B] text-sm leading-relaxed">{step.description}</p>
+                          <p className="text-[#86868B] text-base leading-relaxed">{step.description}</p>
                         </div>
                       </div>
                     </div>

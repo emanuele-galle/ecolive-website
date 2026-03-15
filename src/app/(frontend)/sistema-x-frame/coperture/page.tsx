@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react'
@@ -67,6 +68,13 @@ export default function CoperturePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative bg-[#1D1D1F] pt-32 pb-24 lg:pb-32 px-6 overflow-hidden">
+        <Image
+          src="/images/xframe-render/optimized/tetto-vista-sopra.webp"
+          alt="Copertura X-Frame vista dall'alto"
+          fill
+          className="object-cover opacity-15"
+          priority
+        />
         <div className="absolute inset-0" style={{ backgroundImage: grainOverlay }} />
         <div className="relative max-w-6xl mx-auto">
           <ScrollReveal>
@@ -86,7 +94,7 @@ export default function CoperturePage() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
               Tetto piano, a una falda o a due falde. I monoblocchi arrivano dal nostro laboratorio
               di Spadola con camera di ventilazione e contro-listelli gia montati. Posa immediata della copertura.
             </p>
@@ -108,6 +116,27 @@ export default function CoperturePage() {
             </h2>
           </ScrollReveal>
 
+          <div className="mb-12 grid lg:grid-cols-2 gap-8 items-center">
+            <div className="rounded-2xl overflow-hidden border border-[#EDE6DB] shadow-lg">
+              <Image
+                src="/images/xframe-render/optimized/tetto-piano.webp"
+                alt="Copertura tetto piano X-Frame"
+                width={800}
+                height={500}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-[#EDE6DB] shadow-lg">
+              <Image
+                src="/images/xframe-render/optimized/tetto-piano-osb.webp"
+                alt="Dettaglio copertura X-Frame con pannelli OSB"
+                width={800}
+                height={500}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-3 gap-6">
             {roofTypes.map((roof, i) => (
               <ScrollReveal key={roof.title} delay={i * 0.12}>
@@ -117,7 +146,7 @@ export default function CoperturePage() {
                 >
                   <span className="text-[#A0845C] text-xs tracking-[0.15em] uppercase font-medium mb-3">{roof.subtitle}</span>
                   <h3 className="text-2xl font-bold text-[#1D1D1F] mb-4">{roof.title}</h3>
-                  <p className="text-[#86868B] leading-relaxed flex-1 mb-6">{roof.description}</p>
+                  <p className="text-[#86868B] text-base leading-relaxed flex-1 mb-6">{roof.description}</p>
                   <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[#EDE6DB]">
                     {roof.stats.map((stat) => (
                       <div key={stat.label}>
@@ -145,11 +174,21 @@ export default function CoperturePage() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               Materiali di Copertura
             </h2>
-            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
+            <p className="text-[#86868B] text-lg md:text-xl max-w-3xl mb-16">
               Materiali selezionati per durabilita, estetica e compatibilita con il sistema X-Frame.
               Ogni soluzione si integra con i monoblocchi prefabbricati senza lavorazioni aggiuntive.
             </p>
           </ScrollReveal>
+
+          <div className="mb-12 rounded-2xl overflow-hidden border border-[#EDE6DB] shadow-lg">
+            <Image
+              src="/images/xframe-render/optimized/tetto-3-strati.webp"
+              alt="Stratigrafia copertura X-Frame"
+              width={1200}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
 
           <div className="space-y-4">
             {roofMaterials.map((mat, i) => (
@@ -165,7 +204,7 @@ export default function CoperturePage() {
                         <span className="px-3 py-1 bg-[#A0845C]/10 text-[#A0845C] text-xs font-semibold rounded-full">{mat.tag}</span>
                       )}
                     </div>
-                    <p className="text-[#86868B] leading-relaxed">{mat.description}</p>
+                    <p className="text-[#86868B] text-base leading-relaxed">{mat.description}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -188,7 +227,7 @@ export default function CoperturePage() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Monoblocchi <span className="text-[#A0845C]">Pronti alla Posa</span>
               </h2>
-              <p className="text-white/50 text-lg max-w-3xl mx-auto leading-relaxed">
+              <p className="text-white/50 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                 I monoblocchi di copertura X-Frame arrivano in cantiere gia equipaggiati con camera di
                 ventilazione e contro-listelli per l&apos;ancoraggio delle tegole. La posa della copertura
                 finale avviene immediatamente, senza nessuna lavorazione intermedia.
@@ -215,6 +254,32 @@ export default function CoperturePage() {
         </div>
       </section>
 
+      {/* ===== GALLERY ===== */}
+      <section className="py-20 lg:py-28 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Realizzazioni</span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">Coperture X-Frame in Opera</h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[2, 7, 14, 20].map((n, i) => (
+              <ScrollReveal key={n} delay={i * 0.08}>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group">
+                  <Image
+                    src={`/images/luxury/gallery-${n}.webp`}
+                    alt={`Copertura X-Frame realizzazione ${i + 1}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== CTA ===== */}
       <section className="py-20 lg:py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
@@ -222,7 +287,7 @@ export default function CoperturePage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1D1D1F] mb-4">
               Configura la tua <span className="text-[#A0845C]">Casa X-Frame</span>
             </h2>
-            <p className="text-[#86868B] text-lg mb-8">
+            <p className="text-[#86868B] text-lg md:text-xl mb-8">
               Scegli tipologia di copertura, metratura e livello di finitura. Preventivo personalizzato.
             </p>
             <Link

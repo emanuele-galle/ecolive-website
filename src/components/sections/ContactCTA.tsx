@@ -93,7 +93,7 @@ export default function ContactCTA() {
                     </div>
 
                     <h3 className="text-2xl font-bold text-[#1D1D1F] mb-3 tracking-tight">{path.title}</h3>
-                    <p className="text-[#86868B] leading-relaxed mb-8 flex-1">{path.description}</p>
+                    <p className="text-[#86868B] text-base leading-relaxed mb-8 flex-1">{path.description}</p>
 
                     <span className="inline-flex items-center gap-2 text-[#A0845C] font-semibold text-sm group-hover:gap-3 transition-all duration-300">
                       {path.cta}

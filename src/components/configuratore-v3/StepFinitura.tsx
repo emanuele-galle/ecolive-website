@@ -62,7 +62,7 @@ export default function StepFinitura() {
 
             {/* Title and description */}
             <h3 className="text-xl font-bold text-[#1D1D1F]">{f.label}</h3>
-            <p className="mt-2 text-sm text-[#86868B] leading-relaxed">{f.description}</p>
+            <p className="mt-2 text-base text-[#86868B] leading-relaxed">{f.description}</p>
 
             {/* Materials list */}
             <ul className="mt-4 flex flex-col gap-2">

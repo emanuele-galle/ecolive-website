@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ChevronRight, ArrowLeft, ArrowRight } from 'lucide-react'
@@ -66,6 +67,13 @@ export default function SolaiPage() {
 
       {/* ===== HERO ===== */}
       <section className="relative bg-[#1D1D1F] pt-32 pb-24 lg:pb-32 px-6 overflow-hidden">
+        <Image
+          src="/images/xframe-render/optimized/vista-sopra.webp"
+          alt="Solaio X-Frame vista dall'alto"
+          fill
+          className="object-cover opacity-15"
+          priority
+        />
         <div className="absolute inset-0" style={{ backgroundImage: grainOverlay }} />
         <div className="relative max-w-6xl mx-auto">
           <ScrollReveal>
@@ -85,7 +93,7 @@ export default function SolaiPage() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/50 max-w-2xl leading-relaxed">
               Moduli prefabbricati larghi 2,10 metri e lunghi fino a 13. Arrivano in cantiere completi,
               immediatamente calpestabili, stoccabili all&apos;aperto. Prodotti interamente nel nostro
               laboratorio di Spadola a temperatura e umidita controllate.
@@ -106,11 +114,21 @@ export default function SolaiPage() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               Solaio di Copertura
             </h2>
-            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
+            <p className="text-[#86868B] text-lg md:text-xl max-w-3xl mb-16">
               Cinque strati progettati per lavorare insieme: struttura, estetica, isolamento, rigidezza e gestione dell&apos;umidita.
               Ogni componente ha un ruolo preciso nella prestazione complessiva.
             </p>
           </ScrollReveal>
+
+          <div className="mb-12 rounded-2xl overflow-hidden border border-[#EDE6DB] shadow-lg">
+            <Image
+              src="/images/xframe-render/optimized/tetto-3-strati.webp"
+              alt="Stratigrafia solaio di copertura X-Frame"
+              width={1200}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
 
           <div className="space-y-4">
             {roofStratigraphy.map((layer, i) => (
@@ -129,7 +147,7 @@ export default function SolaiPage() {
                     <h3 className="text-lg font-bold text-[#1D1D1F] mb-2 group-hover:text-[#A0845C] transition-colors">
                       {layer.name}
                     </h3>
-                    <p className="text-[#86868B] leading-relaxed">{layer.detail}</p>
+                    <p className="text-[#86868B] text-base leading-relaxed">{layer.detail}</p>
                   </div>
                 </motion.div>
               </ScrollReveal>
@@ -178,7 +196,7 @@ export default function SolaiPage() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               Solaio Interpiano
             </h2>
-            <p className="text-[#86868B] text-lg max-w-3xl mb-16">
+            <p className="text-[#86868B] text-lg md:text-xl max-w-3xl mb-16">
               Non solo un piano di calpestio, ma una piastra strutturale che irrigidisce l&apos;edificio
               e integra tutti gli spazi tecnici per impianti elettrici, idraulici e di scarico.
             </p>
@@ -190,7 +208,7 @@ export default function SolaiPage() {
                 <div className="group p-8 bg-white rounded-2xl border-t-2 border-t-transparent border border-[#EDE6DB] h-full hover:border-t-[#A0845C] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                   <div className="w-8 h-1 bg-[#A0845C]/30 rounded-full mb-5 group-hover:w-12 group-hover:bg-[#A0845C] transition-all duration-300" />
                   <h3 className="text-lg font-bold text-[#1D1D1F] mb-3">{feat.title}</h3>
-                  <p className="text-[#86868B] leading-relaxed">{feat.description}</p>
+                  <p className="text-[#86868B] text-base leading-relaxed">{feat.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -205,11 +223,34 @@ export default function SolaiPage() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] text-center mb-6">
               Il Modulo
             </h2>
-            <p className="text-[#86868B] text-lg max-w-2xl mx-auto text-center mb-16">
+            <p className="text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto text-center mb-16">
               Ogni modulo solaio esce dal laboratorio completo e impermeabilizzato.
               Stoccabile all&apos;aperto senza protezioni aggiuntive.
             </p>
           </ScrollReveal>
+
+          <div className="mb-12 grid lg:grid-cols-2 gap-8 items-center">
+            <div className="rounded-2xl overflow-hidden border border-[#EDE6DB] shadow-lg">
+              <Image
+                src="/images/xframe-render/optimized/tetto-principale.webp"
+                alt="Modulo solaio X-Frame"
+                width={800}
+                height={500}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="space-y-4">
+              <p className="text-[#86868B] leading-relaxed">
+                I moduli solaio vengono prodotti nel laboratorio di Spadola in condizioni controllate di temperatura e umidità.
+                Larghi 2,10 metri e lunghi fino a 13 metri, arrivano in cantiere completamente impermeabilizzati
+                e immediatamente calpestabili, senza necessità di attesa o protezione.
+              </p>
+              <p className="text-[#86868B] leading-relaxed">
+                Le travi portanti lamellari viaggiano <strong className="text-[#1D1D1F]">all&apos;interno</strong> dei moduli
+                durante il trasporto, ottimizzando lo spazio e riducendo il numero di viaggi necessari.
+              </p>
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
@@ -242,6 +283,32 @@ export default function SolaiPage() {
               </div>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ===== GALLERY ===== */}
+      <section className="py-20 lg:py-28 px-6 bg-[#F5F5F7]">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <span className="text-[#A0845C] text-xs tracking-[0.2em] uppercase font-medium">Realizzazioni</span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1D1D1F] mt-3">Solai X-Frame in Opera</h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            {[3, 8, 12, 18, 22, 27].map((n, i) => (
+              <ScrollReveal key={n} delay={i * 0.08}>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden group">
+                  <Image
+                    src={`/images/luxury/gallery-${n}.webp`}
+                    alt={`Solaio X-Frame realizzazione ${i + 1}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

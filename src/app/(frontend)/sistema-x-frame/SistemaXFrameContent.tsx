@@ -120,7 +120,7 @@ export default function SistemaXFrameContent() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/70 max-w-2xl leading-relaxed">
               L&apos;ibrido brevettato che fonde{' '}
               <span className="text-white/90 font-medium">Platform Frame</span>,{' '}
               <span className="text-white/90 font-medium">X-Lam</span> e{' '}
@@ -190,7 +190,7 @@ export default function SistemaXFrameContent() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
                 Esplora il <span className="text-[#A0845C]">Sistema</span>
               </h2>
-              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+              <p className="text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto">
                 Approfondisci ogni aspetto della tecnologia costruttiva X-Frame
               </p>
             </div>
@@ -225,7 +225,7 @@ export default function SistemaXFrameContent() {
                         {card.title}
                       </h3>
 
-                      <p className="text-[#86868B] leading-relaxed text-sm flex-1 mb-6">
+                      <p className="text-[#86868B] leading-relaxed text-base flex-1 mb-6">
                         {card.description}
                       </p>
 
@@ -250,7 +250,7 @@ export default function SistemaXFrameContent() {
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-[#1D1D1F] mb-3">
                 Certificazioni e Standard
               </h2>
-              <p className="text-[#86868B] text-base max-w-xl mx-auto">
+              <p className="text-[#86868B] text-base md:text-lg max-w-xl mx-auto">
                 X-Frame soddisfa i più rigorosi standard internazionali di bioedilizia
               </p>
             </div>

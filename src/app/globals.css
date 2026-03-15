@@ -157,6 +157,21 @@ body {
   background: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.0625rem; /* 17px base for better readability */
+  line-height: 1.65;
+}
+
+/* Typography scale for readability */
+.section-description {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75;
+  color: var(--color-muted);
+}
+
+@media (min-width: 768px) {
+  .section-description {
+    font-size: 1.25rem; /* 20px on desktop */
+  }
 }
 
 html {

@@ -136,7 +136,7 @@ export default function ProfessionistiContent() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="mt-8 text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-8 text-xl md:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed">
               Sei spesso il primo interlocutore del cliente. Se conosci il sistema
               X-Frame, puoi proporlo come alternativa concreta alla muratura tradizionale.
               Dati tecnici, certificazioni e supporto progettuale completo.
@@ -180,7 +180,7 @@ export default function ProfessionistiContent() {
                       <Icon className="w-7 h-7 text-[#A0845C]" />
                     </div>
                     <h3 className="text-xl font-bold text-[#1D1D1F] mb-3">{card.title}</h3>
-                    <p className="text-[#86868B] leading-relaxed">{card.description}</p>
+                    <p className="text-[#86868B] text-base leading-relaxed">{card.description}</p>
                   </motion.div>
                 </ScrollReveal>
               )
@@ -207,7 +207,7 @@ export default function ProfessionistiContent() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-[#86868B] text-lg max-w-2xl mx-auto">
+              <p className="mt-6 text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto">
                 Progettazione su Autodesk Revit, Eurocodice 5, stratigrafie complete con codici A-Q
               </p>
             </div>
@@ -306,7 +306,7 @@ export default function ProfessionistiContent() {
                 <div className="w-2 h-2 rounded-full bg-[#A0845C]" />
                 <div className="w-8 h-0.5 bg-[#A0845C]/40" />
               </div>
-              <p className="mt-6 text-white/60 text-lg max-w-2xl mx-auto">
+              <p className="mt-6 text-white/60 text-lg md:text-xl max-w-2xl mx-auto">
                 Tempistiche reali, non promesse. Dati che puoi comunicare ai tuoi clienti.
               </p>
             </div>
@@ -387,7 +387,7 @@ export default function ProfessionistiContent() {
                       <Icon className="w-7 h-7 text-[#A0845C]" />
                     </div>
                     <h3 className="text-lg font-bold text-[#1D1D1F] mb-3">{opp.title}</h3>
-                    <p className="text-[#86868B] leading-relaxed text-sm">{opp.description}</p>
+                    <p className="text-[#86868B] leading-relaxed text-base">{opp.description}</p>
                   </motion.div>
                 </ScrollReveal>
               )
@@ -409,7 +409,7 @@ export default function ProfessionistiContent() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 mb-6 leading-tight">
               Diventa Partner Tecnico
             </h2>
-            <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            <p className="text-white/70 text-lg md:text-xl mb-10 max-w-xl mx-auto leading-relaxed">
               Entra nella rete dei professionisti EcoLive. Supporto dedicato, materiale
               tecnico e nuove opportunita progettuali.
             </p>

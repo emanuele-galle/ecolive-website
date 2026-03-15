@@ -57,7 +57,7 @@ export default function StepTipologia() {
             {/* Content */}
             <div className="flex flex-1 flex-col gap-2 p-5">
               <h3 className="text-lg font-bold text-[#1D1D1F]">{t.title}</h3>
-              <p className="text-sm text-[#86868B] leading-relaxed line-clamp-2">
+              <p className="text-base text-[#86868B] leading-relaxed line-clamp-2">
                 {t.description}
               </p>
               <div className="mt-auto flex items-center justify-between pt-3 text-sm">

@@ -66,7 +66,7 @@ export default function StepDimensione() {
 
             {/* Label and description */}
             <h3 className="mt-3 text-base font-semibold text-[#1D1D1F]">{m.label}</h3>
-            <p className="mt-1 text-sm text-[#86868B] leading-relaxed">{m.description}</p>
+            <p className="mt-1 text-base text-[#86868B] leading-relaxed">{m.description}</p>
 
             {/* Livelli badge */}
             <div className="mt-auto flex items-center gap-2 pt-4">

@@ -98,7 +98,7 @@ export default function HeroFullscreen({
           />
 
           <motion.p
-            className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
+            className="text-xl sm:text-2xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
             initial={fadeInUp}
             animate={visible}
             transition={heroSubtitleTransition}

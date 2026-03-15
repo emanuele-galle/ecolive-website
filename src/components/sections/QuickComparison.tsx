@@ -75,7 +75,7 @@ export default function QuickComparison() {
               </p>
 
               {/* Center label */}
-              <span className="text-[11px] md:text-xs uppercase tracking-wider text-white/40 font-medium text-center min-w-[7rem] md:min-w-[10rem]">
+              <span className="text-xs md:text-sm uppercase tracking-wider text-white/40 font-medium text-center min-w-[7rem] md:min-w-[10rem]">
                 {row.label}
               </span>
 

@@ -158,7 +158,7 @@ export default function TrasportoMontaggioContent() {
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <p className="text-lg md:text-xl text-white/50 max-w-3xl leading-relaxed mb-6">
+            <p className="text-xl md:text-2xl text-white/50 max-w-3xl leading-relaxed mb-6">
               Al mattino non c&apos;&egrave; nulla. La sera avete una struttura completa.
               Il montaggio X-Frame &egrave; uno spettacolo senza paragoni in Italia e in Europa:
               come un pit stop di Formula 1, ogni movimento &egrave; pianificato, ogni minuto conta.
@@ -201,7 +201,7 @@ export default function TrasportoMontaggioContent() {
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
               Trasporto <span className="text-[#A0845C]">Orizzontale</span>
             </h2>
-            <p className="text-[#86868B] text-lg max-w-3xl mb-6">
+            <p className="text-[#86868B] text-lg md:text-xl max-w-3xl mb-6">
               Mentre la concorrenza trasporta i pannelli in verticale, EcoLive li carica in orizzontale.
               Sembra un dettaglio, ma cambia tutto: stabilit&agrave;, sicurezza, quantit&agrave; per viaggio, costo finale.
             </p>
@@ -235,7 +235,7 @@ export default function TrasportoMontaggioContent() {
                       <Icon className="w-5 h-5 text-[#A0845C]" />
                     </div>
                     <h3 className="text-xl font-bold text-[#1D1D1F] mb-3 group-hover:text-[#A0845C] transition-colors">{item.title}</h3>
-                    <p className="text-[#86868B] leading-relaxed">{item.description}</p>
+                    <p className="text-[#86868B] text-base leading-relaxed">{item.description}</p>
                   </motion.div>
                 </ScrollReveal>
               )
@@ -257,7 +257,7 @@ export default function TrasportoMontaggioContent() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mb-4">
                 Una Giornata, una Casa
               </h2>
-              <p className="text-[#86868B] text-lg max-w-2xl mx-auto">
+              <p className="text-[#86868B] text-lg md:text-xl max-w-2xl mx-auto">
                 Come un pit stop di Formula 1: velocit&agrave; coordinata, precisione millimetrica,
                 ogni operatore sa esattamente cosa fare e quando.
               </p>
@@ -307,7 +307,7 @@ export default function TrasportoMontaggioContent() {
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                 Organizzazione del Cantiere
               </h2>
-              <p className="text-white/50 text-lg max-w-3xl mx-auto">
+              <p className="text-white/50 text-lg md:text-xl max-w-3xl mx-auto">
                 Un coordinatore generale come direttore d&apos;orchestra. Tre squadre specializzate in parallelo.
                 Ogni movimento &egrave; pianificato, ogni minuto conta.
               </p>
@@ -320,7 +320,7 @@ export default function TrasportoMontaggioContent() {
                 <GlassCard intensity="medium" className="p-8 text-center h-full">
                   <div className="text-4xl md:text-5xl font-bold text-[#A0845C] mb-3">{item.value}</div>
                   <div className="text-white font-semibold mb-2">{item.label}</div>
-                  <p className="text-white/40 text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-white/40 text-base leading-relaxed">{item.description}</p>
                 </GlassCard>
               </ScrollReveal>
             ))}
@@ -412,7 +412,7 @@ export default function TrasportoMontaggioContent() {
                     </div>
                     <div className="border-l border-[#EDE6DB] pl-5">
                       <h3 className="font-bold text-[#1D1D1F] text-lg">{item.level}</h3>
-                      <p className="text-[#86868B] text-sm leading-relaxed">{item.description}</p>
+                      <p className="text-[#86868B] text-base leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                   {item.price && (
