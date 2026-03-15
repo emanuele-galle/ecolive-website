@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 import SectionTransition from '@/components/ui/SectionTransition'
 import CountUp from '@/components/ui/CountUp'
 
@@ -246,6 +247,31 @@ export default function ChiSiamoPage() {
               )
             })}
           </div>
+
+          {/* Factory photos */}
+          <div className="mt-12 grid md:grid-cols-3 gap-4">
+            {[
+              { src: '/images/fabbrica/linea-cnc.webp', alt: 'Linea CNC automatizzata assemblaggio pannelli' },
+              { src: '/images/fabbrica/sezionatrice.webp', alt: 'Operaio X-Frame alla sezionatrice verticale' },
+              { src: '/images/fabbrica/pressa-idraulica.webp', alt: 'Pressa idraulica per laminazione pannelli' },
+            ].map((img) => (
+              <ScrollReveal key={img.src} direction="up">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg">
+                    {img.alt}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -344,6 +370,16 @@ export default function ChiSiamoPage() {
                 &ldquo;Sartoriali, artigianali. Ogni casa &egrave; un capolavoro.&rdquo;
               </p>
             </motion.div>
+            <div className="mt-10 space-y-6">
+              <YouTubeEmbed
+                videoId="Q29WmCQuqa8"
+                title="Ecolive Srl: La Nostra Storia nel mondo delle Case in Legno"
+              />
+              <YouTubeEmbed
+                videoId="swQRUOTvxJ8"
+                title="Made in Calabria — Tgr RAI Calabria Ecolive"
+              />
+            </div>
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>

@@ -23,6 +23,7 @@ import {
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import CountUp from '@/components/ui/CountUp'
 import SectionTransition from '@/components/ui/SectionTransition'
+import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 
 // --- Static Data ---
 
@@ -142,12 +143,12 @@ const navigationCards = [
 ]
 
 const galleryImages = [
-  { src: '/images/luxury/gallery-2.webp', alt: 'Villa X-Frame completata' },
-  { src: '/images/luxury/gallery-7.webp', alt: 'Interni casa X-Frame' },
-  { src: '/images/luxury/gallery-14.webp', alt: 'Struttura in fase di montaggio' },
-  { src: '/images/luxury/gallery-20.webp', alt: 'Dettaglio parete X-Frame' },
-  { src: '/images/luxury/gallery-25.webp', alt: 'Casa X-Frame con giardino' },
-  { src: '/images/luxury/gallery-30.webp', alt: 'Villa moderna in bioedilizia' },
+  { src: '/images/processo/gru-solleva-pannello.webp', alt: 'Gru solleva pannello prefabbricato X-Frame in cantiere' },
+  { src: '/images/xframe-dettaglio/connettore-fondazione.webp', alt: 'Connettore acciaio brevettato X-Frame su fondazione' },
+  { src: '/images/processo/montaggio-colonne.webp', alt: 'Montaggio colonne legno lamellare nei connettori X-Frame' },
+  { src: '/images/fabbrica/linea-cnc.webp', alt: 'Linea CNC automatizzata nello stabilimento EcoLive' },
+  { src: '/images/processo/panoramica-interni.webp', alt: 'Interno casa X-Frame con soffitto travi legno' },
+  { src: '/images/fabbrica/sezionatrice.webp', alt: 'Operaio X-Frame alla sezionatrice verticale' },
 ]
 
 const certifications = [
@@ -535,6 +536,36 @@ export default function SistemaXFrameContent() {
               </div>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ========== 6b. VIDEO ========== */}
+      <section className="py-16 lg:py-20 bg-[#1D1D1F]">
+        <div className="max-w-6xl mx-auto px-6">
+          <ScrollReveal>
+            <div className="text-center mb-10">
+              <p className="uppercase tracking-[0.25em] text-[#A0845C] text-xs sm:text-sm font-semibold mb-4">
+                Video
+              </p>
+              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+                Guarda <span className="text-[#A0845C]">X-Frame</span> in azione
+              </h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <ScrollReveal delay={0.1} direction="left">
+              <YouTubeEmbed
+                videoId="R98zK3zp75g"
+                title="Scopri X-Frame 2.0: Il Futuro delle Costruzioni in Legno Prefabbricate"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={0.2} direction="right">
+              <YouTubeEmbed
+                videoId="FWhNUIVIBFM"
+                title="Comparazione Sistemi Costruttivi per le Case in Legno"
+              />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

@@ -28,10 +28,13 @@ export interface Finitura {
   moltiplicatorePrezzo: number
 }
 
+/** Tipo di stanza */
+export type TipoStanza = 'soggiorno' | 'cucina' | 'camera' | 'bagno' | 'studio' | 'ripostiglio' | 'ingresso'
+
 /** Stanza nel layout planimetria */
 export interface Stanza {
   id: string
-  tipo: 'soggiorno' | 'cucina' | 'camera' | 'bagno' | 'studio' | 'ripostiglio' | 'ingresso'
+  tipo: TipoStanza
   label: string
   /** Posizione x in griglia (unità modulari) */
   x: number
@@ -41,6 +44,14 @@ export interface Stanza {
   w: number
   /** Altezza in griglia */
   h: number
+}
+
+/** Preset layout planimetria */
+export interface LayoutPreset {
+  id: string
+  label: string
+  description: string
+  stanze: Stanza[]
 }
 
 /** Dati contatto lead */

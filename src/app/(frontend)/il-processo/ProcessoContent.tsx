@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Check,
@@ -18,6 +19,7 @@ import {
   Euro,
 } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import YouTubeEmbed from '@/components/ui/YouTubeEmbed'
 import BlurText from '@/components/ui/BlurText'
 import SectionTransition from '@/components/ui/SectionTransition'
 import CountUp from '@/components/ui/CountUp'
@@ -34,6 +36,7 @@ interface ProcessStep {
   description: string
   details: string[]
   highlight?: string
+  image?: string
 }
 
 const steps: ProcessStep[] = [
@@ -112,6 +115,7 @@ const steps: ProcessStep[] = [
     title: 'Preparazione Cantiere',
     icon: HardHat,
     subtitle: 'A cura del cliente',
+    image: '/images/processo/consegna-cantiere.webp',
     description:
       'Questa fase e a carico del cliente: scavi, magrone, fondazioni e platea devono essere completati prima del montaggio. L\'area cantiere deve essere pronta con accessi adeguati per i mezzi pesanti.',
     details: [
@@ -129,6 +133,7 @@ const steps: ProcessStep[] = [
     title: 'Produzione in Laboratorio',
     icon: Factory,
     subtitle: 'Precisione industriale',
+    image: '/images/fabbrica/linea-cnc.webp',
     description:
       'La produzione avviene in ambiente completamente controllato: temperatura, umidita e tempi di asciugatura sono monitorati costantemente. Ogni elemento segue procedure standard e replicabili.',
     details: [
@@ -146,6 +151,7 @@ const steps: ProcessStep[] = [
     title: 'Montaggio',
     icon: Wrench,
     subtitle: 'Lo spettacolo in una settimana',
+    image: '/images/processo/gru-solleva-pannello.webp',
     description:
       'Come il pit stop in Formula 1: dove un gommista tradizionale impiega mezz\'ora, il team F1 finisce in 10 secondi. Per una struttura fino a 150 mq su un livello: la mattina non c\'e nulla, la sera la casa e completa.',
     details: [
@@ -412,7 +418,42 @@ export default function ProcessoContent() {
         </div>
       </section>
 
-      <SectionTransition from="#1D1D1F" to="#F5F5F7" height={80} />
+      <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
+
+      {/* ── DALLA FABBRICA AL CANTIERE ── */}
+      <section className="py-24 lg:py-32 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <SectionHeader tag="Dietro le Quinte" title="Dalla fabbrica al cantiere" />
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { src: '/images/fabbrica/linea-cnc.webp', alt: 'Linea CNC automatizzata per assemblaggio pannelli parete' },
+              { src: '/images/fabbrica/sezionatrice.webp', alt: 'Operaio X-Frame alla sezionatrice verticale' },
+              { src: '/images/fabbrica/pressa-idraulica.webp', alt: 'Pressa idraulica per laminazione pannelli' },
+              { src: '/images/processo/montaggio-colonne.webp', alt: 'Montaggio colonne legno nei connettori X-Frame' },
+              { src: '/images/processo/gru-solleva-pannello.webp', alt: 'Gru solleva pannello prefabbricato in cantiere' },
+              { src: '/images/processo/impianti-interni.webp', alt: 'Impianti idraulici ed elettrici interni' },
+            ].map((img) => (
+              <ScrollReveal key={img.src} direction="up">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <p className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg">
+                    {img.alt}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionTransition from="#FFFFFF" to="#F5F5F7" height={80} />
 
       {/* ── PIANO PAGAMENTI ── */}
       <section className="py-24 lg:py-32 px-6 bg-[#F5F5F7]">
@@ -517,6 +558,15 @@ export default function ProcessoContent() {
               </p>
             </div>
           </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <div className="mt-10 max-w-3xl mx-auto">
+              <YouTubeEmbed
+                videoId="nptTzlZwGOg"
+                title="Costruzione di una Casa in Legno Ecolive"
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -559,6 +609,17 @@ function StepCard({ step, Icon }: { step: ProcessStep; Icon: typeof MessageCircl
       whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
       transition={{ duration: 0.3 }}
     >
+      {step.image && (
+        <div className="relative aspect-[16/9] -mx-6 md:-mx-8 -mt-6 md:-mt-8 mb-6 overflow-hidden rounded-t-2xl">
+          <Image
+            src={step.image}
+            alt={step.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      )}
       <div className="flex items-center gap-3 mb-1">
         <Icon className="w-5 h-5 text-[#A0845C]" />
         <span className="text-xs text-[#A0845C] uppercase tracking-wider font-medium">{step.subtitle}</span>
