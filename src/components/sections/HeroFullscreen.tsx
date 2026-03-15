@@ -83,22 +83,22 @@ export default function HeroFullscreen({
         </div>
       )}
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20 z-[1]" />
+      {/* Gradient overlay — stronger for text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/35 z-[1]" />
 
       {/* Main Content — Centered */}
       <div className="relative z-10 flex-1 flex items-center justify-center pt-20 lg:pt-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <BlurText
             text={heroTitle}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
             delay={100}
             animateBy="words"
             direction="bottom"
           />
 
           <motion.p
-            className="text-xl sm:text-2xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
+            className="text-xl sm:text-2xl text-white mb-10 max-w-2xl mx-auto leading-relaxed font-normal drop-shadow-[0_1px_6px_rgba(0,0,0,0.4)]"
             initial={fadeInUp}
             animate={visible}
             transition={heroSubtitleTransition}
@@ -115,7 +115,7 @@ export default function HeroFullscreen({
           >
             {['Classe A4', 'Garanzia 50 Anni', 'Montaggio in 7 Giorni', '1.250 €/mq'].map(
               (item, i, arr) => (
-                <span key={item} className="flex items-center gap-2 text-white/60 text-sm font-medium">
+                <span key={item} className="flex items-center gap-2 text-white/90 text-sm font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
                   <span>{item}</span>
                   {i < arr.length - 1 && (
                     <span className="w-1 h-1 rounded-full bg-white/40" />
