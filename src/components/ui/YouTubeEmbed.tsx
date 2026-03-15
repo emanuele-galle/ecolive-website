@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { Play } from 'lucide-react'
-import { getEmbedUrl, getThumbnailUrl } from '@/data/youtube-videos'
+import { getEmbedUrl } from '@/data/youtube-videos'
 
 interface YouTubeEmbedProps {
   videoId: string
@@ -12,6 +11,9 @@ interface YouTubeEmbedProps {
 
 export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
   const [playing, setPlaying] = useState(false)
+  const [imgSrc, setImgSrc] = useState(
+    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+  )
 
   if (playing) {
     return (
@@ -35,13 +37,13 @@ export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
       className="group relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg cursor-pointer"
       aria-label={`Riproduci: ${title}`}
     >
-      <Image
-        src={getThumbnailUrl(videoId)}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={imgSrc}
         alt={title}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 640px"
-        unoptimized
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+        onError={() => setImgSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)}
       />
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
       <div className="absolute inset-0 flex items-center justify-center">
