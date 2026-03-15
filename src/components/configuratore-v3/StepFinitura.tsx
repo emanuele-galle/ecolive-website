@@ -53,7 +53,7 @@ export default function StepFinitura() {
               isSelected
                 ? 'border-[#A0845C] shadow-lg shadow-[#A0845C]/20 bg-[#A0845C]/5'
                 : isRecommended
-                  ? 'border-[#A0845C]/40 bg-[#F5F5F7]'
+                  ? 'border-[#A0845C] bg-gradient-to-b from-[#A0845C]/5 to-white'
                   : 'border-[#E5E5E7] hover:border-[#A0845C]/50 bg-white'
             }`}
           >

@@ -58,7 +58,7 @@ export default function StepDimensione() {
             onClick={() => handleSelect(m)}
             className={`group relative flex flex-col items-start rounded-2xl border-2 p-6 text-left transition-all overflow-hidden ${
               isSelected
-                ? 'border-[#A0845C] shadow-lg shadow-[#A0845C]/20 bg-[#A0845C]/5'
+                ? 'border-[#A0845C] shadow-lg shadow-[#A0845C]/20 bg-gradient-to-br from-[#A0845C]/5 to-[#A0845C]/10'
                 : 'border-[#E5E5E7] hover:border-[#A0845C]/50 bg-white'
             }`}
           >

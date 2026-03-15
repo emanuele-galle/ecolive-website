@@ -7,7 +7,7 @@ import StepFinitura from '@/components/configuratore-v3/StepFinitura'
 import StepPlanimetria from '@/components/configuratore-v3/StepPlanimetria'
 import StepRiepilogo from '@/components/configuratore-v3/StepRiepilogo'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Check, RotateCcw } from 'lucide-react'
+import { ArrowLeft, RotateCcw } from 'lucide-react'
 
 const steps = [
   { label: 'Tipologia', title: 'Scegli la Tipologia', description: 'Seleziona il tipo di edificio che desideri realizzare' },
@@ -17,113 +17,99 @@ const steps = [
   { label: 'Riepilogo', title: 'Riepilogo e Contatto', description: 'Verifica la configurazione e prenota la visita in sede' },
 ]
 
-function StepIndicator({ index, currentStep }: { index: number; currentStep: number }) {
-  const stepNum = index + 1
-  const isCompleted = stepNum < currentStep
-  const isCurrent = stepNum === currentStep
-
-  return (
-    <div className="flex items-center">
-      {index > 0 && (
-        <div
-          className={`h-[2px] w-6 sm:w-10 transition-colors duration-500 ${
-            stepNum <= currentStep ? 'bg-[#A0845C]' : 'bg-[#D2D2D7]'
-          }`}
-        />
-      )}
-      <div className="relative flex flex-col items-center">
-        <div
-          className={`relative flex items-center justify-center rounded-full transition-all duration-500 ${
-            isCompleted
-              ? 'w-8 h-8 bg-[#A0845C]'
-              : isCurrent
-                ? 'w-8 h-8 border-2 border-[#A0845C] bg-white'
-                : 'w-8 h-8 border-2 border-[#D2D2D7] bg-white'
-          }`}
-        >
-          {isCompleted ? (
-            <Check className="w-4 h-4 text-white" strokeWidth={3} />
-          ) : (
-            <span
-              className={`text-xs font-semibold ${
-                isCurrent ? 'text-[#A0845C]' : 'text-[#86868B]'
-              }`}
-            >
-              {stepNum}
-            </span>
-          )}
-          {isCurrent && (
-            <span className="absolute inset-0 rounded-full border-2 border-[#A0845C] animate-ping opacity-30" />
-          )}
-        </div>
-        <span
-          className={`absolute top-10 whitespace-nowrap text-xs transition-colors duration-300 ${
-            isCurrent
-              ? 'text-[#A0845C] font-semibold'
-              : isCompleted
-                ? 'text-[#A0845C]/70'
-                : 'text-[#86868B]'
-          }`}
-        >
-          {steps[index].label}
-        </span>
-      </div>
-    </div>
-  )
-}
-
 export default function ConfiguratoreV3() {
   const { currentStep, prevStep, reset } = useConfiguratoreStore()
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FAF8F5] to-[#F5F5F7]">
-      {/* Sticky header */}
+      {/* Hero intro — only visible at the top */}
+      <div className="bg-[#1D1D1F] pt-28 pb-16 lg:pt-32 lg:pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[#A0845C] text-sm tracking-[0.2em] uppercase font-medium mb-4"
+          >
+            Configuratore Interattivo
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
+          >
+            Progetta la tua <span className="text-[#A0845C]">Casa</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed"
+          >
+            5 semplici passi per configurare la tua abitazione. Scegli tipologia, dimensione
+            e finitura — riceverai un range di prezzo indicativo e potrai prenotare la visita in sede.
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Progress bar style step indicator */}
       <div className="bg-white/95 backdrop-blur-md border-b border-[#E8E8ED] sticky top-16 lg:top-20 z-30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          {/* Top row: back + title + restart */}
-          <div className="flex items-center justify-between min-h-[3.5rem] py-3">
-            <div className="flex items-center gap-2 min-w-0">
+          {/* Top row */}
+          <div className="flex items-center justify-between py-4">
+            <div className="flex items-center gap-3 min-w-0">
               {currentStep > 1 ? (
-                <button
-                  onClick={prevStep}
-                  className="p-1.5 -ml-1.5 rounded-lg hover:bg-[#F5F5F7] transition-colors shrink-0"
-                  aria-label="Passo precedente"
-                >
+                <button onClick={prevStep} className="p-2 rounded-xl hover:bg-[#F5F5F7] transition-colors" aria-label="Indietro">
                   <ArrowLeft className="w-5 h-5 text-[#86868B]" />
                 </button>
               ) : (
-                <div className="w-8 shrink-0" />
+                <div className="w-9" />
               )}
               <div className="min-w-0">
-                <h1 className="text-base sm:text-lg font-bold text-[#1D1D1F] truncate">
-                  {steps[currentStep - 1].title}
-                </h1>
-                <p className="text-sm text-[#86868B] mt-1 truncate">{steps[currentStep - 1].description}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-[#A0845C] uppercase tracking-wider">
+                    Passo {currentStep} di 5
+                  </span>
+                </div>
+                <h2 className="text-lg font-bold text-[#1D1D1F] truncate">{steps[currentStep - 1].title}</h2>
               </div>
             </div>
-
             {currentStep > 1 && (
-              <button
-                onClick={reset}
-                className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#A0845C] transition-colors shrink-0 ml-4"
-              >
+              <button onClick={reset} className="flex items-center gap-1.5 text-sm text-[#86868B] hover:text-[#A0845C] transition-colors">
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Ricomincia</span>
               </button>
             )}
           </div>
 
-          {/* Step indicator dots with connecting lines */}
-          <div className="flex items-center justify-center pb-5 pt-1">
-            {steps.map((_, i) => (
-              <StepIndicator key={i} index={i} currentStep={currentStep} />
-            ))}
+          {/* Progress bar */}
+          <div className="pb-3">
+            <div className="h-1.5 bg-[#E8E8ED] rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-[#A0845C] rounded-full"
+                initial={{ width: '0%' }}
+                animate={{ width: `${(currentStep / 5) * 100}%` }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              />
+            </div>
+            <div className="flex justify-between mt-2">
+              {steps.map((step, i) => (
+                <span
+                  key={i}
+                  className={`text-xs font-medium transition-colors ${
+                    i + 1 <= currentStep ? 'text-[#A0845C]' : 'text-[#D2D2D7]'
+                  } ${i === 0 ? 'text-left' : i === steps.length - 1 ? 'text-right' : 'text-center'}`}
+                >
+                  {step.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Step content */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
