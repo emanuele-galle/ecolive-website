@@ -50,7 +50,7 @@ const navigationCards = [
     href: '/sistema-x-frame/trasporto-montaggio',
     icon: Truck,
     description:
-      'Struttura portante montata in un solo giorno grazie alla prefabbricazione totale in stabilimento.',
+      'Struttura portante montata in 7 giorni grazie alla prefabbricazione totale in stabilimento.',
   },
   {
     title: 'Confronto',

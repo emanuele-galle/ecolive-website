@@ -25,7 +25,7 @@ const defaultProject = {
   surface: '150 m²',
   year: '2025',
   imageUrl: '/images/tipologie/residenziali.webp',
-  description: 'Casa unifamiliare realizzata con sistema X-Frame. Struttura montata in 1 giornata, grezzo avanzato completato in 7 giorni.',
+  description: 'Casa unifamiliare realizzata con sistema X-Frame. Struttura montata in 7 giorni, grezzo avanzato completato in 10 giorni.',
 }
 
 export default function FeaturedProject({ project }: FeaturedProjectProps) {

@@ -142,9 +142,11 @@ export default function StepPlanimetria() {
       </div>
 
       {/* Note */}
-      <p className="max-w-lg text-center text-sm leading-relaxed text-[#86868B]">
-        Il layout dettagliato verr&agrave; definito durante la visita in sede con i nostri progettisti.
-      </p>
+      <div className="max-w-lg rounded-xl border border-[#A0845C]/20 bg-[#A0845C]/5 p-4 text-center">
+        <p className="text-sm font-medium leading-relaxed text-[#48484A]">
+          Layout suggerito &mdash; la distribuzione degli ambienti verr&agrave; personalizzata insieme ai nostri progettisti durante la visita in sede.
+        </p>
+      </div>
 
       {/* Avanti */}
       <button

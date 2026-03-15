@@ -145,7 +145,7 @@ const steps: ProcessStep[] = [
     number: 7,
     title: 'Montaggio',
     icon: Wrench,
-    subtitle: 'Lo spettacolo in una giornata',
+    subtitle: 'Lo spettacolo in una settimana',
     description:
       'Come il pit stop in Formula 1: dove un gommista tradizionale impiega mezz\'ora, il team F1 finisce in 10 secondi. Per una struttura fino a 150 mq su un livello: la mattina non c\'e nulla, la sera la casa e completa.',
     details: [
@@ -403,7 +403,7 @@ export default function ProcessoContent() {
           <ScrollReveal delay={0.3}>
             <div className="mt-12 bg-white/5 rounded-2xl border border-[#A0845C]/20 p-6 md:p-8 text-center">
               <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                <span className="text-[#A0845C] font-semibold">Montaggio struttura in 1 giornata</span> &mdash; Per
+                <span className="text-[#A0845C] font-semibold">Montaggio struttura in 7 giorni</span> &mdash; Per
                 una casa fino a 150 mq su un livello, la mattina il cantiere e vuoto e la sera la struttura e
                 completamente montata. Il fissaggio definitivo avviene il giorno successivo.
               </p>
@@ -444,7 +444,7 @@ export default function ProcessoContent() {
       <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <SectionHeader
-            tag="Il Giorno del Montaggio"
+            tag="I 7 Giorni del Montaggio"
             title="Un evento, non un cantiere"
             subtitle="Il montaggio EcoLive e uno spettacolo a cui assistono anche potenziali clienti"
           />
@@ -513,7 +513,7 @@ export default function ProcessoContent() {
               <p className="text-[#1D1D1F]/70 text-sm md:text-base leading-relaxed text-center">
                 <span className="text-[#A0845C] font-semibold">Potenziali clienti invitati come spettatori</span>{' '}
                 &mdash; Il montaggio e aperto a chi vuole vedere con i propri occhi cosa significa costruire con
-                EcoLive. Nessuna brochure vale quanto vedere una casa prendere forma in una sola giornata.
+                EcoLive. Nessuna brochure vale quanto vedere una casa prendere forma in 7 giorni.
               </p>
             </div>
           </ScrollReveal>

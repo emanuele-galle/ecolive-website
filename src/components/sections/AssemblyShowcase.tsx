@@ -49,9 +49,9 @@ function AnimatedNumber({
 
 const advantages = [
   {
-    title: 'Montaggio struttura in 1 giorno',
+    title: 'Montaggio struttura in 7 giorni',
     description:
-      'Dalla prima parete al tetto finito, tutto in una singola giornata di lavoro.',
+      'Dalla prima parete al tetto finito, tutto in 7 giorni lavorativi.',
     hasProgressBar: true,
   },
   {
@@ -75,7 +75,7 @@ const advantages = [
 ]
 
 const stats = [
-  { value: 1, suffix: '', label: 'Montaggio struttura completa', display: '1 Giorno' },
+  { value: 7, suffix: '', label: 'Montaggio struttura completa', display: '7 Giorni' },
   { value: 90, suffix: 'x', label: 'Più veloce del tradizionale', display: '90x' },
   { value: 100, suffix: '%', label: 'Materiali certificati PEFC', display: '100%' },
 ]
@@ -155,8 +155,8 @@ export default function AssemblyShowcase() {
               <div key={stat.label} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-[#A0845C]">
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                  {stat.value === 1 && (
-                    <span className="text-2xl md:text-3xl ml-1">Giorno</span>
+                  {stat.value === 7 && (
+                    <span className="text-2xl md:text-3xl ml-1">Giorni</span>
                   )}
                 </div>
                 <p className="text-white/60 text-sm mt-1">{stat.label}</p>

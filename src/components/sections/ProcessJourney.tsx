@@ -23,7 +23,7 @@ const steps: Step[] = [
   { number: '04', icon: FileCheck, title: 'Contratto', duration: '', description: 'Contratto di appalto dettagliato con termini, fasi e pagamenti strutturati.' },
   { number: '05', icon: Wrench, title: 'Preparazione Cantiere', duration: 'A cura tua', description: 'Scavi, fondazioni e platea. Noi verifichiamo che sia tutto pronto per il montaggio.' },
   { number: '06', icon: Factory, title: 'Produzione', duration: '', description: 'Produciamo pareti, solai e coperture nel nostro laboratorio a temperatura e umidità controllate.' },
-  { number: '07', icon: Hammer, title: 'Montaggio', duration: '1 giorno', description: 'Pilastri, pareti e copertura montati in una sola giornata. La sera hai la tua casa.' },
+  { number: '07', icon: Hammer, title: 'Montaggio', duration: '7 giorni', description: 'Pilastri, pareti e copertura montati in 7 giorni da 8-12 operatori specializzati con autogru.' },
 ]
 
 export default function ProcessJourney() {

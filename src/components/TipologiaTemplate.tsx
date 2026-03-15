@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Check, ArrowRight, Layers, Ruler, Clock } from 'lucide-react'
+import { Check, ArrowRight, Layers, Ruler, Clock, PenTool, Gem, Smartphone } from 'lucide-react'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import JsonLd from '@/components/JsonLd'
 
@@ -47,9 +47,30 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
 }
 
+const LUXURY_GOLD = '#8B6914'
+
+const luxuryDifferentiators = [
+  {
+    icon: PenTool,
+    title: 'Progettazione Firmata',
+    description: 'Il tuo progetto seguito da un architetto dedicato, dalla prima bozza alla consegna chiavi.',
+  },
+  {
+    icon: Gem,
+    title: 'Materiali d\'Eccellenza',
+    description: 'Legno lamellare certificato, serramenti ad altissime prestazioni, finiture artigianali selezionate.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Smart Living',
+    description: 'Domotica completa con integrazione Alexa, HomeKit e Matter. Controllo totale della tua villa da smartphone.',
+  },
+]
+
 export default function TipologiaTemplate({
   title,
   category,
+  color,
   extendedDescription,
   heroImage,
   priceRange,
@@ -57,6 +78,9 @@ export default function TipologiaTemplate({
   specs,
   modules,
 }: TipologiaTemplateProps) {
+  const isLuxury = category === 'RESIDENZIALE PREMIUM'
+  const accentColor = isLuxury ? LUXURY_GOLD : GOLD
+
   /* Pick first 3 specs for the hero stats bar */
   const heroStats = specs.slice(0, 3)
   const statIcons = [Ruler, Clock, Layers]
@@ -139,6 +163,49 @@ export default function TipologiaTemplate({
         </div>
       </section>
 
+      {/* ── Luxury Differentiators (only for luxury) ── */}
+      {isLuxury && (
+        <section className="py-20 lg:py-28 bg-gradient-to-b from-[#0D0D0D] to-[#1D1D1F]">
+          <div className="max-w-7xl mx-auto px-6">
+            <ScrollReveal>
+              <div className="text-center mb-14">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: LUXURY_GOLD }}>
+                  L&apos;Eccellenza in Ogni Dettaglio
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  Cosa rende unica una villa Luxury
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {luxuryDifferentiators.map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <ScrollReveal key={item.title} delay={i * 0.12}>
+                    <motion.div
+                      className="relative bg-white/[0.04] backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full overflow-hidden group"
+                      whileHover={{ y: -4, borderColor: `${LUXURY_GOLD}50` }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B6914]/50 to-transparent" />
+                      <div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-5"
+                        style={{ backgroundColor: `${LUXURY_GOLD}15` }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: LUXURY_GOLD }} />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                      <p className="text-white/50 leading-relaxed">{item.description}</p>
+                    </motion.div>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── Description + Features ── */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -195,7 +262,10 @@ export default function TipologiaTemplate({
       </section>
 
       {/* ── Specs ── */}
-      <section className="relative py-20 lg:py-28 overflow-hidden" style={{ backgroundColor: DARK }}>
+      <section
+        className="relative py-20 lg:py-28 overflow-hidden"
+        style={{ backgroundColor: isLuxury ? '#0A0A0A' : DARK }}
+      >
         {/* Grain overlay */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -203,16 +273,23 @@ export default function TipologiaTemplate({
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
         />
+        {isLuxury && (
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#8B6914]/[0.03] via-transparent to-[#8B6914]/[0.03]" />
+        )}
         <div className="relative max-w-7xl mx-auto px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: GOLD }}>
-              Specifiche Tecniche
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: accentColor }}>
+              {isLuxury ? 'Specifiche Premium' : 'Specifiche Tecniche'}
             </p>
-            <p className="text-lg text-white/50 mb-14">Prestazioni e certificazioni</p>
+            <p className="text-lg text-white/50 mb-14">
+              {isLuxury ? 'Prestazioni ai massimi livelli' : 'Prestazioni e certificazioni'}
+            </p>
           </ScrollReveal>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.06] rounded-2xl overflow-hidden"
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden ${
+              isLuxury ? 'bg-[#8B6914]/[0.08]' : 'bg-white/[0.06]'
+            }`}
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -223,17 +300,17 @@ export default function TipologiaTemplate({
                 key={spec.label}
                 variants={fadeUp}
                 className="relative p-8 lg:p-10"
-                style={{ backgroundColor: DARK }}
+                style={{ backgroundColor: isLuxury ? '#0A0A0A' : DARK }}
               >
                 <motion.div
                   className="absolute top-0 left-0 right-0 h-px origin-left"
-                  style={{ backgroundColor: GOLD }}
+                  style={{ backgroundColor: accentColor }}
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                 />
-                <p className="text-3xl md:text-4xl font-bold mb-2" style={{ color: GOLD, fontFeatureSettings: '"tnum"' }}>
+                <p className="text-3xl md:text-4xl font-bold mb-2" style={{ color: accentColor, fontFeatureSettings: '"tnum"' }}>
                   {spec.value}
                 </p>
                 <p className="text-sm text-white/50">{spec.label}</p>
@@ -321,17 +398,22 @@ export default function TipologiaTemplate({
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-              Configura la tua {title}
+              {isLuxury ? 'Prenota una Consulenza Esclusiva' : `Configura la tua ${title}`}
             </h2>
             <p className="text-white/50 mb-10 max-w-lg mx-auto">
-              Scegli dimensioni, finitura e ottieni un preventivo personalizzato in tempo reale.
+              {isLuxury
+                ? 'Parla direttamente con il nostro team per progettare la villa dei tuoi sogni. Ogni dettaglio, su misura per te.'
+                : 'Scegli dimensioni, finitura e ottieni un preventivo personalizzato in tempo reale.'}
             </p>
             <Link
-              href="/configuratore"
-              className="inline-flex items-center gap-2.5 px-10 py-4 font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(160,132,92,0.3)] group"
-              style={{ backgroundColor: GOLD }}
+              href={isLuxury ? '/contatti?oggetto=luxury' : '/configuratore'}
+              className="inline-flex items-center gap-2.5 px-10 py-4 font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] group"
+              style={{
+                backgroundColor: accentColor,
+                boxShadow: isLuxury ? '0 0 30px rgba(139,105,20,0.3)' : undefined,
+              }}
             >
-              Configura la tua Casa
+              {isLuxury ? 'Prenota una Consulenza Esclusiva' : 'Configura la tua Casa'}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </ScrollReveal>

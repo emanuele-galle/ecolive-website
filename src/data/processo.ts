@@ -139,9 +139,9 @@ export const processoSteps: ProcessStep[] = [
     number: 7,
     title: 'Montaggio',
     description:
-      'Montaggio in un solo giorno: pilastri posati in 30 minuti, pareti completate in mattinata, copertura nel pomeriggio. Il fissaggio definitivo avviene il giorno successivo. Sul cantiere operano 8-12 operatori, 1 autogrù con braccio 30+ metri e 3 squadre specializzate, coordinati da un direttore generale (responsabile sicurezza). L\u2019intera operazione viene documentata con time-lapse, drone e reportage fotografico. Al termine manca solo la finitura esterna in acril-silossanico.',
+      'Montaggio in 7 giorni: giorno 1-2 pilastri e struttura portante, giorno 3-4 pareti e controventatura, giorno 5-6 copertura, giorno 7 fissaggio definitivo e sigillature. Sul cantiere operano 8-12 operatori, 1 autogrù con braccio 30+ metri e 3 squadre specializzate, coordinati da un direttore generale (responsabile sicurezza). L\u2019intera operazione viene documentata con time-lapse, drone e reportage fotografico. Al termine manca solo la finitura esterna in acril-silossanico.',
     highlights: [
-      '1 giorno: pilastri (30 min), pareti (mattina), copertura (pomeriggio)',
+      '7 giorni: struttura portante (gg 1-2), pareti (gg 3-4), copertura (gg 5-6), fissaggio (gg 7)',
       'Fissaggio definitivo il giorno successivo',
       '8-12 operatori, 1 autogrù (braccio 30+ m), 3 squadre specializzate',
       'Coordinatore generale (responsabile sicurezza)',

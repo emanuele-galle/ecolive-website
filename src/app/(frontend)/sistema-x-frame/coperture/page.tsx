@@ -198,7 +198,7 @@ export default function CoperturePage() {
 
           <div className="grid grid-cols-3 gap-6 md:gap-12">
             {[
-              { value: 1, label: 'Giorno di montaggio' },
+              { value: 7, label: 'Giorni di montaggio' },
               { value: 100, label: '% Prefabbricato', suffix: '%' },
               { value: 0, label: 'Lavorazioni extra in cantiere' },
             ].map((stat, i) => (

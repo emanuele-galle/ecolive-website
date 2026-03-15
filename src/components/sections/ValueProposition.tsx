@@ -5,11 +5,11 @@ import { motion } from 'framer-motion'
 
 const stats = [
   {
-    value: 1,
+    value: 7,
     suffix: '',
-    bg: '1',
-    label: 'Giorno di Montaggio',
-    description: 'Struttura completa montata in una sola giornata',
+    bg: '7',
+    label: 'Giorni di Montaggio',
+    description: 'Struttura completa montata in 7 giorni lavorativi',
   },
   {
     value: 95,

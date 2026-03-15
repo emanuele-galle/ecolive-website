@@ -164,7 +164,7 @@ export default function TrasportoMontaggioContent() {
               come un pit stop di Formula 1, ogni movimento &egrave; pianificato, ogni minuto conta.
             </p>
             <p className="text-base text-white/35 max-w-2xl leading-relaxed mb-14">
-              Per strutture fino a 150 m&sup2; su un livello, l&apos;intera struttura viene montata in un solo giorno.
+              L&apos;intera struttura viene montata in 7 giorni lavorativi da 8-12 operatori specializzati.
               L&apos;esterno manca solo del tonachino acril-silossanico finale.
             </p>
           </ScrollReveal>
@@ -173,7 +173,7 @@ export default function TrasportoMontaggioContent() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {[
                 { value: 2, label: 'Camion (vs 4)', suffix: '' },
-                { value: 1, label: 'Giorno montaggio', suffix: '' },
+                { value: 7, label: 'Giorni montaggio', suffix: '' },
                 { value: 30, label: 'Giorni chiavi in mano', suffix: '' },
                 { value: 50, label: 'Anni garanzia', suffix: '' },
               ].map((stat, i) => (

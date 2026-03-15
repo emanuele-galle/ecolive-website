@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { revalidatePath } from 'next/cache'
+import { sendContactNotification } from '@/lib/email'
 import ContactPageClient from './ContactPageClient'
 
 export const metadata = {
@@ -47,6 +48,20 @@ async function handleContactSubmission(formData: FormData): Promise<{ success: b
         status: 'nuovo',
       },
     })
+
+    // Invia email di notifica + conferma
+    try {
+      await sendContactNotification({
+        nome: data.nome,
+        email: data.email,
+        telefono: data.telefono,
+        messaggio: data.messaggio,
+        source: data.source,
+      })
+    } catch (emailError) {
+      console.error('Errore invio email:', emailError)
+      // Non bloccare se l'email fallisce
+    }
 
     // Invia notifica a N8N webhook
     const webhookUrl = process.env.N8N_WEBHOOK_URL

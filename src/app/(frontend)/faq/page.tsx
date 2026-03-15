@@ -71,9 +71,9 @@ const faqsByCategory: Record<string, FAQItem[]> = {
       ],
     },
     {
-      question: 'Davvero montate in 1 giorno?',
+      question: 'Quanto tempo richiede il montaggio?',
       answer: [
-        'S\u00EC, per strutture fino a 150 mq ad un livello il montaggio della struttura base avviene in una singola giornata. La mattina si montano pilastri e pareti, il pomeriggio la copertura, e il giorno successivo si completa il fissaggio definitivo.',
+        'La struttura viene montata in 7 giorni lavorativi. Nei primi 2 giorni si montano pilastri e struttura portante, nei giorni 3-4 le pareti e la controventatura, nei giorni 5-6 la copertura, e il giorno 7 si completa il fissaggio definitivo e le sigillature. Sul cantiere operano 8-12 operatori specializzati con autogru.',
         'I componenti arrivano in cantiere gi\u00E0 prefabbricati con precisione millimetrica dal nostro laboratorio di Spadola.',
       ],
     },

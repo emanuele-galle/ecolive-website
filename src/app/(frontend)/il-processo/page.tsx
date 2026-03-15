@@ -5,7 +5,7 @@ import JsonLd from '@/components/JsonLd'
 export const metadata: Metadata = {
   title: 'Il Processo - Dalla Prima Visita alla Casa Finita',
   description:
-    'Il processo EcoLive in 7 step: primo contatto, visita in sede, progettazione Revit, contratto, preparazione cantiere, produzione in laboratorio, montaggio in 1 giorno.',
+    'Il processo EcoLive in 7 step: primo contatto, visita in sede, progettazione Revit, contratto, preparazione cantiere, produzione in laboratorio, montaggio in 7 giorni.',
 }
 
 const howToJsonLd = {
@@ -27,7 +27,7 @@ const howToJsonLd = {
     { '@type': 'HowToStep', position: 4, name: 'Contratto', text: 'Firma del contratto di appalto formale con termini, fasi e pagamenti strutturati.' },
     { '@type': 'HowToStep', position: 5, name: 'Preparazione Cantiere', text: 'Scavi, fondazioni e platea a cura del committente. EcoLive verifica prima del montaggio.' },
     { '@type': 'HowToStep', position: 6, name: 'Produzione in Laboratorio', text: 'Pareti, solai e coperture prodotti in ambiente controllato nello stabilimento di Spadola.' },
-    { '@type': 'HowToStep', position: 7, name: 'Montaggio', text: 'Struttura completa montata in 1 giornata con 8-12 operatori specializzati e autogru.' },
+    { '@type': 'HowToStep', position: 7, name: 'Montaggio', text: 'Struttura completa montata in 7 giorni con 8-12 operatori specializzati e autogru.' },
   ],
 }
 

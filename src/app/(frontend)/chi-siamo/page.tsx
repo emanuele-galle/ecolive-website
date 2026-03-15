@@ -56,7 +56,7 @@ const teamMembers = [
 
 const stats = [
   { value: 95, label: 'Produzione in laboratorio', suffix: '%' },
-  { value: 1, label: 'Giorno di montaggio', suffix: '' },
+  { value: 7, label: 'Giorni di montaggio', suffix: '' },
   { value: 50, label: 'Anni di garanzia struttura', suffix: '' },
   { value: 3, label: 'Tecnologie in un sistema', suffix: '' },
 ]
@@ -74,8 +74,8 @@ const differentiators = [
   },
   {
     icon: Clock,
-    title: 'Montaggio in 1 giorno',
-    text: 'La struttura portante viene montata in una sola giornata. Come il pit stop della Formula 1: 8-12 operatori, divise, droni, time-lapse. Il cantiere diventa spettacolo.',
+    title: 'Montaggio in 7 giorni',
+    text: 'La struttura portante viene montata in 7 giorni lavorativi. 8-12 operatori specializzati con autogru, divise, droni, time-lapse. Il cantiere diventa spettacolo.',
   },
   {
     icon: Shield,

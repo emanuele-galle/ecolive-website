@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'Sistema X-Frame · Tecnologia Costruttiva Avanzata',
   },
   description:
-    'Scopri il Sistema X-Frame: la tecnologia ibrida che unisce Platform Frame, X-Lam e Post & Beam. Massima resistenza antisismica, isolamento termico superiore e montaggio in 1 giorno.',
+    'Scopri il Sistema X-Frame: la tecnologia ibrida che unisce Platform Frame, X-Lam e Post & Beam. Massima resistenza antisismica, isolamento termico superiore e montaggio in 7 giorni.',
   keywords: [
     'X-Frame',
     'case prefabbricate legno',

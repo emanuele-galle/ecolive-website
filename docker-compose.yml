@@ -18,6 +18,11 @@ services:
       - .env.docker
     environment:
       - NODE_ENV=production
+      - SMTP_HOST=${SMTP_HOST:-smtp.hostinger.com}
+      - SMTP_PORT=${SMTP_PORT:-465}
+      - SMTP_USER=${SMTP_USER:-info@ecolive.srl}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - SMTP_FROM=${SMTP_FROM:-info@ecolive.srl}
     networks:
       - traefik-public
       - panel-internal

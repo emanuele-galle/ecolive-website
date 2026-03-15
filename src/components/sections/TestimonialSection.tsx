@@ -12,7 +12,7 @@ const testimonials = [
     location: 'Catanzaro',
     rating: 5,
     quote:
-      'Abbiamo scelto Ecolive dopo mesi di ricerca. La professionalità del team e la trasparenza sui costi ci hanno convinto. La casa è stata montata in un giorno, e dopo un anno il comfort è eccezionale: temperatura costante e bollette ridotte del 70%.',
+      'Abbiamo scelto Ecolive dopo mesi di ricerca. La professionalità del team e la trasparenza sui costi ci hanno convinto. La casa è stata montata in una settimana, e dopo un anno il comfort è eccezionale: temperatura costante e bollette ridotte del 70%.',
   },
   {
     id: 2,

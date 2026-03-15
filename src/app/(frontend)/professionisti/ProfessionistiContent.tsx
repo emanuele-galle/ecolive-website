@@ -77,7 +77,7 @@ const certifications = [
 ]
 
 const timelineSteps = [
-  { time: '1 giorno', label: 'Struttura portante montata' },
+  { time: '7 giorni', label: 'Struttura portante montata' },
   { time: '7 giorni', label: 'Grezzo avanzato completato' },
   { time: '30 giorni', label: 'Chiavi in mano' },
 ]
