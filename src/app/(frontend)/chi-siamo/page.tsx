@@ -123,7 +123,7 @@ export default function ChiSiamoPage() {
 
       <SectionTransition from="#1D1D1F" to="#FFFFFF" height={80} />
 
-      {/* ── 3. LA NOSTRA STORIA — Testo + foto connettore X-Frame ── */}
+      {/* ── 3. LA NOSTRA STORIA — Testo + foto stabilimento ── */}
       <section className="py-24 lg:py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <ScrollReveal direction="left" duration={0.7}>
@@ -131,7 +131,7 @@ export default function ChiSiamoPage() {
               La Nostra Storia
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1D1D1F] mt-3 leading-tight">
-              Due anime, un unico brand
+              Poche case, ma perfette
             </h2>
             <div className="mt-6 flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[#A0845C]" />
@@ -139,15 +139,13 @@ export default function ChiSiamoPage() {
             </div>
             <div className="mt-6 space-y-4 text-[#86868B] text-lg leading-relaxed">
               <p>
-                EcoLive nasce dall&apos;unione di due esperienze complementari:{' '}
-                <strong className="text-[#1D1D1F]">EcoLive S.r.l.</strong> con sede a Spadola
-                (VV), nel cuore del Parco delle Serre, ed{' '}
-                <strong className="text-[#1D1D1F]">Edilius S.r.l.</strong> con sede a Cosenza.
-                Due societ&agrave; che hanno fuso competenze, visione e know-how sotto un unico
-                brand.
+                <strong className="text-[#1D1D1F]">EcoLive S.r.l.</strong> ha sede a Spadola
+                (VV), nel cuore del Parco delle Serre. Anni di ricerca e sviluppo
+                hanno portato alla creazione di un approccio unico alla bioedilizia:
+                qualit&agrave; sartoriale, non produzione di massa.
               </p>
               <p>
-                Anni di ricerca hanno portato alla creazione del{' '}
+                Il risultato &egrave; il{' '}
                 <strong className="text-[#1D1D1F]">sistema X-Frame</strong>: un ibrido
                 proprietario che combina Platform Frame, X-Lam e Post and Beam.
                 Non una semplice casa in legno, ma un&apos;opera
@@ -163,21 +161,15 @@ export default function ChiSiamoPage() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15} duration={0.7}>
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/xframe-dettaglio/connettore-fondazione.webp"
-                alt="Connettore brevettato X-Frame: staffa in acciaio zincato su fondazione"
+                src="/images/chi-siamo-hero.webp"
+                alt="Stabilimento EcoLive nel Parco delle Serre, Spadola"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white/90 text-sm font-medium drop-shadow-lg">
-                  Il connettore brevettato X-Frame &mdash; il cuore del sistema costruttivo
-                </p>
-              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -380,7 +372,7 @@ export default function ChiSiamoPage() {
               La Nostra Visione
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3 leading-tight">
-              Poche case, ma perfette
+              Il futuro parte dal legno calabrese
             </h2>
             <div className="mt-6 flex items-center gap-3">
               <div className="w-12 h-0.5 bg-[#A0845C]" />
@@ -504,10 +496,8 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      <SectionTransition from="#F5F5F7" to="#FFFFFF" height={80} />
-
       {/* ── 8. COMPANY INFO + CTA ── */}
-      <section className="py-20 lg:py-28 px-6 bg-white">
+      <section className="py-16 lg:py-20 px-6 bg-[#F5F5F7]">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
             <div className="bg-[#F5F5F7] rounded-2xl p-8 md:p-12 border border-[#D2D2D7]">
