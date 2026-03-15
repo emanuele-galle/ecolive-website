@@ -12,7 +12,7 @@ interface YouTubeEmbedProps {
 export default function YouTubeEmbed({ videoId, title }: YouTubeEmbedProps) {
   const [playing, setPlaying] = useState(false)
   const [imgSrc, setImgSrc] = useState(
-    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+    `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
   )
 
   if (playing) {
